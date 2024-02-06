@@ -1,0 +1,22 @@
+
+broadcom.endevor
+================
+
+The Broadcom Endevor collection for listing Endevor environment information, working with elements and packages that are located in the specified Endevor instance.
+
+Compatible with Zowe CLI Plugin version: 7.7.2
+
+The Ansible collection for Endevor enables you to interact with Endevor on the mainframe,
+using your Ansible playbooks.
+
+You can use Endevor resources directly in your playbooks and integrate
+mainframe software life cycle automation into Ansible.
+
+For more information, see the Contents section.
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :caption: Contents
+
+   contents/*

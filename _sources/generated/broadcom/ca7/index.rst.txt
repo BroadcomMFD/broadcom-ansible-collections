@@ -1,0 +1,16 @@
+
+broadcom.ca7
+============
+
+Welcome to the CA 7 Ansible collection!
+
+Compatible with Zowe CLI Plugin version: 2.0.1
+
+For more information, see the Contents section.
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :caption: Contents
+
+   contents/*

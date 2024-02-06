@@ -1,0 +1,16 @@
+
+broadcom.sysview
+================
+
+Zowe CLI collection for SYSVIEW
+
+Compatible with Zowe CLI Plugin version: 1.4.0
+
+For more information, see the *Contents* section.
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :caption: Contents
+
+   contents/*

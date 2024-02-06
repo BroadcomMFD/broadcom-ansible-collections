@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Requirements &mdash; Broadcom Ansible Collections for Mainframe  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/ansible.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/rtd-ethical-ads.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/images/Ansible-Mark-RGB_Black.svg"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation" href="installation.html" />
+    <link rel="prev" title="Broadcom Ansible Collections for Mainframe" href="index.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
+
+
+
+
+</head>
+
+<body class="wy-body-for-nav"><!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/ansiblefest" target="_blank">AnsibleFest</a></li>
+    <li><a href="https://www.ansible.com/tower" target="_blank">Products</a></li>
+    <li><a href="https://www.ansible.com/community" target="_blank">Community</a></li>
+    <li><a href="https://www.ansible.com/webinars-training" target="_blank">Webinars & Training</a></li>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="_static/images/Ansible-Mark-RGB_White.svg"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Broadcom Ansible Collections for Mainframe  documentation</div>
+</a>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Broadcom Ansible Collections for Mainframe
+          </a><!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" class="st-default-search-input" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Requirements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#control-node">Control node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#managed-node">Managed node</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mapping-collections-to-zowe-cli-plug-ins">Mapping Collections to Zowe CLI Plug-ins</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connecting.html">Connection methods and details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Collections</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/ca7/index.html">broadcom.ca7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/dbm_db2/index.html">broadcom.dbm_db2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/endevor/index.html">broadcom.endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/endevor_bridge_for_git/index.html">broadcom.endevor_bridge_for_git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/file_master_plus/index.html">broadcom.file_master_plus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/idms/index.html">broadcom.idms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/mat/index.html">broadcom.mat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/mat_pma_util/index.html">broadcom.mat_pma_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/ops/index.html">broadcom.ops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/spool/index.html">broadcom.spool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/sysview/index.html">broadcom.sysview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/view/index.html">broadcom.view</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/zowe_core/index.html">broadcom.zowe_core</a></li>
+</ul>
+<!-- extra nav elements for Ansible beyond RTD Sphinx Theme -->
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Broadcom Ansible Collections for Mainframe</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Requirements</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/requirements.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+  
+           <div itemprop="articleBody">
+             
+  <section id="requirements">
+<h1>Requirements<a class="headerlink" href="#requirements" title="Link to this heading"></a></h1>
+<p>Before you install any Broadcom Ansible collection for mainframe, ensure that you configure a
+<strong>control node</strong> and <strong>managed node</strong> with a minimum set of requirements.</p>
+<section id="control-node">
+<h2>Control node<a class="headerlink" href="#control-node" title="Link to this heading"></a></h2>
+<p>A control node is a machine with Ansible. With the control node,
+you can run commands and playbooks from a laptop, desktop, or server.</p>
+<p><em>Note</em>: Microsoft Windows is not a supported controller for Broadcom Ansible collections.</p>
+<p>All Broadcom Ansible Collections for Mainframe require these versions of software on the Ansible control node:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html">Ansible</a>: 2.9 or later</p></li>
+<li><p><a class="reference external" href="https://www.python.org/downloads">Python</a>: 3.7 or later</p></li>
+<li><p><a class="reference external" href="https://nodejs.org/en/about/releases/">Node.js and npm</a>: supported Node.js LTS version:</p>
+<ul>
+<li><p>For a current list of supported LTS versions, see <a class="reference external" href="https://nodejs.org/en/about/releases/">nodejs.org</a>.</p></li>
+<li><p>The Broadcom Ansible Collections for Mainframe use Zowe CLI and CLI plug-ins on control node.
+You do not need to install Zowe CLI and CLI plug-ins yourself.
+Broadcom Ansible Collections for Mainframe include the Zowe CLI and CLI plug-ins.
+Ensure that your control node fulfils the requirements of Zowe CLI (Node.js and npm).
+For more details, see <a class="reference external" href="https://techdocs.broadcom.com/us/en/ca-mainframe-software/devops/ca-brightside/3-0/getting-started/ca-brightside-software-requirements.html">Zowe CLI Software Requirements</a>
+in the Brightside 3.0 documentation.</p></li>
+</ul>
+</li>
+<li><p>Broadcom Zowe Core Ansible collection:</p>
+<ul>
+<li><p>All Broadcom Ansible Collections for Mainframe are dependent on <strong>Broadcom Zowe Core Ansible collection</strong>. This collection is installed automatically with collections that require it.</p></li>
+<li><p>Provides common code for other Broadcom Ansible Collections for Mainframe. The collection does not contain any public modules or other Ansible content.</p></li>
+<li><p>Includes <a class="reference external" href="https://techdocs.broadcom.com/us/en/ca-mainframe-software/devops/ca-brightside/3-0/zowe-cli.html">Zowe CLI</a> package and installs the package automatically, which enables you to use Broadcom Ansible Collections for Mainframe without the Zowe CLI and CLI plug-ins.</p></li>
+<li><p>The collection name in Ansible Galaxy is <code class="docutils literal notranslate"><span class="pre">broadcom.zowe_core</span></code>.</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://www.openssh.com/">OpenSSH</a></p>
+<ul>
+<li><p>Broadcom Ansible collections provide action plug-ins that run on a control node.
+You do not need to enable OpenSSH. However, you might need OpenSSH for collections
+of other vendors and basic Ansible functionality, such as gathering facts.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="managed-node">
+<h2>Managed node<a class="headerlink" href="#managed-node" title="Link to this heading"></a></h2>
+<p>A managed node, or a target node (or host), is managed by Ansible.
+<em>Note</em>: Ensure that you do not install Ansible on a managed node.</p>
+<p>Broadcom Ansible Collections for Mainframe provide action plug-ins that run on a control node.
+You do not need to enable OpenSSH or install Python on a managed z/OS node.
+However, you might need OpenSSH for collections of other vendors and basic Ansible functionality, such as gathering facts.</p>
+<p>For additional z/OS software requirements for Broadcom Ansible collection for mainframe, see <a class="reference external" href="https://techdocs.broadcom.com/us/en/ca-mainframe-software/devops/ca-brightside/3-0/zowe-cli/install-zowe-cli/install-cli-plug-ins/software-requirements-for-cli-plug-ins.html">Software Requirements for CLI Plug-ins</a>.</p>
+</section>
+<section id="mapping-collections-to-zowe-cli-plug-ins">
+<h2>Mapping Collections to Zowe CLI Plug-ins<a class="headerlink" href="#mapping-collections-to-zowe-cli-plug-ins" title="Link to this heading"></a></h2>
+<p>the following table shows Zowe CLI Plug-ins that are used in the collections:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Collection Name</p></th>
+<th class="head"><p>Zowe CLI Plug-in</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">broadcom.ca7</span></code></p></td>
+<td><p>CA 7 Workload Automation Plug-in for Zowe CLI</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">broadcom.dbm-db2</span></code></p></td>
+<td><p>Broadcom Database Management Solutions for Db2 for z/OS plug-in for Zowe CLI</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">broadcom.endevor</span></code></p></td>
+<td><p>Endevor Plug-in for Zowe CLI</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">broadcom.endevor_bridge_for_git</span></code></p></td>
+<td><p>Endevor Bridge for Git Plug-in for Zowe CLI</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">broadcom.file_master_plus</span></code></p></td>
+<td><p>File Master Plus Plug-in for Zowe CLI</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">broadcom.ops</span></code></p></td>
+<td><p>OPS/MVS Plug-in for Zowe CLI</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">broadcom.spool</span></code></p></td>
+<td><p>Spool Plug-in for Zowe CLI</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">broadcom.sysview</span></code></p></td>
+<td><p>SYSVIEW Plug-in for Zowe CLI</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">broadcom.view</span></code></p></td>
+<td><p>View Plug-in for Zowe CLI</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Broadcom Ansible Collections for Mainframe" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="installation.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Broadcom.</p>
+  </div>
+
+  
+   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+  <a href="https://sphinx-ansible-theme.rtfd.io">Sphinx Ansible Theme</a>
+  that is based on the
+  <a href="https://github.com/readthedocs/sphinx_rtd_theme">Read the Docs theme</a>
+  and is maintained by the <a href="https://docs.ansible.com/ansible/4/community/">Ansible Community</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script><!-- extra footer elements for Ansible beyond RTD Sphinx Theme -->
+
+</body>
+</html>

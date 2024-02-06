@@ -1,0 +1,232 @@
+.. _list_type_sequence_module:
+
+
+list_type_sequence -- List the contents of the Endevor type sequence
+====================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+List the contents of the Endevor type sequence.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  host (type: str)
+    Specifies the base host name.
+
+
+
+  port (type: str)
+    Specifies the port number.
+
+
+
+  protocol (type: str, default: ``https``)
+    Specifies the protocol used for connecting to Endevor Rest API.
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` **←**
+
+  reject_unauthorized (type: bool)
+    Specify this option to have the server certificate verified against the list of supplied CAs.
+
+
+
+  base_path (type: str)
+    Specifies the base path used for connecting to Endevor Rest API.
+
+
+
+  instance (type: str)
+    Specifies Endevor Web Services dataSource name.
+
+
+
+  user (type: str)
+    Specifies the user name.
+
+
+
+  password (type: str)
+    Specifies the user's password.
+
+
+
+  suppress_messages (type: bool)
+    Suppress all [INFO]/[WARN] messages from terminal output.
+
+
+
+  report_file (type: str)
+    File name for saving reports from Endevor SCM locally.
+
+
+
+  report_dir (type: str)
+    Directory for saving reports from Endevor SCM locally, if wasn't specified. Defaults to current directory.
+
+
+
+  write_report (type: bool)
+    Write the endevor reports to a file. By default, when return code is 0, no report will be written, unless this option is specified. When return code is bigger than 0, reports will be written to a file, unless this option is specifed to be false.
+
+
+
+  full_output (type: bool)
+    Specify this option if you want a full output of list action.
+
+
+
+  asynchronous (type: bool)
+    Submit this module as an asynchronous Endevor Web Services task.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+  response_format_filter (type: list)
+    Filter (include) fields in the response. Accepts an array of field/property names to include in the output response. You can filter JSON objects properties OR table columns/fields. In addition, you can use this option in conjunction with '--response-format-type' to reduce the output of a module to a single field/property or a list of a single field/property.
+
+
+
+  response_format_type (type: str)
+    The module response output format type. Must be one of the following:
+
+    
+
+    table: Formats output data as a table. Use this option when the output data is an array of homogeneous JSON objects. Each property of the object will become a column in the table.
+
+    
+
+    list: Formats output data as a list of strings. Can be used on any data type (JSON objects/arrays) are stringified and a new line is added after each entry in an array.
+
+    
+
+    object: Formats output data as a list of prettified objects (or single object). Can be used in place of "table" to change from tabular output to a list of prettified objects.
+
+    
+
+    string: Formats output data as a string. JSON objects/arrays are stringified.
+
+
+    Choices:
+      * ``table`` 
+      * ``list`` 
+      * ``object`` 
+      * ``string`` 
+
+  response_format_header (type: bool)
+    If "--response-format-type table" is specified, include the column headers in the output.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: List the contents of the Endevor type sequence
+      broadcom.endevor.list_type_sequence:
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

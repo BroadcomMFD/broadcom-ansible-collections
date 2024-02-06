@@ -1,0 +1,305 @@
+.. _update_element_module:
+
+
+update_element -- The update element module updates an Element in the entry Stage, thereby creating a new level for the Element in the entry Stage.
+===================================================================================================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+The update element module updates an Element in the entry Stage, thereby creating a new level for the Element in the entry Stage. .
+
+
+
+
+
+
+
+Parameters
+----------
+
+  element (*required*, type: str)
+    Name of the Endevor element.
+
+
+
+  from_file (type: str)
+    Use this input to provide source file.
+
+
+
+  from_dataset (type: str)
+    Use this input to provide source data set name.
+
+
+
+  from_member (type: str)
+    Use this input to provide source member name in the data set.
+
+
+
+  from_path (type: str)
+    Use this input to provide the path of source USS file. It must be used with from-uss-file.
+
+
+
+  from_uss_file (type: str)
+    Use this input to provide source USS file name. It must be used with from-path.
+
+
+
+  environment (type: str)
+    The Endevor environment where your project resides.
+
+
+
+  system (type: str)
+    The Endevor system where your project resides.
+
+
+
+  subsystem (type: str)
+    The Endevor subsystem where your project resides.
+
+
+
+  type (type: str)
+    Name of the Endevor element's type.
+
+
+
+  ccid (type: str)
+    The CCID you want to use when performing an Element action.
+
+
+
+  comment (type: str)
+    The comment you want to have when performing an Element action.
+
+
+
+  maxrc (type: int, default: ``8``)
+    The maximum value of the return code of a successful action. When the return code is greater than the maxrc value, the module fails.
+
+
+
+  override_signout (type: bool)
+    Specify if you want to override the Signout of an Endevor element while performing this action.
+
+
+
+  proc_group (type: str)
+    The Endevor processor group you would like to use.
+
+
+
+  generate (type: bool)
+    Specifies if you want to Generate Element after Add/Update action.
+
+
+
+  get_fingerprint (type: bool)
+    Return fingerprint of a retrieved, added or updated element as the first line of the response.
+
+
+
+  fingerprint (type: str)
+    Specifies the fingerprint of the element to Add or Update. Use value 'NEW' when adding a new element that shouldn't exist in the map yet.
+
+
+
+  charset (type: str)
+    Specifies the clients preferred character set when retrieving, printing or updating elements.
+
+
+
+  sync (type: bool)
+    Specify if you want to synchronize source and current level of the Elements while performing this action.
+
+
+
+  sync_with_history (type: bool)
+    Specify if you want to preserve the change history of the Elements while performing the synchronization during element update.
+
+
+
+  sync_fingerprint (type: str)
+    Specifies the fingerprint of the element directly up the map that the updated element should be synchronized with. Prevents the sync if the element up the map doesn't match the fingerprint.
+
+
+
+  host (type: str)
+    Specifies the base host name.
+
+
+
+  port (type: str)
+    Specifies the port number.
+
+
+
+  instance (type: str)
+    Specifies Endevor Web Services dataSource name.
+
+
+
+  protocol (type: str, default: ``https``)
+    Specifies the protocol used for connecting to Endevor Rest API.
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` **←**
+
+  user (type: str)
+    Specifies the user name.
+
+
+
+  password (type: str)
+    Specifies the user's password.
+
+
+
+  reject_unauthorized (type: bool)
+    Specify this option to have the server certificate verified against the list of supplied CAs.
+
+
+
+  base_path (type: str)
+    Specifies the base path used for connecting to Endevor Rest API.
+
+
+
+  suppress_messages (type: bool)
+    Suppress all [INFO]/[WARN] messages from terminal output.
+
+
+
+  report_file (type: str)
+    File name for saving reports from Endevor SCM locally.
+
+
+
+  report_dir (type: str)
+    Directory for saving reports from Endevor SCM locally, if wasn't specified. Defaults to current directory.
+
+
+
+  write_report (type: bool)
+    Write the endevor reports to a file. By default, when return code is 0, no report will be written, unless this option is specified. When return code is bigger than 0, reports will be written to a file, unless this option is specifed to be false.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Update element from local file with endevor profile set up
+      broadcom.endevor.update_element:
+        element: elementName
+        from_file: localfile.txt
+        environment: ENV
+        system: SYS
+        subsystem: SUB
+        type: TYPE
+        ccid: CCID
+        comment: updating element
+        instance: ENDEVOR
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

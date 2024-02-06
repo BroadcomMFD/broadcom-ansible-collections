@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>create_vsam_rrds – Create a RRDS VSAM data set &mdash; Broadcom Ansible Collections for Mainframe  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/ansible.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/rtd-ethical-ads.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/images/Ansible-Mark-RGB_Black.svg"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="create_vsam_vrrds – Create a VRRDS VSAM data set" href="create_vsam_vrrds.html" />
+    <link rel="prev" title="create_vsam_lds – Create a LDS VSAM data set" href="create_vsam_lds.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
+
+
+
+
+</head>
+
+<body class="wy-body-for-nav"><!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/ansiblefest" target="_blank">AnsibleFest</a></li>
+    <li><a href="https://www.ansible.com/tower" target="_blank">Products</a></li>
+    <li><a href="https://www.ansible.com/community" target="_blank">Community</a></li>
+    <li><a href="https://www.ansible.com/webinars-training" target="_blank">Webinars & Training</a></li>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="../../../../_static/images/Ansible-Mark-RGB_White.svg"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Broadcom Ansible Collections for Mainframe  documentation</div>
+</a>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Broadcom Ansible Collections for Mainframe
+          </a><!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" class="st-default-search-input" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../using.html">Using collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../connecting.html">Connection methods and details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Collections</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../ca7/index.html">broadcom.ca7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dbm_db2/index.html">broadcom.dbm_db2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endevor/index.html">broadcom.endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endevor_bridge_for_git/index.html">broadcom.endevor_bridge_for_git</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">broadcom.file_master_plus</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="copy_data_set.html">copy_data_set – Copy a data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_large_format_sequential.html">create_large_format_sequential – Create a large format sequential data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_like_model.html">create_like_model – Create a data set based on the parameters of an existing data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_partitioned_data_set.html">create_partitioned_data_set – Create a partitioned data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_partitioned_data_set_extended.html">create_partitioned_data_set_extended – Create an extended partitioned data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_physical_sequential.html">create_physical_sequential – Create a physical sequential data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_vsam_esds.html">create_vsam_esds – Create an ESDS VSAM data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_vsam_ksds.html">create_vsam_ksds – Create a KSDS VSAM data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_vsam_lds.html">create_vsam_lds – Create a LDS VSAM data set</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">create_vsam_rrds – Create a RRDS VSAM data set</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#return-values">Return Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#status">Status</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="create_vsam_vrrds.html">create_vsam_vrrds – Create a VRRDS VSAM data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delete_data_set.html">delete_data_set – Permanently deletes a data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="populate_data_set.html">populate_data_set – Populate a data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rename_data_set.html">rename_data_set – Rename a data set</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../idms/index.html">broadcom.idms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mat/index.html">broadcom.mat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mat_pma_util/index.html">broadcom.mat_pma_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/index.html">broadcom.ops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spool/index.html">broadcom.spool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sysview/index.html">broadcom.sysview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../view/index.html">broadcom.view</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../zowe_core/index.html">broadcom.zowe_core</a></li>
+</ul>
+<!-- extra nav elements for Ansible beyond RTD Sphinx Theme -->
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Broadcom Ansible Collections for Mainframe</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">broadcom.file_master_plus</a></li>
+      <li class="breadcrumb-item active">create_vsam_rrds – Create a RRDS VSAM data set</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/generated/broadcom/file_master_plus/contents/create_vsam_rrds.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+  
+           <div itemprop="articleBody">
+             
+  <section id="create-vsam-rrds-create-a-rrds-vsam-data-set">
+<span id="create-vsam-rrds-module"></span><h1>create_vsam_rrds – Create a RRDS VSAM data set<a class="headerlink" href="#create-vsam-rrds-create-a-rrds-vsam-data-set" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></p></li>
+<li><p><a class="reference internal" href="#parameters" id="id2">Parameters</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id3">Examples</a></p></li>
+<li><p><a class="reference internal" href="#return-values" id="id4">Return Values</a></p></li>
+<li><p><a class="reference internal" href="#status" id="id5">Status</a></p></li>
+</ul>
+</nav>
+<section id="synopsis">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Synopsis</a><a class="headerlink" href="#synopsis" title="Link to this heading"></a></h2>
+<p>Create a relative-record data set (RRDS) Virtual Storage Access Method (VSAM) data set.</p>
+</section>
+<section id="parameters">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Parameters</a><a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<blockquote>
+<div><dl>
+<dt>name (<em>required</em>, type: str)</dt><dd><p>Specifies the name of the data set to create.</p>
+</dd>
+<dt>model (type: str)</dt><dd><p>Specifies the name of a model RRDS (relative-record VSAM data set) for allocating parameters.</p>
+<p>The parameters of the model data set override all defaults.</p>
+<p>Example: fmmvs.model.dsname.</p>
+</dd>
+<dt>maximum_record_size (type: int)</dt><dd><p>Specifies the maximum length of data records.</p>
+<p>This parameter is mandatory unless a model data set is specified.</p>
+<p>Example: 180.</p>
+</dd>
+<dt>data_dsname (type: str)</dt><dd><p>Specifies the data set name of the data VSAM component.</p>
+<p>If this parameter is not specified then by default it is set to the cluster name with ‘.DATA’.</p>
+<p>Example: fmmvs.vsam.rrds.data.</p>
+</dd>
+<dt>data_control_interval_size (type: int)</dt><dd><p>Specifies the size of the Control Interval for the data VSAM component.</p>
+<p>Default value: 20480</p>
+<p>Example: 3584</p>
+</dd>
+<dt>data_space_units (type: str)</dt><dd><p>Specifies the space allocation unit for data vsam component.</p>
+<p>The allowed values have the following meaning:</p>
+<p>TRK - Tracks</p>
+<p>CYL - Cylinders</p>
+<p>REC - Records</p>
+<p>K - Kilobytes</p>
+<p>M - Megabytes</p>
+<p>Default value: TRK</p>
+<p>Example: rec</p>
+<dl class="simple">
+<dt>Choices:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TRK</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CYL</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">REC</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">K</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">M</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>data_primary_space (type: int)</dt><dd><p>Specifies the primary space allocation unit for the data VSAM component.</p>
+<p>Allowed values: 1-16777215</p>
+<p>Default value: 18</p>
+<p>Example: 3</p>
+</dd>
+<dt>data_secondary_space (type: int)</dt><dd><p>Specifies the secondary space allocation unit for the data VSAM component.</p>
+<p>Allowed values: 1-16777215</p>
+<p>Default value: 3</p>
+<p>Example: 5</p>
+</dd>
+<dt>data_volume (type: list)</dt><dd><p>Specifies a disk volume or specific tapes for the data VSAM component.</p>
+<p>Example: vol002.</p>
+</dd>
+<dt>buffer_space (type: int)</dt><dd><p>Specifies the minimum buffer space to allocate when this VSAM file is accessed.</p>
+<p>Example: 37376.</p>
+</dd>
+<dt>erase (type: bool)</dt><dd><p>Indicates whether the VSAM file was allocated with the ERASE parameter, causing all components of the file to be overwritten with binary zeros, when the VSAM file is deleted from the catalog.</p>
+<p>Default value: n</p>
+<p>Example: y</p>
+</dd>
+<dt>load_restartable (type: bool)</dt><dd><p>Specify ‘Y’ to request that the VSAM component definition use the ‘RECOVERY’ parameter (which causes the data component to be preformatted previous to the initial load). Using this option causes the initial load to take longer, but loads which do not complete successfully can be restarted.</p>
+<p>Specify ‘N’ to request that the VSAM component definition use the ‘SPEED’ parameter (which causes the data component to NOT be preformatted previous to the initial load).</p>
+<p>Default value: n</p>
+<p>Example: y</p>
+</dd>
+<dt>reuse (type: bool)</dt><dd><p>Indicates whether the VSAM file was allocated with the REUSE parameter specifying that the cluster can be opened again and again as a reusable cluster.</p>
+<p>Default value: n</p>
+<p>Example: y</p>
+</dd>
+<dt>write_check (type: bool)</dt><dd><p>Indicates whether the VSAM file was allocated with the WRITECHECK parameter requesting each write to the VSAM file to be validated by a read without data transfer.</p>
+<p>Default value: n</p>
+<p>Example: y</p>
+</dd>
+<dt>control_interval_freespace_percentage (type: int)</dt><dd><p>Specifies the percentage of empty space in each control interval when the file is initially loaded.The free space lets records be inserted or expanded within a control interval before requiring a control interval split.</p>
+<p>Example: 10.</p>
+</dd>
+<dt>control_area_freespace_percentage (type: int)</dt><dd><p>Specifies the percentage of control intervals to be left unused in each control area as the file is initially loaded. The use of control area free space lets some control interval splits occur before requiring a control area split.</p>
+<p>Example: 10.</p>
+</dd>
+<dt>cross_region_share_option (type: int)</dt><dd><p>Specifies that the file can be shared among regions within the same system or within multiple systems using GRS (Global Resource Serialization).</p>
+<p>The allowed values have the following meaning:</p>
+<p>1 - The data set can be opened for read processing by an unlimited number of users, but the data set can be accessed by only one user when that user is doing read and write processing.</p>
+<p>2 - The data set can be opened by only one user at a time for read and write processing, but any number of users can also be accessing the data set for read processing</p>
+<p>3 - The data set can be fully shared by any number of users.</p>
+<p>4 - The data set can be fully shared by any number of users. VSAM immediately updates the data set for PUTs and refreshes all input buffers for GETs.</p>
+<p>Default value: 1</p>
+<p>Example: 2</p>
+<dl class="simple">
+<dt>Choices:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">4</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>cross_system_share_option (type: int)</dt><dd><p>Specifies how the file can be shared among systems.</p>
+<p>The allowed values have the following meaning:</p>
+<p>3 - The data set can be fully shared by any number of users.</p>
+<p>4 - The data set can be fully shared by any number of users. VSAM immediately updates the data set for PUTs and refreshes all input buffers for GETs.</p>
+<p>Default value: 3</p>
+<p>Example: 4</p>
+<dl class="simple">
+<dt>Choices:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">4</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>expiration_date (type: str)</dt><dd><p>Specifies the expiration date after which the data set can be deleted.</p>
+<p>Specify ‘P’ or ‘p’ to make the data set permanent, or an expiration date in YYYY-MM-DD format.</p>
+<p>Example: 2032-07-31.</p>
+</dd>
+<dt>storage_class (type: str)</dt><dd><p>Specifies the storage class.</p>
+<p>Example: scl002.</p>
+</dd>
+<dt>management_class (type: str)</dt><dd><p>Specifies the management class.</p>
+<p>Example: mcl002.</p>
+</dd>
+<dt>data_class (type: str)</dt><dd><p>Specifies the data class.</p>
+<p>Example: dcl002.</p>
+</dd>
+<dt>log (type: str)</dt><dd><p>When specified, ‘ALL’ or ‘UNDO’ or ‘NONE’ indicates the VSAM RLS recovery option.</p>
+<p>Example: ALL.</p>
+<dl class="simple">
+<dt>Choices:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NONE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UNDO</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ALL</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>frlog (type: str)</dt><dd><p>Specifies the type of VSAM batch logging to perform for this VSAM data set.</p>
+<p>The allowed values have the following meaning:</p>
+<p>NONE - Disables VSAM batch logging.</p>
+<p>REDO - Enables VSAM batch logging.</p>
+<p>UNDO - Changes made to your VSAM data set are backed out using VSAM batch logging.</p>
+<p>ALL - Changes made to your VSAM data set are backed out and forward recovered using VSAM batch logging.</p>
+<p>Example: ALL.</p>
+<dl class="simple">
+<dt>Choices:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NONE</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UNDO</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ALL</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">REDO</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>log_replicate (type: bool)</dt><dd><p>Specify ‘Y’ to enable VSAM replication for this data set.</p>
+<p>Example: y.</p>
+</dd>
+<dt>log_stream_id (type: str)</dt><dd><p>Specifies the 1- to 26-character name of the forward recovery log stream.</p>
+<p>Example: LOGSTRA.</p>
+</dd>
+<dt>rls_enable (type: bool)</dt><dd><p>Specify ‘N’ to disable VSAM record-level sharing.</p>
+<p>Default value: y</p>
+<p>Example: n</p>
+</dd>
+<dt>host (type: str)</dt><dd><p>Specifies File Master Plus server host name.</p>
+</dd>
+<dt>port (type: int, default: <code class="docutils literal notranslate"><span class="pre">51914</span></code>)</dt><dd><p>Specifies File Master Plus server port.</p>
+</dd>
+<dt>user (type: str)</dt><dd><p>Specifies Mainframe user name. May be the same as TSO login.</p>
+</dd>
+<dt>password (type: str)</dt><dd><p>Specifies Mainframe password. May be the same as TSO password.</p>
+</dd>
+<dt>protocol (type: str, default: <code class="docutils literal notranslate"><span class="pre">https</span></code>)</dt><dd><p>Specifies File Master Plus REST API protocol.</p>
+<dl class="simple">
+<dt>Choices:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">http</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">https</span></code> <strong>←</strong></p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>reject_unauthorized (type: bool, default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</dt><dd><p>Reject self-signed certificates.</p>
+</dd>
+<dt>base_path (type: str)</dt><dd><p>The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all FMP resources when making REST requests. Do not specify this option if you are not using an Zowe API Mediation Layer.</p>
+</dd>
+<dt>cert_file (type: path)</dt><dd><p>The file path to a certificate file to use for authentication.</p>
+<p>Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.</p>
+</dd>
+<dt>cert_key_file (type: path)</dt><dd><p>The file path to a certificate key file to use for authentication.</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Creating a RRDS with default option values and mandatory options</span>
+<span class="w">  </span><span class="nt">broadcom.file_master_plus.create_vsam_rrds</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fmmvs.test.dsname</span>
+<span class="w">    </span><span class="nt">maximum_record_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">160</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Creating a RRDS data set like a model RRDS data set</span>
+<span class="w">  </span><span class="nt">broadcom.file_master_plus.create_vsam_rrds</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fmmvs.test.dsname</span>
+<span class="w">    </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fmmvs.model.dsname</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Creating a RRDS like a model RRDS data set and overriding the parameters with options</span>
+<span class="w">  </span><span class="nt">broadcom.file_master_plus.create_vsam_rrds</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fmmvs.test.dsname</span>
+<span class="w">    </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fmmvs.model.dsname</span>
+<span class="w">    </span><span class="nt">maximum_record_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">160</span>
+<span class="w">    </span><span class="nt">buffer_space</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">37376</span>
+<span class="w">    </span><span class="nt">write_check</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">y</span>
+<span class="w">    </span><span class="nt">cross_region_share_option</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">    </span><span class="nt">cross_system_share_option</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
+<span class="w">    </span><span class="nt">expiration_date</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2025-09-27</span>
+</pre></div>
+</div>
+</section>
+<section id="return-values">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Return Values</a><a class="headerlink" href="#return-values" title="Link to this heading"></a></h2>
+<dl>
+<dt>data (type: list, <em>when returned data is a dictionary</em>)</dt><dd><p>Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.</p>
+</dd>
+<dt>error (type: complex, <em>error</em>)</dt><dd><p>More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.</p>
+<dl class="simple">
+<dt>additional_details (type: str)</dt><dd><p>Detailed message about the failure.</p>
+</dd>
+<dt>msg (type: str)</dt><dd><p>Short description of the result or failure.</p>
+</dd>
+<dt>request (type: str, <em>API request failed</em>)</dt><dd><p>HTTP method used to invoke API service request.</p>
+</dd>
+<dt>resource (type: str, <em>API request failed</em>)</dt><dd><p>URI of the resource of the API service request.</p>
+</dd>
+</dl>
+</dd>
+<dt>failed (type: bool, <em>always</em>)</dt><dd><p>A boolean that indicates if the task was failed or not.</p>
+</dd>
+<dt>list (type: list, <em>when returned data is a list</em>)</dt><dd><p>Data from the module execution (a list of data structures).</p>
+</dd>
+<dt>msg (type: str, <em>sometimes</em>)</dt><dd><p>Short description of the result or failure.</p>
+</dd>
+<dt>rc (type: int, <em>always</em>)</dt><dd><p>Exit code of the module, successful exit code is 0, failure is typically 1 or higher.</p>
+</dd>
+<dt>stderr (type: str, <em>error</em>)</dt><dd><p>Details of the error.</p>
+</dd>
+<dt>stdout (type: str, <em>success</em>)</dt><dd><p>Summary of the result.</p>
+</dd>
+</dl>
+</section>
+<section id="status">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Status</a><a class="headerlink" href="#status" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>This module is maintained by Broadcom.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="create_vsam_lds.html" class="btn btn-neutral float-left" title="create_vsam_lds – Create a LDS VSAM data set" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="create_vsam_vrrds.html" class="btn btn-neutral float-right" title="create_vsam_vrrds – Create a VRRDS VSAM data set" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Broadcom.</p>
+  </div>
+
+  
+   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+  <a href="https://sphinx-ansible-theme.rtfd.io">Sphinx Ansible Theme</a>
+  that is based on the
+  <a href="https://github.com/readthedocs/sphinx_rtd_theme">Read the Docs theme</a>
+  and is maintained by the <a href="https://docs.ansible.com/ansible/4/community/">Ansible Community</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script><!-- extra footer elements for Ansible beyond RTD Sphinx Theme -->
+
+</body>
+</html>

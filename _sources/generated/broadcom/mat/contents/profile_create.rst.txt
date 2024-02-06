@@ -1,0 +1,391 @@
+.. _profile_create_module:
+
+
+profile_create -- Create a MAT monitor profile
+==============================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Create a MAT monitor profile.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  profile (*required*, type: str)
+    Specifies the name of the profile that you create in MAT (e.g. PROFILE1). Values: 1 to 8 characters, a combination of alphanumeric and national characters (A-Z, 0-9, and @), the first character must be an alphabetic or @. The profile name must not contain characters # and $.
+
+
+
+  jobname (*required*, type: str)
+    Specifies the name of the job that you want to measure (e.g. JOB1). Values: 1 to 8 characters, alphanumeric (A-Z capitals only and 0-9), national (#, $, @), and wildcards (\* or %).
+
+
+
+  targsys (*required*, type: str)
+    Specifies the target system in SYSPLEX. Values: a comma separated list of up to 4 values is allowed, 1-8 characters each, a combination of alphanumeric (A-Z and 0-9) and national (@,#,$), the first character must be an alphabetic (A-Z) or a national (@, #, $), e.g. AA31,AA32).
+
+
+
+  batchreports (type: str, default: ``no``)
+    Specifies the setting for the Batch report option upon monitor completion.
+
+
+    Choices:
+      * ``yes`` 
+      * ``no`` **←**
+
+  description (type: str)
+    Provide the monitor description (maximum 24 characters).
+
+
+
+  mondsn (type: str)
+    Specifies the monitor data set name where MAT saves the measurement (e.g. DEMO.MAT.MONITOR). Values: data set name pattern, maximum 46 characters. If not specified, your default MAT monitor DSN pattern is applied.
+
+
+
+  stepname (type: str)
+    Specifies the name of the job step to monitor. Values: maximum 8 characters, alphanumeric (A-Z capitals only and 0-9), national (#, $, @), and wildcards (\* or %).
+
+
+
+  mstep (type: str, default: ``no``)
+    Indicates whether the multi-step monitoring option is enabled.
+
+
+    Choices:
+      * ``yes`` 
+      * ``no`` **←**
+
+  procstep (type: str)
+    Specifies the name of the procedure step. Values: maximum 8 characters, alphanumeric (A-Z capitals only and 0-9), national (#, $, @), and wildcards (\* or %).
+
+
+
+  program (type: str)
+    Specifies the name of the program to monitor. Values: maximum 8 characters, alphanumeric (A-Z capitals only and 0-9), national (#, $, @), and wildcards (\* or %).
+
+
+
+  elapstime (type: str, default: ``60s``)
+    Specifies the required monitor duration followed by s (seconds) or m (minutes) (e.g. 60s). Values: maximum 6 characters total, number must be \> 0.
+
+
+
+  smon (type: str, default: ``no``)
+    Specifies whether to monitor the entire step.
+
+
+    Choices:
+      * ``yes`` 
+      * ``no`` **←**
+
+  tasklib (type: str)
+    Specifies an additional DD name for load modules. Values: maximum 8 characters, alphanumeric (A-Z capitals only and 0-9), national (#, $, @), and wildcards (\* or %).
+
+
+
+  samplecnt (type: str, default: ``6000``)
+    Specifies the number of observations requested. Values: maximum 6 characters, numbers between 10 and 999999.
+
+
+
+  succnt (type: str, default: ``1``)
+    Specifies the maximum number of monitors to run per job execution. Values: maximum 4 characters, numbers between 1 and 9999.
+
+
+
+  reccnt (type: str, default: ``1``)
+    Specifies the number of times this job step will be monitored. Values: maximum 4 characters, numbers between 1 and 9999.
+
+
+
+  sampdelay (type: str, default: ``0``)
+    Specifies the delay monitoring time in seconds after the step start. Values: maximum 4 characters, numbers between 0 and 9999.
+
+
+
+  userexit1 (type: str)
+    Specifies the name for the call user written Data Base. Values: maximum 8 characters, alphanumeric (A-Z capitals only and 0-9), national (#, $, @), and wildcards (\* or %) (e.g. DBEXIT1).
+
+
+
+  userexit2 (type: str)
+    Specifies the name 1 for the call user written 4GL exit programs for this monitor . Values: maximum 8 characters, alphanumeric (A-Z capitals only and 0-9), national (#, $, @), and wildcards (\* or %) (e.g. UEXIT1).
+
+
+
+  userexit3 (type: str)
+    Specifies the name 2 for the call user written 4GL exit programs for this monitor . Values: maximum 8 characters, alphanumeric (A-Z capitals only and 0-9), national (#, $, @), and wildcards (\* or %) (e.g. UEXIT2).
+
+
+
+  inctask (type: str)
+    Specifies the task name to define the tasks that you want to sample in a multitasking environment and restrict monitoring to the specific subtask within the address space. Values: a comma separated list of up to 4 values is allowed, maximum 8 characters each, alphanumeric (A-Z capitals only and 0-9), national (#, $, @), and wildcards (\* or %) (e.g. INC31,INC32).
+
+
+
+  exctask (type: str)
+    Specifies the task name to omit from sampling in a multitasking environment Values: a comma separated list of up to 4 values is allowed, max. 8 characters each, alphanumeric (A-Z capitals only and 0-9), national (#, $, @), and wildcards (\* or %) (e.g. EXC31,EXC32).
+
+
+
+  tran (type: str)
+    Specifies the CICS transaction code name to monitor .Values: a comma separated list of up to 4 values is allowed, maximum 8 characters each, alphanumeric (A-Z capitals only and 0-9), national (#, $, @), and wildcards (\* or +) (e.g. TRAN1,TRAN2).
+
+
+
+  term (type: str)
+    Specifies the CICS terminal IDs to monitor. Values: a comma separated list of up to 4 values is allowed, maximum 8 characters each, alphanumeric (A-Z capitals only and 0-9), national (#, $, @), and wildcards (\* or +) (e.g. TERM1,TERM2).
+
+
+
+  userid (type: str)
+    Specifies the CICS user IDs to monitor. Values:  Values: a comma separated list of up to 4 values is allowed, maximum 8 characters each, alphanumeric (A-Z capitals only and 0-9), national (#, $, @), and wildcards (\* or +) (e.g. USER1,USER2).
+
+
+
+  db2expl (type: str, default: ``no``)
+    Indicates whether the Explain SQL option is enabled for DB2 SQL statements.
+
+
+    Choices:
+      * ``yes`` 
+      * ``no`` **←**
+
+  db2ctsql (type: str, default: ``no``)
+    Indicates whether the Collect SQL from Catalog option is enabled for DB2 SQL statements.If you specify db2expl=yes, then db2ctsql must be also set to yes.
+
+
+    Choices:
+      * ``yes`` 
+      * ``no`` **←**
+
+  db2hvloc (type: str, default: ``no``)
+    Indicates whether the Requestor Location option is enabled for DB2 measurements.
+
+
+    Choices:
+      * ``yes`` 
+      * ``no`` **←**
+
+  db2hvcor (type: str, default: ``no``)
+    Indicates whether the Correlation ID option for SQL statements is enabled for DB2 measurements.
+
+
+    Choices:
+      * ``yes`` 
+      * ``no`` **←**
+
+  db2hviid (type: str, default: ``no``)
+    Indicates whether the Operator ID option for SQL statements is enabled for DB2 measurements.
+
+
+    Choices:
+      * ``yes`` 
+      * ``no`` **←**
+
+  db2hvthd (type: str, default: ``no``)
+    Indicates whether the Thread Address option for SQL statements is enabled for DB2 measurements.
+
+
+    Choices:
+      * ``yes`` 
+      * ``no`` **←**
+
+  wasexprt (type: str, default: ``no``)
+    Indicates whether the Expert Mode is enabled for Java measurement.
+
+
+    Choices:
+      * ``yes`` 
+      * ``no`` **←**
+
+  urlfilt (type: str)
+    A filtering string to restrict monitoring to the specific application URL, transaction,  or stored procedure for Java measurements. Values: a comma separated list of up to 4 values is allowed, max. 64 characters (e.g. mypage1.html,mypage2.html).
+
+
+
+  sysfilt (type: str)
+    A filtering string to include the specified system class for Java measurements. If you specify a value for sysfilt, the measurement includes only the classes that match the filtering string pattern. Values: a comma separated list of up to 3 values is allowed, max. 64 characters (e.g. user1.class,user2.class).
+
+
+
+  schedule (type: str)
+    Specifies the name of the schedule that you want to apply to the monitor profile (maximum 8 characters).
+
+
+
+  protocol (type: str, default: ``https``)
+    Specifies the protocol defined for the MAT REST API server (http or https).
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` **←**
+
+  host (type: str)
+    Specifies the hostname or IP address defined for the MAT REST API server (e.g. 127.0.0.0 or localhost).
+
+
+
+  port (type: int)
+    Specifies the server port (e.g. 8080).
+
+
+
+  user (type: str)
+    Your mainframe username.
+
+
+
+  password (type: str)
+    Your mainframe password.
+
+
+
+  base_path (type: str)
+    The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all resources when making REST requests. Do not specify this option if you are not using an Zowe API Mediation Layer.
+
+
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self-signed certificates.
+
+
+
+  listing_dir (type: str)
+    Specifies the directory where you want to store the registered program listings (e.g. 'c:\\listings') for your immediate source code inspection. You can use the advantage of automated listing registration with MAT and listing retrieval through Endevor® footprints for Cobol, C/C++, and Assembler programs. When a source program listing is registered with MAT, you can enhance the histogram analysis data with the program listing details that pertain to the specific CSECT and program statement. The listing is transfered to the specified directory, which enables you to navigate directly to the line of the source code in you VS Code IDE and inspect the program statement. To use the listing retrieval option through Endevor® footprints, you need to have the Endevor® Web Services installed and configured and specify the Endevor® web server details in the MAT database configuration.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Create the PROFILE1 monitor profile to measure job JOB1 that runs on the AA31 system
+      broadcom.mat.profile_create:
+        profile: PROFILE1
+        jobname: JOB1
+        targsys: AA31
+
+    - name: Create the PROFILE1 monitor profile to measure for 90 seconds job JOB1 that runs on the AA31 and AA32 systems
+      broadcom.mat.profile_create:
+        profile: PROFILE1
+        jobname: JOB1
+        targsys: AA31,AA32
+        elapstime: 90s
+
+    - name: Create the PROFILE1 monitor profile to measure job JOB1 that runs on the AA31 system, with the specific MAT profile details defined
+      broadcom.mat.profile_create:
+        profile: PROFILE1
+        jobname: JOB1
+        targsys: AA31
+        host: example.com
+        port: 12345
+        user: johndoe
+        password: qwerty
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

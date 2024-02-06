@@ -1,0 +1,375 @@
+.. _create_large_format_sequential_module:
+
+
+create_large_format_sequential -- Create a large format sequential data set
+===========================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Create a large format sequential data set.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  name (*required*, type: str)
+    Specifies the name of the data set to create.
+
+
+
+  model (type: str)
+    Specifies the name of a model large format sequential data set name for allocating parameters.
+
+    The parameters of the model data set override all defaults.
+
+    Example: fmmvs.model.dsname.
+
+
+
+  logical_record_length (type: int)
+    Specifies the length of the logical record.
+
+    Allowed values: 1-32760
+
+    Default value: 80
+
+    Example: 80
+
+
+
+  block_size (type: int)
+    Specifies the size of the block of records.
+
+    Allowed values: 1-32760
+
+    Default value: 6160
+
+    Example: 6160
+
+
+
+  record_format (type: str)
+    Specifies the record format.
+
+    The allowed values which have the following meaning: 
+
+    F - Fixed-length records
+
+    V - Variable-length records
+
+    U - Undefined-length records
+
+    B - Records are blocked
+
+    A - Records contain ASCII printer control characters
+
+    M - Records contain machine code control characters
+
+    S - For variable-length records, records may span blocks
+
+    T - Records may be written into overflow tracks
+
+    Default value: FB
+
+    Example: FB
+
+
+    Choices:
+      * ``F`` 
+      * ``FA`` 
+      * ``FM`` 
+      * ``FB`` 
+      * ``FBA`` 
+      * ``FBM`` 
+      * ``FS`` 
+      * ``FSA`` 
+      * ``FSM`` 
+      * ``FT`` 
+      * ``FTA`` 
+      * ``FTM`` 
+      * ``FBS`` 
+      * ``FBT`` 
+      * ``U`` 
+      * ``UA`` 
+      * ``UM`` 
+      * ``UT`` 
+      * ``UTA`` 
+      * ``UTM`` 
+      * ``V`` 
+      * ``VA`` 
+      * ``VM`` 
+      * ``VB`` 
+      * ``VBA`` 
+      * ``VBM`` 
+      * ``VS`` 
+      * ``VSA`` 
+      * ``VSM`` 
+      * ``VT`` 
+      * ``VTA`` 
+      * ``VTM`` 
+      * ``VBS`` 
+      * ``VBT`` 
+
+  space_units (type: str)
+    Specifies the space allocation unit.
+
+    The allowed values which have the following meaning:
+
+    TRK - Tracks
+
+    CYL - Cylinders
+
+    BLK - Blocksize
+
+    Default value: CYL
+
+    Example: blk
+
+
+    Choices:
+      * ``TRK`` 
+      * ``CYL`` 
+      * ``BLK`` 
+
+  primary_space (type: int)
+    Specifies primary space allocation unit.
+
+    Allowed values: 1-16777215
+
+    Default value: 1
+
+    Example: 3
+
+
+
+  secondary_space (type: int)
+    Specifies secondary space allocation unit.
+
+    Allowed values: 1-16777215
+
+    Default value: 1
+
+    Example: 5
+
+
+
+  volume (type: list)
+    Specifies a disk volume or specific tapes.
+
+    Example: vol002.
+
+
+
+  unit_type (type: str)
+    Specifies the DASD unit name.
+
+    Example: sysda.
+
+
+
+  expiration_date (type: str)
+    Specifies the expiration date after which the data set can be deleted.
+
+    Specify 'P' or 'p' to make the data set permanent, or an expiration date in YYYY-MM-DD format.
+
+    Example: 2032-07-31.
+
+
+
+  storage_class (type: str)
+    Specifies the storage class.
+
+    Example: scl002.
+
+
+
+  management_class (type: str)
+    Specifies the management class.
+
+    Example: mcl002.
+
+
+
+  data_class (type: str)
+    Specifies the data class.
+
+    Example: dcl002.
+
+
+
+  host (type: str)
+    Specifies File Master Plus server host name.
+
+
+
+  port (type: int, default: ``51914``)
+    Specifies File Master Plus server port.
+
+
+
+  user (type: str)
+    Specifies Mainframe user name. May be the same as TSO login.
+
+
+
+  password (type: str)
+    Specifies Mainframe password. May be the same as TSO password.
+
+
+
+  protocol (type: str, default: ``https``)
+    Specifies File Master Plus REST API protocol.
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` **←**
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self-signed certificates.
+
+
+
+  base_path (type: str)
+    The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all FMP resources when making REST requests. Do not specify this option if you are not using an Zowe API Mediation Layer.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Creating a large format sequential data set with default option values
+      broadcom.file_master_plus.create_large_format_sequential:
+        name: fmmvs.test.dsname
+
+    - name: Creating a large format sequential data set with options
+      broadcom.file_master_plus.create_large_format_sequential:
+        name: fmmvs.test.dsname
+        logical_record_length: 180
+        block_size: 32720
+        record_format: vb
+        space_units: trk
+        primary_space: 5
+        secondary_space: 5
+        volume:
+        - "vol005"
+        expiration_date: 2025-09-27
+
+    - name: Creating a large format sequential data set like a model large format sequential data set
+      broadcom.file_master_plus.create_large_format_sequential:
+        name: fmmvs.test.dsname
+        model: fmmvs.model.dsname
+
+    - name: Creating a large format sequential data set like a model large format sequential data set and overriding the parameters with options
+      broadcom.file_master_plus.create_large_format_sequential:
+        name: fmmvs.test.dsname
+        model: fmmvs.model.dsname
+        logical_record_length: 180
+        record_format: VB
+        primary_space: 5
+        secondary_space: 5
+        expiration_date: p
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

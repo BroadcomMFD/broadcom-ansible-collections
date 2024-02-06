@@ -1,0 +1,343 @@
+.. _build_job_submit_module:
+
+
+build_job_submit -- Submit build job. [step 1]
+==============================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Build changes from git local repository in Endevor by submitting a job. It supports autogen for building dependencies using with the option of selecting autogen span. After submitting, the command 'build job-report' must be issued to finalize processing.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  endevor_instance (type: str)
+    The Endevor Web Services Endevor configuration name.
+
+
+
+  work_area_id (type: str)
+    Endevor work area ID. Name-masking is not allowed.
+
+
+
+  endevor_subsystem (type: str)
+    The Endevor SCM build subsystem. Note: The build subsystem can be cleared without prior permission.
+
+
+
+  endevor_environment (type: str)
+    The Endevor SCM environment where your build subsystem resides.
+
+
+
+  endevor_system (type: str)
+    The Endevor SCM system where your build subsystem resides.
+
+
+
+  skeleton_jcl (*required*, type: str)
+    The path of the file of skeleton JCL to submit endevor scl statements. Download it from: https://techdocs.broadcom.com/content/broadcom/techdocs/us/en/ca-mainframe-software/devops/ca-endevor-integrations-for-enterprise-devops/1-0/ca-endevor-bridge-for-git/set-up-and-run-the-ca-endevor-bridge-for-git/configuration-for-build-using-zowe-cli.html.
+
+
+
+  work_dir (type: str, default: ``./``)
+    The local working directory of your Git-Endevor mapping that you are building.
+
+
+
+  force_cleanup (type: bool)
+    Starts the build process after cleaning the build subsystem.
+
+
+
+  autogen_span (type: str, default: ``NONE``)
+    Specifies the autogen action option to automatically generate using elements.
+
+    The allowed values which have the following meaning:
+
+    NONE - Generates all elements that use the component being acted upon.
+
+    ALL - Generates using elements that are found in any System and Subsystem combinations within the Environment and Stage of the component's logical map.
+
+    SYSTEMS - Generates using elements that are found in any System, provided the element's Subsystem name matches the name of the Subsystem of the target component.
+
+    SUBSYSTEMS - Generates using elements from all Subsystems with the same-named System of the component specified.
+
+
+    Choices:
+      * ``NONE`` **←**
+      * ``ALL`` 
+      * ``SYSTEMS`` 
+      * ``SUBSYSTEMS`` 
+
+  endevor_protocol (type: str)
+    The Endevor SCM Rest API protocol. 
+
+    
+
+    Default value: http
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` 
+
+  endevor_host (type: str)
+    The Endevor Rest API hostname.
+
+
+
+  endevor_port (type: int)
+    The Endevor Rest API port.
+
+
+
+  endevor_user (type: str)
+    Mainframe (Endevor) username, which can be the same as your TSO login.
+
+
+
+  endevor_password (type: str)
+    Mainframe (Endevor) password, which can be the same as your TSO password.
+
+
+
+  endevor_reject_unauthorized (type: bool)
+    Reject self-signed certificates. 
+
+    
+
+    Default value: true
+
+
+
+  endevor_base_path (type: str)
+    The Endevor SCM Rest API base path. 
+
+    
+
+    Default value: EndevorService/rest
+
+
+
+  zosmf_host (type: str)
+    The z/OSMF server host name.
+
+
+
+  zosmf_port (type: int)
+    The z/OSMF server port.
+
+    
+
+    Default value: 443
+
+
+
+  zosmf_user (type: str)
+    Mainframe (z/OSMF) username, which can be the same as your TSO login.
+
+
+
+  zosmf_password (type: str)
+    Mainframe (z/OSMF) password, which can be the same as your TSO password.
+
+
+
+  zosmf_reject_unauthorized (type: bool)
+    Reject self-signed certificates. 
+
+    
+
+    Default value: true
+
+
+
+  zosmf_base_path (type: str)
+    The base path for your Zowe API Mediation Layer instance. Specify this option toprepend the base path to all z/OSMF resources when making REST requests. Do notspecify this option if you are not using an Zowe API Mediation Layer.
+
+
+
+  host (type: str)
+    Host name of service on the mainframe.
+
+
+
+  port (type: int)
+    Port number of service on the mainframe.
+
+
+
+  user (type: str)
+    User name to authenticate to service on the mainframe.
+
+
+
+  password (type: str)
+    Password to authenticate to service on the mainframe.
+
+
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self-signed certificates.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+  response_format_filter (type: list)
+    Filter (include) fields in the response. Accepts an array of field/property names to include in the output response. You can filter JSON objects properties OR table columns/fields. In addition, you can use this option in conjunction with '--response-format-type' to reduce the output of a command to a single field/property or a list of a single field/property.
+
+
+
+  response_format_type (type: str)
+    The command response output format type. Must be one of the following:
+
+    
+
+    table: Formats output data as a table. Use this option when the output data is an array of homogeneous JSON objects. Each property of the object will become a column in the table.
+
+    
+
+    list: Formats output data as a list of strings. Can be used on any data type (JSON objects/arrays) are stringified and a new line is added after each entry in an array.
+
+    
+
+    object: Formats output data as a list of prettified objects (or single object). Can be used in place of "table" to change from tabular output to a list of prettified objects.
+
+    
+
+    string: Formats output data as a string. JSON objects/arrays are stringified.
+
+
+    Choices:
+      * ``table`` 
+      * ``list`` 
+      * ``object`` 
+      * ``string`` 
+
+  response_format_header (type: bool)
+    If "--response-format-type table" is specified, include the column headers in the output.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Compile the changed elements at "/endevor/ebg/repository" using work area with ID "WORKAREA1", jcl skeleton at "/endevor/jcl/jcl.txt" and existing Endevor and z/OSMF profiles
+      broadcom.endevor_bridge_for_git.build_job_submit:
+        work_area_id: WORKAREA1
+        skeleton_jcl: /endevor/jcl/jcl.txt
+        work_dir: /endevor/ebg/repository
+
+    - name: Compile the changed elements at "/endevor/ebg/repository" using build subsystem "SUBNAME", jcl skeleton at "/endevor/jcl/jcl.txt" and existing Endevor and z/OSMF profiles
+      broadcom.endevor_bridge_for_git.build_job_submit:
+        endevor_subsystem: SUBNAME
+        endevor_environment: ENVNAME
+        endevor_system: SYSNAME
+        skeleton_jcl: /endevor/jcl/jcl.txt
+        work_dir: /endevor/ebg/repository
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

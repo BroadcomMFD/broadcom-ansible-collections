@@ -1,0 +1,284 @@
+.. _merge_element_module:
+
+
+merge_element -- Merge Endevor elements from one Endevor location into another. Requires an initialized Endevor workspace to perform conflict resolution. Use "synchronize workspace" module afterwards to push the result back into Endevor
+============================================================================================================================================================================================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Merge Endevor elements from one Endevor location into another. Requires an initialized Endevor workspace to perform conflict resolution. Use "synchronize workspace" module afterwards to push the result back into Endevor.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  element (type: str)
+    Name of the Endevor element.
+
+
+
+  environment (type: str)
+    The Endevor environment where your project resides.
+
+
+
+  system (type: str)
+    The Endevor system where your project resides.
+
+
+
+  subsystem (type: str)
+    The Endevor subsystem where your project resides.
+
+
+
+  type (type: str)
+    Name of the Endevor element's type.
+
+
+
+  stage_number (type: str)
+    The Endevor stage number where your project resides.
+
+
+    Choices:
+      * ``\*`` 
+      * ``\%`` 
+      * ``1`` 
+      * ``2`` 
+
+  ccid (type: str)
+    The CCID you want to use when performing an Element action.
+
+
+
+  comment (type: str)
+    The comment you want to have when performing an Element action.
+
+
+
+  merge_environment (type: str)
+    Merge elements from this environment to the target environment (specified by 'environment'). Defaults to the same environment as the target.
+
+
+
+  merge_stage_number (type: str)
+    Merge elements from this stage number into the target stage number (specified by 'stage-number'). Defaults to the same stage number as the target.
+
+
+
+  merge_system (type: str)
+    Merge elements from this system into the target system (specified by 'system'). Defaults to the same system as the target.
+
+
+
+  merge_subsystem (type: str)
+    Merge elements from this subsystem into the target subsystem (specified by 'subsystem'). Defaults to the same subsystem as the target.
+
+
+
+  merge_out_of_sync (type: bool)
+    Merge out-of-sync elements at the target location with their next version in the map, and attempt to resolve the out-of-sync during the next synchronization with Endevor.
+
+
+
+  workspace_dir (type: str, default: ``.``)
+    The Endevor workspace directory, if different from current working directory.
+
+
+
+  override_signout (type: bool)
+    Specify if you want to override the Signout of any Endevor elements affected by this action.
+
+
+
+  signout (type: bool)
+    Specify if you want to perform the action with signing out any retrieved elements.
+
+
+
+  dry_run (type: bool)
+    List all actions the synchronization would perform, without executing them.
+
+
+
+  limit (type: int)
+    If the synchronization would need to perform more than 'limit' Endevor actions, do not perform the actions now, only report them. 0 means no limit.
+
+
+
+  host (type: str)
+    Specifies the base host name.
+
+
+
+  port (type: str)
+    Specifies the port number.
+
+
+
+  instance (type: str)
+    Specifies Endevor Web Services dataSource name.
+
+
+
+  protocol (type: str, default: ``https``)
+    Specifies the protocol used for connecting to Endevor Rest API.
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` **←**
+
+  user (type: str)
+    Specifies the user name.
+
+
+
+  password (type: str)
+    Specifies the user's password.
+
+
+
+  reject_unauthorized (type: bool)
+    Specify this option to have the server certificate verified against the list of supplied CAs.
+
+
+
+  base_path (type: str)
+    Specifies the base path used for connecting to Endevor Rest API.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Merge element ELEMENT1 of type COBPGM from subsystem SUBFROM into the same element found in subsystem SUBTO (system, stage and env taken from current location profile)
+      broadcom.endevor.merge_element:
+        element: ELEMENT1
+        subsystem: SUBTO
+        type: COBPGM
+        merge_subsystem: SUBFROM
+
+    - name: Merge any elements that are currently out of sync with their next element version up the map (map location determined by current profile)
+      broadcom.endevor.merge_element:
+        element: '*'
+        merge_out_of_sync: y
+
+    - name: Report which elements are currently out of sync with their next element version up the map, but do not merge them yet (map location determined by current profile)
+      broadcom.endevor.merge_element:
+        element: '*'
+        merge_out_of_sync: y
+        dry_run: y
+
+    - name: Merge all elements from system SYSFROM, subsystem SUBFROM into matching elements in system SYSTO subsystem SUBTO (system, stage and env taken from current location profile)
+      broadcom.endevor.merge_element:
+        element: '*'
+        system: SYSTO
+        subsystem: SUBTO
+        merge_system: SYSFROM
+        merge_subsystem: SUBFROM
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

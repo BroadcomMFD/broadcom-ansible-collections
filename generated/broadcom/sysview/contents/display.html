@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>display – Display a real-time SYSVIEW primary command &mdash; Broadcom Ansible Collections for Mainframe  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/ansible.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/rtd-ethical-ads.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/images/Ansible-Mark-RGB_Black.svg"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="execute – Execute a real-time SYSVIEW function command" href="execute.html" />
+    <link rel="prev" title="check_status – Confirm that the SYSVIEW REST server is running on a system specified. The module outputs properties of the z/OS system and the SYSVIEW REST server" href="check_status.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
+
+
+
+
+</head>
+
+<body class="wy-body-for-nav"><!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/ansiblefest" target="_blank">AnsibleFest</a></li>
+    <li><a href="https://www.ansible.com/tower" target="_blank">Products</a></li>
+    <li><a href="https://www.ansible.com/community" target="_blank">Community</a></li>
+    <li><a href="https://www.ansible.com/webinars-training" target="_blank">Webinars & Training</a></li>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="../../../../_static/images/Ansible-Mark-RGB_White.svg"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Broadcom Ansible Collections for Mainframe  documentation</div>
+</a>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Broadcom Ansible Collections for Mainframe
+          </a><!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" class="st-default-search-input" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../using.html">Using collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../connecting.html">Connection methods and details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Collections</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../ca7/index.html">broadcom.ca7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dbm_db2/index.html">broadcom.dbm_db2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endevor/index.html">broadcom.endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endevor_bridge_for_git/index.html">broadcom.endevor_bridge_for_git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../file_master_plus/index.html">broadcom.file_master_plus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../idms/index.html">broadcom.idms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mat/index.html">broadcom.mat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mat_pma_util/index.html">broadcom.mat_pma_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/index.html">broadcom.ops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spool/index.html">broadcom.spool</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">broadcom.sysview</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="capture.html">capture – Display a captured SYSVIEW primary command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="capture_immediate.html">capture_immediate – Submit a capture request1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="check_status.html">check_status – Confirm that the SYSVIEW REST server is running on a system specified. The module outputs properties of the z/OS system and the SYSVIEW REST server</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">display – Display a real-time SYSVIEW primary command</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#return-values">Return Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#status">Status</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="execute.html">execute – Execute a real-time SYSVIEW function command</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../view/index.html">broadcom.view</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../zowe_core/index.html">broadcom.zowe_core</a></li>
+</ul>
+<!-- extra nav elements for Ansible beyond RTD Sphinx Theme -->
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Broadcom Ansible Collections for Mainframe</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">broadcom.sysview</a></li>
+      <li class="breadcrumb-item active">display – Display a real-time SYSVIEW primary command</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/generated/broadcom/sysview/contents/display.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+  
+           <div itemprop="articleBody">
+             
+  <section id="display-display-a-real-time-sysview-primary-command">
+<span id="display-module"></span><h1>display – Display a real-time SYSVIEW primary command<a class="headerlink" href="#display-display-a-real-time-sysview-primary-command" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></p></li>
+<li><p><a class="reference internal" href="#parameters" id="id2">Parameters</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id3">Examples</a></p></li>
+<li><p><a class="reference internal" href="#return-values" id="id4">Return Values</a></p></li>
+<li><p><a class="reference internal" href="#status" id="id5">Status</a></p></li>
+</ul>
+</nav>
+<section id="synopsis">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Synopsis</a><a class="headerlink" href="#synopsis" title="Link to this heading"></a></h2>
+<p>Issue a SYSVIEW primary command and display output, including any messages.</p>
+</section>
+<section id="parameters">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Parameters</a><a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<blockquote>
+<div><dl>
+<dt>command_string (<em>required</em>, type: str)</dt><dd><p>Command(s) to be issued</p>
+<p>(If more than one command, separated by a semi-colon)</p>
+<p>Example:  “ACTIVITY;SORT CPU% D”</p>
+<p>.</p>
+</dd>
+<dt>fields (type: list)</dt><dd><p>Fields to be returned (by name). For example: “jobname” “cpu”.</p>
+</dd>
+<dt>all_rows (type: bool)</dt><dd><p>Return all rows of data, no matter how many. Overrides and –row-end.</p>
+</dd>
+<dt>row_start (type: int, default: <code class="docutils literal notranslate"><span class="pre">1</span></code>)</dt><dd><p>The first row of the response data to display.</p>
+</dd>
+<dt>row_end (type: int, default: <code class="docutils literal notranslate"><span class="pre">100</span></code>)</dt><dd><p>The last row of the response data to display.</p>
+</dd>
+<dt>context_fields (type: list)</dt><dd><p>Context fields to display. Defaults to hiding all context.</p>
+</dd>
+<dt>overview (type: bool)</dt><dd><p>Display the overview section.</p>
+</dd>
+<dt>info (type: bool)</dt><dd><p>Display the information area, if any.</p>
+</dd>
+<dt>pretty (type: bool)</dt><dd><p>Display formatted data.</p>
+</dd>
+<dt>blank_if_zero (type: bool)</dt><dd><p>Show a blank space instead of ‘0’ values.</p>
+</dd>
+<dt>truncate (type: bool)</dt><dd><p>Truncate displays that are too wide for the console.</p>
+</dd>
+<dt>timeout (type: int, default: <code class="docutils literal notranslate"><span class="pre">30</span></code>)</dt><dd><p>The number of seconds to wait before timing out.</p>
+</dd>
+<dt>response_format_csv (type: bool)</dt><dd><p>Format data as a set of Comma Seperated Values.</p>
+</dd>
+<dt>host (type: str)</dt><dd><p>The hostname of the SYSVIEW REST API.</p>
+</dd>
+<dt>port (type: int)</dt><dd><p>The port number of the SYSVIEW REST API.</p>
+</dd>
+<dt>user (type: str)</dt><dd><p>Your z/OS username used to authenticate to the SYSVIEW REST API.</p>
+</dd>
+<dt>password (type: str)</dt><dd><p>Your z/OS password used to authenticate to the SYSVIEW REST API.</p>
+</dd>
+<dt>reject_unauthorized (type: bool)</dt><dd><p>If set, the server certificate is verified against the list of supplied CAs.</p>
+</dd>
+<dt>ssid (type: str, default: <code class="docutils literal notranslate"><span class="pre">GSVX</span></code>)</dt><dd><p>SSID of the SYSVIEW instance. Default value: GSVX</p>
+</dd>
+<dt>base_path (type: str, default: <code class="docutils literal notranslate"><span class="pre">/api/v1</span></code>)</dt><dd><p>The base path for your Zowe API Mediation Layer instance. Do not specify this option if you are not using an Zowe API Mediation Layer.</p>
+</dd>
+<dt>cert_file (type: path)</dt><dd><p>The file path to a certificate file to use for authentication.</p>
+<p>Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.</p>
+</dd>
+<dt>cert_key_file (type: path)</dt><dd><p>The file path to a certificate key file to use for authentication.</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Issue the CSMSTAT command and show the &#39;message&#39; field from the context area of the response</span>
+<span class="w">  </span><span class="nt">broadcom.sysview.display</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">command_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CSMSTAT</span>
+<span class="w">    </span><span class="nt">context_fields</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;message&quot;</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Issue the JOBSUM command to list jobs starting with &quot;CS&quot; showing only the fields Jobname, Jobid, and Status</span>
+<span class="w">  </span><span class="nt">broadcom.sysview.display</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">command_string</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">jobs CS&amp;VLMC</span>
+<span class="w">    </span><span class="nt">fields</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;Jobname&quot;</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;Jobid&quot;</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;Status&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="return-values">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Return Values</a><a class="headerlink" href="#return-values" title="Link to this heading"></a></h2>
+<dl>
+<dt>data (type: list, <em>when returned data is a dictionary</em>)</dt><dd><p>Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.</p>
+</dd>
+<dt>error (type: complex, <em>error</em>)</dt><dd><p>More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.</p>
+<dl class="simple">
+<dt>additional_details (type: str)</dt><dd><p>Detailed message about the failure.</p>
+</dd>
+<dt>msg (type: str)</dt><dd><p>Short description of the result or failure.</p>
+</dd>
+<dt>request (type: str, <em>API request failed</em>)</dt><dd><p>HTTP method used to invoke API service request.</p>
+</dd>
+<dt>resource (type: str, <em>API request failed</em>)</dt><dd><p>URI of the resource of the API service request.</p>
+</dd>
+</dl>
+</dd>
+<dt>failed (type: bool, <em>always</em>)</dt><dd><p>A boolean that indicates if the task was failed or not.</p>
+</dd>
+<dt>list (type: list, <em>when returned data is a list</em>)</dt><dd><p>Data from the module execution (a list of data structures).</p>
+</dd>
+<dt>msg (type: str, <em>sometimes</em>)</dt><dd><p>Short description of the result or failure.</p>
+</dd>
+<dt>rc (type: int, <em>always</em>)</dt><dd><p>Exit code of the module, successful exit code is 0, failure is typically 1 or higher.</p>
+</dd>
+<dt>stderr (type: str, <em>error</em>)</dt><dd><p>Details of the error.</p>
+</dd>
+<dt>stdout (type: str, <em>success</em>)</dt><dd><p>Summary of the result.</p>
+</dd>
+</dl>
+</section>
+<section id="status">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Status</a><a class="headerlink" href="#status" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>This module is maintained by Broadcom.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="check_status.html" class="btn btn-neutral float-left" title="check_status – Confirm that the SYSVIEW REST server is running on a system specified. The module outputs properties of the z/OS system and the SYSVIEW REST server" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="execute.html" class="btn btn-neutral float-right" title="execute – Execute a real-time SYSVIEW function command" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Broadcom.</p>
+  </div>
+
+  
+   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+  <a href="https://sphinx-ansible-theme.rtfd.io">Sphinx Ansible Theme</a>
+  that is based on the
+  <a href="https://github.com/readthedocs/sphinx_rtd_theme">Read the Docs theme</a>
+  and is maintained by the <a href="https://docs.ansible.com/ansible/4/community/">Ansible Community</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script><!-- extra footer elements for Ansible beyond RTD Sphinx Theme -->
+
+</body>
+</html>

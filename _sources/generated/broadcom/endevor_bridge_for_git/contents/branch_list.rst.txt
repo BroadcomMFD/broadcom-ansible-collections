@@ -1,0 +1,181 @@
+.. _branch_list_module:
+
+
+branch_list -- List the branches of an existing mapping
+=======================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+List the branches of an existing mapping.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  context (*required*, type: str)
+    Git-Endevor mapping context (ID of the organization, project, team or owner of the Git repository).
+
+
+
+  mapping (*required*, type: str)
+    Git-Endevor mapping name (ID of the Git repository).
+
+
+
+  protocol (*required*, type: str, default: ``https``)
+    The Endevor Bridge for Git SCM protocol. 
+
+    
+
+    Default value: https
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` **←**
+
+  host (*required*, type: str)
+    The Endevor Bridge for Git hostname.
+
+
+
+  port (*required*, type: int)
+    The Endevor Bridge for Git port.
+
+
+
+  user (*required*, type: str)
+    Endevor Bridge for Git username (your git username).
+
+
+
+  token (*required*, type: str)
+    Git personal access token (it can be obtained from your Git Enterprise Server).
+
+
+
+  reject_unauthorized (type: bool)
+    Reject self-signed certificates. 
+
+    
+
+    Default value: false
+
+
+
+  password (type: str)
+    Password to authenticate to service on the mainframe.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: List all branch of my Git-Endevor mapping 'MY-CONTEXT / MY-MAPPING' using the default EBG profile
+      broadcom.endevor_bridge_for_git.branch_list:
+        context: MY-CONTEXT
+        mapping: MY-MAPPING
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

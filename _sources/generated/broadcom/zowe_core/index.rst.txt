@@ -1,0 +1,20 @@
+
+broadcom.zowe_core
+==================
+
+The **Broadcom Zowe Core Ansible Collection** provides common code for other Broadcom Ansible Collections for Mainframe.
+
+All Broadcom Ansible Collections for Mainframe are dependent on **Broadcom Zowe Core Ansible collection**. This collection is installed automatically with collections that require it.
+
+It does not contain any public modules or other Ansible content.
+
+It includes `Zowe CLI <https://techdocs.broadcom.com/us/en/ca-mainframe-software/devops/ca-brightside/3-0/zowe-cli.html>`_ package installs it automatically. This allows you to use Broadcom Ansible Collections for Mainframe without the need to install or update Zowe CLI and CLI plug-ins manually.
+
+The collection name in Ansible Galaxy is ``broadcom.zowe_core``.
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :caption: Contents
+
+   contents/*

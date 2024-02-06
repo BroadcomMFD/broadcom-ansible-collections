@@ -1,0 +1,292 @@
+.. _synchronize_workspace_module:
+
+
+synchronize_workspace -- Synchronize a selected subset of remote Endevor inventory with a local Endevor workspace
+=================================================================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Synchronize a selected subset of remote Endevor inventory with a local Endevor workspace.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  workspace_dir (type: str)
+    The Endevor workspace directory, if different from current working directory.
+
+
+
+  environment (type: str)
+    The Endevor environment where your project resides.
+
+
+
+  system (type: str)
+    The Endevor system where your project resides.
+
+
+
+  subsystem (type: str)
+    The Endevor subsystem where your project resides.
+
+
+
+  type (type: str)
+    Name of the Endevor element's type.
+
+
+
+  stage_number (type: str)
+    The Endevor stage number where your project resides.
+
+
+    Choices:
+      * ``\*`` 
+      * ``\%`` 
+      * ``1`` 
+      * ``2`` 
+
+  ccid (type: str)
+    The CCID you want to use when performing an Element action.
+
+
+
+  comment (type: str)
+    The comment you want to have when performing an Element action.
+
+
+
+  override_signout (type: bool)
+    Specify if you want to override the Signout of any Endevor elements affected by this action.
+
+
+
+  signout (type: bool)
+    Specify if you want to perform the action with signing out any retrieved elements.
+
+
+
+  element (type: str, default: ``*``)
+    Name filter to synchronize only specific Endevor element(s).
+
+
+
+  dry_run (type: bool)
+    List all actions the synchronization would perform, without executing them.
+
+
+
+  reset (type: bool)
+    Revert any local changes, resetting the local workspace to match the current state of the remote Endevor inventory.
+
+
+
+  limit (type: int)
+    If the synchronization would need to perform more than 'limit' Endevor actions, do not perform the actions now, only report them. 0 means no limit.
+
+
+
+  one_way (type: bool)
+    Do not update Endevor elements with local changes, only retrieve remote changes from Endevor and resolve any conflicts.
+
+
+
+  allow_deletes (type: bool)
+    Allow workspace synchronization to delete unchanged Endevor elements when it detects the corresponding local files have been deleted. Default is off to maintain backward compatibility.
+
+
+
+  file_extension (type: str, default: ``mixed``)
+    The strategy for deciding what file extension to use during a bulk retrieve or workspace synchronization. Must be one of the following:
+
+    
+
+         none: File name is equal to element name, no extension is added.
+
+    
+
+         file-ext: The file extension defined in the Type definition is used; If not defined, no extension is added.
+
+    
+
+         type-name: The type name is used as the file extension.
+
+    
+
+         mixed: The file extension defined in Type definition is used; If not defined, the type name is used instead.
+
+
+    Choices:
+      * ``none`` 
+      * ``file-ext`` 
+      * ``type-name`` 
+      * ``mixed`` **←**
+
+  host (type: str)
+    Specifies the base host name.
+
+
+
+  port (type: str)
+    Specifies the port number.
+
+
+
+  instance (type: str)
+    Specifies Endevor Web Services dataSource name.
+
+
+
+  protocol (type: str, default: ``https``)
+    Specifies the protocol used for connecting to Endevor Rest API.
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` **←**
+
+  user (type: str)
+    Specifies the user name.
+
+
+
+  password (type: str)
+    Specifies the user's password.
+
+
+
+  reject_unauthorized (type: bool)
+    Specify this option to have the server certificate verified against the list of supplied CAs.
+
+
+
+  base_path (type: str)
+    Specifies the base path used for connecting to Endevor Rest API.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Synchronize all elements in the map location defined by the currently active endevor-location profile with current directory
+      broadcom.endevor.synchronize_workspace:
+
+    - name: Synchronize all elements in the map location defined by the currently active endevor-location profile with workspace directory 'C:/projects/myWorkspace'
+      broadcom.endevor.synchronize_workspace:
+        workspace_dir: C:/projects/myWorkspace
+
+    - name: Synchronize all elements in the map location defined by the currently active endevor-location profile, whose name is 'PRFX' followed by any 2 characters and ending with '11', with workspace directory 'C:/projects/myWorkspace'
+      broadcom.endevor.synchronize_workspace:
+        workspace_dir: C:/projects/myWorkspace
+        ccid: myccid
+        comment: my changes
+        element: PRFX%%11
+
+    - name: Revert all local changes in the map location defined by the currently active endevor-location profile, resetting your workspace to match Endevor
+      broadcom.endevor.synchronize_workspace:
+        reset: y
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

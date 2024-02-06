@@ -1,0 +1,141 @@
+============
+Installation
+============
+
+Collections are a distribution format for prepackaged Ansible content including
+playbooks, roles, modules, and plugins that enable you to quickly set up your
+automation project. Collections are hosted and available for installation from
+Ansible Galaxy.
+
+Before you install a collection, review the :doc:`requirements <requirements>`
+to learn about any dependencies and determine the appropriate installation option.
+
+.. |BACM| replace:: Broadcom Ansible collection for mainframe
+.. |BACMs| replace:: Broadcom Ansible Collections for Mainframe
+
+You can install a |BACM| using `Ansible Galaxy`_.
+
+.. only:: internal
+
+   If you are a Broadcom developer you can use:
+
+   - `Internal Broadcom Source`_
+
+For more information on installing collections, see `Using collections`_ in Ansible documentation.
+
+.. _Using collections:
+   https://docs.ansible.com/ansible/latest/user_guide/collections_using.html
+
+Ansible Galaxy
+==============
+
+Ansible Galaxy enables you to quickly configure your automation project with
+content from the Ansible community. Ansible Galaxy provides prepackaged units of
+work known as collections. You can use the `ansible-galaxy command`_ with
+the ``install`` option to install a collection on your system, also referred to
+as the control node.
+
+Broadcom collections are installed using the **broadcom** namespace followed
+by the collection name. For example, ``endevor``, ``file_master_plus``, and ``sysview``
+are collection names and the installation command would follow this syntax:
+
+.. code-block:: sh
+
+   $ ansible-galaxy collection install broadcom.<collection name>
+
+.. _ansible-galaxy command:
+   https://docs.ansible.com/ansible/latest/cli/ansible-galaxy.html
+
+By default, the `ansible-galaxy command`_ installs the latest available
+collection. If you would like to install a previous version of a collection or if
+the installation is unsuccessful, use the ``--force`` option to override an existing
+installation or use a range identifier to install a specific version.
+
+Overriding an existing installation
+-----------------------------------
+If you want to override a previously installed version of a collection, use the
+``--force`` option.
+
+Use this command to override an existing version by another one:
+
+.. code-block:: sh
+
+   $ ansible-galaxy collection install --force broadcom.<collection name>:<version>
+
+Collection location
+-------------------
+
+By default, all collections are installed in ``~/.ansible/collections``. You can
+use the `-p` option with `ansible-galaxy` to specify an installation path such as:
+
+.. code-block:: sh
+
+   $ ansible-galaxy collection install broadcom.<collection name> -p /home/ansible/collections
+
+The progress of the installation is printed to the console:
+
+.. code-block:: sh
+
+   Process install dependency map
+   Starting collection install process
+   Installing 'broadcom.endevor:5.7.5' to '/home/user/.ansible/collections/ansible_collections/broadcom/endevor'
+
+For more information on installing collections with Ansible Galaxy,
+see `installing collections`_.
+
+.. _installing collections:
+   https://docs.ansible.com/ansible/latest/user_guide/collections_using.html#installing-collections-with-ansible-galaxy
+
+.. Broadcom Support Portal
+.. =======================
+
+.. .. warning::
+
+..    Installation from Broadcom Support Portal is not available yet.
+
+.. Obtain the |BACMs| installation package (.tar.gz file).
+
+.. To begin, navigate to the [Brightside Solution Downloads](https://support.broadcom.com/group/ecx/productdownloads?subfamily=BRIGHTSIDE&tab=Solutions) on the Broadcom Support site (login required).
+
+.. Choose the **3.0** version.
+
+.. You are presented with a list of packages, from which you can select latest or previous versions of |BACMs| to download.
+
+.. Extract the contents of the .tar.gz file to a local directory on your computer:
+
+.. .. code-block:: sh
+
+..    $ tar -xvf Broadcom_Ansible_Collections_for_Mainframe.tar.gz
+
+.. Review the provided ``requirements.yml`` file and remove the collections that you do not want to install.
+
+.. Install the collections using the provided ``requirements.yml`` file:
+
+.. .. code-block:: sh
+
+..    $ ansible-galaxy collection install -r requirements.yml
+
+.. .. seealso::
+
+..    :doc:`Using collections <using>`
+..       Learn how Ansible works and how to use |BACMs| with your mainframe systems
+
+.. only:: internal
+
+   Internal Broadcom Source
+   ========================
+
+   .. note::
+
+      This section of documentation is available only at Broadcom and is not shared with customers.
+
+   Latest development version
+   --------------------------
+
+   Download the all the collections from last successful Jenkins build and install them:
+
+   .. code-block:: sh
+
+      $ curl -O "https://jenkins-ren-50.ren.broadcom.net/job/provisionm/job/Brightside%20collections/job/master/lastSuccessfulBuild/artifact/dist/Broadcom_Ansible_Collections_for_Mainframe.tar.gz"
+      $ tar -xvf Broadcom_Ansible_Collections_for_Mainframe.tar.gz
+      $ ansible-galaxy collection install -r requirements.yml

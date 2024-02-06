@@ -1,0 +1,232 @@
+.. _execute_package_module:
+
+
+execute_package -- The execute package module executes a Package that have a status of Approved or Execfailed
+=============================================================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+The execute package module executes a Package that have a status of Approved or Execfailed.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  package (type: str)
+    Name of the Endevor package.
+
+
+
+  from_date_time (type: str)
+    Specify the beginning of time frame within which the package can be executed. Use yyyy-mm-ddThh:mm or see ISO 8601 standard for syntax.
+
+
+
+  to_date_time (type: str)
+    Specify the end of time frame within which the package can be executed. Use yyyy-mm-ddThh:mm or see ISO 8601 standard for syntax.
+
+
+
+  status (type: str)
+    Specify the status of the packages. Valid values are [APPROVED, EXECFAILED] for execute action, and additional values [INEDIT, INAPPROVAL, INEXECUTION, EXECUTED, COMMITTED, DENIED] for list action, additional value [ALLSTATE] for delete action. 
+
+    It is possible to specify multiple status separated by "," during list and delete package.
+
+
+    Choices:
+      * ``ALLSTATE`` 
+      * ``INEDIT`` 
+      * ``INAPPROVAL`` 
+      * ``APPROVED`` 
+      * ``INEXECUTION`` 
+      * ``EXECUTED`` 
+      * ``COMMITTED`` 
+      * ``DENIED`` 
+      * ``EXECFAILED`` 
+
+  maxrc (type: int, default: ``8``)
+    The maximum value of the return code of a successful action. When the return code is greater than the maxrc value, the module fails.
+
+
+
+  asynchronous (type: bool)
+    Submit this module as an asynchronous Endevor Web Services task.
+
+
+
+  host (type: str)
+    Specifies the base host name.
+
+
+
+  port (type: str)
+    Specifies the port number.
+
+
+
+  instance (type: str)
+    Specifies Endevor Web Services dataSource name.
+
+
+
+  protocol (type: str, default: ``https``)
+    Specifies the protocol used for connecting to Endevor Rest API.
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` **←**
+
+  user (type: str)
+    Specifies the user name.
+
+
+
+  password (type: str)
+    Specifies the user's password.
+
+
+
+  reject_unauthorized (type: bool)
+    Specify this option to have the server certificate verified against the list of supplied CAs.
+
+
+
+  base_path (type: str)
+    Specifies the base path used for connecting to Endevor Rest API.
+
+
+
+  suppress_messages (type: bool)
+    Suppress all [INFO]/[WARN] messages from terminal output.
+
+
+
+  report_file (type: str)
+    File name for saving reports from Endevor SCM locally.
+
+
+
+  report_dir (type: str)
+    Directory for saving reports from Endevor SCM locally, if wasn't specified. Defaults to current directory.
+
+
+
+  write_report (type: bool)
+    Write the endevor reports to a file. By default, when return code is 0, no report will be written, unless this option is specified. When return code is bigger than 0, reports will be written to a file, unless this option is specifed to be false.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Execute package with endevor profile set up, specifying the time frame within which to execute the Package
+      broadcom.endevor.execute_package:
+        package: packageName
+        from_date_time: 2018-01-01T00:00
+        to_date_time: 2018-12-31T12:00
+        instance: ENDEVOR
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

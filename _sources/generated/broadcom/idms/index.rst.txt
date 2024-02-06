@@ -1,0 +1,16 @@
+
+broadcom.idms
+=============
+
+IDMS plug-in for listing real-time monitor statistics and information, viewing DC log messages, and issuing DCMT and DCUF commands
+
+Compatible with Zowe CLI Plugin version: 1.1.0
+
+For more information, see the *Contents* section.
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :caption: Contents
+
+   contents/*

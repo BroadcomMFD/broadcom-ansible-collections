@@ -1,0 +1,288 @@
+.. _build_execute_module:
+
+
+build_execute -- Build changes from Git local repository in Endevor
+===================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Build changes against remote git repository's Endevor Bridge for Git synchronized branch, using work area or build subsystem.It does not support autogen for building dependencies.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  endevor_instance (type: str)
+    The Endevor Web Services Endevor configuration name.
+
+
+
+  work_area_id (type: str)
+    Endevor work area ID. Name-masking is not allowed.
+
+
+
+  endevor_subsystem (type: str)
+    The Endevor SCM build subsystem. Note: The build subsystem can be cleared without prior permission.
+
+
+
+  endevor_environment (type: str)
+    The Endevor SCM environment where your build subsystem resides.
+
+
+
+  endevor_system (type: str)
+    The Endevor SCM system where your build subsystem resides.
+
+
+
+  work_dir (type: str, default: ``./``)
+    The local working directory of your Git-Endevor mapping that you are building.
+
+
+
+  listing_dir (type: str, default: ``.endevor/listings``)
+    Specify the directory where you would like to have your build outputs downloaded.
+
+
+
+  listing_rc (type: int, default: ``4``)
+    All the elements that have a generate result equal to or greater than "listing-rc" will have their build outputs downloaded into "listing-dir".
+
+
+
+  force_cleanup (type: bool)
+    Starts the build process after cleaning the build subsystem.
+
+
+
+  endevor_protocol (type: str)
+    The Endevor SCM Rest API protocol. 
+
+    
+
+    Default value: http
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` 
+
+  endevor_host (type: str)
+    The Endevor Rest API hostname.
+
+
+
+  endevor_port (type: int)
+    The Endevor Rest API port.
+
+
+
+  endevor_user (type: str)
+    Mainframe (Endevor) username, which can be the same as your TSO login.
+
+
+
+  endevor_password (type: str)
+    Mainframe (Endevor) password, which can be the same as your TSO password.
+
+
+
+  endevor_reject_unauthorized (type: bool)
+    Reject self-signed certificates. 
+
+    
+
+    Default value: true
+
+
+
+  endevor_base_path (type: str)
+    The Endevor SCM Rest API base path. 
+
+    
+
+    Default value: EndevorService/rest
+
+
+
+  host (type: str)
+    Host name of service on the mainframe.
+
+
+
+  port (type: int)
+    Port number of service on the mainframe.
+
+
+
+  user (type: str)
+    User name to authenticate to service on the mainframe.
+
+
+
+  password (type: str)
+    Password to authenticate to service on the mainframe.
+
+
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self-signed certificates.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+  response_format_filter (type: list)
+    Filter (include) fields in the response. Accepts an array of field/property names to include in the output response. You can filter JSON objects properties OR table columns/fields. In addition, you can use this option in conjunction with '--response-format-type' to reduce the output of a command to a single field/property or a list of a single field/property.
+
+
+
+  response_format_type (type: str)
+    The command response output format type. Must be one of the following:
+
+    
+
+    table: Formats output data as a table. Use this option when the output data is an array of homogeneous JSON objects. Each property of the object will become a column in the table.
+
+    
+
+    list: Formats output data as a list of strings. Can be used on any data type (JSON objects/arrays) are stringified and a new line is added after each entry in an array.
+
+    
+
+    object: Formats output data as a list of prettified objects (or single object). Can be used in place of "table" to change from tabular output to a list of prettified objects.
+
+    
+
+    string: Formats output data as a string. JSON objects/arrays are stringified.
+
+
+    Choices:
+      * ``table`` 
+      * ``list`` 
+      * ``object`` 
+      * ``string`` 
+
+  response_format_header (type: bool)
+    If "--response-format-type table" is specified, include the column headers in the output.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Compile the changed elements in the current Git working directory using the work area "WORKAREA1" and an existing Endevor profile
+      broadcom.endevor_bridge_for_git.build_execute:
+        endevor_instance: INSTANCE
+        work_area_id: WORKAREA1
+
+    - name: Compile the changed elements in the current Git working directory using the build subsystem "SUBNAME" and an existing Endevor profile
+      broadcom.endevor_bridge_for_git.build_execute:
+        endevor_instance: INSTANCE
+        endevor_subsystem: SUBNAME
+        endevor_environment: ENVNAME
+        endevor_system: SYSNAME
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

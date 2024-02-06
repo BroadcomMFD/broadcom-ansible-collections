@@ -1,0 +1,283 @@
+.. _mapping_add_element_module:
+
+
+mapping_add_element -- Add an element from up the map in your Endevor to your Git repository
+============================================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Add an element from up the map in your Endevor to your Git repository.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  context (*required*, type: str)
+    Git-Endevor mapping context (ID of the organization, project, team or owner of the Git repository).
+
+
+
+  mapping (*required*, type: str)
+    Git-Endevor mapping name (ID of the Git repository).
+
+
+
+  element_name (type: str)
+    The name of the Endevor element you want to add.
+
+
+
+  element_type (type: str)
+    The type of the Endevor element you want to add.
+
+
+
+  endevor_system (type: str)
+    The Endevor system where your element resides.
+
+
+
+  endevor_subsystem (type: str)
+    The Endevor subsystem where your element resides.
+
+
+
+  with_dependencies (type: bool)
+    If specified, the requested element will be added with dependencies (eg. COBOL copybooks).
+
+
+
+  force_get_dependencies (type: bool)
+    If specified, the maximum number of dependencies will be bypassed. This only applies to the repository administrator.
+
+
+
+  validate (type: bool)
+    If specified, the requested elements will be validated against Endevor.
+
+
+
+  branch_id (type: str)
+    If specified, the requested elements will be added to the selected branch.
+
+
+
+  all_branches (type: bool)
+    If specified, the requested elements will be added to all synchronized branches in your repository.
+
+
+
+  file (type: path)
+    If specified, the elements to add will be read from file. Make sure that the file is in the correct format as specified in the documentation.
+
+
+
+  endevor_protocol (type: str)
+    The Endevor SCM Rest API protocol. 
+
+    
+
+    Default value: http
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` 
+
+  endevor_host (type: str)
+    The Endevor Rest API hostname.
+
+
+
+  endevor_port (type: int)
+    The Endevor Rest API port.
+
+
+
+  endevor_user (type: str)
+    Mainframe (Endevor) username, which can be the same as your TSO login.
+
+
+
+  endevor_password (type: str)
+    Mainframe (Endevor) password, which can be the same as your TSO password.
+
+
+
+  endevor_reject_unauthorized (type: bool)
+    Reject self-signed certificates. 
+
+    
+
+    Default value: true
+
+
+
+  endevor_base_path (type: str)
+    The Endevor SCM Rest API base path. 
+
+    
+
+    Default value: EndevorService/rest
+
+
+
+  protocol (*required*, type: str, default: ``https``)
+    The Endevor Bridge for Git SCM protocol. 
+
+    
+
+    Default value: https
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` **←**
+
+  host (*required*, type: str)
+    The Endevor Bridge for Git hostname.
+
+
+
+  port (*required*, type: int)
+    The Endevor Bridge for Git port.
+
+
+
+  user (*required*, type: str)
+    Endevor Bridge for Git username (your git username).
+
+
+
+  token (*required*, type: str)
+    Git personal access token (it can be obtained from your Git Enterprise Server).
+
+
+
+  reject_unauthorized (type: bool)
+    Reject self-signed certificates. 
+
+    
+
+    Default value: false
+
+
+
+  password (type: str)
+    Password to authenticate to service on the mainframe.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Add an element 'MY-ELEMENT-TYPE / MY-ELEMENT-NAME' for your mapping 'MY-CONTEXT / MY-MAPPING'
+      broadcom.endevor_bridge_for_git.mapping_add_element:
+        context: MY-CONTEXT
+        mapping: MY-MAPPING
+        element_name: MY-ELEMENT-NAME
+        element_type: MY-ELEMENT-TYPE
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

@@ -1,0 +1,221 @@
+.. _download_report_module:
+
+
+download_report -- Download report data
+=======================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Download report data.
+
+Optionally convert text report to PDF.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  repository_id (*required*, type: int)
+    Repository identifier.
+
+
+
+  report_handle (*required*, type: str)
+    Report handle.
+
+
+
+  file_target (type: str)
+    Local file path.
+
+    If the path represents a directory location, the report will be downloaded into that directory using a default file name.
+
+    If the path does not represent a directory location, the report will be downloaded into the specified path.
+
+    If the path is not specified, the file will be saved to the current working directory using the default file name.
+
+    Any missing directories will be created. If the target file already exists, the file will be overwritten.
+
+
+
+  convert_to_pdf (type: bool)
+    Converts text report to PDF.
+
+
+
+  page_orientation (type: str, default: ``PORTRAIT``)
+    Page orientation for converted PDF.
+
+
+    Choices:
+      * ``^PORTRAIT$`` 
+      * ``^LANDSCAPE$`` 
+
+  font_size (type: int, default: ``12``)
+    Font size for converted PDF.
+
+
+
+  green_bar (type: bool)
+    Include green-bar background in converted PDF.
+
+
+
+  pages (type: str)
+    Include the specified page numbers (or page ranges). Separate page numbers (or page ranges) with commas.
+
+    Separate boundaries of a page range with a dash (-). If you do not specify this option, all the pages of the report are downloaded.
+
+
+    Choices:
+      * ``^(\d+(-\d+)?)(,(\d+(-\d+)?))*$`` 
+
+  content_filter (type: str)
+    Filter text report content using a permanent filter definition.
+
+    If the product instance does not support this feature, this option is ignored.
+
+
+
+  host (type: str)
+    Hostname or ip address of the target View REST API instance.
+
+
+
+  port (type: int, default: ``443``)
+    Port of the target View REST API instance.
+
+
+
+  user (type: str)
+    User name used to authenticate against the target View REST API instance.
+
+
+
+  password (type: str)
+    Password used to authenticate against the target View REST API instance.
+
+
+
+  base_path (type: str, default: ``web-viewer``)
+    Context name of the target View REST API instance.
+
+
+
+  protocol (type: str, default: ``https``)
+    Protocol of the target View REST API instance.
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` **←**
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self-signed certificates.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+     # 
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

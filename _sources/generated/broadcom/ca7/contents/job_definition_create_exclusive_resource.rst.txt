@@ -1,0 +1,207 @@
+.. _job_definition_create_exclusive_resource_module:
+
+
+job_definition_create_exclusive_resource -- Add Exclusive resource to a job definition
+======================================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Add Exclusive Resource.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  job (*required*, type: str)
+    Specifies the job name on which the indicated function is performed.
+
+    Limits: 1 to 8 alphanumeric characters.
+
+
+
+  schid (type: str)
+    (Optional) Specifies the schedule ID (of this job) for which a user requirement is applied. A zero default cannot be specified for one connection and a nonzero schedule ID used for a subsequent connection to the same job with the same user requirement description. An attempt to make such a connection results in an error message.
+
+    Default: 0, which indicates that the requirement holds for all schedule IDs
+
+    Limits: 1 to 3 numeric characters from 0 through 999.
+
+
+
+  resource_name (*required*, type: str)
+    Specifies the resource name being connected to the job.
+
+    Limits: 1 to 44 characters, the first character must be non-blank, and no embedded blanks.
+
+
+
+  step_name (type: str)
+    (Optional) Specifies the resource is freed at the conclusion of the named job step.
+
+    Limits: 1 to 8 alphanumeric characters
+
+    Notes:The step-name parameter applies to the first occurrence of the stepname that is encountered in the job stream. This includes any reference to the stepname embedded in a PROCThe only valid stepname would be for steps with PGM= coded, not for stepnames executing a PROCIf a job is restarted in a step after this step-name, the resource does not go through free processing until the job completesA step flush condition does not post the step-name process.
+
+
+
+  free (*required*, type: str)
+    Determines how VRM manages resource availability at job submission and job/step completion.
+
+    Valid values are:
+
+    A = Specifies the resource is only freed if any step in the job abends (abend or condition code checking)F = Specifies the resource is freed when job ends, either successfully or unsuccessfully. If the step-name parameter is specified, free the resource when the specified step completes, either successfully or unsuccessfullyN = Specifies do not free the resource at successful job completion. The resource can be freed with the PRSCF command. A cancel of the job also frees the resourceY = Specifies to free the resource at successful job completion. If the step-name parameter is specified, free the resource when the specified step completes successfully (does not abend).
+
+
+
+  host (*required*, type: str)
+    Host name of the CA7 API service that is running on the mainframe system.
+
+
+
+  port (*required*, type: int)
+    Port for the CA7 API service that is running on the mainframe system.
+
+
+
+  user (*required*, type: str)
+    User name for authenticating connections to the CA7 API service that is running on the mainframe system.
+
+
+
+  password (*required*, type: str)
+    Password for authenticating connections to the CA7 API service that is running on the mainframe system.
+
+
+
+  base_path (type: str)
+    The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all resources when making REST requests. Do not specify this option if you are not using an Zowe API Mediation Layer.
+
+
+
+  protocol (*required*, type: str)
+    Specifies protocol to use for CA7 connection (http or https).
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` 
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self-signed certificates.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Creates a job named JOBAA with resource name SCHENV.VARNAME of free type F, step name JS010 and schedule id 23
+      broadcom.ca7.job_definition_create_exclusive_resource:
+        job: JOBAA
+        schid: 23
+        resource_name: SCHENV.VARNAME
+        step_name: JS010
+        free: F
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

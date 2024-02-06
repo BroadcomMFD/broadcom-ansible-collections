@@ -1,0 +1,468 @@
+.. _list_elements_module:
+
+
+list_elements -- The list elements module lists element information in Endevor
+==============================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+The list elements module lists element information in Endevor.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  element (type: str)
+    Name of the Endevor element.
+
+
+
+  environment (type: str)
+    The Endevor environment where your project resides.
+
+
+
+  system (type: str)
+    The Endevor system where your project resides.
+
+
+
+  subsystem (type: str)
+    The Endevor subsystem where your project resides.
+
+
+
+  type (type: str)
+    Name of the Endevor element's type.
+
+
+
+  stage_number (type: str)
+    The Endevor stage number where your project resides.
+
+
+    Choices:
+      * ``\*`` 
+      * ``\%`` 
+      * ``1`` 
+      * ``2`` 
+
+  maxrc (type: int, default: ``8``)
+    The maximum value of the return code of a successful action. When the return code is greater than the maxrc value, the module fails.
+
+
+
+  path (type: str)
+    Specifies a PHYsical or LOGical path.
+
+
+    Choices:
+      * ``log`` 
+      * ``phy`` 
+
+  return (type: str)
+    Sets mapping options for returned results: return FIRst match or ALL matching results.
+
+
+    Choices:
+      * ``fir`` 
+      * ``all`` 
+
+  search (type: bool)
+    Enables the search through the Endevor map.
+
+
+
+  data (type: str)
+    Allows to select the type of summary data returned in the element list:
+
+    ALL - Full element information
+
+    BAS - Basic element information
+
+    ELE - Element change level summary
+
+    COMP - Component change level summary
+
+    
+
+    When data=ALL (full-output) always takes place unless there is a (response-format-filter). 
+
+    In all other cases default set of columns will be shown.
+
+
+    Choices:
+      * ``all`` 
+      * ``bas`` 
+      * ``ele`` 
+      * ``comp`` 
+
+  where_ccid_current (type: str)
+    Instructs Endevor to search through the CCID fields in the Master Control File to find a specified CCIDs. 
+
+    Accept up to 8 CCIDs separated by ", ". Enclose CCIDs that contain special characters in quotes.
+
+
+
+  where_ccid_generate (type: str)
+    Instructs Endevor to search using the generate CCID associated with an Element. 
+
+    Accepts up to 8 CCIDs separated by ", ". Enclose CCIDs that contain special characters in quotes.
+
+
+
+  where_ccid_lastact (type: str)
+    Instructs Endevor to search using the last action CCID associated with an Element. 
+
+    Accepts up to 8 CCIDs separated by ", ". Enclose CCIDs that contain special characters in quotes.
+
+
+
+  where_ccid_lastlvl (type: str)
+    Instructs Endevor to search using the last level CCID associated with an Element. 
+
+    Accepts up to 8 CCIDs separated by ", ". Enclose CCIDs that contain special characters in quotes.
+
+
+
+  where_ccid_change (type: str)
+    This option is only valid when the data option is ele or comp. Instructs Endevor to filter the results of the list data summary function that is based on the specified ccids. 
+
+    Accepts up to 8 CCIDs separated by ", ". Enclose CCIDs that contain special characters in quotes.
+
+
+
+  where_ccid_retrieve (type: str)
+    Instructs Endevor to use the CCID in the Master Control File RETRIEVE CCID field. 
+
+    Accepts up to 8 CCIDs separated by ", ". Enclose CCIDs that contain special characters in quotes.
+
+
+
+  where_proc_type (type: str)
+    Lets you select Elements according to a specified Processor type.
+
+
+    Choices:
+      * ``GEN`` 
+      * ``GENERATE`` 
+      * ``MOV`` 
+      * ``MOVE`` 
+      * ``DEL`` 
+      * ``DELETE`` 
+
+  where_proc_group (type: str)
+    Lets you select Elements according to a specified Processor group. You can use a wildcard when specifying the Processor group name. 
+
+    Accepts up to 8 Processor group names separated by ", ". 
+
+
+
+  search_text (type: str)
+    Search string(s) separated with AND or OR. E.g.: string\_1 AND string\_2 AND string\_3 OR string\_4.
+
+    For complex search strings with quotation marks use search-text-file parameter.
+
+
+
+  search_text_file (type: str)
+    File which contains search string(s) separated with AND or OR. Recommended for complex search strings with quotation marks.
+
+
+
+  search_in (type: str)
+    2 letters describing where search should be performed:
+
+    es - Element Source
+
+    eh - Element History
+
+    ec - Element Changes
+
+    eu - Element Summary
+
+    cs - Components Source
+
+    ch - Components History
+
+    cc - Components Changes
+
+    cu - Components Summary.
+
+
+    Choices:
+      * ``es`` 
+      * ``eh`` 
+      * ``ec`` 
+      * ``eu`` 
+      * ``cs`` 
+      * ``ch`` 
+      * ``cc`` 
+      * ``cu`` 
+
+  search_from (type: int)
+    Beginning interval of the column range for the search-text.
+
+
+
+  search_to (type: int)
+    Ending interval of the column range for the search-text.
+
+
+
+  search_ignore_case (type: bool)
+    Ignore search case.
+
+
+
+  search_in_binary (type: bool)
+    Should the text search be performed in binary elements.
+
+
+
+  search_limit (type: int)
+    Maximum search limit where 0 is NOLIMIT.
+
+
+
+  to_package (type: str)
+    Specifies the package to which the SCL has to be appended. This option requires scl-action.
+
+
+
+  scl_action (type: str)
+    Specifies the action for the SCL that has to be built.
+
+
+    Choices:
+      * ``GENERATE`` 
+      * ``MOVE`` 
+
+  host (type: str)
+    Specifies the base host name.
+
+
+
+  port (type: str)
+    Specifies the port number.
+
+
+
+  instance (type: str)
+    Specifies Endevor Web Services dataSource name.
+
+
+
+  protocol (type: str, default: ``https``)
+    Specifies the protocol used for connecting to Endevor Rest API.
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` **←**
+
+  user (type: str)
+    Specifies the user name.
+
+
+
+  password (type: str)
+    Specifies the user's password.
+
+
+
+  reject_unauthorized (type: bool)
+    Specify this option to have the server certificate verified against the list of supplied CAs.
+
+
+
+  base_path (type: str)
+    Specifies the base path used for connecting to Endevor Rest API.
+
+
+
+  suppress_messages (type: bool)
+    Suppress all [INFO]/[WARN] messages from terminal output.
+
+
+
+  report_file (type: str)
+    File name for saving reports from Endevor SCM locally.
+
+
+
+  report_dir (type: str)
+    Directory for saving reports from Endevor SCM locally, if wasn't specified. Defaults to current directory.
+
+
+
+  write_report (type: bool)
+    Write the endevor reports to a file. By default, when return code is 0, no report will be written, unless this option is specified. When return code is bigger than 0, reports will be written to a file, unless this option is specifed to be false.
+
+
+
+  full_output (type: bool)
+    Specify this option if you want a full output of list action.
+
+
+
+  asynchronous (type: bool)
+    Submit this module as an asynchronous Endevor Web Services task.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+  response_format_filter (type: list)
+    Filter (include) fields in the response. Accepts an array of field/property names to include in the output response. You can filter JSON objects properties OR table columns/fields. In addition, you can use this option in conjunction with '--response-format-type' to reduce the output of a module to a single field/property or a list of a single field/property.
+
+
+
+  response_format_type (type: str)
+    The module response output format type. Must be one of the following:
+
+    
+
+    table: Formats output data as a table. Use this option when the output data is an array of homogeneous JSON objects. Each property of the object will become a column in the table.
+
+    
+
+    list: Formats output data as a list of strings. Can be used on any data type (JSON objects/arrays) are stringified and a new line is added after each entry in an array.
+
+    
+
+    object: Formats output data as a list of prettified objects (or single object). Can be used in place of "table" to change from tabular output to a list of prettified objects.
+
+    
+
+    string: Formats output data as a string. JSON objects/arrays are stringified.
+
+
+    Choices:
+      * ``table`` 
+      * ``list`` 
+      * ``object`` 
+      * ``string`` 
+
+  response_format_header (type: bool)
+    If "--response-format-type table" is specified, include the column headers in the output.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: List elements in Endevor from the specified inventory location with the endevor profile set up
+      broadcom.endevor.list_elements:
+        environment: ENVNAME
+        system: SYSNAME
+        subsystem: SUBNAME
+        type: TYPENAME
+        stage_number: 1
+        instance: ENDEVOR
+
+    - name: List elements in Endevor using search text string
+      broadcom.endevor.list_elements:
+        search_text: first or second and third
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

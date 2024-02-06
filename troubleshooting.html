@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Troubleshooting &mdash; Broadcom Ansible Collections for Mainframe  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/ansible.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/rtd-ethical-ads.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/images/Ansible-Mark-RGB_Black.svg"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="broadcom.ca7" href="generated/broadcom/ca7/index.html" />
+    <link rel="prev" title="Connection methods and details" href="connecting.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
+
+
+
+
+</head>
+
+<body class="wy-body-for-nav"><!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/ansiblefest" target="_blank">AnsibleFest</a></li>
+    <li><a href="https://www.ansible.com/tower" target="_blank">Products</a></li>
+    <li><a href="https://www.ansible.com/community" target="_blank">Community</a></li>
+    <li><a href="https://www.ansible.com/webinars-training" target="_blank">Webinars & Training</a></li>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="_static/images/Ansible-Mark-RGB_White.svg"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Broadcom Ansible Collections for Mainframe  documentation</div>
+</a>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Broadcom Ansible Collections for Mainframe
+          </a><!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" class="st-default-search-input" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using.html">Using collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connecting.html">Connection methods and details</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#problems">Problems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#diagnostics">Diagnostics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#special-module-arguments">Special module arguments</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Collections</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/ca7/index.html">broadcom.ca7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/dbm_db2/index.html">broadcom.dbm_db2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/endevor/index.html">broadcom.endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/endevor_bridge_for_git/index.html">broadcom.endevor_bridge_for_git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/file_master_plus/index.html">broadcom.file_master_plus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/idms/index.html">broadcom.idms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/mat/index.html">broadcom.mat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/mat_pma_util/index.html">broadcom.mat_pma_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/ops/index.html">broadcom.ops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/spool/index.html">broadcom.spool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/sysview/index.html">broadcom.sysview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/view/index.html">broadcom.view</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/zowe_core/index.html">broadcom.zowe_core</a></li>
+</ul>
+<!-- extra nav elements for Ansible beyond RTD Sphinx Theme -->
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Broadcom Ansible Collections for Mainframe</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Troubleshooting</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/troubleshooting.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+  
+           <div itemprop="articleBody">
+             
+  <section id="troubleshooting">
+<h1>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h1>
+<section id="problems">
+<h2>Problems<a class="headerlink" href="#problems" title="Link to this heading"></a></h2>
+<dl class="glossary">
+<dt id="term-I-am-getting-the-following-error-Data-could-not-be-sent-to-remote-host.-Make-sure-this-host-can-be-reached-over-ssh-Permission-denied-publickey-password">I am getting the following error: <code class="docutils literal notranslate"><span class="pre">Data</span> <span class="pre">could</span> <span class="pre">not</span> <span class="pre">be</span> <span class="pre">sent</span> <span class="pre">to</span> <span class="pre">remote</span> <span class="pre">host.</span> <span class="pre">Make</span> <span class="pre">sure</span> <span class="pre">this</span> <span class="pre">host</span> <span class="pre">can</span> <span class="pre">be</span> <span class="pre">reached</span> <span class="pre">over</span> <span class="pre">ssh:</span> <span class="pre">Permission</span> <span class="pre">denied</span> <span class="pre">(publickey,password)</span></code><a class="headerlink" href="#term-I-am-getting-the-following-error-Data-could-not-be-sent-to-remote-host.-Make-sure-this-host-can-be-reached-over-ssh-Permission-denied-publickey-password" title="Link to this term"></a></dt><dd><p><strong>Reason:</strong> Ansible does not have a method for authentication while connecting to the system using SSH.</p>
+<p><strong>Action:</strong> If your playbook uses only modules like Broadcom Ansible Collections for Mainframe, that connect to z/OS using APIs and do not gather facts from z/OS system,
+specify <code class="docutils literal notranslate"><span class="pre">gather_facts:</span> <span class="pre">false</span></code> in your playbook. Otherwise you need to setup a method that enables you to authenticate with SSH.
+Review information in <a class="reference internal" href="connecting.html"><span class="doc">Connection methods and details</span></a>.</p>
+</dd>
+</dl>
+</section>
+<section id="diagnostics">
+<h2>Diagnostics<a class="headerlink" href="#diagnostics" title="Link to this heading"></a></h2>
+<p>When the Broadcom Ansible Collections for Mainframe do not work as expected, you might need to provide more information to support.</p>
+<p>You can configure Ansible commands like <code class="docutils literal notranslate"><span class="pre">ansible</span></code> or <code class="docutils literal notranslate"><span class="pre">ansible-playbook</span></code> to provide more verbose messages, using the following options:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-vv</span></code> to display information about the activity of Ansible and modules.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-vvvv</span></code> to display internal details about work of the modules (output of commands, internal variables, and such). Sensitive information, such as user IDs and passwords, is hidden.</p></li>
+</ul>
+</section>
+<section id="special-module-arguments">
+<h2>Special module arguments<a class="headerlink" href="#special-module-arguments" title="Link to this heading"></a></h2>
+<dl class="simple glossary">
+<dt id="term-_skip_parameter_checks"><code class="docutils literal notranslate"><span class="pre">_skip_parameter_checks</span></code><a class="headerlink" href="#term-_skip_parameter_checks" title="Link to this term"></a></dt><dd><p>If you set this argument to <cite>True`</cite>,  it disables argument checks that are done by Broadcom Ansible Collections for Mainframe. This can help if a check is too rigid and does not allow a value that should be accepted.</p>
+</dd>
+</dl>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="connecting.html" class="btn btn-neutral float-left" title="Connection methods and details" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="generated/broadcom/ca7/index.html" class="btn btn-neutral float-right" title="broadcom.ca7" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Broadcom.</p>
+  </div>
+
+  
+   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+  <a href="https://sphinx-ansible-theme.rtfd.io">Sphinx Ansible Theme</a>
+  that is based on the
+  <a href="https://github.com/readthedocs/sphinx_rtd_theme">Read the Docs theme</a>
+  and is maintained by the <a href="https://docs.ansible.com/ansible/4/community/">Ansible Community</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script><!-- extra footer elements for Ansible beyond RTD Sphinx Theme -->
+
+</body>
+</html>

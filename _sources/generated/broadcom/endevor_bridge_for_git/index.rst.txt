@@ -1,0 +1,16 @@
+
+broadcom.endevor_bridge_for_git
+===============================
+
+Use the Endevor Bridge for Git plug-in to manage your Git-Endevor mappings and build your local Git changes before synchronizing them to Endevor.
+
+Compatible with Zowe CLI Plugin version: 2.6.0
+
+For more information, see the *Contents* section.
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :caption: Contents
+
+   contents/*

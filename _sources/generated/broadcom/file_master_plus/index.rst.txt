@@ -1,0 +1,23 @@
+
+broadcom.file_master_plus
+=========================
+
+File Master Plus collection is a file management and data manipulation tool. It speeds up file creation and manipulates virtual storage access method (VSAM), sequential and partitioned data sets. It also supports symbolic access to data via layouts and data manipulation like selection of records in data sets.
+
+Compatible with Zowe CLI Plugin version: 5.0.2
+
+The File Master Plus Ansible collection provides file management and data manipulation functionality.
+The collection speeds up file creation and manipulates virtual storage access method (VSAM), sequential, and partitioned data sets.
+Symbolic access to data with layouts and data manipulation, such as selection of records in data sets, are also supported.
+
+You can automate processes including VSAM file functions that enable Continuous Testing.
+The file functions that CLI can invoke copying, renaming, deleting, and populating files with data.
+
+For more information, see the Contents section.
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :caption: Contents
+
+   contents/*

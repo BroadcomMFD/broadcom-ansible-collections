@@ -1,0 +1,165 @@
+.. _check_status_module:
+
+
+check_status -- Confirm that the SYSVIEW REST server is running on a system specified. The module outputs properties of the z/OS system and the SYSVIEW REST server
+===================================================================================================================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Confirm that the SYSVIEW REST server is running on a system specified. The command outputs properties of the z/OS system and the SYSVIEW REST server.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  host (type: str)
+    The hostname of the SYSVIEW REST API.
+
+
+
+  port (type: int)
+    The port number of the SYSVIEW REST API.
+
+
+
+  user (type: str)
+    Your z/OS username used to authenticate to the SYSVIEW REST API.
+
+
+
+  password (type: str)
+    Your z/OS password used to authenticate to the SYSVIEW REST API.
+
+
+
+  reject_unauthorized (type: bool)
+    If set, the server certificate is verified against the list of supplied CAs.
+
+
+
+  ssid (type: str, default: ``GSVX``)
+    SSID of the SYSVIEW instance. Default value: GSVX
+
+
+
+  base_path (type: str, default: ``/api/v1``)
+    The base path for your Zowe API Mediation Layer instance. Do not specify this option if you are not using an Zowe API Mediation Layer.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Report the status of the SYSVIEW REST server that you specified in your default SYSVIEW REST profile
+      broadcom.sysview.check_status:
+
+    - name: Report the status of the SYSVIEW REST server that you specified manually via command line
+      broadcom.sysview.check_status:
+        host: myhost
+        port: 443
+        user: myuser
+        password: mypass
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

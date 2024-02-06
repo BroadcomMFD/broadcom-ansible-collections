@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>commands_rmttrk – Defines a dependency on a remote CA 7 job &mdash; Broadcom Ansible Collections for Mainframe  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/ansible.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/rtd-ethical-ads.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/images/Ansible-Mark-RGB_Black.svg"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="commands_run – Run a CA 7 job" href="commands_run.html" />
+    <link rel="prev" title="commands_rmtsub – Remote Subscribe to a CA 7 job" href="commands_rmtsub.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
+
+
+
+
+</head>
+
+<body class="wy-body-for-nav"><!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/ansiblefest" target="_blank">AnsibleFest</a></li>
+    <li><a href="https://www.ansible.com/tower" target="_blank">Products</a></li>
+    <li><a href="https://www.ansible.com/community" target="_blank">Community</a></li>
+    <li><a href="https://www.ansible.com/webinars-training" target="_blank">Webinars & Training</a></li>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="../../../../_static/images/Ansible-Mark-RGB_White.svg"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Broadcom Ansible Collections for Mainframe  documentation</div>
+</a>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Broadcom Ansible Collections for Mainframe
+          </a><!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" class="st-default-search-input" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../using.html">Using collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../connecting.html">Connection methods and details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Collections</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">broadcom.ca7</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="commands_addrq.html">commands_addrq – Adds temporary user or predecessor job requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_cancel.html">commands_cancel – Cancels a job request to CA 7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_demand.html">commands_demand – Demand a CA 7 job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_demandh.html">commands_demandh – Defines the name of the job being demanded and hold</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_hold.html">commands_hold – Holds a job from moving forward to the next queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_jclovrd.html">commands_jclovrd – Adds a permanent JCL override requirement for a CPU job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_post.html">commands_post – Posts the requirement for a job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_prscf.html">commands_prscf – Frees a shared resource that belongs to a job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_prsqa.html">commands_prsqa – Activates a co-requisite resource</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_release.html">commands_release – Release or resumed for jobs or queues on hold</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_requeue.html">commands_requeue – Re-queues CA 7 jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_resolv.html">commands_resolv – Creates or modifies processing schedules for jobs that are to be scheduled on a date/time basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_restart.html">commands_restart – Restart a job awaiting in the request queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_rmtsub.html">commands_rmtsub – Remote Subscribe to a CA 7 job</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">commands_rmttrk – Defines a dependency on a remote CA 7 job</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#return-values">Return Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#status">Status</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="commands_run.html">commands_run – Run a CA 7 job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_runh.html">commands_runh – Run a CA 7 job and place the job in hold status</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_submit.html">commands_submit – Modifies and expedites the jobs already residing in the queues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_subtm.html">commands_subtm – Modifies the required submit time-of-day for a job in the request queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_verify.html">commands_verify – Set the manual verification requirement for a job in the request queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_job_definition_req_predecessor.html">create_job_definition_req_predecessor – Creates requirement definition for a job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_job_definition_schedule.html">create_job_definition_schedule – Define schedules for jobs that are run on a date and time basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_resource_definition_resource_count_resource.html">create_resource_definition_resource_count_resource – Create Resource Count Resource parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_create_dataset.html">dataset_create_dataset – Create a new dataset definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_create_dataset_trigger.html">dataset_create_dataset_trigger – Create Dataset Trigger definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_delete_dataset.html">dataset_delete_dataset – Delete a dataset definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_delete_dataset_trigger.html">dataset_delete_dataset_trigger – Delete Dataset Trigger definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_rename_dataset.html">dataset_rename_dataset – Change the name of a dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_update_dataset.html">dataset_update_dataset – Modify a dataset definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_update_dataset_trigger.html">dataset_update_dataset_trigger – Modify Dataset Trigger definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delete_job_definition_req_predecessor.html">delete_job_definition_req_predecessor – Delete requirement definition fo a job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delete_job_definition_schedule.html">delete_job_definition_schedule – Delete an existing date/time schedule (remove a schedule ID) for a CA7 job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delete_resource_definition_resource_count_resource.html">delete_resource_definition_resource_count_resource – Delete a Resource Count resource</a></li>
+<li class="toctree-l2"><a class="reference internal" href="event_manager_requests_job_status.html">event_manager_requests_job_status – Retrieves a status of a job from CA 7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_create_address_space_resource.html">job_definition_create_address_space_resource – Add Address Space resource to a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_create_corequisite_resource.html">job_definition_create_corequisite_resource – Add Corequisite resource to a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_create_exclusive_resource.html">job_definition_create_exclusive_resource – Add Exclusive resource to a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_create_job.html">job_definition_create_job – Create a new job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_create_job_trigger_successor.html">job_definition_create_job_trigger_successor – Add Job Trigger to a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_create_resource_count_resource.html">job_definition_create_resource_count_resource – Add Resource Count resource to a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_create_shared_resource.html">job_definition_create_shared_resource – Add Shared resource to a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_create_variable_resource.html">job_definition_create_variable_resource – Add Variable resource to a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_address_space_resource.html">job_definition_delete_address_space_resource – Delete Address Space resource from a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_corequisite_resource.html">job_definition_delete_corequisite_resource – Delete Corequisite resource from a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_exclusive_resource.html">job_definition_delete_exclusive_resource – Delete Exclusive resource from a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_job.html">job_definition_delete_job – Delete a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_job_trigger_successor.html">job_definition_delete_job_trigger_successor – Delete Job Trigger from a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_resource_count_resource.html">job_definition_delete_resource_count_resource – Delete Resource Count resource from a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_shared_resource.html">job_definition_delete_shared_resource – Delete Shared resource from a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_variable_resource.html">job_definition_delete_variable_resource – Delete Variable resource from a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_list_job.html">job_definition_list_job – Get basic definition for one or more jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_list_job_trigger_successor.html">job_definition_list_job_trigger_successor – Get triggered jobs for one or more jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_address_space_resource.html">job_definition_update_address_space_resource – Modify Address Space resource for a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_corequisite_resource.html">job_definition_update_corequisite_resource – Modify Corequisite resource for a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_exclusive_resource.html">job_definition_update_exclusive_resource – Modify Exclusive resource for a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_job.html">job_definition_update_job – Update the definition of a job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_job_trigger_successor.html">job_definition_update_job_trigger_successor – Modify Job Trigger Successor for a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_resource_count_resource.html">job_definition_update_resource_count_resource – Modify Resource Count resource for a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_shared_resource.html">job_definition_update_shared_resource – Modify Shared resource for a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_instance_list_waiting_resource.html">job_instance_list_waiting_resource – Display jobs waiting for resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_definition_job.html">list_job_definition_job – Get basic definition for one or more jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_definition_prose.html">list_job_definition_prose – Get prose information for a job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_definition_requirement_predecessor.html">list_job_definition_requirement_predecessor – Get predecessors for one or more jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_definition_requirement_successor.html">list_job_definition_requirement_successor – Get successor jobs for one or more jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_definition_resource.html">list_job_definition_resource – Get job resources for one or more jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_definition_schedule.html">list_job_definition_schedule – Get job schedules for one or more jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_definition_step_dd.html">list_job_definition_step_dd – Get job STEP and DD information for one or more jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_definition_trigger_predecessor.html">list_job_definition_trigger_predecessor – Get trigger objects for one or more jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_definition_trigger_successor.html">list_job_definition_trigger_successor – Get triggered jobs for one or more jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_history_prior_run.html">list_job_history_prior_run – Retrieves job information from the prior-run queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_instance_active_resource.html">list_job_instance_active_resource – Display active resources by job. The jobs can be listed generically or with fully qualified job names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_instance_jcl.html">list_job_instance_jcl – Retrieves JCL for a job in the active workload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_instance_list.html">list_job_instance_list – Retrieves information about jobs in the active workload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_instance_list_custom.html">list_job_instance_list_custom – Retrieves custom information about jobs in the active workload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_instance_requirements.html">list_job_instance_requirements – Retrieves information about requirements for jobs in the active workload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_resource_definition_resource_count_resource.html">list_resource_definition_resource_count_resource – Retrieves a Resource Count Resource Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update_job_definition_job.html">update_job_definition_job – Use the options to update the definition of a job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update_job_definition_requirement_predecessor.html">update_job_definition_requirement_predecessor – Use the following two required parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update_job_definition_schedule.html">update_job_definition_schedule – Modify schedules for jobs that are run on a date and time basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update_job_instance_jcl.html">update_job_instance_jcl – Use the following two required parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update_resource_definition_resource_count_resource.html">update_resource_definition_resource_count_resource – Modify Resource Count Resource parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dbm_db2/index.html">broadcom.dbm_db2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endevor/index.html">broadcom.endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endevor_bridge_for_git/index.html">broadcom.endevor_bridge_for_git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../file_master_plus/index.html">broadcom.file_master_plus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../idms/index.html">broadcom.idms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mat/index.html">broadcom.mat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mat_pma_util/index.html">broadcom.mat_pma_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/index.html">broadcom.ops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spool/index.html">broadcom.spool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sysview/index.html">broadcom.sysview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../view/index.html">broadcom.view</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../zowe_core/index.html">broadcom.zowe_core</a></li>
+</ul>
+<!-- extra nav elements for Ansible beyond RTD Sphinx Theme -->
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Broadcom Ansible Collections for Mainframe</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">broadcom.ca7</a></li>
+      <li class="breadcrumb-item active">commands_rmttrk – Defines a dependency on a remote CA 7 job</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/generated/broadcom/ca7/contents/commands_rmttrk.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+  
+           <div itemprop="articleBody">
+             
+  <section id="commands-rmttrk-defines-a-dependency-on-a-remote-ca-7-job">
+<span id="commands-rmttrk-module"></span><h1>commands_rmttrk – Defines a dependency on a remote CA 7 job<a class="headerlink" href="#commands-rmttrk-defines-a-dependency-on-a-remote-ca-7-job" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></p></li>
+<li><p><a class="reference internal" href="#parameters" id="id2">Parameters</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id3">Examples</a></p></li>
+<li><p><a class="reference internal" href="#return-values" id="id4">Return Values</a></p></li>
+<li><p><a class="reference internal" href="#status" id="id5">Status</a></p></li>
+</ul>
+</nav>
+<section id="synopsis">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Synopsis</a><a class="headerlink" href="#synopsis" title="Link to this heading"></a></h2>
+<p>The RMTTRK defines a dependency on a job in a remote CA 7 workload.</p>
+</section>
+<section id="parameters">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Parameters</a><a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<blockquote>
+<div><dl>
+<dt>remote_sched (<em>required</em>, type: str)</dt><dd><p>Remote-sched=AS1</p>
+<p>The name of publishing scheduler that issues this RMTTRK command.</p>
+<p>Must be defined to receiving CA7ONL using XN.7.</p>
+<p>This name is provided to the remote scheduler at subscription time.</p>
+<p>Limists: 1-4 alphanumeric  characters.</p>
+</dd>
+<dt>job_name (<em>required</em>, type: str)</dt><dd><p>Job-name=PAYJOB</p>
+<p>The name of job running in the publishing scheduler that invokes this command.</p>
+<p>Limits: Autosys job names can be up to 64 characters.Valid characters are a-z, A-Z, 0-9, period (.),underscore (_), hyphen (-), colon (:), and pound (#).Do not include embedded spaces or tabs.</p>
+</dd>
+<dt>status (type: str)</dt><dd><p>Status=FAILURE</p>
+<p>The status of job named on job-name.</p>
+<p>The analogue of this service in AutoSys is change-status-job which supports these values:</p>
+<p>FAILURE, INACTIVE, RUNNING, STARTING, SUCCESS, TERMINATED</p>
+<p>.</p>
+</dd>
+<dt>date_time_status_changed (type: str)</dt><dd><p>Date-time-status-changed=2021-08-12T10:12:13.680000-04:00</p>
+<p>Date/time remote scheduler detected status change reported by the STATUS keyword.</p>
+<p>Limits: ISO8601 character format.</p>
+</dd>
+<dt>host (<em>required</em>, type: str)</dt><dd><p>Host name of the CA7 API service that is running on the mainframe system.</p>
+</dd>
+<dt>port (<em>required</em>, type: int)</dt><dd><p>Port for the CA7 API service that is running on the mainframe system.</p>
+</dd>
+<dt>user (<em>required</em>, type: str)</dt><dd><p>User name for authenticating connections to the CA7 API service that is running on the mainframe system.</p>
+</dd>
+<dt>password (<em>required</em>, type: str)</dt><dd><p>Password for authenticating connections to the CA7 API service that is running on the mainframe system.</p>
+</dd>
+<dt>base_path (type: str)</dt><dd><p>The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all resources when making REST requests. Do not specify this option if you are not using an Zowe API Mediation Layer.</p>
+</dd>
+<dt>protocol (<em>required</em>, type: str)</dt><dd><p>Specifies protocol to use for CA7 connection (http or https).</p>
+<dl class="simple">
+<dt>Choices:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">http</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">https</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>reject_unauthorized (type: bool, default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</dt><dd><p>Reject self-signed certificates.</p>
+</dd>
+<dt>cert_file (type: path)</dt><dd><p>The file path to a certificate file to use for authentication.</p>
+<p>Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.</p>
+</dd>
+<dt>cert_key_file (type: path)</dt><dd><p>The file path to a certificate key file to use for authentication.</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Rmttrk job name JOB123 to CA 7</span>
+<span class="w">  </span><span class="nt">broadcom.ca7.commands_rmttrk</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">job_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">JOB123</span>
+</pre></div>
+</div>
+</section>
+<section id="return-values">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Return Values</a><a class="headerlink" href="#return-values" title="Link to this heading"></a></h2>
+<dl>
+<dt>data (type: list, <em>when returned data is a dictionary</em>)</dt><dd><p>Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.</p>
+</dd>
+<dt>error (type: complex, <em>error</em>)</dt><dd><p>More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.</p>
+<dl class="simple">
+<dt>additional_details (type: str)</dt><dd><p>Detailed message about the failure.</p>
+</dd>
+<dt>msg (type: str)</dt><dd><p>Short description of the result or failure.</p>
+</dd>
+<dt>request (type: str, <em>API request failed</em>)</dt><dd><p>HTTP method used to invoke API service request.</p>
+</dd>
+<dt>resource (type: str, <em>API request failed</em>)</dt><dd><p>URI of the resource of the API service request.</p>
+</dd>
+</dl>
+</dd>
+<dt>failed (type: bool, <em>always</em>)</dt><dd><p>A boolean that indicates if the task was failed or not.</p>
+</dd>
+<dt>list (type: list, <em>when returned data is a list</em>)</dt><dd><p>Data from the module execution (a list of data structures).</p>
+</dd>
+<dt>msg (type: str, <em>sometimes</em>)</dt><dd><p>Short description of the result or failure.</p>
+</dd>
+<dt>rc (type: int, <em>always</em>)</dt><dd><p>Exit code of the module, successful exit code is 0, failure is typically 1 or higher.</p>
+</dd>
+<dt>stderr (type: str, <em>error</em>)</dt><dd><p>Details of the error.</p>
+</dd>
+<dt>stdout (type: str, <em>success</em>)</dt><dd><p>Summary of the result.</p>
+</dd>
+</dl>
+</section>
+<section id="status">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Status</a><a class="headerlink" href="#status" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>This module is maintained by Broadcom.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="commands_rmtsub.html" class="btn btn-neutral float-left" title="commands_rmtsub – Remote Subscribe to a CA 7 job" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="commands_run.html" class="btn btn-neutral float-right" title="commands_run – Run a CA 7 job" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Broadcom.</p>
+  </div>
+
+  
+   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+  <a href="https://sphinx-ansible-theme.rtfd.io">Sphinx Ansible Theme</a>
+  that is based on the
+  <a href="https://github.com/readthedocs/sphinx_rtd_theme">Read the Docs theme</a>
+  and is maintained by the <a href="https://docs.ansible.com/ansible/4/community/">Ansible Community</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script><!-- extra footer elements for Ansible beyond RTD Sphinx Theme -->
+
+</body>
+</html>

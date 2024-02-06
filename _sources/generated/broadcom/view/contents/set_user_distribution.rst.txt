@@ -1,0 +1,195 @@
+.. _set_user_distribution_module:
+
+
+set_user_distribution -- Set distribution id for current user in repository
+===========================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Set distribution id for current user in repository.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  repository_id (*required*, type: int)
+    Repository identifier.
+
+
+
+  distribution_id (*required*, type: str)
+    Distribution ID.
+
+
+
+  output_format (type: str, default: ``tabular``)
+    Output format. This option is ignored if '--response-format-json' is specified.
+
+
+    Choices:
+      * ``^tabular$`` 
+      * ``^csv$`` 
+      * ``^json$`` 
+      * ``^xml$`` 
+
+  output_header (type: bool, default: ``True``)
+    Include header with field names in the output when you specify 'tabular' or 'csv' for the output format.
+
+    This option is ignored when you specify any other output format.
+
+
+
+  output_field (type: list, default: ``['Mode', 'DistId', 'ModeAccess', 'DistMask']``)
+    Field to include in the output. Multiple fields can be specified.
+
+    Fields appear in the order you specify.
+
+    
+
+    Allowed values: Mode,DistId,ModeAccess,DistMask,Banner,Language,MasterAuthority,Printer,UserId.
+
+
+
+  host (type: str)
+    Hostname or ip address of the target View REST API instance.
+
+
+
+  port (type: int, default: ``443``)
+    Port of the target View REST API instance.
+
+
+
+  user (type: str)
+    User name used to authenticate against the target View REST API instance.
+
+
+
+  password (type: str)
+    Password used to authenticate against the target View REST API instance.
+
+
+
+  base_path (type: str, default: ``web-viewer``)
+    Context name of the target View REST API instance.
+
+
+
+  protocol (type: str, default: ``https``)
+    Protocol of the target View REST API instance.
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` **←**
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self-signed certificates.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+     # 
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

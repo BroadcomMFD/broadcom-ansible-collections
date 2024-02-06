@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>broadcom.dbm_db2 &mdash; Broadcom Ansible Collections for Mainframe  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/ansible.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/rtd-ethical-ads.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/images/Ansible-Mark-RGB_Black.svg"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="check_ddl – Validate the syntax of input DDL and optionally verify Db2 object dependencies" href="contents/check_ddl.html" />
+    <link rel="prev" title="update_resource_definition_resource_count_resource – Modify Resource Count Resource parameters" href="../ca7/contents/update_resource_definition_resource_count_resource.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
+
+
+
+
+</head>
+
+<body class="wy-body-for-nav"><!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/ansiblefest" target="_blank">AnsibleFest</a></li>
+    <li><a href="https://www.ansible.com/tower" target="_blank">Products</a></li>
+    <li><a href="https://www.ansible.com/community" target="_blank">Community</a></li>
+    <li><a href="https://www.ansible.com/webinars-training" target="_blank">Webinars & Training</a></li>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="../../../_static/images/Ansible-Mark-RGB_White.svg"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Broadcom Ansible Collections for Mainframe  documentation</div>
+</a>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Broadcom Ansible Collections for Mainframe
+          </a><!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" class="st-default-search-input" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using.html">Using collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../connecting.html">Connection methods and details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Collections</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ca7/index.html">broadcom.ca7</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">broadcom.dbm_db2</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contents/check_ddl.html">check_ddl – Validate the syntax of input DDL and optionally verify Db2 object dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/compare_ddl.html">compare_ddl – Compare objects that are defined in a DDL file to objects that are defined on a Db2 subsystem and generate an update script to implement the necessary object changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/deploy_ddl.html">deploy_ddl – Deploy Db2 object changes on the target Db2 subsystem using an input file that contains the DDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/execute_compare_script.html">execute_compare_script – Execute the compare script that was generated with the ‘compare_ddl’ module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/execute_migration_script.html">execute_migration_script – Execute the migration script that was generated with the ‘prepare_migration’ module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/execute_script.html">execute_script – Execute a Batch Processor script on a target subsystem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/generate_ddl.html">generate_ddl – Generate CREATE or DROP DDL statements for specified Db2 objects into an output DDL file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/prepare_migration.html">prepare_migration – Generate a script to migrate Db2 object definitions (DDL) and data from a source subsystem to a target subsystem</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../endevor/index.html">broadcom.endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../endevor_bridge_for_git/index.html">broadcom.endevor_bridge_for_git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file_master_plus/index.html">broadcom.file_master_plus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../idms/index.html">broadcom.idms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mat/index.html">broadcom.mat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mat_pma_util/index.html">broadcom.mat_pma_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops/index.html">broadcom.ops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spool/index.html">broadcom.spool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sysview/index.html">broadcom.sysview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../view/index.html">broadcom.view</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zowe_core/index.html">broadcom.zowe_core</a></li>
+</ul>
+<!-- extra nav elements for Ansible beyond RTD Sphinx Theme -->
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Broadcom Ansible Collections for Mainframe</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">broadcom.dbm_db2</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/generated/broadcom/dbm_db2/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+  
+           <div itemprop="articleBody">
+             
+  <section id="broadcom-dbm-db2">
+<h1>broadcom.dbm_db2<a class="headerlink" href="#broadcom-dbm-db2" title="Link to this heading"></a></h1>
+<p>DBM-Db2 collection to interact with Db2 using the Broadcom Database Management Solutions for Db2 for z/OS.</p>
+<p>Compatible with Zowe CLI Plugin version: 1.27.1</p>
+<p>For more information, see the Contents section.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/check_ddl.html">check_ddl – Validate the syntax of input DDL and optionally verify Db2 object dependencies</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/compare_ddl.html">compare_ddl – Compare objects that are defined in a DDL file to objects that are defined on a Db2 subsystem and generate an update script to implement the necessary object changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/deploy_ddl.html">deploy_ddl – Deploy Db2 object changes on the target Db2 subsystem using an input file that contains the DDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/execute_compare_script.html">execute_compare_script – Execute the compare script that was generated with the ‘compare_ddl’ module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/execute_migration_script.html">execute_migration_script – Execute the migration script that was generated with the ‘prepare_migration’ module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/execute_script.html">execute_script – Execute a Batch Processor script on a target subsystem</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/generate_ddl.html">generate_ddl – Generate CREATE or DROP DDL statements for specified Db2 objects into an output DDL file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/prepare_migration.html">prepare_migration – Generate a script to migrate Db2 object definitions (DDL) and data from a source subsystem to a target subsystem</a></li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../ca7/contents/update_resource_definition_resource_count_resource.html" class="btn btn-neutral float-left" title="update_resource_definition_resource_count_resource – Modify Resource Count Resource parameters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="contents/check_ddl.html" class="btn btn-neutral float-right" title="check_ddl – Validate the syntax of input DDL and optionally verify Db2 object dependencies" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Broadcom.</p>
+  </div>
+
+  
+   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+  <a href="https://sphinx-ansible-theme.rtfd.io">Sphinx Ansible Theme</a>
+  that is based on the
+  <a href="https://github.com/readthedocs/sphinx_rtd_theme">Read the Docs theme</a>
+  and is maintained by the <a href="https://docs.ansible.com/ansible/4/community/">Ansible Community</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script><!-- extra footer elements for Ansible beyond RTD Sphinx Theme -->
+
+</body>
+</html>

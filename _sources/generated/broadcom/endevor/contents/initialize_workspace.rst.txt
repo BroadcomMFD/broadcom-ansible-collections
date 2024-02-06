@@ -1,0 +1,157 @@
+.. _initialize_workspace_module:
+
+
+initialize_workspace -- Initialize current directory as an Endevor workspace
+============================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Initialize current directory as an Endevor workspace.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  workspace_dir (type: str)
+    The Endevor workspace directory, if different from current working directory.
+
+
+
+  host (type: str)
+    Host name of service on the mainframe.
+
+
+
+  port (type: int)
+    Port number of service on the mainframe.
+
+
+
+  user (type: str)
+    User name to authenticate to service on the mainframe.
+
+
+
+  password (type: str)
+    Password to authenticate to service on the mainframe.
+
+
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self-signed certificates.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: initialize current directory as an Endevor workspace
+      broadcom.endevor.initialize_workspace:
+
+    - name: initialize 'myWorkspace' directory as an Endevor workspace
+      broadcom.endevor.initialize_workspace:
+        workspace_dir: myWorkspace
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

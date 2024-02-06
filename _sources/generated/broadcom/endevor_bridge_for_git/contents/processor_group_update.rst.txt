@@ -1,0 +1,171 @@
+.. _processor_group_update_module:
+
+
+processor_group_update -- Update the processor group of an element
+==================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Update the processor group of a specific element in your local repository.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  element (*required*, type: str)
+    The name of the Endevor element that its processor group will be modified.
+
+
+
+  processor_group (*required*, type: str)
+    The name of the processor group you want to use.
+
+
+
+  work_dir (type: str, default: ``./``)
+    The local working directory of your Git-Endevor mapping.
+
+
+
+  endevor_system (type: str)
+    The Endevor system or alias of the system where your project resides.
+
+
+
+  endevor_subsystem (type: str)
+    The Endevor subsystem or alias of the subsystem where your project resides.
+
+
+
+  type (type: str)
+    The type of the Endevor element.
+
+
+
+  response_format_filter (type: list)
+    Filter (include) fields in the response. Accepts an array of field/property names to include in the output response. You can filter JSON objects properties OR table columns/fields. In addition, you can use this option in conjunction with '--response-format-type' to reduce the output of a command to a single field/property or a list of a single field/property.
+
+
+
+  response_format_type (type: str)
+    The command response output format type. Must be one of the following:
+
+    
+
+    table: Formats output data as a table. Use this option when the output data is an array of homogeneous JSON objects. Each property of the object will become a column in the table.
+
+    
+
+    list: Formats output data as a list of strings. Can be used on any data type (JSON objects/arrays) are stringified and a new line is added after each entry in an array.
+
+    
+
+    object: Formats output data as a list of prettified objects (or single object). Can be used in place of "table" to change from tabular output to a list of prettified objects.
+
+    
+
+    string: Formats output data as a string. JSON objects/arrays are stringified.
+
+
+    Choices:
+      * ``table`` 
+      * ``list`` 
+      * ``object`` 
+      * ``string`` 
+
+  response_format_header (type: bool)
+    If "--response-format-type table" is specified, include the column headers in the output.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+     # 
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

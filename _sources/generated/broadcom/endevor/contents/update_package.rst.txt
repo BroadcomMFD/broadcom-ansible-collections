@@ -1,0 +1,279 @@
+.. _update_package_module:
+
+
+update_package -- The update package module lets you update a package in Endevor
+================================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+The update package module lets you update a package in Endevor.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  package (type: str)
+    Name of the Endevor package.
+
+
+
+  from_file (type: str)
+    Use this input to provide source file.
+
+
+
+  from_dataset (type: str)
+    Use this input to provide source data set name.
+
+
+
+  from_member (type: str)
+    Use this input to provide source member name in the data set.
+
+
+
+  from_package (type: str)
+    Directs the Create/Update action to copy the SCL from the package you specify into the package you are creating or updating.
+
+
+
+  from_text (type: str)
+    Provides a string to use as input SCL.
+
+
+
+  description (type: str)
+    Allows you to associate a 50-character description when creating or updating package.
+
+
+
+  from_date_time (type: str)
+    Specify the beginning of time frame within which the package can be executed. Use yyyy-mm-ddThh:mm or see ISO 8601 standard for syntax.
+
+
+
+  to_date_time (type: str)
+    Specify the end of time frame within which the package can be executed. Use yyyy-mm-ddThh:mm or see ISO 8601 standard for syntax.
+
+
+
+  backout (type: bool, default: ``True``)
+    Set this option to false (or specify --no-backout) if you don't want to have the backout facility available for this package. By default backout is enabled.
+
+
+
+  notes (type: str)
+    Notes for package.
+
+
+
+  notes_from_file (type: str)
+    Local file of notes for package.
+
+
+
+  emergency_package (type: bool)
+    Specify if the package should be an emergency package. When not specified, the package is a standard package.
+
+
+
+  sharable (type: bool)
+    Specify this option if the package can be edited by more than one person when in In-edit status.
+
+
+
+  promotion (type: bool)
+    Specify this option to define the package as a promotion package.
+
+
+
+  validate_scl (type: bool, default: ``True``)
+    Set this option to false (or specify --no-validate-scl) to skip validion of the package components while creating a package. By default the SCL is validated.
+
+
+
+  append (type: bool)
+    Specify this option to append the SCL you are adding to the existing package SCL. Otherwise it would be replaced.
+
+
+
+  maxrc (type: int, default: ``8``)
+    The maximum value of the return code of a successful action. When the return code is greater than the maxrc value, the module fails.
+
+
+
+  host (type: str)
+    Specifies the base host name.
+
+
+
+  port (type: str)
+    Specifies the port number.
+
+
+
+  instance (type: str)
+    Specifies Endevor Web Services dataSource name.
+
+
+
+  protocol (type: str, default: ``https``)
+    Specifies the protocol used for connecting to Endevor Rest API.
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` **←**
+
+  user (type: str)
+    Specifies the user name.
+
+
+
+  password (type: str)
+    Specifies the user's password.
+
+
+
+  reject_unauthorized (type: bool)
+    Specify this option to have the server certificate verified against the list of supplied CAs.
+
+
+
+  base_path (type: str)
+    Specifies the base path used for connecting to Endevor Rest API.
+
+
+
+  suppress_messages (type: bool)
+    Suppress all [INFO]/[WARN] messages from terminal output.
+
+
+
+  report_file (type: str)
+    File name for saving reports from Endevor SCM locally.
+
+
+
+  report_dir (type: str)
+    Directory for saving reports from Endevor SCM locally, if wasn't specified. Defaults to current directory.
+
+
+
+  write_report (type: bool)
+    Write the endevor reports to a file. By default, when return code is 0, no report will be written, unless this option is specified. When return code is bigger than 0, reports will be written to a file, unless this option is specifed to be false.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Update package from local file with endevor profile set up
+      broadcom.endevor.update_package:
+        package: packageName
+        from_file: localfile.txt
+        instance: ENDEVOR
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Using collections &mdash; Broadcom Ansible Collections for Mainframe  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/ansible.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/rtd-ethical-ads.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/images/Ansible-Mark-RGB_Black.svg"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Connection methods and details" href="connecting.html" />
+    <link rel="prev" title="Installation" href="installation.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
+
+
+
+
+</head>
+
+<body class="wy-body-for-nav"><!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/ansiblefest" target="_blank">AnsibleFest</a></li>
+    <li><a href="https://www.ansible.com/tower" target="_blank">Products</a></li>
+    <li><a href="https://www.ansible.com/community" target="_blank">Community</a></li>
+    <li><a href="https://www.ansible.com/webinars-training" target="_blank">Webinars & Training</a></li>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="_static/images/Ansible-Mark-RGB_White.svg"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Broadcom Ansible Collections for Mainframe  documentation</div>
+</a>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Broadcom Ansible Collections for Mainframe
+          </a><!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" class="st-default-search-input" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Using collections</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#selecting-systems-from-inventory">Selecting systems from inventory</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#action-create-a-basic-inventory">Action: create a basic inventory</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#beyond-the-basics">Beyond the basics</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#executing-modules">Executing modules</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#action-run-your-first-playbook">Action: Run your first playbook</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="connecting.html">Connection methods and details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Collections</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/ca7/index.html">broadcom.ca7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/dbm_db2/index.html">broadcom.dbm_db2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/endevor/index.html">broadcom.endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/endevor_bridge_for_git/index.html">broadcom.endevor_bridge_for_git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/file_master_plus/index.html">broadcom.file_master_plus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/idms/index.html">broadcom.idms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/mat/index.html">broadcom.mat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/mat_pma_util/index.html">broadcom.mat_pma_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/ops/index.html">broadcom.ops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/spool/index.html">broadcom.spool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/sysview/index.html">broadcom.sysview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/view/index.html">broadcom.view</a></li>
+<li class="toctree-l1"><a class="reference internal" href="generated/broadcom/zowe_core/index.html">broadcom.zowe_core</a></li>
+</ul>
+<!-- extra nav elements for Ansible beyond RTD Sphinx Theme -->
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Broadcom Ansible Collections for Mainframe</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Using collections</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/using.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+  
+           <div itemprop="articleBody">
+             
+  <section id="using-collections">
+<h1>Using collections<a class="headerlink" href="#using-collections" title="Link to this heading"></a></h1>
+<p>Now that you have read the <a class="reference internal" href="installation.html"><span class="doc">installation guide</span></a> and installed one or more Broadcom Ansible Collections for Mainframe on a control node,
+you are ready to learn how Ansible works and how to use Broadcom Ansible Collections for Mainframe with your mainframe systems.</p>
+<p>A basic Ansible command or playbook:</p>
+<ul class="simple">
+<li><p>selects managed nodes or “hosts” to execute against from inventory</p></li>
+<li><p>connects to those hosts (in our case mainframe systems), usually over SSH or REST APIs</p></li>
+<li><p>starts execution of the modules used in the playbook</p></li>
+</ul>
+<p>Ansible can do much more, but you should understand the most common use case before exploring all the powerful features of Ansible.
+This page illustrates the basic process with a simple inventory and a simple playbook.
+Once you understand how it works, you can read more details about organizing your systems with <a class="reference external" href="https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html">inventory</a>,
+and more features of Ansible <a class="reference external" href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html">playbooks</a>.</p>
+<section id="selecting-systems-from-inventory">
+<h2>Selecting systems from inventory<a class="headerlink" href="#selecting-systems-from-inventory" title="Link to this heading"></a></h2>
+<p>Ansible gets information about which systems you want to manage from your inventory.
+You need inventory to take advantage of the full flexibility and repeatability of Ansible.</p>
+<section id="action-create-a-basic-inventory">
+<h3>Action: create a basic inventory<a class="headerlink" href="#action-create-a-basic-inventory" title="Link to this heading"></a></h3>
+<p>For this basic inventory, edit (or create) <cite>/etc/ansible/hosts</cite> and add a mainframe systems to it.
+For this example, use either IP addresses or FQDNs (fully qualified domain names):</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">all</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">hosts</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">sys1.your.company.net</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">ansible_user</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;z/OS</span><span class="nv"> </span><span class="s">user</span><span class="nv"> </span><span class="s">ID&gt;&quot;</span>
+<span class="w">      </span><span class="nt">broadcom</span><span class="p">:</span>
+<span class="w">        </span><span class="nt">endevor</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6032</span>
+</pre></div>
+</div>
+<p>This is inventory is YAML format. YAML format is easier to use for inventories that need to add variables to the systems.</p>
+<p><code class="docutils literal notranslate"><span class="pre">sys1.your.company.net</span></code> is the hostname of a mainframe system.</p>
+<p>Ansible uses SSH and connects to remote machines using your current user name, just as SSH does.
+For mainframe systems, you will typically use a different user ID, so we need to specify it using:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">ansible_user</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;&lt;z/OS</span><span class="nv"> </span><span class="s">user</span><span class="nv"> </span><span class="s">ID&gt;&quot;</span>
+</pre></div>
+</div>
+<p>Broadcom Ansible Collections for Mainframe connect to mainframe services using REST APIs running on the system. This requires to provide the connection port.
+In the example, we will connect to <a class="reference external" href="https://techdocs.broadcom.com/us/en/ca-mainframe-software/devops/ca-endevor-software-change-manager/18-0/using/using-the-rest-api.html">Endevor REST API</a> that is listening on HTTPS port <code class="docutils literal notranslate"><span class="pre">6032</span></code> of the <code class="docutils literal notranslate"><span class="pre">sys1.your.company.net</span></code> system:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">broadcom</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">endevor</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6032</span>
+</pre></div>
+</div>
+<p>If you are not sure what is the correct port, consult your system programmer.</p>
+</section>
+<section id="beyond-the-basics">
+<h3>Beyond the basics<a class="headerlink" href="#beyond-the-basics" title="Link to this heading"></a></h3>
+<p>Your inventory can store much more. You can create <a class="reference external" href="https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#inventory-aliases">aliases</a>, set variable values for a single host with <a class="reference external" href="https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#host-variables">host vars</a>,
+or set variable values for multiple hosts with <a class="reference external" href="https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#group-variables">group vars</a>. Variables are typically used for connection parameters
+of Broadcom API services and will cover multiple ways how they can be defined in the <a class="reference internal" href="connecting.html"><span class="doc">Connection methods and details</span></a> page.
+In this example, we have not defined password to the z/OS system so Ansible will prompt for it.
+The <a class="reference internal" href="connecting.html"><span class="doc">Connection methods and details</span></a> page describes possible ways how to authenticate to z/OS with Ansible and Broadcom Ansible Collections for Mainframe.</p>
+</section>
+</section>
+<section id="executing-modules">
+<h2>Executing modules<a class="headerlink" href="#executing-modules" title="Link to this heading"></a></h2>
+<section id="action-run-your-first-playbook">
+<h3>Action: Run your first playbook<a class="headerlink" href="#action-run-your-first-playbook" title="Link to this heading"></a></h3>
+<p>Playbooks are used to pull together tasks into reusable units.</p>
+<p>Ansible does not store playbooks for you; they are simply YAML documents that you store and manage, passing them to Ansible to run as needed.</p>
+<p>In the following example, we will use Endevor collection. But you can replace it with other Broadcom product that you use.</p>
+<p>In a directory of your choice you can create your first playbook in a file called <code class="docutils literal notranslate"><span class="pre">endevor.yaml</span></code>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Sample playbook with a simple Endevor task</span>
+<span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sys1.your.company.net</span>
+<span class="w">  </span><span class="nt">gather_facts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="nt">tasks</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">List all environments in Endevor SCM</span>
+<span class="w">    </span><span class="nt">broadcom.endevor.list_environments</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">instance</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ENDEVOR</span>
+<span class="w">    </span><span class="nt">register</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">environments</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Print environments</span>
+<span class="w">    </span><span class="nt">debug</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">var</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">environments.list</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">gather_facts:</span> <span class="pre">false</span></code> is used to disable gathering facts from the z/OS system. In such case, Ansible does not
+need to connect to the system using SSH and it uses only Endevor REST API.</p>
+</div>
+<p>You can run this command as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ansible-playbook<span class="w"> </span>--ask-pass<span class="w"> </span>endevor.yaml
+</pre></div>
+</div>
+<p>and may see output like this:</p>
+<div class="highlight-ansible-output notranslate"><div class="highlight"><pre><span></span>SSH password:
+
+<span class="k">PLAY</span> <span class="p">[</span><span class="l">Sample playbook with a simple Endevor task</span><span class="p">]</span> <span class="nv">****************************************************************</span>
+
+<span class="k">TASK</span> <span class="p">[</span><span class="l">List all environments in Endevor SCM</span><span class="p">]</span> <span class="nv">**********************************************************************</span>
+<span class="k">ok</span><span class="p">:</span> <span class="p">[</span><span class="nv">sys1.your.company.net</span><span class="p">]</span>
+
+<span class="k">TASK</span> <span class="p">[</span><span class="l">Print environments</span><span class="p">]</span> <span class="nv">****************************************************************************************</span>
+<span class="k">ok</span><span class="p">:</span> <span class="p">[</span><span class="nv">sys1.your.company.net</span><span class="p">]</span> <span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="nt">&quot;environments.list&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="nt">&quot;db_brg_act&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;db_brg_av&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;db_brg_opt1&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;db_brg_opt2&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;db_brg_opt3&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;db_brg_opt4&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;env_name&quot;</span><span class="p">:</span> <span class="s">&quot;DEV&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;next_env&quot;</span><span class="p">:</span> <span class="s">&quot;QA&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;rsec&quot;</span><span class="p">:</span> <span class="kc">null</span><span class="p">,</span>
+            <span class="nt">&quot;site_id&quot;</span><span class="p">:</span> <span class="s">&quot;0&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;smf_act&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;smf_env&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;smf_sec&quot;</span><span class="p">:</span> <span class="kc">false</span><span class="p">,</span>
+            <span class="nt">&quot;sync_loc&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+            <span class="nt">&quot;title&quot;</span><span class="p">:</span> <span class="s">&quot;TEST DEVELOPMENT ENVIRONMENT&quot;</span><span class="p">,</span>
+            <span class="nt">&quot;usec&quot;</span><span class="p">:</span> <span class="kc">null</span>
+        <span class="p">},</span>
+        <span class="err">...</span>
+    <span class="p">]</span>
+<span class="p">}</span>
+
+<span class="k">PLAY RECAP</span> <span class="nv">*******************************************************************************************************</span>
+<span class="n">sys1.your.company.net</span>      <span class="p">:</span> <span class="k">ok</span><span class="p">=</span><span class="mi">2</span>    <span class="k">changed</span><span class="p">=</span><span class="mi">0</span>    <span class="k">unreachable</span><span class="p">=</span><span class="mi">0</span>    <span class="k">failed</span><span class="p">=</span><span class="mi">0</span>    <span class="k">skipped</span><span class="p">=</span><span class="mi">0</span>    <span class="k">rescued</span><span class="p">=</span><span class="mi">0</span>    <span class="k">ignored</span><span class="p">=</span><span class="mi">0</span>
+</pre></div>
+</div>
+<p>Congratulations! You have contacted your mainframe using Ansible. You used a basic inventory file and executed a simple playbook that listed available Endevor environments.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<dl class="simple">
+<dt><a class="reference external" href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html">Intro to playbooks</a></dt><dd><p>Learn how to write playbooks</p>
+</dd>
+<dt><a class="reference internal" href="connecting.html"><span class="doc">Connection methods and details</span></a></dt><dd><p>Learn how to expand and refine the connection methods and how to specify connection parameters for Broadcom API services</p>
+</dd>
+<dt><a class="reference external" href="https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html">How to build your inventory</a></dt><dd><p>More information about Ansible inventory</p>
+</dd>
+<dt><a class="reference external" href="https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html#yaml-syntax">YAML Syntax</a></dt><dd><p>Learn about YAML syntax</p>
+</dd>
+<dt><a class="reference external" href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html#playbooks-best-practices">Tips and tricks</a></dt><dd><p>Tips for managing playbooks in the real world</p>
+</dd>
+</dl>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="connecting.html" class="btn btn-neutral float-right" title="Connection methods and details" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Broadcom.</p>
+  </div>
+
+  
+   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+  <a href="https://sphinx-ansible-theme.rtfd.io">Sphinx Ansible Theme</a>
+  that is based on the
+  <a href="https://github.com/readthedocs/sphinx_rtd_theme">Read the Docs theme</a>
+  and is maintained by the <a href="https://docs.ansible.com/ansible/4/community/">Ansible Community</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script><!-- extra footer elements for Ansible beyond RTD Sphinx Theme -->
+
+</body>
+</html>

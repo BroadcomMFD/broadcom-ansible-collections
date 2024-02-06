@@ -1,0 +1,593 @@
+.. _update_job_definition_schedule_module:
+
+
+update_job_definition_schedule -- Modify schedules for jobs that are run on a date and time basis
+=================================================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Modify schedule parameters.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  job (*required*, type: str)
+    The name of the job
+
+    
+
+    .
+
+
+
+  schid (*required*, type: str)
+    Specifies the numeric schedule ID on which the user wants to perform the specified action.
+
+    Limits: 1 to 3 numeric characters from 1 through 999
+
+    
+
+    .
+
+
+
+  scal (type: str)
+    Specifies the override of the default SCAL for this SCHID. Specify scal if you want to override the default scal.
+
+    Limits: 2 alphanumeric characters
+
+    
+
+    .
+
+
+
+  default_scal (type: str)
+    Specifies the default SCAL for this job. If this is not specified, an LJOB will be issued to fetch the SCAL
+
+    Limits: 2 alphanumeric characters
+
+    
+
+    .
+
+
+
+  due_out_time (type: str)
+    Specifies the due-out time of day for this schedule ID.
+
+    Limits: 4 numeric characters that are specified as hhmm
+
+    where hh can be 00 through 24 and mm can be 00 through 59. Must be greater than 0000.
+
+    
+
+    .
+
+
+
+  lead_time (type: str)
+    Specifies the due-out time of day for this schedule ID.
+
+    Limits: 4 numeric characters that are specified as hhmm
+
+    where hh can be 00 through 24 and mm can be 00 through 59. Must be greater than 0000.
+
+    
+
+    .
+
+
+
+  submit_time (type: str)
+    Specifies the submit time of day for this schedule ID.
+
+    If specified, the job is not submitted before this time.
+
+    If the submit time is before deadline start time,
+
+    the submit time requirement is automatically satisfied when the job enters the queue.
+
+    A submit time of zeros is the same as not specifying it, and no submit time is set up.
+
+    Note:If the submit time is after the due-out time, the submit day value is set to the previous day.
+
+    Limits: 4 numeric characters that are specified as hhmm
+
+    where hh can be 00 through 24 and mm can be 00 through 59. Must be greater than 0000.
+
+    
+
+    .
+
+
+
+  daily (type: str)
+    Specifies that the user wants to define a daily schedule.
+
+    Daily means every available processing day as defined by the Base Calendar.
+
+    If DAILY is used, the ROLL has no effect.
+
+    Limits: One of Y or N
+
+    
+
+    .
+
+
+
+  roll (type: str)
+    Specifies the action to take when a schedule day falls on a base calendar non available processing day.
+
+    This value is not used if the DAILY option is used
+
+    If DAILY is used, the ROLL has no effect.
+
+    If used, the value must be one of the following values:
+
+    B: Roll the schedule back to the previous available processing day in the Base Calendar.
+
+    F: Roll forward the schedule to the next available processing day.
+
+    N: Do not roll. Schedule day must stand.
+
+    D: Do not roll and do not schedule.
+
+    Default:D
+
+    
+
+    .
+
+
+
+  index (type: str)
+    Specifies an adjustment to schedule days.
+
+    After you exercise the ROLL option, the schedule is adjusted,
+
+    forward for plus or backward for minus, by the number of working days entered.
+
+    Limits:4 numeric characters that are specified as Innn where I can be plus (unsigned) or minus (-) and nnn can be 0 to 365 daysUsage:
+
+    Use this field with the RDAY field to schedule a job to run three workdays before the 15th of the month:
+
+    specify -3 in the INDEX field, X in the MONTHLY field, and 15 in the RDAY field.
+
+    
+
+    .
+
+
+
+  interval (type: str)
+    Specifies that the job should be repeated (executed more than once) and
+
+    specifies the amount of time between each iteration.
+
+    If INTERVAL is specified, the SBTM (submit time requirement) and TYPE fields are required.
+
+    If both INTERVAL and COUNT are specified, the INTERVAL value times the COUNT value must total less than 24 hours.
+
+    Limits:4 numeric characters in hhmm format where hh can be from 0 to 23 and mm can be from 00 to 59
+
+    
+
+    .
+
+
+
+  type (type: str)
+    Determines how the submit time requirement is calculated for repeating jobs.
+
+    A TYPE of CLOCK indicates that the INTERVAL is added to the previous iteration's
+
+    submit time requirement to determine the new submit time requirement.
+
+    A TYPE of START and END indicates that the INTERVAL is added to the previous iteration's
+
+    last (most recent) start and end times,respectively, to determine the new submit time requirement.
+
+    TYPE is required if INTERVAL is specified.
+
+    TYPE is discarded if INTERVAL is not specifiedLimits:CLOCK, START, or END
+
+    
+
+    .
+
+
+
+  count (type: str)
+    Specifies the maximum number of times to repeat the job.
+
+    COUNT is discarded if INTERVAL is not specified.
+
+    If both COUNT and STOP are specified, the job stops repeating when the COUNT reaches zero or the STOP time is reached, whichever comes first.
+
+    If COUNT is not specified, the job repeats until the STOP time is reached.TYPE is required if INTERVAL is specified. TYPE is discarded if INTERVAL is not specifiedLimits:1 to 4 numeric characters from 0 to 1439. Leading zeros can be discarded.
+
+    
+
+    .
+
+
+
+  weekly (type: str)
+    Specifies that the user wants to define a weekly schedule.
+
+    If WEEKLY is used, the run days of the week must be specified using DAYS field
+
+    Limits:Y or N
+
+    
+
+    .
+
+
+
+  days (type: str)
+    Defines specific days of the week on which to run the job.
+
+    as comma separated list of day name abbreviations.
+
+    Limits: A comma separated list of Sun,Mon,Tue,Wed,Thu,Fri,Sat
+
+    
+
+    .
+
+
+
+  monthly (type: str)
+    Specifies that the user wants to define a monthly schedule.
+
+    If this field is used, the user can optionally specify on which particular months the job is to run.
+
+    If specific months are not specified in the months property, all months are assumed.Limits: Y or N
+
+    
+
+    .
+
+
+
+  months (type: str)
+    Defines specific months on which to run the job.
+
+    as comma separated list of month name abbreviations.
+
+    Limits: A comma separated list of Jan,Feb,Mar,Apr,May,Jun,Jul,Aug,Sep,Oct,Nov,Dec
+
+    
+
+    .
+
+
+
+  weeks_of_month (type: str)
+    Specifies the weeks of the month to run the job.
+
+    The values that are specified can be positive (unsigned), negative (-) or slash (/).
+
+    Positive values 1, 2, 3, 4, or 5 are used to indicate the week relative to the beginning of the month.
+
+    Negative values -0, -1, and -2 are used to indicate occurrence of week relative to the end of the month.
+
+    Slashes indicate the job will not run the following value.
+
+    Limits: 1 to 14 numeric characters and required if MONTHLY and DAY-OF-WEEK are used.
+
+    The values are separated by comma
+
+    
+
+    .
+
+
+
+  day_of_week (type: str)
+    Specifies which days of the week to run the job.
+
+    If used, each day must be the first three letters of the wanted run days.
+
+    If you want to specify multiple days, use a comma separated list for example MON,TUE,FRI.
+
+    Limits: A comma separated list of SUN, MON, TUE, WED, THU, FRI, SAT, case insensitive
+
+    
+
+    .
+
+
+
+  relative_day (type: str)
+    Specifies relative days of the month on which the job is to run. Used with MONTHLY.
+
+    A day relative to the beginning or end of the month is specified.
+
+    If a positive (unsigned) value is used, the job runs that day relative to the first of the month.
+
+    Also, if you have days of the month when this job is not to run,a slash (/) can be used with the unsigned or negative values.
+
+    Valid positive values range from 1 to 31.
+
+    Valid negative values range from -0 to -30.
+
+    Limits:1 to 60 numeric characters, separated by comma.
+
+    Note:relative-day(s) represents calendar days, unless the base calendar was generated with OPTIONS=SCHDYONLY,
+
+    in which case relative-day(s) represents processing days.
+
+    
+
+    .
+
+
+
+  annual (type: str)
+    Defines an annual schedule.
+
+    Limits: If annual is used, day is required. One of Y, N
+
+    
+
+    .
+
+
+
+  day_of_year (type: str)
+    Specifies on which days of the annual schedule the user wants to run the job.
+
+    Days are entered as 1 through 366 and are prefixed by positive (unsigned) or slash (/) values.
+
+    Slash indicates the job will not run this day.
+
+    For example, if a job is to run on days 121, 132, 240, and 241, but is not to run on days 122, 242, and 1,the user would specify: /1,121,/122,132,240,241,/242
+
+    Limits: 1 to 55 numeric characters and required if annual is used.
+
+    The numbers will be separated by comma
+
+    
+
+    .
+
+
+
+  symmetric (type: str)
+    Used with the START and SPAN fields, defines a symmetric schedule.
+
+    With this option, schedules are defined as beginning on the date specified with
+
+    the START field and recurring every nnn days as specified with the SPAN field.
+
+    Limits: One of Y, N
+
+    
+
+    .
+
+
+
+  start (type: str)
+    This field is required when the SYMETRIC option is taken.
+
+    Value must be specified as the Julian day of the year on which the symmetric schedule is to begin.
+
+    This value should be evaluated yearly before schedule resolution and may need to be changed each year.
+
+    If the schedule will be resolved on a July-June basis, the start date must be within
+
+    the first of the two years in which the schedule overlaps.
+
+    For January-December schedules, it is simply relative to January 1 of the year specified on a RESOLV command.
+
+    If the calendar against which this SCHID will be resolved does not have the OPTIONS=SCHDYONLY,
+
+    the START day is adjusted each year to maintain the job's symmetric schedule from the job's original specified START day.
+
+    If the calendar against which the SCHID will be resolved was generated with overall available processing days only (OPTIONS=SCHDYONLY)
+
+    the start date must specify the first day on which the job would actually run.
+
+    This requires manually setting (verifying) the START value each year before the RESOLV.
+
+    If a nonprocessing day is specified, the start day is the next processing day found in the calendar.
+
+    For example, if January 1 is a nonprocessing day and the calendar was generated with OPTIONS=SCHDYONLY,
+
+    and 1 is specified as the START day, January 2 is the actual START day (provided it is an available processing day).
+
+    SPAN is based from January 2 in this example rather than January 1.
+
+    For other types of calendars, the start date is determined at RESOLV time based on the ROLL and INDEX options taken.
+
+    Limits: 3 numeric characters specified as Julian day of the year from 1 to 365
+
+    
+
+    .
+
+
+
+  span (type: str)
+    Used with SYMETRIC and START, defines symmetric schedules.
+
+    This field is required if the SYMETRIC option is taken.
+
+    When used, specifies the number of days between scheduled processing cycles.
+
+    If the calendar against which the SCHID will be resolved was generated with processing days
+
+    only (OPTIONS=SCHDYONLY), the SPAN value is specified as the number of available processing days
+
+    between and including the next processing date as opposed to the actual number of days.
+
+    With this type of calendar, the ROLL and INDEX options serve no practical purpose.
+
+    For other calendar types, the SPAN value is specified as the number of calendar days
+
+    between processing cycles and the ROLL and INDEX options can be used as necessary.
+
+    Limits: 1 to 3 numeric characters from 1 to 255
+
+    
+
+    .
+
+
+
+  host (*required*, type: str)
+    Host name of the CA7 API service that is running on the mainframe system.
+
+
+
+  port (*required*, type: int)
+    Port for the CA7 API service that is running on the mainframe system.
+
+
+
+  user (*required*, type: str)
+    User name for authenticating connections to the CA7 API service that is running on the mainframe system.
+
+
+
+  password (*required*, type: str)
+    Password for authenticating connections to the CA7 API service that is running on the mainframe system.
+
+
+
+  base_path (type: str)
+    The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all resources when making REST requests. Do not specify this option if you are not using an Zowe API Mediation Layer.
+
+
+
+  protocol (*required*, type: str)
+    Specifies protocol to use for CA7 connection (http or https).
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` 
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self-signed certificates.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Modify a schedule for job TESTJOB1 with the parameters
+      broadcom.ca7.update_job_definition_schedule:
+        job: TESTJOB1
+        schid: 01
+        default_scal: 03
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

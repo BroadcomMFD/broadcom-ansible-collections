@@ -1,0 +1,304 @@
+.. _execute_script_module:
+
+
+execute_script -- Execute a Batch Processor script on a target subsystem
+========================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Execute a Batch Processor script on a target subsystem. For example, use this command to execute a Batch Processor script or specifically to execute a recovery script to undo changes that were made by the 'zowe dbm execute compare-script' command. If execution of the script fails, you can execute it again using the 'script-section' or 'restart' options. You can edit the script and make changes before you execute or restart it.
+
+ 
+
+For details about command usage for automation, see DBM-Db2 samples at https://github.com/BroadcomMFD/dbm-db2-for-zowe-cli
+
+.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  local_input_bp_script_filename (*required*, type: str)
+    Specifies the local input file that contains the Batch Processor statements such as the recovery script that was created by executing the 'zowe dbm execute compare-script' command.
+
+
+
+  target_db2 (type: str)
+    Specifies the target Db2 subsystem or data sharing group where you want to execute the script. If this option is not specified, the target subsystem is identified by the first .CONNECT statement in the script.
+
+    
+
+     Note: If you specify the data sharing group, the first active Db2 subsystem in the group is used.
+
+    
+
+    The target-db2 option takes precedence over any other value that is specified for the Db2 subsystem or data sharing group. 
+
+
+
+  script_section (type: str)
+    Identifies the location in the script where you want to begin execution. 
+
+    
+
+    The following options are valid:
+
+    
+
+    name - Begin execution of the specific section and process all subsequent statements up to the next section.
+
+    
+
+    A section is a '.SYSTEM \<name\>' statement, where \<name\> identifies a logical grouping of statements such as UNLOADS or SQLDDL. 'source' is an alias for UNLOADS. 'target' is an alias for SQLDDL.
+
+    
+
+    number - Begin execution after the specific sync point (.SYNC \<number\> statement) and process all statements up to the end of the script.
+
+    
+
+    name, number - Begin execution of the specific script section beginning from the sync point (.SYNC \<number\> statement) within the section and process all subsequent statements up to the next section.
+
+
+
+  restart (type: str)
+    Specifies the location in the script where you want to restart execution. The effects of previous successful script statement executions remain. 
+
+    
+
+    The following restart options are valid:
+
+           
+
+    new - Restart execution of the script at the first statement.
+
+            
+
+    token - Restart execution of the script at the location that is recorded in the specified token and that was returned from a previous execution failure.
+
+    
+
+    name, token - Restart execution of the script at the location in the restart section that is recorded in the specified token and that was returned from a prior execution failure.
+
+           
+
+    A section is a Batch Processor '.SYSTEM \<name\>' statement, where \<name\> identifies a logical grouping of statements such as UNLOADS or SQLDDL. 'source' is an alias for UNLOADS. 'target' is an alias for SQLDDL.
+
+
+
+  modification (type: str)
+    Identifies a named set of server-managed default parameter values that control the execution behavior of the zowe dbm-db2 commands. For example, you can use a modification to identify a set of default values that differ from the set of values that are normally used.
+
+      
+
+    For more information about using the modification option, see the DBM Data Service documentation at https://techdocs.broadcom.com/db2mgmt .
+
+
+
+  error_file (type: str)
+    Specifies the local output error file in YAML format that contains basic execution information, connection details, dbm-db2 profile parameters, used arguments, and errors that occurred during execution of the command.
+
+          
+
+    Default value: error.log 
+
+
+
+  job_cards (type: list)
+    Specifies a string array of z/OS JCL JOB statements.
+
+
+
+  work_dataset_prefix (type: str)
+    Specifies the prefix that is used as the high level qualifier in z/OS work data set names.
+
+
+
+  overwrite_output_files (type: bool)
+    Specifies whether to overwrite output files when they already exist.
+
+
+
+  protocol (type: str)
+    Specifies the communication protocol to use between the zowe dbm-db2 client and the DBM Data Service.
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` 
+
+  environment_list (type: str)
+    Specifies an object of one or more values consisting of a Db2 subsystem ID and a DBM Data Service environment pair. The paired entry identifies the DBM Data Service environment to use for a subsystem that is accessible through multiple DBM Data Service environments. For more information about configuring the DBM Data Service, see the Database Management Solutions for Db2 for z/OS documentation at https://techdocs.broadcom.com/db2mgmt.
+
+
+
+  host (type: str)
+    Host name of service on the mainframe.
+
+
+
+  port (type: int)
+    Port number of service on the mainframe.
+
+
+
+  user (type: str)
+    User name to authenticate to service on the mainframe.
+
+
+
+  password (type: str)
+    Password to authenticate to service on the mainframe.
+
+
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self-signed certificates.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Execute a recovery script
+      broadcom.dbm_db2.execute_script:
+        local_input_bp_script_filename: recovery.txt
+
+    - name: Execute a script on the 'TEST' Db2 subsystem
+      broadcom.dbm_db2.execute_script:
+        local_input_bp_script_filename: script001.txt
+        target_db2: TEST
+
+    - name: Execute only the SQLDDL section of a script. The first .CONNECT statement in the script identifies the target subsystem where the script is executed. Execution begins at the .SYSTEM SQLDDL statement and ends at the next .SYSTEM statement in the script
+      broadcom.dbm_db2.execute_script:
+        local_input_bp_script_filename: script001.txt
+        script_section: SQLDDL
+
+    - name: Execute a script beginning from the sync point 10 (.SYNC 10 statement) to the end of the script
+      broadcom.dbm_db2.execute_script:
+        local_input_bp_script_filename: script001.txt
+        script_section: 10
+
+    - name: Execute only the target (SQLDDL) section of the script starting at sync point 20
+      broadcom.dbm_db2.execute_script:
+        local_input_bp_script_filename: script001.txt
+        script_section: target,20
+
+    - name: Restart execution of a script from the beginning
+      broadcom.dbm_db2.execute_script:
+        local_input_bp_script_filename: script001.txt
+        restart: new
+
+    - name: Restart execution of a script at the location specified in the token. The restart token is returned by a previous 'zowe dbm execute command' failure as part of the terminal output and in the error file
+      broadcom.dbm_db2.execute_script:
+        local_input_bp_script_filename: script001.txt
+        restart: 78A724A48DA5185D06FD140F6780D6FA
+
+    - name: Restart execution at the last successful sync point recorded in the restart token up to the end of the target (SQLDDL) section
+      broadcom.dbm_db2.execute_script:
+        local_input_bp_script_filename: script001.txt
+        restart: target,78A724A48DA5185D06FD140F6780D6FA
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

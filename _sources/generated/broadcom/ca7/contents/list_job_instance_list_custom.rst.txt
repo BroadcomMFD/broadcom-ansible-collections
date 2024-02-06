@@ -1,0 +1,1715 @@
+.. _list_job_instance_list_custom_module:
+
+
+list_job_instance_list_custom -- Retrieves custom information about jobs in the active workload
+===============================================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Displays information about jobs in the active workload.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  ca7no (type: int)
+    Ca7no=0231
+
+    
+
+    The CA 7 job number
+
+    .
+
+
+
+  databasename (type: str)
+    Databasename=TESTDB01
+
+    
+
+    The CA 7 database name
+
+    .
+
+
+
+  jobname (type: str)
+    Jobname=CA7TEST
+
+    
+
+    The CA 7 job name
+
+    .
+
+
+
+  job (type: bool)
+    Job=true/false
+
+    
+
+    The job name for this job in the active workload
+
+    .
+
+
+
+  queue_name (type: bool)
+    QueueName=true/false
+
+    
+
+    The name of the queue in which this job is currently located. 
+
+    .
+
+
+
+  ca7_num (type: bool)
+    Ca7Num=true/false
+
+    
+
+    The job number for this job in the active workload
+
+    .
+
+
+
+  status (type: bool)
+    Status=true/false
+
+    
+
+    The job status
+
+    .
+
+
+
+  entry_mode (type: bool)
+    EntryMode=true/false
+
+    
+
+    Identifies how the job was brought into the queue.
+
+    .
+
+
+
+  abended (type: bool)
+    Abended=true/false
+
+    
+
+    Y if job abended, N if not
+
+    .
+
+
+
+  agent_intervention (type: bool)
+    AgentIntervention=true/false
+
+    
+
+    Y if INTERVENTION REQUIRED condition exists for this agent job, N if not
+
+    .
+
+
+
+  agent_job_number (type: bool)
+    AgentJobNumber=true/false
+
+    
+
+    The job number/PID for this agent job
+
+    .
+
+
+
+  agent_name (type: bool)
+    AgentName=true/false
+
+    
+
+    The name of the agent where this job will execute
+
+    .
+
+
+
+  agent_status (type: bool)
+    AgentStatus=true/false
+
+    
+
+    The status for this agent job
+
+    .
+
+
+
+  agent_status_data (type: bool)
+    AgentStatusData=true/false
+
+    
+
+    Y if status data is available for this agent job,N if not
+
+    .
+
+
+
+  agent_submitted (type: bool)
+    AgentSubmitted=true/false
+
+    
+
+    Y if agent job has been submitted to the agent, N if not
+
+    .
+
+
+
+  agent_type (type: bool)
+    AgentType=true/false
+
+    
+
+    Agent job type, zero if this is not an agent job
+
+    .
+
+
+
+  agent_user (type: bool)
+    AgentUser=true/false
+
+    
+
+    The userid with which this agent job will execute
+
+    .
+
+
+
+  ajb_build_error (type: bool)
+    AjbBuildError=true/false
+
+    
+
+    Y if an error occurred while building an XPJOB job AJB or an agent job AFM, N if not
+
+    .
+
+
+
+  arf (type: bool)
+    Arf=true/false
+
+    
+
+    Y if this job is monitored by ARF, N if not
+
+    .
+
+
+
+  arf_attach_err (type: bool)
+    ArfAttachErr=true/false
+
+    
+
+    Y if this job had an ARF attach error, N if not
+
+    .
+
+
+
+  arf_comp_matched (type: bool)
+    ArfCompMatched=true/false
+
+    
+
+    Set to Y if an ARF JOB completion rule matched for this job
+
+    .
+
+
+
+  arf_date (type: bool)
+    ArfDate=true/false
+
+    
+
+    Y if the job uses ARF
+
+    .
+
+
+
+  arf_error_cond (type: bool)
+    ArfErrorCond=true/false
+
+    
+
+    Set to Y if there was an error during ARF condition detection, N if not
+
+    .
+
+
+
+  arfj_job (type: bool)
+    ArfjJob=true/false
+
+    
+
+    Y if job is an ARF recovery job, N if not
+
+    .
+
+
+
+  arf_job_complete (type: bool)
+    ArfJobComplete=true/false
+
+    
+
+    Set to Y if this job's completion has been posted to ARF, N if not
+
+    .
+
+
+
+  arf_recovery (type: bool)
+    ArfRecovery=true/false
+
+    
+
+    Y if job is in ARF recovery, N if not
+
+    .
+
+
+
+  arf_recovery_err (type: bool)
+    ArfRecoveryErr=true/false
+
+    
+
+    Y if this job had an error in ARF recovery, N if not
+
+    .
+
+
+
+  arfset (type: bool)
+    Arfset=true/false
+
+    
+
+    The collection of ARF definitions that apply to this job
+
+    .
+
+
+
+  arf_time (type: bool)
+    ArfTime=true/false
+
+    
+
+    The date and time that the ARFSET was attached to this job
+
+    .
+
+
+
+  autof_done (type: bool)
+    AutofDone=true/false
+
+    
+
+    Y if job performed AUTO F, N if not
+
+    .
+
+
+
+  ca11_jes_node (type: bool)
+    Ca11JesNode=true/false
+
+    
+
+    The JES node where this job executes
+
+    .
+
+
+
+  ca11_restart_step (type: bool)
+    Ca11RestartStep=true/false
+
+    
+
+    The relative CA 11 restart step number
+
+    .
+
+
+
+  ca11_rms_cc (type: bool)
+    Ca11RmsCc=true/false
+
+    
+
+    The CA 11 U11RMS step condition code
+
+    .
+
+
+
+  ca11_subsystem (type: bool)
+    Ca11Subsystem=true/false
+
+    
+
+    The CA 11 subsystem name
+
+    .
+
+
+
+  ca7_system (type: bool)
+    Ca7System=true/false
+
+    
+
+    The user-defined application system associated with this job
+
+    .
+
+
+
+  comp_code (type: bool)
+    CompCode=true/false
+
+    
+
+    The job completion code in number format
+
+    .
+
+
+
+  cpm_jfm (type: bool)
+    CpmJfm=true/false
+
+    
+
+    Y if JFM is used to track CPM, N if not
+
+    .
+
+
+
+  cpu_table_index (type: bool)
+    CpuTableIndex=true/false
+
+    
+
+    Index to the CPU Table entry
+
+    .
+
+
+
+  cputime (type: bool)
+    Cputime=true/false
+
+    
+
+    This Job's average CPU time
+
+    .
+
+
+
+  curr_step_num (type: bool)
+    CurrStepNum=true/false
+
+    
+
+    The number of the step that is currently executing
+
+    .
+
+
+
+  def_not_found (type: bool)
+    DefNotFound=true/false
+
+    
+
+    Y if job defintion not found on database, N if not found
+
+    .
+
+
+
+  do_not_prompt (type: bool)
+    DoNotPrompt=true/false
+
+    
+
+    Y if prompts are bypassed for the job, N if not
+
+    .
+
+
+
+  drclass (type: bool)
+    Drclass=true/false
+
+    
+
+    The job's disaster recovery class
+
+    .
+
+
+
+  drmode (type: bool)
+    Drmode=true/false
+
+    
+
+    Y if this job entered the queues when disaster recovery mode was active, N if not
+
+    .
+
+
+
+  due_out_exists (type: bool)
+    DueOutExists=true/false
+
+    
+
+    Determines if a zero value in DUE\_OUT\_TIME indicates midnight (Y) or no due out time (N)
+
+    .
+
+
+
+  due_out_time (type: bool)
+    DueOutTime=true/false
+
+    
+
+    The date and time this job is expected to complete
+
+    .
+
+
+
+  dup_job (type: bool)
+    DupJob=true/false
+
+    
+
+    Y if a job with the same name is waiting on this job to complete, N if not
+
+    .
+
+
+
+  dup_job_wait (type: bool)
+    DupJobWait=true/false
+
+    
+
+    Y if this job is waiting on a job with the same name to complete, N if not
+
+    .
+
+
+
+  elapsed_time (type: bool)
+    ElapsedTime=true/false
+
+    
+
+    This Job's average elapsed time
+
+    .
+
+
+
+  end_time (type: bool)
+    EndTime=true/false
+
+    
+
+    The date and time this job ended
+
+    .
+
+
+
+  executable (type: bool)
+    Executable=true/false
+
+    
+
+    Y if job is executable, N if not
+
+    .
+
+
+
+  express (type: bool)
+    Express=true/false
+
+    
+
+    Y if submission of this job has been expedited by use of the SUBMIT,EXPRESS=YES command, N if not
+
+    .
+
+
+
+  external_input (type: bool)
+    ExternalInput=true/false
+
+    
+
+    Y if we job has external input, N if not
+
+    .
+
+
+
+  external_job (type: bool)
+    ExternalJob=true/false
+
+    
+
+    Y if this is an externally tracked job, N if not
+
+    .
+
+
+
+  external_satisfied (type: bool)
+    ExternalSatisfied=true/false
+
+    
+
+    The number of satisfied external requirements for this job
+
+    .
+
+
+
+  external_total (type: bool)
+    ExternalTotal=true/false
+
+    
+
+    The total number of external requirements for this job
+
+    .
+
+
+
+  forced_complete (type: bool)
+    ForcedComplete=true/false
+
+    
+
+    Y if job was force completed, N if not
+
+    .
+
+
+
+  forced_submit (type: bool)
+    ForcedSubmit=true/false
+
+    
+
+    Y if all input requirements have been marked as satisfied by use of the SUBMIT command, N if not
+
+    .
+
+
+
+  from_xp_request (type: bool)
+    FromXpRequest=true/false
+
+    
+
+    Y if scheduling request for this job came from an XPS client, N if not
+
+    .
+
+
+
+  has_ca11 (type: bool)
+    HasCa11=true/false
+
+    
+
+    Y if job has a CA11 segment, N if not
+
+    .
+
+
+
+  has_cpu_time (type: bool)
+    HasCpuTime=true/false
+
+    
+
+    Y if we have non-zero CPU time for this job, N if not
+
+    .
+
+
+
+  has_jo (type: bool)
+    HasJo=true/false
+
+    
+
+    Y if the JCL or PARM DATA contains a #JO card, N if not
+
+    .
+
+
+
+  has_step_time (type: bool)
+    HasStepTime=true/false
+
+    
+
+    Y if job has non-zero step CPU time, N if not
+
+    .
+
+
+
+  held (type: bool)
+    Held=true/false
+
+    
+
+    Y if job is held, N if not
+
+    .
+
+
+
+  held_by_job (type: bool)
+    HeldByJob=true/false
+
+    
+
+    Y if job was held on entry to the queues, N if not
+
+    .
+
+
+
+  held_skeleton (type: bool)
+    HeldSkeleton=true/false
+
+    
+
+    Y if job is held and in skeleton status, N if not
+
+    .
+
+
+
+  skeleton (type: bool)
+    Skeleton=true/false
+
+    
+
+    Y if job is in skeleton status, N if not
+
+    .
+
+
+
+  hold_on_entry (type: bool)
+    HoldOnEntry=true/false
+
+    
+
+    Y if job marked HOLD=YES, N if not
+
+    .
+
+
+
+  host_name (type: bool)
+    HostName=true/false
+
+    
+
+    The SMF Id of the system where this is executing
+
+    .
+
+
+
+  in_cpm_flow (type: bool)
+    InCpmFlow=true/false
+
+    
+
+    Y if job is part of a CPM flow, N if not
+
+    .
+
+
+
+  insert_rms (type: bool)
+    InsertRms=true/false
+
+    
+
+    Y if an RMS step will be inserted into this job's JCL, N if not
+
+    .
+
+
+
+  jcl_alloc_err (type: bool)
+    JclAllocErr=true/false
+
+    
+
+    Y if JCL or PARM DATA library could not be allocated, N if not
+
+    .
+
+
+
+  jcl_count (type: bool)
+    JclCount=true/false
+
+    
+
+    The number of non-# records in the JCL or PARM DATA members associated with this job
+
+    .
+
+
+
+  jcl_error (type: bool)
+    JclError=true/false
+
+    
+
+    Y if job marked with JCL error, N if not
+
+    .
+
+
+
+  jcl_from_altlib (type: bool)
+    JclFromAltlib=true/false
+
+    
+
+    Y if JCL or PARM DATA was retrieved from an alternate library, N if not
+
+    .
+
+
+
+  jcl_library (type: bool)
+    JclLibrary=true/false
+
+    
+
+    Contains either a 3 digit JCL index value or a JCL variable beginning with an ampersand
+
+    .
+
+
+
+  jes_hi (type: bool)
+    JesHi=true/false
+
+    
+
+    JES supports ID \> 99999
+
+    .
+
+
+
+  load_only (type: bool)
+    LoadOnly=true/false
+
+    
+
+    Y if this is a LOAD only job, N if not
+
+    .
+
+
+
+  load_step_done (type: bool)
+    LoadStepDone=true/false
+
+    
+
+    Y if LOAD step ran OK for this job, N if not
+
+    .
+
+
+
+  locked (type: bool)
+    Locked=true/false
+
+    
+
+    Y if job is locked, N if not
+
+    .
+
+
+
+  long_name (type: bool)
+    LongName=true/false
+
+    
+
+    An alias name for this job. This name may be used by scheduling engines on other platforms, such as AutoSys
+
+    .
+
+
+
+  lterm (type: bool)
+    Lterm=true/false
+
+    
+
+    Logical terminal name from job definition
+
+    .
+
+
+
+  mainid (type: bool)
+    Mainid=true/false
+
+    
+
+    If positive, the CPU number on which the job may execute. If negative, the CPU number on which the job may not execute
+
+    .
+
+
+
+  maint (type: bool)
+    Maint=true/false
+
+    
+
+    Y if job ignores requirements, N if not
+
+    .
+
+
+
+  manual_requeue (type: bool)
+    ManualRequeue=true/false
+
+    
+
+    Y if job has been re-queued to REQUEST queue, N if not
+
+    .
+
+
+
+  member_name (type: bool)
+    MemberName=true/false
+
+    
+
+    The JCL or PARM DATA library member name
+
+    .
+
+
+
+  must_start_exists (type: bool)
+    MustStartExists=true/false
+
+    
+
+    Determines if a zero value in MUST\_START\_TIME indicates midnight (Y) or no deadline time (N)
+
+    .
+
+
+
+  needs_autof (type: bool)
+    NeedsAutof=true/false
+
+    
+
+    Y if a job changed and requires 'F' in CA11, N if not
+
+    .
+
+
+
+  next_run_req (type: bool)
+    NextRunReq=true/false
+
+    
+
+    Y if job has temporary requirements for the next execution, N if not
+
+    .
+
+
+
+  node_failed (type: bool)
+    NodeFailed=true/false
+
+    
+
+    Y if this is an XPJOB job and at the time of it last submit its node was down, N if not
+
+    .
+
+
+
+  node_offline (type: bool)
+    NodeOffline=true/false
+
+    
+
+    Y if this is an XPJOB job and at the time of its last submit its node was offline, N if not
+
+    .
+
+
+
+  node_stopped (type: bool)
+    NodeStopped=true/false
+
+    
+
+    Y if this is an XPJOB job and at the time of it last submit its node was stopped, N if not
+
+    .
+
+
+
+  no_user_id (type: bool)
+    NoUserId=true/false
+
+    
+
+    Y if there is not a valid security id for this job, N if there is
+
+    .
+
+
+
+  no_xpsi_parmlib (type: bool)
+    NoXpsiParmlib=true/false
+
+    
+
+    Y if this is an XPJOB job and has no PARMLIB, N if not
+
+    .
+
+
+
+  no_xpsi_xpsparm (type: bool)
+    NoXpsiXpsparm=true/false
+
+    
+
+    Y if this is an XPJOB job and has no PARM, N if not
+
+    .
+
+
+
+  override (type: bool)
+    Override=true/false
+
+    
+
+    Y if JCL/PARM DATA override is required, N if not
+
+    .
+
+
+
+  override_applied (type: bool)
+    OverrideApplied=true/false
+
+    
+
+    Y if JCL overrides have been applied for this job, N if not
+
+    .
+
+
+
+  prompt (type: bool)
+    Prompt=true/false
+
+    
+
+    Y if job should have LATE PROMPTS, N if not
+
+    .
+
+
+
+  prompt_ack (type: bool)
+    PromptAck=true/false
+
+    
+
+    Y if user has acknowledged the prompt, N if not
+
+    .
+
+
+
+  prompted (type: bool)
+    Prompted=true/false
+
+    
+
+    Y if user has been prompted, N if not
+
+    .
+
+
+
+  qjcl_updated (type: bool)
+    QjclUpdated=true/false
+
+    
+
+    Y if JCL or PARM DATA updated through QJCL, N if not
+
+    .
+
+
+
+  queue_jcl (type: bool)
+    QueueJcl=true/false
+
+    
+
+    Y if a QJCL command is in progress for this job N if not
+
+    .
+
+
+
+  repeat_count (type: bool)
+    RepeatCount=true/false
+
+    
+
+    The number of times to repeat this job
+
+    .
+
+
+
+  repeat_diff (type: bool)
+    RepeatDiff=true/false
+
+    
+
+    
+
+    .
+
+
+
+  ca7_no (type: bool)
+    Ca7No=true/false
+
+    
+
+    The difference between the original dueout time and the original submit time, used by repeating jobs
+
+    .
+
+
+
+  repeat_interval (type: bool)
+    RepeatInterval=true/false
+
+    
+
+    The interval between repetitions of the job
+
+    .
+
+
+
+  repeat_lead_time (type: bool)
+    RepeatLeadTime=true/false
+
+    
+
+    The lead time for this repeat job. This is the amount of time to ensure it completes before it due out time
+
+    .
+
+
+
+  repeat_stop_exists (type: bool)
+    RepeatStopExists=true/false
+
+    
+
+    Determines if a zero value in REPEAT\_STOP\_TIME indicates midnight (Y) or no repeat stop time (N)
+
+    .
+
+
+
+  repeat_stop_time (type: bool)
+    RepeatStopTime=true/false
+
+    
+
+    The date and time on or after which a repeating job will not be repeated
+
+    .
+
+
+
+  repeat_type (type: bool)
+    RepeatType=true/false
+
+    
+
+    The type of repeat job. This field determines how the submit time requierement is calculated for repeating jobs
+
+    .
+
+
+
+  restart_step (type: bool)
+    RestartStep=true/false
+
+    
+
+    The step name in which the job was restarted
+
+    .
+
+
+
+  retain_jcl (type: bool)
+    RetainJcl=true/false
+
+    
+
+    Y if JCL or XPJOB information will be retained in the prior run queue, N if not
+
+    .
+
+
+
+  rqmt_count (type: bool)
+    RqmtCount=true/false
+
+    
+
+    The master requirement count for this job. The number includes unsatisfied requirements, submit time, and other reasons preventing the job from being submitted
+
+    .
+
+
+
+  schd_adjusted (type: bool)
+    SchdAdjusted=true/false
+
+    
+
+    Y if job's schedule has been adjusted, N if not
+
+    .
+
+
+
+  nosecurity (type: bool)
+    Nosecurity=true/false
+
+    
+
+    Y if there was an error retrieving security data,N if no
+
+    .
+
+
+
+  set_ndb (type: bool)
+    SetNdb=true/false
+
+    
+
+    Y if job will bypass LOAD processing at completion and not update the database, N if not
+
+    .
+
+
+
+  smf_needed (type: bool)
+    SmfNeeded=true/false
+
+    
+
+    Y if SMF feedback is needed for this job, N if not
+
+    .
+
+
+
+  start_time (type: bool)
+    StartTime=true/false
+
+    
+
+    The date and time this job started executing on its most recent submission
+
+    .
+
+
+
+  submitted (type: bool)
+    Submitted=true/false
+
+    
+
+    Y if this job has been submitted to the host, N if not
+
+    .
+
+
+
+  submit_time (type: bool)
+    SubmitTime=true/false
+
+    
+
+    The date and time this job was submitted
+
+    .
+
+
+
+  triggered (type: bool)
+    Triggered=true/false
+
+    
+
+    Y if job triggered by another job, N if not
+
+    .
+
+
+
+  uid (type: bool)
+    Uid=true/false
+
+    
+
+    The CA 7 internal user security designation
+
+    .
+
+
+
+  verify (type: bool)
+    Verify=true/false
+
+    
+
+    Y if job has a manual verification requirement, N if not
+
+    .
+
+
+
+  wait_submit_time (type: bool)
+    WaitSubmitTime=true/false
+
+    
+
+    Y if this job has a submit time requirement, N if not
+
+    .
+
+
+
+  xp_alt_node (type: bool)
+    XpAltNode=true/false
+
+    
+
+    The alternate node where this XPJOB job was routed
+
+    .
+
+
+
+  xp_primary_node (type: bool)
+    XpPrimaryNode=true/false
+
+    
+
+    The primary node associated with this XPJOB job
+
+    .
+
+
+
+  xps_job (type: bool)
+    XpsJob=true/false
+
+    
+
+    Y if this is an XPJOB job, N if not
+
+    .
+
+
+
+  xp_status (type: bool)
+    XpStatus=true/false
+
+    
+
+    The status of the node associated with this XPJOB job. A: Active F: Failed CCI send O: Offline S:Stopped
+
+    .
+
+
+
+  xtracker_inact (type: bool)
+    XtrackerInact=true/false
+
+    
+
+    Y if at time of submission, the XTRACKER task is not active for an XPJOB job or IAS is not active for an agent job, N if not
+
+    .
+
+
+
+  xplat_node (type: bool)
+    XplatNode=true/false
+
+    
+
+    Cross platform long node name
+
+    .
+
+
+
+  response_error (type: bool)
+    ResponseError=true/false
+
+    
+
+    
+
+    .
+
+
+
+  ca11_failing_step_num (type: bool)
+    Ca11FailingStepNum=true/false
+
+    
+
+    CA 11 Failing Step Number
+
+    .
+
+
+
+  complete_ok (type: bool)
+    CompleteOk=true/false
+
+    
+
+    Y if job completed normally, N if not
+
+    .
+
+
+
+  jes_num (type: bool)
+    JesNum=true/false
+
+    
+
+    The JES job number for this job. A value of -1 indicates NA
+
+    .
+
+
+
+  needs_load (type: bool)
+    NeedsLoad=true/false
+
+    
+
+    Y if LOAD processing will be done for this job, Nif not
+
+    .
+
+
+
+  deadline (type: bool)
+    Deadline=true/false
+
+    
+
+    The date and time a job must be started by in order to meet its due out time
+
+    .
+
+
+
+  jclfrom254 (type: bool)
+    Jclfrom254=true/false
+
+    
+
+    Y if JCL or XPJOB information will be retained in the prior run queue, N if not
+
+    .
+
+
+
+  prose_num (type: bool)
+    ProseNum=true/false
+
+    
+
+    Number of the prose text associated with this job, or zero
+
+    .
+
+
+
+  schedule_id (type: bool)
+    ScheduleId=true/false
+
+    
+
+    The schedule id for this execution
+
+    .
+
+
+
+  triggering_job_num (type: bool)
+    TriggeringJobNum=true/false
+
+    
+
+    The CA 7 internal job number of the job that triggered this job or job that created the data set that triggered this job
+
+    .
+
+
+
+  triggers (type: bool)
+    Triggers=true/false
+
+    
+
+    Y if job can trigger other jobs, N if not
+
+    .
+
+
+
+  host (*required*, type: str)
+    Host name of the CA7 API service that is running on the mainframe system.
+
+
+
+  port (*required*, type: int)
+    Port for the CA7 API service that is running on the mainframe system.
+
+
+
+  user (*required*, type: str)
+    User name for authenticating connections to the CA7 API service that is running on the mainframe system.
+
+
+
+  password (*required*, type: str)
+    Password for authenticating connections to the CA7 API service that is running on the mainframe system.
+
+
+
+  base_path (type: str)
+    The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all resources when making REST requests. Do not specify this option if you are not using an Zowe API Mediation Layer.
+
+
+
+  protocol (*required*, type: str)
+    Specifies protocol to use for CA7 connection (http or https).
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` 
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self-signed certificates.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: List a CA 7 job (7777) information which resided in CA7DB database
+      broadcom.ca7.list_job_instance_list_custom:
+        ca7no: 7777
+        databasename: CA7DB
+        jobname: TESTCA7
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

@@ -1,0 +1,16 @@
+
+broadcom.dbm_db2
+================
+
+DBM-Db2 collection to interact with Db2 using the Broadcom Database Management Solutions for Db2 for z/OS.
+
+Compatible with Zowe CLI Plugin version: 1.27.1
+
+For more information, see the Contents section.
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :caption: Contents
+
+   contents/*

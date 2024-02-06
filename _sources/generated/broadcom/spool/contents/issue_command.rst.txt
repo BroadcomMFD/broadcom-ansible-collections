@@ -1,0 +1,188 @@
+.. _issue_command_module:
+
+
+issue_command -- Issue commands to work with Spool
+==================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Issue commands to work with Spool.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  command_text (*required*, type: str)
+    The Spool command to issue.
+
+
+
+  account (*required*, type: str)
+    Z/OS TSO/E accounting information.
+
+
+
+  spoolhlq (*required*, type: str)
+    High level qualifier of Spool installation.
+
+
+
+  subsys (type: str, default: ``ESF``)
+    Spool subsystem name.
+
+
+
+  outds (*required*, type: str)
+    The SYSTSPRT data set allocated by CAI.CBQ4JCL(BQ4JZOWE). It must be unique for each Zowe CLI user interacting with Spool.
+
+
+
+  clist (*required*, type: str)
+    The data set containing ESFZOWE REXX exec.
+
+
+
+  host (type: str)
+    The z/OSMF server host name.
+
+
+
+  port (type: int, default: ``443``)
+    The z/OSMF server port.
+
+
+
+  user (type: str)
+    Mainframe (z/OSMF) user name, which can be the same as your TSO login.
+
+
+
+  password (type: str)
+    Mainframe (z/OSMF) password, which can be the same as your TSO password.
+
+
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self-signed certificates.
+
+
+
+  base_path (type: str)
+    The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all z/OSMF resources when making REST requests. Do not specify this option if you are not using an Zowe API Mediation Layer.
+
+
+
+  protocol (type: str, default: ``https``)
+    The protocol used (HTTP or HTTPS).
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` **←**
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Issue the Spool command 'DS' to display the status of the ESF system
+      broadcom.spool.issue_command:
+        command_text: DS
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

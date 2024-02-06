@@ -1,0 +1,333 @@
+.. _mapping_create_module:
+
+
+mapping_create -- Create a Git-Endevor mapping
+==============================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Create a Git-Endevor mapping.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  remote_url (type: str)
+    Git repository remote URL.
+
+
+
+  connection (type: str)
+    Endevor connection name.
+
+
+
+  endevor_instance (type: str)
+    The Endevor Web Services Endevor configuration name.
+
+
+
+  endevor_system (type: str)
+    The Endevor system where your project resides.
+
+
+
+  endevor_subsystem (type: str)
+    The Endevor subsystem where your project resides.
+
+
+
+  system_alias (type: str)
+    The alias of Endevor system.
+
+
+
+  subsystem_alias (type: str)
+    The alias of Endevor subsystem.
+
+
+
+  endevor_environment (type: str)
+    The Endevor environment where your project resides.
+
+
+
+  branch (type: str, default: ``master``)
+    Name of the synchronized branch in the Git repository.
+
+
+
+  read_only (type: bool)
+    If specified, it is necessary to use the option --endevor-stage-number. The synchronized elements will be read-only.
+
+
+
+  endevor_stage_number (type: str)
+    The Endevor stage where your project resides (only for read only mappings).
+
+
+
+  type_filters (type: list)
+    Type filters that your mapping will be using. There can be multiple separated by a space. eg "COBOL" "COPY".
+
+
+
+  name_filters (type: list)
+    Name filters that your mapping will be using. There can be multiple separated by a space. eg "ELE\*" "CO\*".
+
+
+
+  repository_check (type: str, default: ``REQUIRE_EMPTY``)
+    If set to allowNonEmpty, user can proceed with initialization even if the repository is not empty.
+
+
+    Choices:
+      * ``REQUIRE_EMPTY`` **←**
+      * ``ALLOW_NON_EMPTY`` 
+
+  mapping_mode (type: str)
+    Mapping mode of the mapping ('FULL', 'WORK\_ENV\_ONLY' or 'MIRROR').
+
+
+    Choices:
+      * ``FULL`` 
+      * ``WORK_ENV_ONLY`` 
+      * ``MIRROR`` 
+
+  json_file (type: path)
+    Mapping JSON file to import.
+
+
+
+  endevor_protocol (type: str)
+    The Endevor SCM Rest API protocol. 
+
+    
+
+    Default value: http
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` 
+
+  endevor_host (type: str)
+    The Endevor Rest API hostname.
+
+
+
+  endevor_port (type: int)
+    The Endevor Rest API port.
+
+
+
+  endevor_user (type: str)
+    Mainframe (Endevor) username, which can be the same as your TSO login.
+
+
+
+  endevor_password (type: str)
+    Mainframe (Endevor) password, which can be the same as your TSO password.
+
+
+
+  endevor_reject_unauthorized (type: bool)
+    Reject self-signed certificates. 
+
+    
+
+    Default value: true
+
+
+
+  endevor_base_path (type: str)
+    The Endevor SCM Rest API base path. 
+
+    
+
+    Default value: EndevorService/rest
+
+
+
+  protocol (*required*, type: str, default: ``https``)
+    The Endevor Bridge for Git SCM protocol. 
+
+    
+
+    Default value: https
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` **←**
+
+  host (*required*, type: str)
+    The Endevor Bridge for Git hostname.
+
+
+
+  port (*required*, type: int)
+    The Endevor Bridge for Git port.
+
+
+
+  user (*required*, type: str)
+    Endevor Bridge for Git username (your git username).
+
+
+
+  token (*required*, type: str)
+    Git personal access token (it can be obtained from your Git Enterprise Server).
+
+
+
+  reject_unauthorized (type: bool)
+    Reject self-signed certificates. 
+
+    
+
+    Default value: false
+
+
+
+  password (type: str)
+    Password to authenticate to service on the mainframe.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Create the Git-Endevor mapping 'MY-CONTEXT / MY-MAPPING' using the default EBG and Endevor profile
+      broadcom.endevor_bridge_for_git.mapping_create:
+        remote_url: https://git-server-enterprise.com/my-context/my-mapping.git
+        endevor_instance: INSTANCE
+        endevor_system: SYSNAME
+        endevor_subsystem: SUBNAME
+        endevor_environment: ENVNAME
+
+    - name: Create the Git-Endevor mapping 'MY-CONTEXT / MY-MAPPING' using the default EBG and Endevor profile
+      broadcom.endevor_bridge_for_git.mapping_create:
+        remote_url: https://git-server-enterprise.com/my-context/my-mapping.git
+        connection: endevor-connection-name
+        endevor_system: SYSNAME
+        endevor_subsystem: SUBNAME
+        endevor_environment: ENVNAME
+
+    - name: Create the read-only Git-Endevor mapping 'MY-CONTEXT / MY-MAPPING' using the default EBG and Endevor profile
+      broadcom.endevor_bridge_for_git.mapping_create:
+        remote_url: https://git-server-enterprise.com/my-context/my-mapping.git
+        endevor_instance: INSTANCE
+        endevor_system: SYSNAME
+        endevor_subsystem: SUBNAME
+        endevor_environment: ENVNAME
+        read_only: y
+        endevor_stage_number: 2
+
+    - name: Create the Git-Endevor mapping with importing a mapping file
+      broadcom.endevor_bridge_for_git.mapping_create:
+        json_file: my-mapping.json
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

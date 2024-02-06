@@ -1,0 +1,92 @@
+============
+Requirements
+============
+
+.. |BACM| replace:: Broadcom Ansible collection for mainframe
+.. |BACMs| replace:: Broadcom Ansible Collections for Mainframe
+
+Before you install any |BACM|, ensure that you configure a
+**control node** and **managed node** with a minimum set of requirements.
+
+Control node
+============
+
+A control node is a machine with Ansible. With the control node,
+you can run commands and playbooks from a laptop, desktop, or server. 
+
+*Note*: Microsoft Windows is not a supported controller for Broadcom Ansible collections.
+
+All |BACMs| require these versions of software on the Ansible control node:
+
+* `Ansible`_: 2.9 or later
+* `Python`_: 3.7 or later
+* `Node.js and npm`_: supported Node.js LTS version:
+
+  * For a current list of supported LTS versions, see `nodejs.org <https://nodejs.org/en/about/releases/>`_.
+  * The |BACMs| use Zowe CLI and CLI plug-ins on control node.
+    You do not need to install Zowe CLI and CLI plug-ins yourself.
+    |BACMs| include the Zowe CLI and CLI plug-ins.
+    Ensure that your control node fulfils the requirements of Zowe CLI (Node.js and npm).
+    For more details, see `Zowe CLI Software Requirements <https://techdocs.broadcom.com/us/en/ca-mainframe-software/devops/ca-brightside/3-0/getting-started/ca-brightside-software-requirements.html>`_
+    in the Brightside 3.0 documentation.
+
+* Broadcom Zowe Core Ansible collection:
+
+  * All |BACMs| are dependent on **Broadcom Zowe Core Ansible collection**. This collection is installed automatically with collections that require it.
+  * Provides common code for other |BACMs|. The collection does not contain any public modules or other Ansible content.
+  * Includes `Zowe CLI`_ package and installs the package automatically, which enables you to use |BACMs| without the Zowe CLI and CLI plug-ins.
+  * The collection name in Ansible Galaxy is ``broadcom.zowe_core``.
+
+* `OpenSSH`_
+
+  * Broadcom Ansible collections provide action plug-ins that run on a control node.
+    You do not need to enable OpenSSH. However, you might need OpenSSH for collections
+    of other vendors and basic Ansible functionality, such as gathering facts.
+
+Managed node
+============
+
+A managed node, or a target node (or host), is managed by Ansible. 
+*Note*: Ensure that you do not install Ansible on a managed node.
+
+|BACMs| provide action plug-ins that run on a control node.
+You do not need to enable OpenSSH or install Python on a managed z/OS node.
+However, you might need OpenSSH for collections of other vendors and basic Ansible functionality, such as gathering facts.
+
+For additional z/OS software requirements for |BACM|, see `Software Requirements for CLI Plug-ins <https://techdocs.broadcom.com/us/en/ca-mainframe-software/devops/ca-brightside/3-0/zowe-cli/install-zowe-cli/install-cli-plug-ins/software-requirements-for-cli-plug-ins.html>`_.
+
+Mapping Collections to Zowe CLI Plug-ins
+========================================
+
+the following table shows Zowe CLI Plug-ins that are used in the collections:
+
+===================================== ============================================================================
+Collection Name                       Zowe CLI Plug-in
+===================================== ============================================================================
+``broadcom.ca7``                      CA 7 Workload Automation Plug-in for Zowe CLI
+``broadcom.dbm-db2``                  Broadcom Database Management Solutions for Db2 for z/OS plug-in for Zowe CLI
+``broadcom.endevor``                  Endevor Plug-in for Zowe CLI
+``broadcom.endevor_bridge_for_git``   Endevor Bridge for Git Plug-in for Zowe CLI
+``broadcom.file_master_plus``         File Master Plus Plug-in for Zowe CLI
+``broadcom.ops``                      OPS/MVS Plug-in for Zowe CLI
+``broadcom.spool``                    Spool Plug-in for Zowe CLI
+``broadcom.sysview``                  SYSVIEW Plug-in for Zowe CLI
+``broadcom.view``                     View Plug-in for Zowe CLI
+===================================== ============================================================================
+
+.. ``broadcom.idms``                     IDMS Plug-in for Zowe CLI
+.. ``broadcom.jclcheck``                 JCLCheck Plug-in for Zowe CLI
+.. ``broadcom.mat``                      MAT Analyze Plug-in for Zowe CLI
+.. ``broadcom.mat_pma_util``             MAT Detect Plug-in for Zowe CLI
+.. ``broadcom.sysview``                  SYSVIEW Plug-in for Zowe CLI
+
+.. _Ansible:
+   https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html
+.. _Python:
+   https://www.python.org/downloads
+.. _OpenSSH:
+   https://www.openssh.com/
+.. _Node.js and npm:
+   https://nodejs.org/en/about/releases/
+.. _Zowe CLI:
+   https://techdocs.broadcom.com/us/en/ca-mainframe-software/devops/ca-brightside/3-0/zowe-cli.html

@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>create_partitioned_data_set – Create a partitioned data set &mdash; Broadcom Ansible Collections for Mainframe  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/ansible.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/rtd-ethical-ads.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/images/Ansible-Mark-RGB_Black.svg"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="create_partitioned_data_set_extended – Create an extended partitioned data set" href="create_partitioned_data_set_extended.html" />
+    <link rel="prev" title="create_like_model – Create a data set based on the parameters of an existing data set" href="create_like_model.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
+
+
+
+
+</head>
+
+<body class="wy-body-for-nav"><!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/ansiblefest" target="_blank">AnsibleFest</a></li>
+    <li><a href="https://www.ansible.com/tower" target="_blank">Products</a></li>
+    <li><a href="https://www.ansible.com/community" target="_blank">Community</a></li>
+    <li><a href="https://www.ansible.com/webinars-training" target="_blank">Webinars & Training</a></li>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="../../../../_static/images/Ansible-Mark-RGB_White.svg"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Broadcom Ansible Collections for Mainframe  documentation</div>
+</a>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Broadcom Ansible Collections for Mainframe
+          </a><!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" class="st-default-search-input" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../using.html">Using collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../connecting.html">Connection methods and details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Collections</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../ca7/index.html">broadcom.ca7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dbm_db2/index.html">broadcom.dbm_db2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endevor/index.html">broadcom.endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endevor_bridge_for_git/index.html">broadcom.endevor_bridge_for_git</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">broadcom.file_master_plus</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="copy_data_set.html">copy_data_set – Copy a data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_large_format_sequential.html">create_large_format_sequential – Create a large format sequential data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_like_model.html">create_like_model – Create a data set based on the parameters of an existing data set</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">create_partitioned_data_set – Create a partitioned data set</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#return-values">Return Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#status">Status</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="create_partitioned_data_set_extended.html">create_partitioned_data_set_extended – Create an extended partitioned data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_physical_sequential.html">create_physical_sequential – Create a physical sequential data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_vsam_esds.html">create_vsam_esds – Create an ESDS VSAM data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_vsam_ksds.html">create_vsam_ksds – Create a KSDS VSAM data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_vsam_lds.html">create_vsam_lds – Create a LDS VSAM data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_vsam_rrds.html">create_vsam_rrds – Create a RRDS VSAM data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_vsam_vrrds.html">create_vsam_vrrds – Create a VRRDS VSAM data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delete_data_set.html">delete_data_set – Permanently deletes a data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="populate_data_set.html">populate_data_set – Populate a data set</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rename_data_set.html">rename_data_set – Rename a data set</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../idms/index.html">broadcom.idms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mat/index.html">broadcom.mat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mat_pma_util/index.html">broadcom.mat_pma_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/index.html">broadcom.ops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spool/index.html">broadcom.spool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sysview/index.html">broadcom.sysview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../view/index.html">broadcom.view</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../zowe_core/index.html">broadcom.zowe_core</a></li>
+</ul>
+<!-- extra nav elements for Ansible beyond RTD Sphinx Theme -->
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Broadcom Ansible Collections for Mainframe</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">broadcom.file_master_plus</a></li>
+      <li class="breadcrumb-item active">create_partitioned_data_set – Create a partitioned data set</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/generated/broadcom/file_master_plus/contents/create_partitioned_data_set.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+  
+           <div itemprop="articleBody">
+             
+  <section id="create-partitioned-data-set-create-a-partitioned-data-set">
+<span id="create-partitioned-data-set-module"></span><h1>create_partitioned_data_set – Create a partitioned data set<a class="headerlink" href="#create-partitioned-data-set-create-a-partitioned-data-set" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></p></li>
+<li><p><a class="reference internal" href="#parameters" id="id2">Parameters</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id3">Examples</a></p></li>
+<li><p><a class="reference internal" href="#return-values" id="id4">Return Values</a></p></li>
+<li><p><a class="reference internal" href="#status" id="id5">Status</a></p></li>
+</ul>
+</nav>
+<section id="synopsis">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Synopsis</a><a class="headerlink" href="#synopsis" title="Link to this heading"></a></h2>
+<p>Create a partitioned data set.</p>
+</section>
+<section id="parameters">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Parameters</a><a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<blockquote>
+<div><dl>
+<dt>name (<em>required</em>, type: str)</dt><dd><p>Specifies the name of the data set to create.</p>
+</dd>
+<dt>model (type: str)</dt><dd><p>Specifies the name of a model partitioned data set for allocating parameters.</p>
+<p>The parameters of the model data set override all defaults.</p>
+<p>Example: fmmvs.model.dsname.</p>
+</dd>
+<dt>logical_record_length (type: int)</dt><dd><p>Specifies the length of the logical record.</p>
+<p>Allowed values: 1-32760</p>
+<p>Default value: 80</p>
+<p>Example: 80</p>
+</dd>
+<dt>block_size (type: int)</dt><dd><p>Specifies the size of the block of records.</p>
+<p>Allowed values: 1-32760</p>
+<p>Default value: 6160</p>
+<p>Example: 6160</p>
+</dd>
+<dt>record_format (type: str)</dt><dd><p>Specifies the record format.</p>
+<p>The allowed values have the following meaning:</p>
+<p>F - Fixed-length records</p>
+<p>V - Variable-length records</p>
+<p>U - Undefined-length records</p>
+<p>B - Records are blocked</p>
+<p>A - Records contain ASCII printer control characters</p>
+<p>M - Records contain machine code control characters</p>
+<p>S - For variable-length records, records may span blocks</p>
+<p>T - Records may be written into overflow tracks</p>
+<p>Default value: FB</p>
+<p>Example: FB</p>
+<dl class="simple">
+<dt>Choices:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">F</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FA</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FM</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FB</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FBA</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FBM</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FS</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FSA</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FSM</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FTA</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FTM</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FBS</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FBT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">U</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UA</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UM</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UTA</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UTM</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">V</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VA</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VM</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VB</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VBA</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VBM</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VS</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VSA</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VSM</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VT</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VTA</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VTM</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VBS</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">VBT</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>space_units (type: str)</dt><dd><p>Specifies the space allocation unit.</p>
+<p>The allowed values which have the following meaning:</p>
+<p>TRK - Tracks</p>
+<p>CYL - Cylinders</p>
+<p>BLK - Blocksize</p>
+<p>Default value: CYL</p>
+<p>Example: blk</p>
+<dl class="simple">
+<dt>Choices:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TRK</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CYL</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">BLK</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>primary_space (type: int)</dt><dd><p>Specifies the primary space allocation unit.</p>
+<p>Allowed values: 1-16777215</p>
+<p>Default value: 1</p>
+<p>Example: 3</p>
+</dd>
+<dt>secondary_space (type: int)</dt><dd><p>Specifies the secondary space allocation unit.</p>
+<p>Allowed values: 1-16777215</p>
+<p>Default value: 1</p>
+<p>Example: 5</p>
+</dd>
+<dt>directory_blocks (type: int)</dt><dd><p>Specifies number of directory blocks.</p>
+<p>Allowed values: 1-16777215</p>
+<p>Default value: 5</p>
+<p>Example: 5</p>
+</dd>
+<dt>volume (type: str)</dt><dd><p>Specifies a disk volume or specific tapes.</p>
+<p>Example: vol002.</p>
+</dd>
+<dt>unit_type (type: str)</dt><dd><p>Specifies the DASD unit name.</p>
+<p>Example: sysda.</p>
+</dd>
+<dt>expiration_date (type: str)</dt><dd><p>Specifies the expiration date after which the data set can be deleted.</p>
+<p>Specify ‘P’ or ‘p’ to make the data set permanent, or an expiration date in YYYY-MM-DD format.</p>
+<p>Example: 2032-07-31.</p>
+</dd>
+<dt>storage_class (type: str)</dt><dd><p>Specifies the storage class.</p>
+<p>Example: scl002.</p>
+</dd>
+<dt>management_class (type: str)</dt><dd><p>Specifies the management class.</p>
+<p>Example: mcl002.</p>
+</dd>
+<dt>data_class (type: str)</dt><dd><p>Specifies the data class.</p>
+<p>Example: dcl002.</p>
+</dd>
+<dt>host (type: str)</dt><dd><p>Specifies File Master Plus server host name.</p>
+</dd>
+<dt>port (type: int, default: <code class="docutils literal notranslate"><span class="pre">51914</span></code>)</dt><dd><p>Specifies File Master Plus server port.</p>
+</dd>
+<dt>user (type: str)</dt><dd><p>Specifies Mainframe user name. May be the same as TSO login.</p>
+</dd>
+<dt>password (type: str)</dt><dd><p>Specifies Mainframe password. May be the same as TSO password.</p>
+</dd>
+<dt>protocol (type: str, default: <code class="docutils literal notranslate"><span class="pre">https</span></code>)</dt><dd><p>Specifies File Master Plus REST API protocol.</p>
+<dl class="simple">
+<dt>Choices:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">http</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">https</span></code> <strong>←</strong></p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>reject_unauthorized (type: bool, default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</dt><dd><p>Reject self-signed certificates.</p>
+</dd>
+<dt>base_path (type: str)</dt><dd><p>The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all FMP resources when making REST requests. Do not specify this option if you are not using an Zowe API Mediation Layer.</p>
+</dd>
+<dt>cert_file (type: path)</dt><dd><p>The file path to a certificate file to use for authentication.</p>
+<p>Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.</p>
+</dd>
+<dt>cert_key_file (type: path)</dt><dd><p>The file path to a certificate key file to use for authentication.</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Creating a PDS with default option values</span>
+<span class="w">  </span><span class="nt">broadcom.file_master_plus.create_partitioned_data_set</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fmmvs.test.dsname</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Creating a PDS with options</span>
+<span class="w">  </span><span class="nt">broadcom.file_master_plus.create_partitioned_data_set</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fmmvs.test.dsname</span>
+<span class="w">    </span><span class="nt">logical_record_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">180</span>
+<span class="w">    </span><span class="nt">block_size</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">32720</span>
+<span class="w">    </span><span class="nt">record_format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vb</span>
+<span class="w">    </span><span class="nt">space_units</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trk</span>
+<span class="w">    </span><span class="nt">primary_space</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">    </span><span class="nt">secondary_space</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">    </span><span class="nt">directory_blocks</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">    </span><span class="nt">volume</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vol005</span>
+<span class="w">    </span><span class="nt">expiration_date</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">p</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Creating a PDS like a model PDS</span>
+<span class="w">  </span><span class="nt">broadcom.file_master_plus.create_partitioned_data_set</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fmmvs.test.dsname</span>
+<span class="w">    </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fmmvs.model.dsname</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Creating a PDS like a model PDS and overriding the parameters with options</span>
+<span class="w">  </span><span class="nt">broadcom.file_master_plus.create_partitioned_data_set</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fmmvs.test.dsname</span>
+<span class="w">    </span><span class="nt">model</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fmmvs.model.dsname</span>
+<span class="w">    </span><span class="nt">logical_record_length</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">180</span>
+<span class="w">    </span><span class="nt">record_format</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vb</span>
+<span class="w">    </span><span class="nt">primary_space</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">    </span><span class="nt">secondary_space</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">    </span><span class="nt">directory_blocks</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5</span>
+<span class="w">    </span><span class="nt">volume</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">vol005</span>
+<span class="w">    </span><span class="nt">expiration_date</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2025-09-27</span>
+</pre></div>
+</div>
+</section>
+<section id="return-values">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Return Values</a><a class="headerlink" href="#return-values" title="Link to this heading"></a></h2>
+<dl>
+<dt>data (type: list, <em>when returned data is a dictionary</em>)</dt><dd><p>Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.</p>
+</dd>
+<dt>error (type: complex, <em>error</em>)</dt><dd><p>More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.</p>
+<dl class="simple">
+<dt>additional_details (type: str)</dt><dd><p>Detailed message about the failure.</p>
+</dd>
+<dt>msg (type: str)</dt><dd><p>Short description of the result or failure.</p>
+</dd>
+<dt>request (type: str, <em>API request failed</em>)</dt><dd><p>HTTP method used to invoke API service request.</p>
+</dd>
+<dt>resource (type: str, <em>API request failed</em>)</dt><dd><p>URI of the resource of the API service request.</p>
+</dd>
+</dl>
+</dd>
+<dt>failed (type: bool, <em>always</em>)</dt><dd><p>A boolean that indicates if the task was failed or not.</p>
+</dd>
+<dt>list (type: list, <em>when returned data is a list</em>)</dt><dd><p>Data from the module execution (a list of data structures).</p>
+</dd>
+<dt>msg (type: str, <em>sometimes</em>)</dt><dd><p>Short description of the result or failure.</p>
+</dd>
+<dt>rc (type: int, <em>always</em>)</dt><dd><p>Exit code of the module, successful exit code is 0, failure is typically 1 or higher.</p>
+</dd>
+<dt>stderr (type: str, <em>error</em>)</dt><dd><p>Details of the error.</p>
+</dd>
+<dt>stdout (type: str, <em>success</em>)</dt><dd><p>Summary of the result.</p>
+</dd>
+</dl>
+</section>
+<section id="status">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Status</a><a class="headerlink" href="#status" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>This module is maintained by Broadcom.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="create_like_model.html" class="btn btn-neutral float-left" title="create_like_model – Create a data set based on the parameters of an existing data set" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="create_partitioned_data_set_extended.html" class="btn btn-neutral float-right" title="create_partitioned_data_set_extended – Create an extended partitioned data set" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Broadcom.</p>
+  </div>
+
+  
+   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+  <a href="https://sphinx-ansible-theme.rtfd.io">Sphinx Ansible Theme</a>
+  that is based on the
+  <a href="https://github.com/readthedocs/sphinx_rtd_theme">Read the Docs theme</a>
+  and is maintained by the <a href="https://docs.ansible.com/ansible/4/community/">Ansible Community</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script><!-- extra footer elements for Ansible beyond RTD Sphinx Theme -->
+
+</body>
+</html>

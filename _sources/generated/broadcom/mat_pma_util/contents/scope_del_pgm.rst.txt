@@ -1,0 +1,188 @@
+.. _scope_del_pgm_module:
+
+
+scope_del_pgm -- Delete a program from the list of exclusions from the PMA scope
+================================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Delete a program from the list of exclusions from the PMA scope.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  pgmname (*required*, type: str)
+    Specifies the name of the program that you want to delete from the list of exclusions from the PMA scope (e.g. TESTPMA8).
+
+
+
+  job_acct (*required*, type: str)
+    Specifies z/OS TSO/E accounting information. Values: numeric characters (0-9).
+
+
+
+  job_class (*required*, type: str)
+    Your z/OS class information. Values: alphanumeric characters (A-Z, 0-9) .
+
+
+
+  job_mclass (type: str, default: ``A``)
+    Specifies the MSGCLASS parameter value and assigns the job log to the specified output class. The specified MSGCLASS value is used in all JCLs that PMA runs while you execute the commands. If you do not provide the job\_mclass parameter, the default MSGCLASS value is used. Values: alphanumeric characters (A-Z, 0-9) .
+
+
+
+  job_load (*required*, type: str)
+    Specifies the PMA loadlib data set name that you defined during the PMA customization (&HLQ.CEETLOAD) .
+
+
+
+  job_pmahlq (*required*, type: str)
+    Specifies your PMA HLQ to access the KSDSALT, KSDSJOB, and KSDSEXC VSAM files that ensure the collection of the necessary data.
+
+
+
+  host (type: str)
+    Host name of service on the mainframe.
+
+
+
+  port (type: int)
+    Port number of service on the mainframe.
+
+
+
+  user (type: str)
+    User name to authenticate to service on the mainframe.
+
+
+
+  password (type: str)
+    Password to authenticate to service on the mainframe.
+
+
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self-signed certificates.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Delete the TESTPMA8 program from the exclusions list from the PMA scope
+      broadcom.mat_pma_util.scope_del_pgm:
+        pgmname: TESTPMA8
+
+    - name: Delete the TESTPMA8 program from the exclusions list from the PMA scope using specific PMA profile details
+      broadcom.mat_pma_util.scope_del_pgm:
+        pgmname: TESTPMA8
+        job_acct: 123456789
+        job_class: A
+        job_mclass: A
+        job_load: HLQ.CEETLOAD
+        job_pmahlq: PMAHLQ
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

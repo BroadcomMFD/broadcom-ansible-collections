@@ -1,0 +1,396 @@
+.. _create_vsam_lds_module:
+
+
+create_vsam_lds -- Create a LDS VSAM data set
+=============================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Create linear data set (LDS) Virtual Storage Access Method (VSAM) data set.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  name (*required*, type: str)
+    Specifies the name of the data set to create.
+
+
+
+  model (type: str)
+    Specifies the name of a model LDS (Linear VSAM data set) for allocating parameters.
+
+    The parameters of the model data set override all defaults.
+
+    Example: fmmvs.model.dsname.
+
+
+
+  data_dsname (type: str)
+    Specifies the data set name of the data VSAM component.
+
+    If this parameter is not specified then by default it is set to the cluster name with ‘.DATA’.
+
+    Example: fmmvs.vsam.esds.data.
+
+
+
+  data_control_interval_size (type: int)
+    Specifies the size of the Control Interval for the data VSAM component.
+
+    Default value: 4096
+
+    Example: 3584
+
+
+
+  data_space_units (type: str)
+    Specifies the space allocation unit for data vsam component.
+
+    The allowed values have the following meaning: 
+
+    TRK - Tracks
+
+    CYL - Cylinders
+
+    REC - Records
+
+    K - Kilobytes
+
+    M - Megabytes
+
+    Default value: TRK
+
+    Example: rec
+
+
+    Choices:
+      * ``TRK`` 
+      * ``CYL`` 
+      * ``REC`` 
+      * ``K`` 
+      * ``M`` 
+
+  data_primary_space (type: int)
+    Specifies the primary space allocation unit for the data VSAM component.
+
+    Allowed values: 1-16777215
+
+    Default value: 18
+
+    Example: 3
+
+
+
+  data_secondary_space (type: int)
+    Specifies the secondary space allocation unit for the data VSAM component.
+
+    Allowed values: 1-16777215
+
+    Default value: 3
+
+    Example: 5
+
+
+
+  data_volume (type: list)
+    Specifies a disk volume or specific tapes for the data VSAM component.
+
+    Example: vol002.
+
+
+
+  buffer_space (type: int)
+    Specifies the minimum buffer space to allocate when this VSAM file is accessed.
+
+    Example: 37376.
+
+
+
+  erase (type: bool)
+    Indicates whether the VSAM file was allocated with the ERASE parameter, causing all components of the file to be overwritten with binary zeros, when the VSAM file is deleted from the catalog.
+
+    Default value: n
+
+    Example: y
+
+
+
+  load_restartable (type: bool)
+    Specify 'Y' to request that the VSAM component definition use the 'RECOVERY' parameter (which causes the data component to be preformatted previous to the initial load). Using this option causes the initial load to take longer, but loads which do not complete successfully can be restarted.
+
+    Specify 'N' to request that the VSAM component definition use the 'SPEED' parameter (which causes the data component to NOT be preformatted previous to the initial load).
+
+    Default value: n
+
+    Example: y
+
+
+
+  reuse (type: bool)
+    Indicates whether the VSAM file was allocated with the REUSE parameter specifying that the cluster can be opened again and again as a reusable cluster.
+
+    Default value: n
+
+    Example: y
+
+
+
+  write_check (type: bool)
+    Indicates whether the VSAM file was allocated with the WRITECHECK parameter requesting each write to the VSAM file to be validated by a read without data transfer.
+
+    Default value: n
+
+    Example: y
+
+
+
+  control_interval_freespace_percentage (type: int)
+    Specifies the percentage of empty space in each control interval when the file is initially loaded.The free space lets records be inserted or expanded within a control interval before requiring a control interval split.
+
+    Example: 10.
+
+
+
+  control_area_freespace_percentage (type: int)
+    Specifies the percentage of control intervals to be left unused in each control area as the file is initially loaded. The use of control area free space lets some control interval splits occur before requiring a control area split.
+
+    Example: 10.
+
+
+
+  cross_region_share_option (type: int)
+    Specifies that the file can be shared among regions within the same system or within multiple systems using GRS (Global Resource Serialization).
+
+    The alloweThe allowed values have the following meaning: 
+
+    1 - The data set can be opened for read processing by an unlimited number of users, but the data set can be accessed by only one user when that user is doing read and write processing.
+
+    2 - The data set can be opened by only one user at a time for read and write processing, but any number of users can also be accessing the data set for read processing
+
+    3 - The data set can be fully shared by any number of users.
+
+    4 - The data set can be fully shared by any number of users. VSAM immediately updates the data set for PUTs and refreshes all input buffers for GETs.
+
+    Default value: 1
+
+    Example: 2
+
+
+    Choices:
+      * ``1`` 
+      * ``2`` 
+      * ``3`` 
+      * ``4`` 
+
+  cross_system_share_option (type: int)
+    Specifies how the file can be shared among systems.
+
+    The allowed values have the following meaning: 
+
+    3 - The data set can be fully shared by any number of users.
+
+    4 - The data set can be fully shared by any number of users. VSAM immediately updates the data set for PUTs and refreshes all input buffers for GETs.
+
+    Default value: 3
+
+    Example: 4
+
+
+    Choices:
+      * ``3`` 
+      * ``4`` 
+
+  expiration_date (type: str)
+    Specifies the expiration date after which the data set can be deleted.
+
+    Specify 'P' or 'p' to make the data set permanent, or an expiration date in YYYY-MM-DD format.
+
+    Example: 2032-07-31.
+
+
+
+  storage_class (type: str)
+    Specifies the storage class.
+
+    Example: scl002.
+
+
+
+  management_class (type: str)
+    Specifies the management class.
+
+    Example: mcl002.
+
+
+
+  data_class (type: str)
+    Specifies the data class.
+
+    Example: dcl002.
+
+
+
+  host (type: str)
+    Specifies File Master Plus server host name.
+
+
+
+  port (type: int, default: ``51914``)
+    Specifies File Master Plus server port.
+
+
+
+  user (type: str)
+    Specifies Mainframe user name. May be the same as TSO login.
+
+
+
+  password (type: str)
+    Specifies Mainframe password. May be the same as TSO password.
+
+
+
+  protocol (type: str, default: ``https``)
+    Specifies File Master Plus REST API protocol.
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` **←**
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self-signed certificates.
+
+
+
+  base_path (type: str)
+    The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all FMP resources when making REST requests. Do not specify this option if you are not using an Zowe API Mediation Layer.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Creating a LDS with default option values
+      broadcom.file_master_plus.create_vsam_lds:
+        name: fmmvs.test.dsname
+
+    - name: Creating a LDS data set like a model LDS data set
+      broadcom.file_master_plus.create_vsam_lds:
+        name: fmmvs.test.dsname
+        model: fmmvs.model.dsname
+
+    - name: Creating a LDS like a model LDS data set and overriding the parameters with options
+      broadcom.file_master_plus.create_vsam_lds:
+        name: fmmvs.test.dsname
+        model: fmmvs.model.dsname
+        buffer_space: 37376
+        write_check: y
+        cross_region_share_option: 3
+        cross_system_share_option: 4
+        expiration_date: 2025-09-27
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

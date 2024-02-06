@@ -1,0 +1,291 @@
+.. _commands_resolv_module:
+
+
+commands_resolv -- Creates or modifies processing schedules for jobs that are to be scheduled on a date/time basis
+==================================================================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Work that is scheduled by a trigger or on-request work that is DEMANDed or RUN has no direct relationship to a base calendar and therefore does not require the use of this function.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  job (*required*, type: str)
+    Example: AJOB\*
+
+    
+
+    Limits selection for resolution to the jobs specified. If omitted, all job schedules are candidates for resolution. Value can be a specific job name or a generic name that identifies multiple jobs beginning with the specified characters.
+
+    An asterisk (\*) must be used to delimit the generic job name. The asterisk can appear in any of the eight positions but must immediately follow the last significant character of the job name requested.
+
+    For example: 
+
+    AB\* causes all jobs beginning with AB to be selected for resolution.
+
+    \* causes all job schedules to be selected for resolution.
+
+    .
+
+
+
+  duplicate_date (type: str)
+    Example: NO
+
+    
+
+    Indicates whether to produce specific duplicate day messages (SRC1-137) each time that two or more schedule IDs for the same job schedule a given day.
+
+    The default is NO unless the extended resolve message option is set in the user profile by the /PROF command.
+
+    
+
+    .
+
+
+
+  old_year (type: str)
+    Example: 22
+
+    
+
+    Specifies the year that is defined in the schedule member data (the value that is supplied by YEAR in the previous resolution that updated the schedule member).
+
+    Only those candidate schedule members whose year data matches the OLDYR value are selected for resolution.
+
+    If used, use one of the following values:
+
+    empty: It is default, if omitted, only those schedule members that have not previously been resolved or whose schedules have expired are selected.
+
+    yy: Indicates a specific year.
+
+    \*: Indicates all years and all schedules.
+
+    .
+
+
+
+  print (type: str)
+    Example: YES
+
+    
+
+    Specifies whether to display a month-by-month schedule day calendar after resolution of the defined member is complete.
+
+    If used, value must be YES or NO (default).
+
+    .
+
+
+
+  scal (type: str)
+    Example: 22
+
+    
+
+    Value is the xx portion of the base calendar name, SCALyyxx.
+
+    The SCAL value must also match the base calendar identifier (SCAL) specified in any SCHID of the schedule definition for the individual jobs.
+
+    This value is used during the selection process of resolution to determine which schedule members to resolve.
+
+    Required: No (unless JOB is omitted)
+
+    \*: Indicates all SCALs.
+
+    xx: Indicates a specific SCAL.
+
+    .
+
+
+
+  test (type: str)
+    Example: NO
+
+    
+
+    Indicates whether schedule members are updated because of the resolution process. YES and NO are the only allowable values.
+
+    YES: Normal resolution occurs and all messages are printed, but no updating of the database occurs.This option can be used at a year-end or whenever a base calendar is changed to see the results of the resolution activity, without actually changing the schedule mask or affecting the current schedule process. YES is the default.
+
+    NO: Normal resolution occurs and all messages are printed, and updating of the database occurs.
+
+    .
+
+
+
+  year (type: str)
+    Example: 20
+
+    
+
+    Identifies the year of the base calendars against which the schedule is resolved. The value is the number that is the yy portion of the base calendar name, SCALyyxx.
+
+    When a schedule is successfully updated, the YEAR value becomes part of the schedule data (see OLDYR). If the YEAR parameter is not specified, the current year is assumed to be the year from the system internal date and time.
+
+    Also, if YEAR is not coded on the RESOLV, a determination is made to see whether the RESOLV is made within the period January 1 through June 30 as determined from system date and time.
+
+    If so, the schedule is resolved against January through December of the current year. If a RESOLV is done within the period July 1 through December 31, the schedule is resolved against July 1 through December 31 of the current year and January 1 through June 30 of the next year.
+
+    This behavior requires the existence of base calendars for calendar years involved. If a required base calendar is not available, an error message is issued. The schedule member is unresolved, unless a perpetual calendar is defined for this SCALyyXX. In that case, the calendar is generated from the PCALYYXX member in the perpetual calendar data set. YEAR is optional. If YEAR is specified, the resolution is made against January through December of the year specified.
+
+    Default: Current year
+
+    Limits: 2 numeric characters
+
+    
+
+    .
+
+
+
+  host (*required*, type: str)
+    Host name of the CA7 API service that is running on the mainframe system.
+
+
+
+  port (*required*, type: int)
+    Port for the CA7 API service that is running on the mainframe system.
+
+
+
+  user (*required*, type: str)
+    User name for authenticating connections to the CA7 API service that is running on the mainframe system.
+
+
+
+  password (*required*, type: str)
+    Password for authenticating connections to the CA7 API service that is running on the mainframe system.
+
+
+
+  base_path (type: str)
+    The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all resources when making REST requests. Do not specify this option if you are not using an Zowe API Mediation Layer.
+
+
+
+  protocol (*required*, type: str)
+    Specifies protocol to use for CA7 connection (http or https).
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` 
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self-signed certificates.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Creates or modifies processing schedules for jobs, AJOB from CA 7
+      broadcom.ca7.commands_resolv:
+        job: AJOB
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

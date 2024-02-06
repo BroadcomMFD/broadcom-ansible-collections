@@ -1,0 +1,240 @@
+.. _display_module:
+
+
+display -- Display a real-time SYSVIEW primary command
+======================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Issue a SYSVIEW primary command and display output, including any messages.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  command_string (*required*, type: str)
+    Command(s) to be issued 
+
+    (If more than one command, separated by a semi-colon)
+
+    Example:  "ACTIVITY;SORT CPU% D"
+
+    .
+
+
+
+  fields (type: list)
+    Fields to be returned (by name). For example: "jobname" "cpu".
+
+
+
+  all_rows (type: bool)
+    Return all rows of data, no matter how many. Overrides and --row-end.
+
+
+
+  row_start (type: int, default: ``1``)
+    The first row of the response data to display.
+
+
+
+  row_end (type: int, default: ``100``)
+    The last row of the response data to display.
+
+
+
+  context_fields (type: list)
+    Context fields to display. Defaults to hiding all context.
+
+
+
+  overview (type: bool)
+    Display the overview section.
+
+
+
+  info (type: bool)
+    Display the information area, if any.
+
+
+
+  pretty (type: bool)
+    Display formatted data.
+
+
+
+  blank_if_zero (type: bool)
+    Show a blank space instead of '0' values.
+
+
+
+  truncate (type: bool)
+    Truncate displays that are too wide for the console.
+
+
+
+  timeout (type: int, default: ``30``)
+    The number of seconds to wait before timing out.
+
+
+
+  response_format_csv (type: bool)
+    Format data as a set of Comma Seperated Values.
+
+
+
+  host (type: str)
+    The hostname of the SYSVIEW REST API.
+
+
+
+  port (type: int)
+    The port number of the SYSVIEW REST API.
+
+
+
+  user (type: str)
+    Your z/OS username used to authenticate to the SYSVIEW REST API.
+
+
+
+  password (type: str)
+    Your z/OS password used to authenticate to the SYSVIEW REST API.
+
+
+
+  reject_unauthorized (type: bool)
+    If set, the server certificate is verified against the list of supplied CAs.
+
+
+
+  ssid (type: str, default: ``GSVX``)
+    SSID of the SYSVIEW instance. Default value: GSVX
+
+
+
+  base_path (type: str, default: ``/api/v1``)
+    The base path for your Zowe API Mediation Layer instance. Do not specify this option if you are not using an Zowe API Mediation Layer.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Issue the CSMSTAT command and show the 'message' field from the context area of the response
+      broadcom.sysview.display:
+        command_string: CSMSTAT
+        context_fields:
+        - "message"
+
+    - name: Issue the JOBSUM command to list jobs starting with "CS" showing only the fields Jobname, Jobid, and Status
+      broadcom.sysview.display:
+        command_string: jobs CS&VLMC
+        fields:
+        - "Jobname"
+        - "Jobid"
+        - "Status"
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

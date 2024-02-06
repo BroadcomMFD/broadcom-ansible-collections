@@ -1,0 +1,228 @@
+.. _profile_invoke_module:
+
+
+profile_invoke -- Invoke a MAT monitor profile
+==============================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Invoke a MAT monitor profile to start measurement.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  profile (*required*, type: str)
+    Specifies the name of the profile in MAT that you invoke (e.g. PROFILE1). Values: 1 to 8 characters, a combination of alphanumeric and national characters (A-Z, 0-9, and @), the first character must be an alphabetic or @. The profile name must not contain characters # and $.
+
+
+
+  jobname (*required*, type: str)
+    Specifies the name of the job to be measured (e.g. JOB1). Values: 1 to 8 characters, alphanumeric (A-Z capitals only and 0-9), national (#, $, @), and wildcards (\* or %).
+
+
+
+  mondsn (type: str)
+    Specifies the monitor data set name where MAT saves the measurement (e.g. DEMO.MAT.MONITOR). Values: data set name pattern, maximum 46 characters. If not specified, your default MAT monitor DSN pattern is applied.
+
+
+
+  targsys (*required*, type: str)
+    Specifies the target system in SYSPLEX. Values: a comma separated list of up to 4 values is allowed, maximum 8 characters each, a combination of alphanumeric (A-Z and 0-9) and national (@,#,$), the first character must be an alphabetic (A-Z) or a national (@, #, $) (e.g. AA31,AA32).
+
+
+
+  moiuuid (type: str)
+    Specifies the MOI UUID. Values: maximum 61 characters, alphanumeric (A-Z and 0-9). If you use this parameter for command execution, the value cannot be blank.
+
+
+
+  moitimestamp (type: str)
+    Specifies the MOI timestamp. Values: maximum 12 characters, numbers only (0-9). If you use this parameter for command execution, the value cannot be blank.
+
+
+
+  listing (type: bool)
+    Activates automated registration of Cobol, C/C++, and Assembler program listings through Endevor® footprints. After completion of the measurement that you invoke with the parameter, the MAT Analyze plug-in for Zowe CLI automatically retrieves the program listing that is associated with the monitored job and registers the listing with MAT. A registered program listing enhances the analysis possibilities of the 'codeview histogram' command  the 'codeview histogram' command and enables you to inspect the source code statements that are associated with specific modules and CSECTs.
+
+
+
+  protocol (type: str, default: ``https``)
+    Specifies the protocol defined for the MAT REST API server (http or https).
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` **←**
+
+  host (type: str)
+    Specifies the hostname or IP address defined for the MAT REST API server (e.g. 127.0.0.0 or localhost).
+
+
+
+  port (type: int)
+    Specifies the server port (e.g. 8080).
+
+
+
+  user (type: str)
+    Your mainframe username.
+
+
+
+  password (type: str)
+    Your mainframe password.
+
+
+
+  base_path (type: str)
+    The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all resources when making REST requests. Do not specify this option if you are not using an Zowe API Mediation Layer.
+
+
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self-signed certificates.
+
+
+
+  listing_dir (type: str)
+    Specifies the directory where you want to store the registered program listings (e.g. 'c:\\listings') for your immediate source code inspection. You can use the advantage of automated listing registration with MAT and listing retrieval through Endevor® footprints for Cobol, C/C++, and Assembler programs. When a source program listing is registered with MAT, you can enhance the histogram analysis data with the program listing details that pertain to the specific CSECT and program statement. The listing is transfered to the specified directory, which enables you to navigate directly to the line of the source code in you VS Code IDE and inspect the program statement. To use the listing retrieval option through Endevor® footprints, you need to have the Endevor® Web Services installed and configured and specify the Endevor® web server details in the MAT database configuration.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Invoke the PROFILE1 monitor profile to measure job JOB1 that runs on the AA31 system
+      broadcom.mat.profile_invoke:
+        profile: PROFILE1
+        jobname: JOB1
+        targsys: AA31
+
+    - name: Invoke the PROFILE1 monitor profile to measure job JOB1 that runs on the AA31 system and save the measurement result in the DEMO.MAT.MONITOR.PROFILE1 data set
+      broadcom.mat.profile_invoke:
+        profile: PROFILE1
+        jobname: JOB1
+        mondsn: DEMO.MAT.MONITOR.PROFILE1
+        targsys: AA31
+
+    - name: Invoke the PROFILE1 monitor profile to measure job JOB1 that runs on the AA31 system and register the program listing
+      broadcom.mat.profile_invoke:
+        profile: PROFILE1
+        jobname: JOB1
+        targsys: AA31
+        listing: y
+
+    - name: Invoke the PROFILE1 monitor profile to measure job JOB1 that runs on the AA31 system with the specific MAT profile details defined
+      broadcom.mat.profile_invoke:
+        profile: PROFILE1
+        jobname: JOB1
+        targsys: AA31
+        host: example.com
+        port: 12345
+        user: johndoe
+        password: qwerty
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

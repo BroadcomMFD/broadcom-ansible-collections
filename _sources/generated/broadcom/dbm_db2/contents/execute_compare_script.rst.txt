@@ -1,0 +1,242 @@
+.. _execute_compare_script_module:
+
+
+execute_compare_script -- Execute the compare script that was generated with the ‘compare\_ddl’ module
+======================================================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Execute the compare script that was generated with the 'zowe dbm compare ddl' command to implement the Db2 object changes on the Db2 subsystem specified within the script. This command also generates a recovery script to undo compare script changes.
+
+ 
+
+For details about command usage for automation, see DBM-Db2 samples at https://github.com/BroadcomMFD/dbm-db2-for-zowe-cli
+
+.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  local_input_compare_script_filename (*required*, type: str)
+    Specifies the local input compare-script file that contains the update script that was generated with the 'zowe dbm compare ddl' command.
+
+
+
+  output_recovery_script (type: str)
+    Specifies the local output file name that contains the recovery script that is generated during execution of this command. Executing the recovery script using the 'zowe dbm execute script' command undoes the changes that were made by execution of the compare-script. 
+
+         
+
+    Default value: recovery.txt 
+
+
+
+  restart (type: str)
+    Specifies the location in the script where you want to restart execution. The effects of previous successful script statement executions remain. 
+
+    
+
+    The following restart options are valid:
+
+         
+
+    new - Restart execution of the script at the first statement. 
+
+         
+
+    token - Restart execution of the script at the location that is recorded in the specified token and that was returned from a previous execution failure.
+
+
+
+  modification (type: str)
+    Identifies a named set of server-managed default parameter values that control the execution behavior of the zowe dbm-db2 commands. For example, you can use a modification to identify a set of default values that differ from the set of values that are normally used.
+
+      
+
+    For more information about using the modification option, see the DBM Data Service documentation at https://techdocs.broadcom.com/db2mgmt .
+
+
+
+  error_file (type: str)
+    Specifies the local output error file in YAML format that contains basic execution information, connection details, dbm-db2 profile parameters, used arguments, and errors that occurred during execution of the command.
+
+          
+
+    Default value: error.log 
+
+
+
+  job_cards (type: list)
+    Specifies a string array of z/OS JCL JOB statements.
+
+
+
+  work_dataset_prefix (type: str)
+    Specifies the prefix that is used as the high level qualifier in z/OS work data set names.
+
+
+
+  overwrite_output_files (type: bool)
+    Specifies whether to overwrite output files when they already exist.
+
+
+
+  protocol (type: str)
+    Specifies the communication protocol to use between the zowe dbm-db2 client and the DBM Data Service.
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` 
+
+  environment_list (type: str)
+    Specifies an object of one or more values consisting of a Db2 subsystem ID and a DBM Data Service environment pair. The paired entry identifies the DBM Data Service environment to use for a subsystem that is accessible through multiple DBM Data Service environments. For more information about configuring the DBM Data Service, see the Database Management Solutions for Db2 for z/OS documentation at https://techdocs.broadcom.com/db2mgmt.
+
+
+
+  host (type: str)
+    Host name of service on the mainframe.
+
+
+
+  port (type: int)
+    Port number of service on the mainframe.
+
+
+
+  user (type: str)
+    User name to authenticate to service on the mainframe.
+
+
+
+  password (type: str)
+    Password to authenticate to service on the mainframe.
+
+
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self-signed certificates.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Execute a compare script
+      broadcom.dbm_db2.execute_compare_script:
+        local_input_compare_script_filename: compare.txt
+
+    - name: Restart execution of a compare script at the first statement in the script
+      broadcom.dbm_db2.execute_compare_script:
+        local_input_compare_script_filename: compare.txt
+        restart: new
+
+    - name: Restart execution of a compare script at the location in the token
+      broadcom.dbm_db2.execute_compare_script:
+        local_input_compare_script_filename: compare.txt
+        restart: 78A724GOBLEDYGOOK6FD140F6780D6FA
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

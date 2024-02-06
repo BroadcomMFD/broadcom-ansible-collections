@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>broadcom.endevor &mdash; Broadcom Ansible Collections for Mainframe  documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/ansible.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/rtd-ethical-ads.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/images/Ansible-Mark-RGB_Black.svg"/>
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="add_element – The add element module lets you add an Element to an Environment entry Stage in Endevor" href="contents/add_element.html" />
+    <link rel="prev" title="prepare_migration – Generate a script to migrate Db2 object definitions (DDL) and data from a source subsystem to a target subsystem" href="../dbm_db2/contents/prepare_migration.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
+
+
+
+
+</head>
+
+<body class="wy-body-for-nav"><!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/ansiblefest" target="_blank">AnsibleFest</a></li>
+    <li><a href="https://www.ansible.com/tower" target="_blank">Products</a></li>
+    <li><a href="https://www.ansible.com/community" target="_blank">Community</a></li>
+    <li><a href="https://www.ansible.com/webinars-training" target="_blank">Webinars & Training</a></li>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="../../../_static/images/Ansible-Mark-RGB_White.svg"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Broadcom Ansible Collections for Mainframe  documentation</div>
+</a>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Broadcom Ansible Collections for Mainframe
+          </a><!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" class="st-default-search-input" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using.html">Using collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../connecting.html">Connection methods and details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Collections</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ca7/index.html">broadcom.ca7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dbm_db2/index.html">broadcom.dbm_db2</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">broadcom.endevor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contents/add_element.html">add_element – The add element module lets you add an Element to an Environment entry Stage in Endevor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/approve_package.html">approve_package – The approve package module approves Package in Endevor for execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/backin_package.html">backin_package – The backin package module reverses the backout action and returns the Package to a status of Executed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/backout_package.html">backout_package – The backout package module restores the executable and output modules of the Package to the status they were in before execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/cast_package.html">cast_package – The cast package module prepares the Package for review and subsequent execution. Casting a Package freezes the contents of the Package and prevents further changes to the Package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/check_instance.html">check_instance – The check instance module triggers the web services health check for a given instance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/commit_package.html">commit_package – The commit package module commits a Package, which removes all backout/backin data while retaining Package event information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/confirm_resolution.html">confirm_resolution – Confirm a manual conflict resolution inside an Endevor workspace file is complete</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/create_package.html">create_package – The create package module lets you create a package in Endevor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/delete_element.html">delete_element – The delete element module deletes an Element from the specified inventory location in Endevor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/delete_package.html">delete_package – The delete package module lets you delete Packages of any status type in Endevor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/deny_package.html">deny_package – The deny package module changes the status of a Package to Denied</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/execute_package.html">execute_package – The execute package module executes a Package that have a status of Approved or Execfailed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/generate_element.html">generate_element – The generate element module executes the generate Processor for the current level of the Element</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/initialize_workspace.html">initialize_workspace – Initialize current directory as an Endevor workspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_code_page_config.html">list_code_page_config – The list code-page-config module lists the EBCDIC code page mapping rules used by Endevor Web Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_defaults.html">list_defaults – List the contents of the main Endevor configuration table (C1DEFLTS)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_dialog.html">list_dialog – List the contents of the Endevor ISPF dialog defaults table (ENDIECFG)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_elements.html">list_elements – The list elements module lists element information in Endevor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_environments.html">list_environments – The list environments module lists environments in Endevor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_features.html">list_features – List the contents of the Endevor optional features table (ENCOPTBL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_instances.html">list_instances – The list instances module lists instances used by Endevor Web Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_packages.html">list_packages – The list packages module lists package information in Endevor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_processor_groups.html">list_processor_groups – The list processor-groups module lists processor group information in Endevor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_processor_symbols.html">list_processor_symbols – The list processor-symbols module lists processor group symbol overrides information in Endevor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_stages.html">list_stages – The list stages module lists stages in Endevor SCM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_subsystems.html">list_subsystems – The list subsystems module lists subsystem information in Endevor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_symbols.html">list_symbols – List the Endevor site symbols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_systems.html">list_systems – The list systems module lists system information in Endevor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_tasks.html">list_tasks – List asynchronous tasks submitted by this user</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_type_sequence.html">list_type_sequence – List the contents of the Endevor type sequence</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_types.html">list_types – The list types module lists type information in Endevor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/merge_element.html">merge_element – Merge Endevor elements from one Endevor location into another. Requires an initialized Endevor workspace to perform conflict resolution. Use “synchronize workspace” module afterwards to push the result back into Endevor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/move_element.html">move_element – The move element module moves Elements between inventory locations along a map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/print_components.html">print_components – The print component module prints selected component information about Element in Endevor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/print_element.html">print_element – The print element module prints selected information about Element in Endevor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/print_member.html">print_member – The print member module prints a member from a specified dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/queryacm_components.html">queryacm_components – Query components used by a specified Element with the Endevor ACM Query facility</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/reset_package.html">reset_package – The reset package module lets you set the status of a Package back to In-edit so you can modify it</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/retrieve_element.html">retrieve_element – The retrieve element module retrieves an existing element in Endevor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/retrieve_result.html">retrieve_result – Retrieve the result of an asynchronous task</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/signin_element.html">signin_element – The signin element module signs in an existing element in Endevor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/submit_package.html">submit_package – The submit package module submits a JCL job stream to execute one or more Packages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/submit_scl.html">submit_scl – The submit scl modules submits a SCL file to be executed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/synchronize_workspace.html">synchronize_workspace – Synchronize a selected subset of remote Endevor inventory with a local Endevor workspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/transfer_element.html">transfer_element – The Transfer element module transfers Elements from one Endevor location to another</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/unsynchronize_workspace.html">unsynchronize_workspace – Remove a selected subset of remote Endevor inventory from a local Endevor workspace</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/update_element.html">update_element – The update element module updates an Element in the entry Stage, thereby creating a new level for the Element in the entry Stage.</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/update_package.html">update_package – The update package module lets you update a package in Endevor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/view_element.html">view_element – The view element module views an existing element in Endevor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/view_pkgscl.html">view_pkgscl – The view pkgscl module views the SCL of an existing package in Endevor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../endevor_bridge_for_git/index.html">broadcom.endevor_bridge_for_git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file_master_plus/index.html">broadcom.file_master_plus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../idms/index.html">broadcom.idms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mat/index.html">broadcom.mat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mat_pma_util/index.html">broadcom.mat_pma_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops/index.html">broadcom.ops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spool/index.html">broadcom.spool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sysview/index.html">broadcom.sysview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../view/index.html">broadcom.view</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zowe_core/index.html">broadcom.zowe_core</a></li>
+</ul>
+<!-- extra nav elements for Ansible beyond RTD Sphinx Theme -->
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Broadcom Ansible Collections for Mainframe</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">broadcom.endevor</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/generated/broadcom/endevor/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+  
+           <div itemprop="articleBody">
+             
+  <section id="broadcom-endevor">
+<h1>broadcom.endevor<a class="headerlink" href="#broadcom-endevor" title="Link to this heading"></a></h1>
+<p>The Broadcom Endevor collection for listing Endevor environment information, working with elements and packages that are located in the specified Endevor instance.</p>
+<p>Compatible with Zowe CLI Plugin version: 7.7.2</p>
+<p>The Ansible collection for Endevor enables you to interact with Endevor on the mainframe,
+using your Ansible playbooks.</p>
+<p>You can use Endevor resources directly in your playbooks and integrate
+mainframe software life cycle automation into Ansible.</p>
+<p>For more information, see the Contents section.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/add_element.html">add_element – The add element module lets you add an Element to an Environment entry Stage in Endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/approve_package.html">approve_package – The approve package module approves Package in Endevor for execution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/backin_package.html">backin_package – The backin package module reverses the backout action and returns the Package to a status of Executed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/backout_package.html">backout_package – The backout package module restores the executable and output modules of the Package to the status they were in before execution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/cast_package.html">cast_package – The cast package module prepares the Package for review and subsequent execution. Casting a Package freezes the contents of the Package and prevents further changes to the Package</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/check_instance.html">check_instance – The check instance module triggers the web services health check for a given instance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/commit_package.html">commit_package – The commit package module commits a Package, which removes all backout/backin data while retaining Package event information</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/confirm_resolution.html">confirm_resolution – Confirm a manual conflict resolution inside an Endevor workspace file is complete</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/create_package.html">create_package – The create package module lets you create a package in Endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/delete_element.html">delete_element – The delete element module deletes an Element from the specified inventory location in Endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/delete_package.html">delete_package – The delete package module lets you delete Packages of any status type in Endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/deny_package.html">deny_package – The deny package module changes the status of a Package to Denied</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/execute_package.html">execute_package – The execute package module executes a Package that have a status of Approved or Execfailed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/generate_element.html">generate_element – The generate element module executes the generate Processor for the current level of the Element</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/initialize_workspace.html">initialize_workspace – Initialize current directory as an Endevor workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_code_page_config.html">list_code_page_config – The list code-page-config module lists the EBCDIC code page mapping rules used by Endevor Web Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_defaults.html">list_defaults – List the contents of the main Endevor configuration table (C1DEFLTS)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_dialog.html">list_dialog – List the contents of the Endevor ISPF dialog defaults table (ENDIECFG)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_elements.html">list_elements – The list elements module lists element information in Endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_environments.html">list_environments – The list environments module lists environments in Endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_features.html">list_features – List the contents of the Endevor optional features table (ENCOPTBL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_instances.html">list_instances – The list instances module lists instances used by Endevor Web Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_packages.html">list_packages – The list packages module lists package information in Endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_processor_groups.html">list_processor_groups – The list processor-groups module lists processor group information in Endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_processor_symbols.html">list_processor_symbols – The list processor-symbols module lists processor group symbol overrides information in Endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_stages.html">list_stages – The list stages module lists stages in Endevor SCM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_subsystems.html">list_subsystems – The list subsystems module lists subsystem information in Endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_symbols.html">list_symbols – List the Endevor site symbols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_systems.html">list_systems – The list systems module lists system information in Endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_tasks.html">list_tasks – List asynchronous tasks submitted by this user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_type_sequence.html">list_type_sequence – List the contents of the Endevor type sequence</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_types.html">list_types – The list types module lists type information in Endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/merge_element.html">merge_element – Merge Endevor elements from one Endevor location into another. Requires an initialized Endevor workspace to perform conflict resolution. Use “synchronize workspace” module afterwards to push the result back into Endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/move_element.html">move_element – The move element module moves Elements between inventory locations along a map</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/print_components.html">print_components – The print component module prints selected component information about Element in Endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/print_element.html">print_element – The print element module prints selected information about Element in Endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/print_member.html">print_member – The print member module prints a member from a specified dataset</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/queryacm_components.html">queryacm_components – Query components used by a specified Element with the Endevor ACM Query facility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/reset_package.html">reset_package – The reset package module lets you set the status of a Package back to In-edit so you can modify it</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/retrieve_element.html">retrieve_element – The retrieve element module retrieves an existing element in Endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/retrieve_result.html">retrieve_result – Retrieve the result of an asynchronous task</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/signin_element.html">signin_element – The signin element module signs in an existing element in Endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/submit_package.html">submit_package – The submit package module submits a JCL job stream to execute one or more Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/submit_scl.html">submit_scl – The submit scl modules submits a SCL file to be executed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/synchronize_workspace.html">synchronize_workspace – Synchronize a selected subset of remote Endevor inventory with a local Endevor workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/transfer_element.html">transfer_element – The Transfer element module transfers Elements from one Endevor location to another</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/unsynchronize_workspace.html">unsynchronize_workspace – Remove a selected subset of remote Endevor inventory from a local Endevor workspace</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/update_element.html">update_element – The update element module updates an Element in the entry Stage, thereby creating a new level for the Element in the entry Stage.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/update_package.html">update_package – The update package module lets you update a package in Endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/view_element.html">view_element – The view element module views an existing element in Endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/view_pkgscl.html">view_pkgscl – The view pkgscl module views the SCL of an existing package in Endevor</a></li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../dbm_db2/contents/prepare_migration.html" class="btn btn-neutral float-left" title="prepare_migration – Generate a script to migrate Db2 object definitions (DDL) and data from a source subsystem to a target subsystem" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="contents/add_element.html" class="btn btn-neutral float-right" title="add_element – The add element module lets you add an Element to an Environment entry Stage in Endevor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Broadcom.</p>
+  </div>
+
+  
+   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+  <a href="https://sphinx-ansible-theme.rtfd.io">Sphinx Ansible Theme</a>
+  that is based on the
+  <a href="https://github.com/readthedocs/sphinx_rtd_theme">Read the Docs theme</a>
+  and is maintained by the <a href="https://docs.ansible.com/ansible/4/community/">Ansible Community</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script><!-- extra footer elements for Ansible beyond RTD Sphinx Theme -->
+
+</body>
+</html>

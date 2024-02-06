@@ -1,0 +1,37 @@
+===============
+Troubleshooting
+===============
+
+Problems
+========
+
+.. |BACMs| replace:: Broadcom Ansible Collections for Mainframe
+
+.. glossary::
+
+  I am getting the following error: ``Data could not be sent to remote host. Make sure this host can be reached over ssh: Permission denied (publickey,password)``
+
+    **Reason:** Ansible does not have a method for authentication while connecting to the system using SSH.
+
+    **Action:** If your playbook uses only modules like |BACMs|, that connect to z/OS using APIs and do not gather facts from z/OS system,
+    specify ``gather_facts: false`` in your playbook. Otherwise you need to setup a method that enables you to authenticate with SSH.
+    Review information in :doc:`Connection methods and details <connecting>`.
+
+Diagnostics
+===========
+
+When the |BACMs| do not work as expected, you might need to provide more information to support.
+
+You can configure Ansible commands like ``ansible`` or ``ansible-playbook`` to provide more verbose messages, using the following options:
+
+- ``-vv`` to display information about the activity of Ansible and modules.
+- ``-vvvv`` to display internal details about work of the modules (output of commands, internal variables, and such). Sensitive information, such as user IDs and passwords, is hidden.
+
+Special module arguments
+========================
+
+.. glossary::
+
+  ``_skip_parameter_checks``
+  
+     If you set this argument to `True``,  it disables argument checks that are done by |BACMs|. This can help if a check is too rigid and does not allow a value that should be accepted.

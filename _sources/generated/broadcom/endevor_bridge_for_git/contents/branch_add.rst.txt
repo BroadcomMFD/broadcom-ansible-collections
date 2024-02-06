@@ -1,0 +1,314 @@
+.. _branch_add_module:
+
+
+branch_add -- Add a branch to an existing mapping
+=================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Add a branch to an existing mapping.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  context (*required*, type: str)
+    Git-Endevor mapping context (ID of the organization, project, team or owner of the Git repository).
+
+
+
+  mapping (*required*, type: str)
+    Git-Endevor mapping name (ID of the Git repository).
+
+
+
+  branch (*required*, type: str)
+    Name of the branch that will be added/removed.
+
+
+
+  endevor_system (type: str)
+    The Endevor system where your project resides.
+
+
+
+  endevor_subsystem (type: str)
+    The Endevor subsystem where your project resides.
+
+
+
+  system_alias (type: str)
+    The alias of Endevor system.
+
+
+
+  subsystem_alias (type: str)
+    The alias of Endevor subsystem.
+
+
+
+  endevor_environment (type: str)
+    The Endevor environment where your project resides.
+
+
+
+  read_only (type: bool)
+    If specified, it is necessary to use the option --endevor-stage-number. The synchronized elements will be read-only.
+
+
+
+  endevor_stage_number (type: str)
+    The Endevor stage where your project resides (only for read only mappings).
+
+
+
+  mapping_mode (type: str)
+    Mapping mode of the mapping ('FULL', 'WORK\_ENV\_ONLY' or 'MIRROR').
+
+
+    Choices:
+      * ``FULL`` 
+      * ``WORK_ENV_ONLY`` 
+      * ``MIRROR`` 
+
+  like (type: str)
+    Add branch using parameters from another branch in the same repository.
+
+
+
+  repository_check (type: str, default: ``REQUIRE_EMPTY``)
+    If set to allowNonEmpty, user can proceed with initialization of the branch even if the branch exists.
+
+
+    Choices:
+      * ``REQUIRE_EMPTY`` **←**
+      * ``ALLOW_NON_EMPTY`` 
+
+  endevor_protocol (type: str)
+    The Endevor SCM Rest API protocol. 
+
+    
+
+    Default value: http
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` 
+
+  endevor_host (type: str)
+    The Endevor Rest API hostname.
+
+
+
+  endevor_port (type: int)
+    The Endevor Rest API port.
+
+
+
+  endevor_user (type: str)
+    Mainframe (Endevor) username, which can be the same as your TSO login.
+
+
+
+  endevor_password (type: str)
+    Mainframe (Endevor) password, which can be the same as your TSO password.
+
+
+
+  endevor_reject_unauthorized (type: bool)
+    Reject self-signed certificates. 
+
+    
+
+    Default value: true
+
+
+
+  endevor_base_path (type: str)
+    The Endevor SCM Rest API base path. 
+
+    
+
+    Default value: EndevorService/rest
+
+
+
+  protocol (*required*, type: str, default: ``https``)
+    The Endevor Bridge for Git SCM protocol. 
+
+    
+
+    Default value: https
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` **←**
+
+  host (*required*, type: str)
+    The Endevor Bridge for Git hostname.
+
+
+
+  port (*required*, type: int)
+    The Endevor Bridge for Git port.
+
+
+
+  user (*required*, type: str)
+    Endevor Bridge for Git username (your git username).
+
+
+
+  token (*required*, type: str)
+    Git personal access token (it can be obtained from your Git Enterprise Server).
+
+
+
+  reject_unauthorized (type: bool)
+    Reject self-signed certificates. 
+
+    
+
+    Default value: false
+
+
+
+  password (type: str)
+    Password to authenticate to service on the mainframe.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Add a branch to my Git-Endevor mapping 'MY-CONTEXT / MY-MAPPING' using the default EBG and Endevor profile
+      broadcom.endevor_bridge_for_git.branch_add:
+        context: MY-CONTEXT
+        mapping: MY-MAPPING
+        branch: MY-BRANCH
+        endevor_system: SYSNAME
+        endevor_subsystem: SUBNAME
+        endevor_environment: ENVNAME
+
+    - name: Add a branch to my Git-Endevor mapping 'MY-CONTEXT / MY-MAPPING' using the default EBG and Endevor profile by using another branch as a template with different environment
+      broadcom.endevor_bridge_for_git.branch_add:
+        context: MY-CONTEXT
+        mapping: MY-MAPPING
+        branch: MY-BRANCH
+        endevor_environment: DIFFERENT_ENVIRONMENT
+        like: TEMPLATE_BRANCH
+
+    - name: Add a branch to my Git-Endevor mapping 'MY-CONTEXT / MY-MAPPING' using the default EBG and Endevor profile by using another branch as a template with different system/subsystem
+      broadcom.endevor_bridge_for_git.branch_add:
+        context: MY-CONTEXT
+        mapping: MY-MAPPING
+        branch: MY-BRANCH
+        endevor_system: DIFFERENT_SYSTEM
+        endevor_subsystem: DIFFERENT_SUBSYSTEM
+        like: TEMPLATE_BRANCH
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

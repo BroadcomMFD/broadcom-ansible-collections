@@ -1,0 +1,230 @@
+.. _monitor_codeview_histogram_module:
+
+
+monitor_codeview_histogram -- Get Histogram data
+================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Get the Histogram details for the measurement.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  profile (type: str)
+    Specifies the name of the profile that you want to analyze. When you specify the profile name, you get the data for the latest measurement within the specified profile.
+
+
+
+  mon_num (type: int)
+    Specifies the unique monitor number of the measurement.
+
+
+
+  module (type: str)
+    Specifies the module name that you request the Histogram data for. You get the module value from the 'codeview csect' command response. The module name can be empty (e.g., "IGZCPAC" or '""').
+
+
+
+  csect (type: str)
+    Specifies the CSECT name that you request the Histogram data for. You get the csect value from the 'codeview csect' command response. The CSECT name can be empty (e.g.,  "TUNCOB01" or '""').
+
+
+
+  group (type: str)
+    Specifies the histogram group size parameter that defines the resolution of the histogram (e.g., 32). If you do not specify the group parameter, the group size value defaults to 4 bytes. If the source program listing is registered with MAT, the group size parameter is ignored. The parameter is optional. Lower values of the parameter result in more granular representation of the histogram data. Values: numbers between 2 and 999999.
+
+
+
+  top (type: int)
+    Specifies the maximum number of the top consuming CSECT activity locations that you want to obtain in the response (e.g., 5). If you specify 0, you get the list of all CSECT activity locations that MAT has detected during the measurement.The parameter is optional. Values: numbers between 0 and 300.
+
+
+
+  listing (type: bool)
+    Enables you to retrieve program listing details that pertain to the specific CSECT and statement. To use the listing retrieval option, you must install and configure the Endevor® Web Services and have the program listing for the specific measurement registered with MAT. The source code listing is retrieved through Endevor® footprints for Cobol, C/C++, and Assembler programs. The program listing file is downloaded to your local directory that you specified with the 'listingDir' parameter in your MAT configuration profile. When you request the histogram details with the '--listing' option, the 'histogram' command returns the additional 'listing' column that contains a reference to the program listing with the specific CSECT name, program type, line and column number that pertain to the requested CSECT and statement, for example, c:listingsSA420LE.asm:382:51. If you use Visual Studio Code (VS Code) IDE, you can click on the reference in the command responce in your VS Code terminal to navigate directly to the indicated source program location.The parameter is optional.
+
+
+
+  protocol (type: str, default: ``https``)
+    Specifies the protocol defined for the MAT REST API server (http or https).
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` **←**
+
+  host (type: str)
+    Specifies the hostname or IP address defined for the MAT REST API server (e.g. 127.0.0.0 or localhost).
+
+
+
+  port (type: int)
+    Specifies the server port (e.g. 8080).
+
+
+
+  user (type: str)
+    Your mainframe username.
+
+
+
+  password (type: str)
+    Your mainframe password.
+
+
+
+  base_path (type: str)
+    The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all resources when making REST requests. Do not specify this option if you are not using an Zowe API Mediation Layer.
+
+
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self-signed certificates.
+
+
+
+  listing_dir (type: str)
+    Specifies the directory where you want to store the registered program listings (e.g. 'c:\\listings') for your immediate source code inspection. You can use the advantage of automated listing registration with MAT and listing retrieval through Endevor® footprints for Cobol, C/C++, and Assembler programs. When a source program listing is registered with MAT, you can enhance the histogram analysis data with the program listing details that pertain to the specific CSECT and program statement. The listing is transfered to the specified directory, which enables you to navigate directly to the line of the source code in you VS Code IDE and inspect the program statement. To use the listing retrieval option through Endevor® footprints, you need to have the Endevor® Web Services installed and configured and specify the Endevor® web server details in the MAT database configuration.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Get the Histogram details for monitor number 5, CSECT name TUNCOB01, and module name RUNCOB
+      broadcom.mat.monitor_codeview_histogram:
+        mon_num: 5
+        module: RUNCOB
+        csect: TUNCOB01
+
+    - name: Get the Histogram details for the latest monitor in the TESTPROF profile for CSECT name TUNCOB01, empty module name, limiting the group size to 32 bytes and the number of returned records to 5 top consumers
+      broadcom.mat.monitor_codeview_histogram:
+        profile: TESTPROF
+        module: ""
+        csect: TUNCOB01
+        group: 32
+        top: 5
+
+    - name: Get the Histogram details for monitor number 5, CSECT name TUNCOB01, and module name RUNCOB, limit the number of returned records to 5 top consumers, and request the listing details
+      broadcom.mat.monitor_codeview_histogram:
+        mon_num: 5
+        module: RUNCOB
+        csect: TUNCOB01
+        top: 5
+        listing: y
+
+    - name: Get the Histogram details for monitor number 5, CSECT name TUNCOB01, and module name RUNCOB, with the specific MAT profile details defined
+      broadcom.mat.monitor_codeview_histogram:
+        mon_num: 5
+        module: RUNCOB
+        csect: TUNCOB01
+        host: example.com
+        port: 12345
+        user: johndoe
+        password: qwerty
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

@@ -1,0 +1,302 @@
+.. _commands_post_module:
+
+
+commands_post -- Posts the requirement for a job
+================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+The POST command indicates to the CA Workload Automation CA 7 Editionsystem that a preexecution requirement for a job in the request queue is satisfied.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  ca7num (*required*, type: str)
+    Ca7num=0016
+
+    
+
+    Indicates the job number in up to four digits, for which requirements are posted.
+
+
+
+  usr (type: str)
+    Example: USER WILL CALL TO RELEASE
+
+    (Optional) Identifies a user-defined description of a requirement to post as satisfied.
+
+    Mutually exclusive with DEPJOB and DSN.
+
+    When used, must match the text that is used to define the requirement on the DB.6 panel or with the ADDRQ command.
+
+    
+
+    Limits: 1 to 36 alphanumeric characters.
+
+
+
+  depjob (type: str)
+    Example: PAYJOB
+
+    (Optional) Identifies a predecessor job dependency requirement to post as satisfied.
+
+    Value must be a specific job name.
+
+    Mutually exclusive with DSN and USR.
+
+    
+
+    In normal situations, CA WA CA 7 Edition automatically posts this type of requirement when the predecessor job completes its execution successfully.
+
+    A manual posting is only necessary if a job defined as a requirement was not to be run,
+
+    or ran unsuccessfully and a successor job is to be run.The DEPJOB must be posted if it is not currently defined to CA WA CA 7 Edition
+
+    (an external job).
+
+    Limits: 1 to 8 alphanumeric characters.
+
+
+
+  dsn (type: str)
+    Example: CA7.DSN1
+
+    (Optional) Identifies a data set requirement to post as satisfied.
+
+    Value can be a specific data set name or a CA WA CA 7 Edition data set number.
+
+    If you are using a number, only the number can be specified without the DS prefix.
+
+    
+
+    Mutually exclusive with DEPJOB and USR.
+
+    dsname
+
+    Indicates a specific data set name.
+
+    Limits: 1 to 44 alphanumeric characters
+
+    dsnumber
+
+    Indicates a specific data set number. 
+
+    Limits: 1 to 8 numeric characters.
+
+
+
+  internal (type: str)
+    Example: YES
+
+    (Optional) Valid only with DSN to indicate that the data set being posted is internal to the CA WA CA 7 Edition workload.
+
+    YES is the only acceptable value.
+
+    Mutually exclusive with USR, DEPJOB, and PREQ.
+
+    In normal situations, CA WA CA 7 Edition automatically posts requirements for internal data sets.
+
+    Limits: YES is the only acceptable value.
+
+
+
+  preq (type: str)
+    Example: (17,19,20,32)
+
+    (Optional) Valid only with DSN to identify up to 11 numeric values to include
+
+    with other CA WA CA 7 Edition log data logged as a result of the POST command being issued.
+
+    Mutually exclusive with USR, DEPJOB, and INTERNAL.
+
+    Code values in sublist form, within parentheses.
+
+    You can code up to 11 values that are separated by commas between the parentheses.
+
+    Each value cannot exceed 4 numeric digits.
+
+    This optional field can be useful for logging any meaningful numbers, such as batch numbers, which can later be reviewed in the log data set.
+
+
+
+  rmtjob (type: str)
+    Example: RMT\_JOB
+
+    
+
+    Names the job in the remote scheduler that is required by the job specified in the JOB field.
+
+    Limits: RMTJOB should accept up to 64 characters
+
+    valid characters are a-z, A-Z, 0-9, period (.), underscore (\_), hyphen (-),
+
+    colon (:), and pound (#); do not include embedded spaces or tabs.
+
+    .
+
+
+
+  rmtschd (type: str)
+    Example: AP1
+
+    
+
+    Names the remote scheduler where the predecessor job runs.
+
+    Before adding this requirement, the remote scheduler must be defined.
+
+    The remote scheduler defined as type LOCAL cannot be specified.
+
+    Limits: 1 to 3 alphanumeric characters; generic specification not supported.
+
+
+
+  host (*required*, type: str)
+    Host name of the CA7 API service that is running on the mainframe system.
+
+
+
+  port (*required*, type: int)
+    Port for the CA7 API service that is running on the mainframe system.
+
+
+
+  user (*required*, type: str)
+    User name for authenticating connections to the CA7 API service that is running on the mainframe system.
+
+
+
+  password (*required*, type: str)
+    Password for authenticating connections to the CA7 API service that is running on the mainframe system.
+
+
+
+  base_path (type: str)
+    The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all resources when making REST requests. Do not specify this option if you are not using an Zowe API Mediation Layer.
+
+
+
+  protocol (*required*, type: str)
+    Specifies protocol to use for CA7 connection (http or https).
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` 
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self-signed certificates.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: The requirement for ca7 number 0016 in the request queue is satisfied
+      broadcom.ca7.commands_post:
+        ca7num: 0016
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

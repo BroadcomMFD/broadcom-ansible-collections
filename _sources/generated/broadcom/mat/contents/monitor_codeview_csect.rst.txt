@@ -1,0 +1,189 @@
+.. _monitor_codeview_csect_module:
+
+
+monitor_codeview_csect -- Get CodeView data in Csect mode
+=========================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Get the CodeView measurement details in Csect mode.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  profile (type: str)
+    Specifies the name of the profile that you want to analyze. When you specify the profile name, you get the data for the latest measurement within the specified profile.
+
+
+
+  mon_num (type: int)
+    Specifies the unique monitor number of the measurement.
+
+
+
+  protocol (type: str, default: ``https``)
+    Specifies the protocol defined for the MAT REST API server (http or https).
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` **←**
+
+  host (type: str)
+    Specifies the hostname or IP address defined for the MAT REST API server (e.g. 127.0.0.0 or localhost).
+
+
+
+  port (type: int)
+    Specifies the server port (e.g. 8080).
+
+
+
+  user (type: str)
+    Your mainframe username.
+
+
+
+  password (type: str)
+    Your mainframe password.
+
+
+
+  base_path (type: str)
+    The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all resources when making REST requests. Do not specify this option if you are not using an Zowe API Mediation Layer.
+
+
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self-signed certificates.
+
+
+
+  listing_dir (type: str)
+    Specifies the directory where you want to store the registered program listings (e.g. 'c:\\listings') for your immediate source code inspection. You can use the advantage of automated listing registration with MAT and listing retrieval through Endevor® footprints for Cobol, C/C++, and Assembler programs. When a source program listing is registered with MAT, you can enhance the histogram analysis data with the program listing details that pertain to the specific CSECT and program statement. The listing is transfered to the specified directory, which enables you to navigate directly to the line of the source code in you VS Code IDE and inspect the program statement. To use the listing retrieval option through Endevor® footprints, you need to have the Endevor® Web Services installed and configured and specify the Endevor® web server details in the MAT database configuration.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Get the CodeView measurement details in Csect mode for monitor number 5
+      broadcom.mat.monitor_codeview_csect:
+        mon_num: 5
+
+    - name: Get the CodeView measurement details in Csect mode for the latest monitor in the TESTPROF profile
+      broadcom.mat.monitor_codeview_csect:
+        profile: TESTPROF
+
+    - name: Get the CodeView measurement details in Csect mode for monitor number 5, with the specific MAT profile details defined
+      broadcom.mat.monitor_codeview_csect:
+        mon_num: 5
+        host: example.com
+        port: 12345
+        user: johndoe
+        password: qwerty
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

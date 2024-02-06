@@ -1,0 +1,231 @@
+.. _commands_jclovrd_module:
+
+
+commands_jclovrd -- Adds a permanent JCL override requirement for a CPU job
+===========================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+The JCLOVRD command establishes or satisfies JCL override requirements.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  ca7num (*required*, type: str)
+    Ca7num=0016
+
+    
+
+    Defines the CA 7 job number of the job in the request queue for which to establish or
+
+    remove the override requirement.
+
+    Limits: 1 to 4 numeric characters.
+
+
+
+  set (*required*, type: str)
+    Example: ON
+
+    Specifies to establish or satisfy JCL override requirements.
+
+    When a job fails with a JCL error, the JCL override requirement is automatically
+
+    set to ON when the job returns to the request queue.
+
+    
+
+    ON
+
+    Establishes a JCL override requirement for the specified job.
+
+    The SET=ON option is used for jobs in the request queue to indicate that 
+
+    an override is needed before execution is to occur.
+
+    OFF
+
+    Satisfies a JCL override requirement for the specified job. The SET=OFF option indicates that a previously defined
+
+    need (requirement) for overrides has been satisfied and execution can be safely attempted.
+
+    When a JCL override requirement is set to OFF,
+
+    that requirement no longer appears on a requirements list for the job
+
+    When a REPL is done from the QM.5 panel, the JCL override requirement is automatically set to OFF.
+
+    WLM
+
+    Sets job to allow the insertion of SCHENV= keyword on the JOB 
+
+    statement at submission time when these conditions are true:
+
+    The scheduling environment insertion feature is activated.
+
+    A scheduling Environment VRM definition is attached to the job (or SCHENV global default).
+
+    NOWLM
+
+    Sets job to suppress the insertion of a SCHENV= keyword on the JOB statement at submission
+
+    time even when one is typically associated with the job.
+
+    This option can be used when the validation of an associated IBM WLM scheduling environment 
+
+    has failed causing the job to be requeued (see Browse message SSM0-42).
+
+    FSetting the NOWLM option lets you submit the job without SCHENV= keyword insertion.
+
+
+
+  host (*required*, type: str)
+    Host name of the CA7 API service that is running on the mainframe system.
+
+
+
+  port (*required*, type: int)
+    Port for the CA7 API service that is running on the mainframe system.
+
+
+
+  user (*required*, type: str)
+    User name for authenticating connections to the CA7 API service that is running on the mainframe system.
+
+
+
+  password (*required*, type: str)
+    Password for authenticating connections to the CA7 API service that is running on the mainframe system.
+
+
+
+  base_path (type: str)
+    The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all resources when making REST requests. Do not specify this option if you are not using an Zowe API Mediation Layer.
+
+
+
+  protocol (*required*, type: str)
+    Specifies protocol to use for CA7 connection (http or https).
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` 
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self-signed certificates.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Satisfies JCL override ca7 number 0016
+      broadcom.ca7.commands_jclovrd:
+        ca7num: 0016
+        set: ON
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

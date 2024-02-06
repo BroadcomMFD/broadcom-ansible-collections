@@ -1,0 +1,250 @@
+.. _copy_data_set_module:
+
+
+copy_data_set -- Copy a data set
+================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Copy from a data set to another data set.
+
+If the \<to\> data set does not exist, File Master Plus automatically creates a new data set using the attributes of \<from\> data set.
+
+It supports all data set types that are supported by File Master Plus.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  from (*required*, type: str)
+    Specifies the name of the data set to copy from.
+
+
+
+  to (*required*, type: str)
+    Specifies the name of the data set to copy to.
+
+
+
+  members (type: list)
+    Specifies the members that you want to copy from the data set. To rename the member, specify a new member name after the delimiter ','.If this parameter is not specified all the members are copied.
+
+    Note: This parameter only applies to a PDS or PDSE.
+
+    Example: mem1,newmem1 mem2. Here 'mem2' is copied as it is, and 'mem1' is renamed as 'newmem1'.
+
+
+
+  generation (type: str)
+    Specifies the PDSE V2 generation number that you want to copy from the data set from.
+
+    Note: This parameter should only be specified if data set from is PDSEV2. If not specified and data set from is a PDSE V2 then current generation, i.e. generation 0, is copied. If generation is negative specifies Relative generation, positive specifies Absolute generation, \* specifies all generations and 0 specifies current generation.
+
+    Example1: \*. All generations of member(s) is copied.
+
+    Example2: -1. Relative generation -1 of member(s) is copied.
+
+    Example3: 4. Absolute generation 4 of member(s) is copied.
+
+    Allowed values: '\*','range from -2000000000 to 2000000000'.
+
+
+
+  replace (type: bool, default: ``True``)
+    Replace resource-specific items in the target data set. Note: Used only if the target data set is a PDS or a VSAM KSDS.
+
+    Example: n.
+
+
+
+  static_selection_criteria (type: str)
+    Specifies the name of pre-defined File Master Plus selection criteria. The name refers to a member in the defaultselection criteria data set as defined in the FMM\_CLIST parameter in File Master Plus server.
+
+    Example: testcri.
+
+
+
+  dynamic_selection_criteria (type: str)
+    Specifies path of the .txt file where the dynamic selection criteria exist. Ensure the format of the file is identical to the static selection criteria created by File Master Plus. If the selection criteria refer to field names in a Cobol or PL/I copybook, use the and parameters to name the copybook location.
+
+    Example: ../selcri/testcri.txt .
+
+
+
+  layout_member (type: str)
+    Specifies name of the Cobol or PL/I copybook.
+
+    Example: testlay.
+
+
+
+  layout_data_set (type: str)
+    Specifies name of the data set that contains the layout member.
+
+    Example: fmmvs.layout.dataset.
+
+
+
+  host (type: str)
+    Specifies File Master Plus server host name.
+
+
+
+  port (type: int, default: ``51914``)
+    Specifies File Master Plus server port.
+
+
+
+  user (type: str)
+    Specifies Mainframe user name. May be the same as TSO login.
+
+
+
+  password (type: str)
+    Specifies Mainframe password. May be the same as TSO password.
+
+
+
+  protocol (type: str, default: ``https``)
+    Specifies File Master Plus REST API protocol.
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` **←**
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self-signed certificates.
+
+
+
+  base_path (type: str)
+    The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all FMP resources when making REST requests. Do not specify this option if you are not using an Zowe API Mediation Layer.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Copying a data set
+      broadcom.file_master_plus.copy_data_set:
+        from: fmmvs.pds1
+        to: fmmvs.pds2
+
+    - name: Copying a data set with dynamic selection criteria
+      broadcom.file_master_plus.copy_data_set:
+        from: fmmvs.from.ps
+        to: fmmvs.to.ps
+        dynamic_selection_criteria: ./fmmvs/selcri/testcri
+        layout_member: testlay
+        layout_data_set: fmmvs.layout.dataset
+
+    - name: Copying a PDSE V2 data set with all generations
+      broadcom.file_master_plus.copy_data_set:
+        from: fmmvs.from.psdsev2
+        to: fmmvs.to.psdsev2
+        generation: '*'
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

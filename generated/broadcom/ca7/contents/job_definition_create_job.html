@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>job_definition_create_job – Create a new job definition &mdash; Broadcom Ansible Collections for Mainframe  documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/ansible.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/rtd-ethical-ads.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/images/Ansible-Mark-RGB_Black.svg"/>
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="job_definition_create_job_trigger_successor – Add Job Trigger to a job definition" href="job_definition_create_job_trigger_successor.html" />
+    <link rel="prev" title="job_definition_create_exclusive_resource – Add Exclusive resource to a job definition" href="job_definition_create_exclusive_resource.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
+
+
+
+
+</head>
+
+<body class="wy-body-for-nav"><!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/ansiblefest" target="_blank">AnsibleFest</a></li>
+    <li><a href="https://www.ansible.com/tower" target="_blank">Products</a></li>
+    <li><a href="https://www.ansible.com/community" target="_blank">Community</a></li>
+    <li><a href="https://www.ansible.com/webinars-training" target="_blank">Webinars & Training</a></li>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="../../../../_static/images/Ansible-Mark-RGB_White.svg"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Broadcom Ansible Collections for Mainframe  documentation</div>
+</a>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Broadcom Ansible Collections for Mainframe
+          </a><!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" class="st-default-search-input" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../using.html">Using collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../connecting.html">Connection methods and details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Collections</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">broadcom.ca7</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="commands_addrq.html">commands_addrq – Adds temporary user or predecessor job requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_cancel.html">commands_cancel – Cancels a job request to CA 7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_demand.html">commands_demand – Demand a CA 7 job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_demandh.html">commands_demandh – Defines the name of the job being demanded and hold</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_hold.html">commands_hold – Holds a job from moving forward to the next queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_jclovrd.html">commands_jclovrd – Adds a permanent JCL override requirement for a CPU job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_post.html">commands_post – Posts the requirement for a job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_prscf.html">commands_prscf – Frees a shared resource that belongs to a job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_prsqa.html">commands_prsqa – Activates a co-requisite resource</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_release.html">commands_release – Release or resumed for jobs or queues on hold</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_requeue.html">commands_requeue – Re-queues CA 7 jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_resolv.html">commands_resolv – Creates or modifies processing schedules for jobs that are to be scheduled on a date/time basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_restart.html">commands_restart – Restart a job awaiting in the request queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_rmtsub.html">commands_rmtsub – Remote Subscribe to a CA 7 job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_rmttrk.html">commands_rmttrk – Defines a dependency on a remote CA 7 job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_run.html">commands_run – Run a CA 7 job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_runh.html">commands_runh – Run a CA 7 job and place the job in hold status</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_submit.html">commands_submit – Modifies and expedites the jobs already residing in the queues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_subtm.html">commands_subtm – Modifies the required submit time-of-day for a job in the request queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_verify.html">commands_verify – Set the manual verification requirement for a job in the request queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_job_definition_req_predecessor.html">create_job_definition_req_predecessor – Creates requirement definition for a job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_job_definition_schedule.html">create_job_definition_schedule – Define schedules for jobs that are run on a date and time basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="create_resource_definition_resource_count_resource.html">create_resource_definition_resource_count_resource – Create Resource Count Resource parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_create_dataset.html">dataset_create_dataset – Create a new dataset definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_create_dataset_trigger.html">dataset_create_dataset_trigger – Create Dataset Trigger definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_delete_dataset.html">dataset_delete_dataset – Delete a dataset definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_delete_dataset_trigger.html">dataset_delete_dataset_trigger – Delete Dataset Trigger definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_rename_dataset.html">dataset_rename_dataset – Change the name of a dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_update_dataset.html">dataset_update_dataset – Modify a dataset definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_update_dataset_trigger.html">dataset_update_dataset_trigger – Modify Dataset Trigger definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delete_job_definition_req_predecessor.html">delete_job_definition_req_predecessor – Delete requirement definition fo a job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delete_job_definition_schedule.html">delete_job_definition_schedule – Delete an existing date/time schedule (remove a schedule ID) for a CA7 job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="delete_resource_definition_resource_count_resource.html">delete_resource_definition_resource_count_resource – Delete a Resource Count resource</a></li>
+<li class="toctree-l2"><a class="reference internal" href="event_manager_requests_job_status.html">event_manager_requests_job_status – Retrieves a status of a job from CA 7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_create_address_space_resource.html">job_definition_create_address_space_resource – Add Address Space resource to a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_create_corequisite_resource.html">job_definition_create_corequisite_resource – Add Corequisite resource to a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_create_exclusive_resource.html">job_definition_create_exclusive_resource – Add Exclusive resource to a job definition</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">job_definition_create_job – Create a new job definition</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#return-values">Return Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#status">Status</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_create_job_trigger_successor.html">job_definition_create_job_trigger_successor – Add Job Trigger to a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_create_resource_count_resource.html">job_definition_create_resource_count_resource – Add Resource Count resource to a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_create_shared_resource.html">job_definition_create_shared_resource – Add Shared resource to a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_create_variable_resource.html">job_definition_create_variable_resource – Add Variable resource to a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_address_space_resource.html">job_definition_delete_address_space_resource – Delete Address Space resource from a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_corequisite_resource.html">job_definition_delete_corequisite_resource – Delete Corequisite resource from a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_exclusive_resource.html">job_definition_delete_exclusive_resource – Delete Exclusive resource from a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_job.html">job_definition_delete_job – Delete a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_job_trigger_successor.html">job_definition_delete_job_trigger_successor – Delete Job Trigger from a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_resource_count_resource.html">job_definition_delete_resource_count_resource – Delete Resource Count resource from a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_shared_resource.html">job_definition_delete_shared_resource – Delete Shared resource from a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_variable_resource.html">job_definition_delete_variable_resource – Delete Variable resource from a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_list_job.html">job_definition_list_job – Get basic definition for one or more jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_list_job_trigger_successor.html">job_definition_list_job_trigger_successor – Get triggered jobs for one or more jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_address_space_resource.html">job_definition_update_address_space_resource – Modify Address Space resource for a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_corequisite_resource.html">job_definition_update_corequisite_resource – Modify Corequisite resource for a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_exclusive_resource.html">job_definition_update_exclusive_resource – Modify Exclusive resource for a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_job.html">job_definition_update_job – Update the definition of a job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_job_trigger_successor.html">job_definition_update_job_trigger_successor – Modify Job Trigger Successor for a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_resource_count_resource.html">job_definition_update_resource_count_resource – Modify Resource Count resource for a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_shared_resource.html">job_definition_update_shared_resource – Modify Shared resource for a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_instance_list_waiting_resource.html">job_instance_list_waiting_resource – Display jobs waiting for resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_definition_job.html">list_job_definition_job – Get basic definition for one or more jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_definition_prose.html">list_job_definition_prose – Get prose information for a job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_definition_requirement_predecessor.html">list_job_definition_requirement_predecessor – Get predecessors for one or more jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_definition_requirement_successor.html">list_job_definition_requirement_successor – Get successor jobs for one or more jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_definition_resource.html">list_job_definition_resource – Get job resources for one or more jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_definition_schedule.html">list_job_definition_schedule – Get job schedules for one or more jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_definition_step_dd.html">list_job_definition_step_dd – Get job STEP and DD information for one or more jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_definition_trigger_predecessor.html">list_job_definition_trigger_predecessor – Get trigger objects for one or more jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_definition_trigger_successor.html">list_job_definition_trigger_successor – Get triggered jobs for one or more jobs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_history_prior_run.html">list_job_history_prior_run – Retrieves job information from the prior-run queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_instance_active_resource.html">list_job_instance_active_resource – Display active resources by job. The jobs can be listed generically or with fully qualified job names</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_instance_jcl.html">list_job_instance_jcl – Retrieves JCL for a job in the active workload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_instance_list.html">list_job_instance_list – Retrieves information about jobs in the active workload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_instance_list_custom.html">list_job_instance_list_custom – Retrieves custom information about jobs in the active workload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_job_instance_requirements.html">list_job_instance_requirements – Retrieves information about requirements for jobs in the active workload</a></li>
+<li class="toctree-l2"><a class="reference internal" href="list_resource_definition_resource_count_resource.html">list_resource_definition_resource_count_resource – Retrieves a Resource Count Resource Information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update_job_definition_job.html">update_job_definition_job – Use the options to update the definition of a job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update_job_definition_requirement_predecessor.html">update_job_definition_requirement_predecessor – Use the following two required parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update_job_definition_schedule.html">update_job_definition_schedule – Modify schedules for jobs that are run on a date and time basis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update_job_instance_jcl.html">update_job_instance_jcl – Use the following two required parameters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="update_resource_definition_resource_count_resource.html">update_resource_definition_resource_count_resource – Modify Resource Count Resource parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dbm_db2/index.html">broadcom.dbm_db2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endevor/index.html">broadcom.endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endevor_bridge_for_git/index.html">broadcom.endevor_bridge_for_git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../file_master_plus/index.html">broadcom.file_master_plus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../idms/index.html">broadcom.idms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mat/index.html">broadcom.mat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mat_pma_util/index.html">broadcom.mat_pma_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/index.html">broadcom.ops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spool/index.html">broadcom.spool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sysview/index.html">broadcom.sysview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../view/index.html">broadcom.view</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../zowe_core/index.html">broadcom.zowe_core</a></li>
+</ul>
+<!-- extra nav elements for Ansible beyond RTD Sphinx Theme -->
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Broadcom Ansible Collections for Mainframe</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">broadcom.ca7</a></li>
+      <li class="breadcrumb-item active">job_definition_create_job – Create a new job definition</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/generated/broadcom/ca7/contents/job_definition_create_job.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+  
+           <div itemprop="articleBody">
+             
+  <section id="job-definition-create-job-create-a-new-job-definition">
+<span id="job-definition-create-job-module"></span><h1>job_definition_create_job – Create a new job definition<a class="headerlink" href="#job-definition-create-job-create-a-new-job-definition" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></p></li>
+<li><p><a class="reference internal" href="#parameters" id="id2">Parameters</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id3">Examples</a></p></li>
+<li><p><a class="reference internal" href="#return-values" id="id4">Return Values</a></p></li>
+<li><p><a class="reference internal" href="#status" id="id5">Status</a></p></li>
+</ul>
+</nav>
+<section id="synopsis">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Synopsis</a><a class="headerlink" href="#synopsis" title="Link to this heading"></a></h2>
+<p>Create Job Definition.</p>
+</section>
+<section id="parameters">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Parameters</a><a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<blockquote>
+<div><dl>
+<dt>job (<em>required</em>, type: str)</dt><dd><p>The name of the job.</p>
+</dd>
+<dt>job_type (<em>required</em>, type: str)</dt><dd><p>The type of job.</p>
+<p>Valid values are:</p>
+<p>CPU = A CPU jobXPJOB = A cross-platform jobAGENT = An Agent job.</p>
+</dd>
+<dt>long_name (type: str)</dt><dd><p>(Optional) Defines the long job name.</p>
+<p>Limits: 1 to 64 alphanumeric characters, case sensitive.</p>
+</dd>
+<dt>system (type: str)</dt><dd><p>(Optional) Specifies the user-defined application system name of which this job is a part.</p>
+<p>Limits: 1 to 8 alphanumeric characters. This field cannot contain a comma.</p>
+</dd>
+<dt>uid (type: str)</dt><dd><p>(Optional) Specifies the CA 7 user security identification.</p>
+<p>Default: 0 (no internal security protection)</p>
+<p>Limits: 1 to 3 numeric characters from 0 through 999.</p>
+</dd>
+<dt>jobnet (type: str)</dt><dd><p>(Optional) Specifies the name of a CPU job network of which this job is a part.</p>
+<p>Limits: 1 to 8 alphanumeric characters. This field cannot contain a comma.</p>
+</dd>
+<dt>owner (type: str)</dt><dd><p>(Optional) Specifies the ID identifying ownership of this job. Depending on the startup options taken, the external security product being used and contents of the JCL, this value can be offered to the external security package by CA 7 at job submission time as the authority for this job to be executed.</p>
+<p>Limits: 1 to 8 alphanumeric characters. Although this field supports up to 8 characters, some external security packages only accept up to 7 characters. This field must not exceed any such limit that exists.</p>
+</dd>
+<dt>jcl_member (type: str)</dt><dd><p>(Optional) Specifies the JCL library member name and required when the member name and job name are different.</p>
+<p>Valid when: job-type is CPU</p>
+<p>Default: Job name</p>
+<p>Limits: 1 to 8 alphanumeric characters.</p>
+</dd>
+<dt>id (type: str)</dt><dd><p>(Optional) Specifies a numeric index value that is associated with a JCL library where the JCL member is located. NOTE: the id and lib properties are mutually exclusive.</p>
+<p>Valid when: job-type is CPU</p>
+<p>Default: 0</p>
+<p>Limits: 1 to 3 numeric characters in the range 0-253 or 256-999.</p>
+</dd>
+<dt>lib (type: str)</dt><dd><p>(Optional) Specifies a JCL library identification consisting of a symbolic INDEX assigned to a JCL statement. NOTE: the id and lib properties are mutually exclusive.</p>
+<p>Valid when: job-type is CPU</p>
+<p>Limits: 2 to 16 alphanumeric characters beginning with ampersand (&amp;amp;).</p>
+</dd>
+<dt>reload (type: str)</dt><dd><p>(Optional) Specifies whether to reload the JCL of this job. When a job comes into the request queue, it is either flagged for load processing or it is not flagged.</p>
+<p>Valid when: job-type is CPU</p>
+<p>Default: N</p>
+<p>Valid values are:</p>
+<p>Y = The job is flagged for load processing. The reload flag is automatically reset to N once the load completes successfullyN = The job is not flagged for load processing unless it is the first time it has run in CA 7X = The job is only flagged for load processing when the LOAD command is used and is never automatically changed even if the LOAD command is used.</p>
+</dd>
+<dt>execute (type: str)</dt><dd><p>(Optional) Indicates whether to execute this job.</p>
+<p>Default: Y</p>
+<p>Valid values are:</p>
+<p>Y = The job will be executedN = The job does not run but shows a normal completion as if it did run. JCL is not required for non-executable jobs.</p>
+</dd>
+<dt>retain (type: str)</dt><dd><p>(Optional) Specifies whether to retain the execution JCL in the trailer queue after a successful run.</p>
+<p>Valid when: job-type is CPU or XPJOB</p>
+<p>Default: N</p>
+<p>Valid values are:</p>
+<p>Y = Retain the JCL in the trailer queue after a successful run.N = Do not retain the JCL in the trailer queue after a successful run.</p>
+</dd>
+<dt>hold (type: str)</dt><dd><p>(Optional) Specifies whether to place this job in a hold status when it enters the request queue.</p>
+<p>Default: N</p>
+<p>Valid values are:</p>
+<p>Y = The job will be heldN = The job will not be held.</p>
+</dd>
+<dt>jcl_override (type: str)</dt><dd><p>(Optional) Specifies whether this job needs manual JCL overrides before it can be submitted. Similar to the JCLOVRD command.</p>
+<p>Valid when: job-type is CPU</p>
+<p>Default: N</p>
+<p>Valid values are:</p>
+<p>Y = The job needs manual JCL overrides before it can be submittedN = The job does not need manual JCL overrides before it can be submitted.</p>
+</dd>
+<dt>use_jcl_override_library (type: str)</dt><dd><p>(Optional) Specifies whether to retrieve the JCL from the JCL Override library (JCLID=254) for the next run only. This field is automatically set back to N the next time the job comes into the request queue.</p>
+<p>Default: N</p>
+<p>Valid values are:</p>
+<p>Y = The JCL is retrieved from the JCL Override library for the next runN = The JCL is not retrieved from the JCL Override library for the next run.</p>
+</dd>
+<dt>verify (type: str)</dt><dd><p>(Optional) Specifies whether this job requires any pre-submission manual verification. Similar to VERIFY command.</p>
+<p>Default: N</p>
+<p>Valid values are:</p>
+<p>Y = The job requires any pre-submission manual verificationN = The job does not require any pre-submission manual verification.</p>
+</dd>
+<dt>maintenance (type: str)</dt><dd><p>(Optional) Specifies whether this job is a maintenance job (for example, a system utility) with no production data set requirements. If Y is specified, all input data set requirements are ignored. None of the output data sets created by this job is posted back to CA 7.</p>
+<p>Marking a job as maintenance enables job triggering but not data set triggering.</p>
+<p>Also, if the LOADDSNS keyword is used on the DBASE statement in the initialization file, the LOAD process does not build any DD or data set information for jobs that are marked as maintenance. This means that there are not any data set connections for these jobs unless added manually.</p>
+<p>Valid when: job-type is CPU</p>
+<p>Default: N</p>
+<p>Valid values are:</p>
+<p>Y = The job is a maintenance jobN = The job is not a maintenance job.</p>
+</dd>
+<dt>job_requirement_lead_time (type: str)</dt><dd><p>(Optional) Specifies the number of hours to be considered when satisfying job-dependent requirements.</p>
+<p>Default: 0</p>
+<p>Valid values are:</p>
+<p>0 = No lead time is considered when satisfying this job’s requirements99 = Specifies the requirement is never considered as already satisfied when the job enters the queues. Each predecessor job must complete typically while this job is in the request queuenn = Since the last run of this job, specifies that each predecessor job must have run within the last nn hours. Values for nn can be from 1 to 98.</p>
+</dd>
+<dt>dataset_requirement_lead_time (type: str)</dt><dd><p>(Optional) Specifies the number of hours to be considered when satisfying data set requirements.</p>
+<p>Valid when: job-type is CPU</p>
+<p>Default: 0</p>
+<p>Valid values are:</p>
+<p>0 = No lead time is considered when satisfying this job’s requirements99 = Specifies the requirement is never considered as already satisfied when the job enters the queues. Each data set requirement must be satisfied typically while this job is in the request queuenn = Since the last run of this job, specifies that each data set requirement must be satisfied within the last nn hours. Values for nn can be from 1 to 98.</p>
+</dd>
+<dt>arfset (type: str)</dt><dd><p>(Optional) Names the collection of ARF definitions that apply to this job. Remember that ARF recovery is not invoked for non-executable jobs.</p>
+<p>Limits: 1 to 8 alphanumeric characters.</p>
+</dd>
+<dt>mainid (type: str)</dt><dd><p>(Optional) Specifies on which CPU the job can or cannot be scheduled. If the job requirements impose CPU restrictions, specify SYn or /SYn where n is the system number and / indicates not this system. System numbers must be consistent with the initialization file CPU statement MAINIDS parameters.</p>
+<p>Valid when: job-type is CPU</p>
+<p>Default: ALL (lets the job run on any CPU)</p>
+<p>Limits: 1 to 4 alphanumeric characters.</p>
+</dd>
+<dt>insert_ca11_rms (type: str)</dt><dd><p>(Optional) Specifies whether to insert the WA Restart Option RMS step automatically at execution time by CA 7.</p>
+<p>Valid when: job-type is CPU</p>
+<p>Default: N</p>
+<p>Valid values are:</p>
+<p>Y = Inserts the step with the WA Restart Option processing code of PN = Does not insert the RMS step.</p>
+</dd>
+<dt>condition_code (type: str)</dt><dd><p>(Optional) Used with relational-operator property to define the job-level condition codes used to determine whether a job executes successfully.</p>
+<p>Valid when: job-type is CPU or XPJOB</p>
+<p>Note: All condition codes that are returned from an XPJOB job are treated as positive values. Any negative value returned is converted to an absolute (positive) value</p>
+<p>Default: 0</p>
+<p>Limits: For job-type = CPU: 1 to 4 numeric characters in the range 0-4095</p>
+<p>For job-type = “XPJOB”: 1 to 4 numeric characters in the range 0-9999.</p>
+</dd>
+<dt>relational_operator (type: str)</dt><dd><p>(Optional) Specifies the relational operator of the condition-code property or if the step level #SCC statements are being used in the job’s JCL.</p>
+<p>Valid when: job-type is CPU or XPJOB</p>
+<p>Default: 0</p>
+<p>Valid values are:</p>
+<p>EQ = Equal toLT = Less thanGT = Greater thanGE = Greater than or equal toLE = Less than or equal toNE = Not equal to#S = Make step condition code tests based on #SCC statements in the JCLIG = Make no evaluation of the job. CA 7 always assumes the job completes successfully, regardless of condition codes, abend codes, or runtime JCL errors. When this is used, the insert-ca11-rms property should be N0 = No condition test will be madeNOTE: If 0 is used, no test is made on the job’s condition code. The highest condition code that this job generates is tested by this pair of parameters. For example, if condition-code is set at 8 and RO is set at LT, the job is marked as completing abnormally if 8 is less than the job’s highest condition code.</p>
+</dd>
+<dt>do_not_schedule_before_date (type: str)</dt><dd><p>(Optional) Specifies not to schedule this job before this date (in YYDDD format, or 00000).</p>
+</dd>
+<dt>do_not_schedule_before_time (type: str)</dt><dd><p>(Optional) Specifies not to schedule this job before this time (in HHMM format).</p>
+</dd>
+<dt>do_not_schedule_after_date (type: str)</dt><dd><p>(Optional) Specifies not to schedule this job after this date (in YYDDD format, or 99999).</p>
+</dd>
+<dt>do_not_schedule_after_time (type: str)</dt><dd><p>(Optional) Specifies not to schedule this job after this time (in HHMM format).</p>
+</dd>
+<dt>lterm (type: str)</dt><dd><p>(Optional) Routes the messages about this job to this logical terminal name.</p>
+<p>Default: If not entered, the LTERM associated with the JCL library in the initialization file JCL statement is used. If LTERM is not specified on the JCL statement, the default is MASTER</p>
+<p>Limits: 1 to 8 alphanumeric characters.</p>
+</dd>
+<dt>list_requirements (type: str)</dt><dd><p>(Optional) Specifies whether to list pre-execution requirements for this job when it enters the request queue.</p>
+<p>Default: Y</p>
+<p>Valid values are:</p>
+<p>Y = The pre-execution requirements will be listedN = The pre-execution requirements will not be listed.</p>
+</dd>
+<dt>prompts (type: str)</dt><dd><p>(Optional) Specifies whether to issue prompt messages when this job is late.</p>
+<p>Default: Y</p>
+<p>Valid values are:</p>
+<p>Y = Prompt messages will be issued when the job is lateN = Prompt messages will not be issued when the job is late.</p>
+</dd>
+<dt>requirements_not_used (type: str)</dt><dd><p>(Optional) Specifies whether to issue error messages for job requirements not used.</p>
+<p>Default: Y</p>
+<p>Valid values are:</p>
+<p>Y = Messages will be issued if requirements are not usedN = Messages will not be issued if requirements are not used.</p>
+</dd>
+<dt>dsn_not_found (type: str)</dt><dd><p>(Optional) Specifies whether to list error messages for data sets used at execution time but not found in the CA 7 database.</p>
+<p>Valid when: job-type is CPU</p>
+<p>Default: Y</p>
+<p>Valid values are:</p>
+<p>Y = Messages will be issued if data sets used are not found in the CA 7 databaseN = Messages will not be issued if data sets used are not found in the CA 7 database.</p>
+</dd>
+<dt>job_region (type: str)</dt><dd><p>(Optional) Specifies the region size that is required by this job (information only).</p>
+<p>Valid when: job-type is CPU</p>
+<p>Default: 0</p>
+<p>Limits: 1 to 4 numeric characters.</p>
+</dd>
+<dt>elapsed_time (type: str)</dt><dd><p>(Optional) CA 7 maintains certain SMF feedback data in its database, including a weighted average elapsed runtime. If the database is updated with a time of 0000, the counters for number of runs, number of times late, and number of restarts are also reset to 0000. One use of this value is deadline prompting. If 2359 is specified, deadline prompt time is not adjusted. It remains due-out time minus lead time.</p>
+<p>Default: 0000</p>
+<p>Limits: 4 numeric characters in HHMM format where HH can be 00 - 23 and MM can be from 00 - 59.</p>
+</dd>
+<dt>average_cpu_time (type: str)</dt><dd><p>(Optional) CA 7 maintains weighted average CPU time usage values for each job in its database. If the database is updated with a time of 0000, the counters for number of runs, number of times late, and number of restarts are also reset to 0000. One use of this value is deadline prompting. If 2359 is specified, deadline prompt time is not adjusted. It remains due-out time minus lead time.</p>
+<p>Valid when: job-type is CPU</p>
+<p>Default: 0000</p>
+<p>Limits: 4 numeric characters in HHMM format where HH can be 00 - 23 and MM can be from 00 - 59.</p>
+</dd>
+<dt>wlb_job_class (type: str)</dt><dd><p>(Optional) Specifies the CA 7 WLB job class. If not specified, a WLB class of A is automatically assigned. This value does not have to match the JOB statement CLASS value.</p>
+<p>NOTE: The value specified here does not apply when the job enters the queue as a result of a RUN(H) command. Class 9 is assigned by default. To override class 9, use the RUNCLASS keyword on the OPTIONS statement in the initialization file.</p>
+<p>NOTE: The value specified here does not apply when the job enters the queue as a result of a LOAD(H) command. Class 8 is assigned by default. To override class 8, use the LOADCLASS keyword on the OPTIONS statement in the initialization file</p>
+<p>Default: A space</p>
+<p>Limits: 1 alphanumeric character.</p>
+</dd>
+<dt>wlb_priority (type: str)</dt><dd><p>(Optional) Specifies the CA 7 WLB job priority. A value of 255 indicates an express priority used to bypass WLB priority scheduling criteria. If using WLB, any job without a specified priority is automatically assigned a priority of 100 unless the default is changed</p>
+<p>Default: 0</p>
+<p>Limits: 1 to 3 numeric characters in the range 0 - 255.</p>
+</dd>
+<dt>message_class (type: str)</dt><dd><p>(Optional) Specifies the job’s message class. This field is informational only. Even though this field can be changed, it does not cause the JCL to be changed. Also, no validity checking is done on this field.</p>
+<p>Valid when: job-type is CPU</p>
+<p>Default: A space</p>
+<p>Limits: 1 alphanumeric character.</p>
+</dd>
+<dt>drclass (type: str)</dt><dd><p>(Optional) Specifies the job’s disaster recovery class. This field has no impact on processing during normal execution. When running in disaster recovery mode, the disaster recovery class is used to determine whether the job should execute.</p>
+<p>Limits: 1 to 8 alphanumeric characters. Disaster recovery class values must start with a letter, #, or $ (not &#64;) and can include letters, #, $, &#64;, and numbers. Disaster recovery classes cannot contain embedded blanks.</p>
+</dd>
+<dt>number_1_tape_man (type: str)</dt><dd><p>(Optional) Specifies a manual override value for the number of TYPE1 tape drives needed for the job. Normally this field is only used to update a job where tape drive requirements have been changed, higher or lower, and the job has not been reloaded after the change. A value of 255 can be used to specify that the job uses 0 TYPE1 tape drives.</p>
+<p>Valid when: job-type is CPU</p>
+<p>Default: 0</p>
+<p>Limits: 1 to 3 numeric characters in the range 0 - 255.</p>
+</dd>
+<dt>number_2_tape_man (type: str)</dt><dd><p>(Optional) Specifies a manual override value for the number of TYPE2 tape drives needed for the job. Normally this field is only used to update a job where tape drive requirements have been changed, higher or lower, and the job has not been reloaded after the change. A value of 255 can be used to specify that the job uses 0 TYPE2 tape drives.</p>
+<p>Valid when: job-type is CPU</p>
+<p>Default: 0</p>
+<p>Limits: 1 to 3 numeric characters in the range 0 - 255.</p>
+</dd>
+<dt>xp_node (type: str)</dt><dd><p>(Required when job-type is XPJOB) Defines the CAICCI node to which the execution of this job is targeted. This field should state the primary node. If this node is unavailable and the node definition has alternate nodes defined, the execution of this job can be directed to an alternate node.</p>
+<p>Valid when: job-type is XPJOB</p>
+<p>Limits: 1 to 44 alphanumeric characters, although current z/OS CAICCI restricts this name to eight characters.</p>
+</dd>
+<dt>xp_exec (type: str)</dt><dd><p>(Required when job-type is XPJOB) Defines the executable (file, command) to execute at the targeted cross-platform node. If the targeted platform is a mainframe scheduling system such as CA 7, this value indicates the job name to execute on that platform. If the targeted platform is Workload Automation AE system, this value indicates a job that is defined in the Workload Automation AE system. If this field begins and ends in single quote (’) marks, these marks are removed before being passed in the transmission data. Otherwise, the field is passed to the target system as-is and in its entirety. This value includes any embedded blanks and quotation marks.</p>
+<p>Valid when: job-type is XPJOB</p>
+<p>Limits: Up to 244 alphanumeric characters, and file delimiters of forward slash (/) and backward slash (\) signs. Note: Each backward slash character must be escaped by specifying (\\).</p>
+</dd>
+<dt>xp_parm (type: str)</dt><dd><p>(Optional) Defines up to 128 bytes of parameter data to pass to the file or command being executed on the alternate platform. This data is supplied as PARM1 to the data being transmitted to the alternate platform. If this field begins and ends in single quote (’) marks, these marks are removed before being passed in the transmission data. This value may be overridden if the PARMLIB/MEMBER field PARM1 is coded.</p>
+<p>Valid when: job-type is XPJOB</p>
+<p>Limits: Up to 128 EBCDIC characters.</p>
+</dd>
+<dt>parmlib (type: str)</dt><dd><p>(Optional) Defines extra, optional indexed, or symbolic (PDS) library from where execution data to be associated with this job can be found. This information is typically PARM1 through PARM64 keywords but can vary based on CA 7 system configuration options. If the PARM1 field is found within this file, it overrides the data that is specified in the XP PARM field that is listed on the panel.</p>
+<p>Valid when: job-type is XPJOB or AGENT</p>
+<p>Limits: 1 to 16 alphanumeric characters. If this field starts with a numeric value, the value is treated as a JCL Index value (0 - 253 or 256 - 999), and the associated numbered JCL library, as defined in the initialization file JCL statement, is used. If the first character is not numeric, the field must start with an ampersand (&amp;) and must denote the library variable as defined using a /JCL command.</p>
+<p>Note: Specifying data in the PARMLIB/MEMBER fields is in addition to anything specified in the XPPARM field. If XPPARM is coded, and if the PARMLIB/Member contains a PARM1 statement, the PARMLIB specification overrides the XP PARM field. Thus, if both XPPARM and PARMLIB PARM1 fields contain data, the data that is obtained from the PARMLIB/MEMBER is used in the data that is transmitted to the target node.</p>
+</dd>
+<dt>member (type: str)</dt><dd><p>(Optional) Indicates the PDS member name in the parmlib library where the parameters for this job reside.</p>
+<p>Valid when: job-type is XPJOB or AGENT</p>
+<p>Default: Same as the job property</p>
+<p>Limits: 1 to 8 alphanumeric characters, beginning with an alphabetic character.</p>
+</dd>
+<dt>sutype (type: str)</dt><dd><p>(Optional) Specifies the type of “switch user” command to execute at the UNIX target node.</p>
+<p>Valid when: job-type is XPJOB</p>
+<p>Default: Y</p>
+<p>Valid values are:</p>
+<p>Y = Executes an “SU -” causing the environment setup to include execution of the “.PROFILE” for the target userN = Executes an “SU” command without the profile option.</p>
+</dd>
+<dt>xp_trace (type: str)</dt><dd><p>(Optional) Indicates whether to trace the activity that is associated with this job as it moves through the queues.</p>
+<p>Valid when: job-type is XPJOB</p>
+<p>Default: N</p>
+<p>Valid values are:</p>
+<p>Y = Issue WTOs as the job enters into the submission process. Retain up to 256 characters of the data that is sent for inclusion in a log recordN = Do not activate tracing for this job.</p>
+</dd>
+<dt>agent_job_type (type: str)</dt><dd><p>(Required when job-type is AGENT) Defines the type of agent job. For more information about the Agent job types see:</p>
+<p>[CA 7 Documentation](<a class="reference external" href="https://techdocs.broadcom.com/us/en/ca-mainframe-software/automation/ca-workload-automation-ca-7-edition/12-1/configuring/interfaces/cross-platform-scheduling/ca-workload-automation-agents/ca-7-agent-job-types.html/">https://techdocs.broadcom.com/us/en/ca-mainframe-software/automation/ca-workload-automation-ca-7-edition/12-1/configuring/interfaces/cross-platform-scheduling/ca-workload-automation-agents/ca-7-agent-job-types.html/</a>)</p>
+<p>Valid when: job-type is AGENT</p>
+<p>Default: There is no default value</p>
+<p>Valid values are:</p>
+<p>UNIX_JOB - Generic UNIXNT_JOB - Microsoft WindowsFILE_TRIGGER - File TriggerFTP_JOB - FTPSCP_JOB - Secure CopySFTP_JOB - Secure File TransferBDC_JOB - SAP Batch Input SessionBWIP_JOB - SAP Business Warehouse InfoPackageBWPC_JOB - SAP Business Warehouse Process ChainSAP_JOB - SAP GenericSAPA_JOB - SAP ArchiveSAPE_JOB - SAP Event MonitorSAPM_JOB - SAP Process MonitorPS_JOB - PeopleSoftOA_JOB - Oracle RequestOAC_JOB - Oracle CopyCPU_MON - CPU MonitorDISK_MON - Disk MonitorIP_MON - IP MonitorPROCESS_MON - Process MonitorTEXT_MON - Text File MonitorEVENTLOG_MON - Event Log MonitorSERVICE_MON - Service MonitorSQL_JOB - Database SQLDBSP_JOB - Database Stored ProcedureDB_MON - Database MonitorDB_TRIG - Database TriggerAS400_JOB - AS400/OS400JMSP_JOB - J2EE JMS PublishJMSS_JOB - J2EE JMS SubscribeEJBE_JOB - J2EE Entity BeanHTTP_JOB - J2EE HTTP/ServletPOJO_JOB - J2EE POJORMI_JOB - J2EE RMIEJB_JOB - J2EE Session BeanJMXB_JOB - JMX-Mbean Attribute GetJMXA_JOB - JMX-Mbean Attribute SetJMXO_JOB - JMX-Mbean OperationJMXS_JOB - JMX-Mbean SubscribeJMXN_JOB - JMX-Mbean Create InstanceJMXR_JOB - JMX-Mbean Remove InstanceSNPG_JOB - SNMP Get AttributeSNPS_JOB - SNMP Set AttributeSNPC_JOB - SNMP SubscribeSNPE_JOB - SNMP TrapSendWEB_SERV - Web ServicesWOL_JOB - Wake-On-LANPROXY_JOB - Remote ExecutionNONSTOP_JOB - HP Integrity NonStop.</p>
+</dd>
+<dt>agent (type: str)</dt><dd><p>(Required when job-type is AGENT) Identifies the explicit distributed platform where the job is to run.</p>
+<p>Valid when: job-type is AGENT</p>
+<p>Limits: 1 to 16 alphanumeric characters. The value must be defined to CA 7 using the IASAGENT DD statement.</p>
+</dd>
+<dt>agent_user (type: str)</dt><dd><p>(Optional) Defines the user ID that is passed to the distributed platform where the job is to run.</p>
+<p>Valid when: job-type is AGENT</p>
+<p>Limits: 1 to 128 alphanumeric characters.</p>
+</dd>
+<dt>host (<em>required</em>, type: str)</dt><dd><p>Host name of the CA7 API service that is running on the mainframe system.</p>
+</dd>
+<dt>port (<em>required</em>, type: int)</dt><dd><p>Port for the CA7 API service that is running on the mainframe system.</p>
+</dd>
+<dt>user (<em>required</em>, type: str)</dt><dd><p>User name for authenticating connections to the CA7 API service that is running on the mainframe system.</p>
+</dd>
+<dt>password (<em>required</em>, type: str)</dt><dd><p>Password for authenticating connections to the CA7 API service that is running on the mainframe system.</p>
+</dd>
+<dt>base_path (type: str)</dt><dd><p>The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all resources when making REST requests. Do not specify this option if you are not using an Zowe API Mediation Layer.</p>
+</dd>
+<dt>protocol (<em>required</em>, type: str)</dt><dd><p>Specifies protocol to use for CA7 connection (http or https).</p>
+<dl class="simple">
+<dt>Choices:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">http</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">https</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>reject_unauthorized (type: bool, default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</dt><dd><p>Reject self-signed certificates.</p>
+</dd>
+<dt>cert_file (type: path)</dt><dd><p>The file path to a certificate file to use for authentication.</p>
+<p>Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.</p>
+</dd>
+<dt>cert_key_file (type: path)</dt><dd><p>The file path to a certificate key file to use for authentication.</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">creates a job named JOBA</span>
+<span class="w">  </span><span class="nt">broadcom.ca7.job_definition_create_job</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">job</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">JOBA</span>
+<span class="w">    </span><span class="nt">job_type</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CPU</span>
+<span class="w">    </span><span class="nt">execute</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Y</span>
+<span class="w">    </span><span class="nt">use_jcl_override_library</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Y</span>
+<span class="w">    </span><span class="nt">do_not_schedule_before_date</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11032</span>
+<span class="w">    </span><span class="nt">do_not_schedule_before_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1100</span>
+<span class="w">    </span><span class="nt">do_not_schedule_after_date</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">11365</span>
+<span class="w">    </span><span class="nt">do_not_schedule_after_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1359</span>
+</pre></div>
+</div>
+</section>
+<section id="return-values">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Return Values</a><a class="headerlink" href="#return-values" title="Link to this heading"></a></h2>
+<dl>
+<dt>data (type: list, <em>when returned data is a dictionary</em>)</dt><dd><p>Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.</p>
+</dd>
+<dt>error (type: complex, <em>error</em>)</dt><dd><p>More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.</p>
+<dl class="simple">
+<dt>additional_details (type: str)</dt><dd><p>Detailed message about the failure.</p>
+</dd>
+<dt>msg (type: str)</dt><dd><p>Short description of the result or failure.</p>
+</dd>
+<dt>request (type: str, <em>API request failed</em>)</dt><dd><p>HTTP method used to invoke API service request.</p>
+</dd>
+<dt>resource (type: str, <em>API request failed</em>)</dt><dd><p>URI of the resource of the API service request.</p>
+</dd>
+</dl>
+</dd>
+<dt>failed (type: bool, <em>always</em>)</dt><dd><p>A boolean that indicates if the task was failed or not.</p>
+</dd>
+<dt>list (type: list, <em>when returned data is a list</em>)</dt><dd><p>Data from the module execution (a list of data structures).</p>
+</dd>
+<dt>msg (type: str, <em>sometimes</em>)</dt><dd><p>Short description of the result or failure.</p>
+</dd>
+<dt>rc (type: int, <em>always</em>)</dt><dd><p>Exit code of the module, successful exit code is 0, failure is typically 1 or higher.</p>
+</dd>
+<dt>stderr (type: str, <em>error</em>)</dt><dd><p>Details of the error.</p>
+</dd>
+<dt>stdout (type: str, <em>success</em>)</dt><dd><p>Summary of the result.</p>
+</dd>
+</dl>
+</section>
+<section id="status">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Status</a><a class="headerlink" href="#status" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>This module is maintained by Broadcom.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="job_definition_create_exclusive_resource.html" class="btn btn-neutral float-left" title="job_definition_create_exclusive_resource – Add Exclusive resource to a job definition" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="job_definition_create_job_trigger_successor.html" class="btn btn-neutral float-right" title="job_definition_create_job_trigger_successor – Add Job Trigger to a job definition" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Broadcom.</p>
+  </div>
+
+  
+   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+  <a href="https://sphinx-ansible-theme.rtfd.io">Sphinx Ansible Theme</a>
+  that is based on the
+  <a href="https://github.com/readthedocs/sphinx_rtd_theme">Read the Docs theme</a>
+  and is maintained by the <a href="https://docs.ansible.com/ansible/4/community/">Ansible Community</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script><!-- extra footer elements for Ansible beyond RTD Sphinx Theme -->
+
+</body>
+</html>

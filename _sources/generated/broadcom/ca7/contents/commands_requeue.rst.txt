@@ -1,0 +1,338 @@
+.. _commands_requeue_module:
+
+
+commands_requeue -- Re-queues CA 7 jobs
+=======================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Re-queues jobs from the ready or active queues back to the request queue.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  agent (type: str)
+    Example: UXAGENT
+
+    (Optional) Indicates the agent name or mask that an agent name must match for an agent job
+
+    
+
+    before it is moved back to the request queue, is given a restart requirement, and is flagged as having been requeued.
+
+    AGENT cannot be used with CPU, MAINID, or NODE.
+
+    For any agent job that is requeued, a cancel request is sent to the agent running the job.
+
+    The status of the agent or the computer on which the agent is running determines whether the request is honored.
+
+    Limits: 1 to 16 alphanumeric charactersDefault: \* (all agent names).
+
+
+
+  cpu (type: str)
+    Example: 34
+
+    (Optional) Used with JOB to specify the CPU ID of active queue jobs that are to be requeued.
+
+    The value identifies the CPU and corresponds to the CPU field displayed on the LQ command (the SMF identifier).
+
+    CPU cannot be used with MAINID, NODE, or AGENT.
+
+    The CPU parameter is ignored if used with a JOB parameter that references a specific job name or job number, but not if a job mask is specified.
+
+    Limits:
+
+    1 to 4 numeric characters.
+
+
+
+  force (type: str)
+    Example: CMP
+
+    (Optional) Resumes job completion for stranded jobs.
+
+    When a job finishes executing, it must move to the request queue so that CA WA CA 7 Edition
+
+    can process the database and queue updates that are required for job completion.
+
+    But, if a job cannot be moved because of an I/O error or an out-of-space condition on the request queue,
+
+    the job may be stranded in the ready or active queue, unable to complete
+
+    Once the request queue error is corrected, you can use REQUEUE with FORCE=CMP to resume job completion for these jobs.
+
+    Limits: CMP is the only value.
+
+
+
+  ca7num (type: str)
+    Example: 0029
+
+    (Optional) Indicates the job number
+
+    must match before it is moved back to the request queue, is given a restart requirement, and is flagged as having been requeued.
+
+    If JOB is used alone, both the active and ready queues are searched for the specified job number.
+
+    If JOB is used with Q, the search is restricted to the indicated queue. jobname,jobnumber and longjobname are mutually exclusive
+
+    Default:
+
+    \* (all jobs)Limits:
+
+    1 to 8 alphanumeric characters.
+
+
+
+  jobname (type: str)
+    Example: PAYROLL
+
+    (Optional) Indicates the job name, or mask that a job name
+
+    must match before it is moved back to the request queue, is given a restart requirement, and is flagged as having been requeued.
+
+    If JOB is used alone, both the active and ready queues are searched for the specified job.
+
+    If JOB is used with Q, the search is restricted to the indicated queue. jobname,jobnumber and longjobname are mutually exclusive.
+
+    Default:
+
+    \* (all jobs)Limits:
+
+    1 to 8 alphanumeric characters.
+
+
+
+  longjobname (type: str)
+    Example: ALONGJOBNAME
+
+    (Optional) Indicates the long job name or mask that a long job name must match before
+
+    it is moved back to the request queue, is given a restart requirement, and is flagged as having been requeued.
+
+    If JOBL is used alone, both the active and ready queues are searched for the specified long job name.
+
+    If JOBL is used with Q, the search is restricted to the indicated queue.jobname,jobnumber and longjobname are mutually exclusive
+
+    Limits: 1 to 64 alphanumeric characters.
+
+
+
+  mainid (type: str)
+    Example: ALL|SY2|/SY3
+
+    (Optional) Used with JOB to indicate that only those jobs in the ready queue with this MAINID are to be requeued.
+
+    Value must be specified as a single MAINID name.
+
+    MAINID cannot be used with CPU, NODE, or AGENT.
+
+    The MAINID parameter is ignored if used with a JOB parameter that references a specific job name or job number, but not if a job mask is specifie\_
+
+    The name must be one of the following values:
+
+    ALL Indicates that all MAINIDs are considered.
+
+    SYn Where n indicates a CPU assigned number as defined in the initialization file CPU statement.
+
+    The value of n can range from 1 to 7.
+
+    /SYn
+
+    Where n indicates a CPU assigned number. The / indicates “not this MAINID.
+
+    The value of n can range from 1 to 7.
+
+    Limits: 1 to 4 alphanumeric characters.
+
+
+
+  node (type: str)
+    Example: NODEXP
+
+    (Optional) Indicates the node name or mask that a node name must match for an XPJOB job,
+
+    before it is moved back to the request queue, is given a restart requirement, and is flagged as having been requeued.
+
+    NODE cannot be used with CPU, MAINID, or AGENT.
+
+    For any XPJOB that is requeued, a cancel request is sent to the node where the job is running
+
+    (assuming the initialization file XPDEF statement parameter XPKILL=NO is not set).
+
+    The status of the node or the computer that the node points to, determines whether the request is honored.
+
+    Limits:
+
+    1 to 8 alphanumeric characters.
+
+
+
+  q (type: str)
+    Q=RDY
+
+    
+
+    Used with JOB to indicate in which queue the job search is to occur
+
+    ACT The active queue. RDY The ready queue.
+
+
+
+  type (type: str)
+    (Optional) Flags the job after it returns to the request queue with a status of JCLERR instead of REQUE.
+
+    If not coded, the status reflects REQUE.
+
+
+
+  host (*required*, type: str)
+    Host name of the CA7 API service that is running on the mainframe system.
+
+
+
+  port (*required*, type: int)
+    Port for the CA7 API service that is running on the mainframe system.
+
+
+
+  user (*required*, type: str)
+    User name for authenticating connections to the CA7 API service that is running on the mainframe system.
+
+
+
+  password (*required*, type: str)
+    Password for authenticating connections to the CA7 API service that is running on the mainframe system.
+
+
+
+  base_path (type: str)
+    The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all resources when making REST requests. Do not specify this option if you are not using an Zowe API Mediation Layer.
+
+
+
+  protocol (*required*, type: str)
+    Specifies protocol to use for CA7 connection (http or https).
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` 
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self-signed certificates.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Requeues jobs in the ready queue back to the request queue
+      broadcom.ca7.commands_requeue:
+        q: RDY
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

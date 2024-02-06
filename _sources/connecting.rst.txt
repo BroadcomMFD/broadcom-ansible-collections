@@ -1,0 +1,222 @@
+==============================
+Connection methods and details
+==============================
+
+.. |BACMs| replace:: Broadcom Ansible Collections for Mainframe
+
+This section shows you how to expand and refine the connection methods Ansible uses for your inventory
+and how to specify connection parameters for Broadcom API services that are used by |BACMs|.
+
+There are two methods are mainframe-related Ansible modules are connecting to mainframe systems:
+
+1. SSH
+
+    SSH is used by built-in Ansible modules, ``ibm.ibm_zos_core`` collection, ``ibm.ibm_zos_ims`` collection,
+    and many other collections. SSH is needed for Ansible functionality such as gathering facts from the managed systems.
+
+2. REST APIs via HTTPS
+
+    A lot mainframe services can be accessed remotely via HTTPS and calling their REST APIs.
+    This is the case of all |BACMs| and IBM collections such as ``ibm.ibm_zosmf`` or ``ibm.ibm_zos_cics``.
+
+It is recommended to be configured so you can get most of the Ansible and mainframe-related collections.
+
+SSH keys are encouraged method for authentication to SSH.
+All REST APIs support "Basic" HTTP authentication scheme defined in defined in RFC 7617.
+That is using z/OS user ID and password as credentials.
+
+Setting up SSH keys
+===================
+
+You need to create an SSH key pair. See `How to use ssh-keygen to generate a new SSH key <https://www.ssh.com/academy/ssh/keygen>`_.
+
+The public SSH key needs to be trusted by the remote systems, see how to use `ssh-copy-id for copying SSH keys to servers <https://www.ssh.com/academy/ssh/copy-id>`_.
+
+For more details about Ansible and SSH, see `Setting up SSH keys <https://docs.ansible.com/ansible/latest/user_guide/connection_details.html#setting-up-ssh-keys>`_ in Ansible documentation.
+
+The SSH keys can be stored in z/OS key rings, for more information see:
+
+* `Setting up z/OS Ansible Core to use OpenSSH with ACF2 Key Rings <https://knowledge.broadcom.com/external/article?articleId=227610>`_
+* `Steps for setting up server authentication when keys are stored in RACF key rings <https://www.ibm.com/docs/en/zos/2.5.0?topic=susd-steps-setting-up-server-authentication-when-keys-are-stored-in-key-rings>`_
+
+To setup the user ID that will be used on z/OS, use ``ansible_user`` variable in the inventory.
+
+Setting up SSH password
+=======================
+
+If you are not using SSH keys, you can use password authentication if needed with the `--ask-pass` option
+or by setting `ansible_password` in the inventory. If you do that, you should protect the password as it described in
+`Protecting sensitive variables with ansible-vault <https://docs.ansible.com/ansible/latest/network/getting_started/first_inventory.html#protecting-sensitive-variables-with-ansible-vault>`_.
+
+To setup the user ID that will be used on z/OS, use ``ansible_user`` variable in the inventory.
+
+Setting up "basic" HTTP authentication
+======================================
+
+All |BACMs| have the same way how credentials for HTTP authentication are provided to Ansible.
+
+Providing credentials in the inventory
+--------------------------------------
+
+The user ID is taken from the value provided in ``ansible_user`` variable.
+The password is taken from ``zos_password`` or ``ansible_password`` variables.
+Use ``zos_password`` when SSH keys are used and ``ansible_password`` when SSH password is used instead of SSH keys.
+We recommend `protecting sensitive variables with ansible-vault <https://docs.ansible.com/ansible/latest/network/getting_started/first_inventory.html#protecting-sensitive-variables-with-ansible-vault>`_.
+
+Providing credentials as module arguments
+-----------------------------------------
+
+All the modules of |BACMs| accept parameters ``user`` and ``password`` that can be used to provide credentials or override those that are in the inventory.
+
+Providing connection parameters
+===============================
+
+.. _Endevor REST API:
+    https://techdocs.broadcom.com/us/en/ca-mainframe-software/devops/ca-endevor-software-change-manager/18-0/using/using-the-rest-api.html
+
+|BACMs| connect to mainframe services using REST APIs running on the system. This requires to provide the connection port.
+
+In the following example, we will connect to `Endevor REST API`_ that is listening on HTTPS port ``6032`` of the ``sys1.your.company.net`` system.
+If you are not sure what is the correct port, consult your system programmer.
+
+.. code-block:: yaml
+
+  broadcom:
+    endevor:
+      port: 6032
+
+There are more connection parameters that you can use:
+
+.. glossary::
+
+  ``protocol``
+
+    Specifies the protocol used for connecting to REST API service. It depends on the service configuration and the default is `https`.
+
+  ``reject_unauthorized``
+
+    Specify this option to have the server certificate not verified against the list of supplied certificate authorities.
+    Choices are ``y`` or ``n``. Default is ``y``.
+
+  ``host``
+
+    Specifies the host name of the API service. By default, the current Ansible host is used. You can use this parameters
+    to use a different system for this service. This is useful when one service is shared by multiple systems.
+    For example, source code can be stored in Endevor instance on one system and used on all systems.
+
+  ``base_path``
+
+    Specifies the *base path* used for connecting to API service. The base path is the part that is appended
+    after the host name and port and followed by the *endpoint path*. The default value of the base path is set to
+    work well with a standalone instances for the API service so you do not need to change that when you access
+    the API directly. 
+    
+    You need to provide ``base_path`` when you are connecting to the API via the Zowe API Mediation
+    Layer, see `Connecting to an API service via Zowe API Mediation Layer`_. 
+    
+    Another reason for providing ``base_path`` is the case when the API service is configured
+    with a different than the default ``base_path``.
+    
+    For detailed explaination of terms like base path or endpoint path, see `Components of URL`_.
+
+.. _Components of URL:
+    https://docs.zowe.org/stable/extend/extend-apiml/api-mediation-components-of-url/
+
+
+Providing connection parameters in facts
+========================================
+
+The connection parameters of |BACMs| can be stored in the inventory or stored in Ansible facts,
+they can be provided as parameters of the playbooks.
+
+To see how you can store facts on the remove system including z/OS,
+see `facts.d or local facts <https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html#facts-d-or-local-facts>`_.
+
+Storing local facts on z/OS systems allows system programmer to set the parameters only once per system and have them used
+by all playbooks using the system without the need to define them in each inventory.
+
+To setup local facts on a z/OS system, edit file ``/etc/ansible/facts.d/broadcom.fact`` on that system. The format of the file is `INI <https://en.wikipedia.org/wiki/INI_file>`_.
+Each group represents one collection, for example:
+
+.. code-block:: ini
+
+    [endevor]
+    port=6032
+
+    [file_master_plus]
+    port=6001
+    reject_unauthorized=n
+
+The playbooks need to specify ``gather_facts: true`` or not set ``gather_facts`` since facts are gathered by default.
+
+Default facts path could be changed in ``ansible.cfg`` file by parameter `fact-path <https://docs.ansible.com/ansible/2.4/intro_configuration.html#fact-path>`_.
+
+If you are using Ansible within shared syxplex, you could use shared facts file or separate one for each system in the sysplex.
+All you have to do is to have path mounted either to file system which is set as shared zFS file system across the sysplex,
+or zFS file system which is accesible only from specific system (in this case even in shared sysplex, each system would have specific fact file).
+The `/etc` file system is not usually shared among systems in the sysplex. If you use the default path for facts `/etc/ansible/facts.d`, you will have different configuration files for each system.
+
+Ansible store gathered facts or inventory source data into a cache to raise the performance.
+If you are making changes in the facts gathering, keep in mind there could be still old setup stored in the cache.
+For more information, see `Cache plugins <https://docs.ansible.com/ansible/latest/plugins/cache.html#cache-plugins>`_.
+
+Module defaults
+===============
+
+To learn how default values for module parameters can be set for the entire playbooks, see `Module defaults <https://docs.ansible.com/ansible/latest/user_guide/playbooks_module_defaults.html>`_.
+
+Each collection from |BACMs| defines a *module default group* that allows to set default values for all modules in the collection.
+The name of the group is ``group/broadcom.<collection name>.all``, for example ``group/broadcom.endevor.all``.
+
+That allows you to set for example the same Endevor instance for all Endevor tasks in the playbook:
+
+.. code-block:: yaml
+
+  - name: Playbook that uses module_defaults to set instance for all Endevor modules
+    hosts: sys1
+    collections:
+    - broadcom.endevor
+    gather_facts: false
+    module_defaults:
+      group/broadcom.endevor.all:
+        instance: ENDEVOR
+      # In Ansible below 2.12, you need to specify defaults for each module:
+      # broadcom.endevor.list_environments:
+      #   instance: ENDEVOR
+      # broadcom.endevor.retrieve_element:
+      #   instance: ENDEVOR
+    tasks:
+    - name: List all environments in Endevor SCM
+      list_environments:
+      register: environments
+    - name: Print environments
+      debug:
+        var: environments.list
+    - name: Retrieve element from specified inventory location to local file
+      retrieve_element:
+        to_file: job1.jcl
+        environment: DEV
+        system: MARBLES
+        subsystem: MARBLES
+        stage_number: "*"
+        type: JCL
+        element: TEST
+
+Connecting to an API service via Zowe API Mediation Layer
+=========================================================
+
+When your API service is accessible via Zowe API Mediation Layer, you need to set the ``host`` and ``port``
+parameters to the host name of the Zowe API gateway. You will find the correct value of base path
+in Zowe API Catalog in the field *API Base Path* that is displayed in the details for the API service.
+
+The following examples defines connection parameters for the SYSVIEW collection. It uses
+SYSVIEW API service. This service is registered in Zowe API Mediation Layer under service ID ``mysysview``.
+The Zowe API Gateway accessible ``sys1.your.company.net:7554``:
+
+.. code-block:: yaml
+
+  broadcom:
+    sysview:
+      host: sys1.your.company.net
+      port: 7554
+      base_path: /mysysview/api/v1

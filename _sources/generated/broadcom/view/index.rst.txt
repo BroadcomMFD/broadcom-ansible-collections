@@ -1,0 +1,16 @@
+
+broadcom.view
+=============
+
+Access View data and perform related tasks.
+
+Compatible with Zowe CLI Plugin version: 2.0.1
+
+For more information, see the *Contents* section.
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :caption: Contents
+
+   contents/*

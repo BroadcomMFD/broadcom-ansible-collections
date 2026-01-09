@@ -1,0 +1,328 @@
+.. _show_records_module:
+
+
+show_records -- Display a list of opslog records
+================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Display a list of the OPSLOG records with attributes that are defined in the search query from the specified OPSLOG. This command is only available
+
+when connected to the OPS/MVS REST API server.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  log_name (type: str)
+    The name of the OPSLOG to search. If 'logName' is not specified, the current live OPSLOG is used. The value 'LIVE' is also valid to select the
+
+    currently live OPSLOG.
+
+
+
+  find_string (type: str)
+    A text string to search for in the OPSLOG column specified by 'findColumnName' (defaults to TEXT). The records that are returned are the next
+
+    or previous records in OPSLOG that match your 'findString', in the direction specified by 'findDirection'. The length of the string cannot
+
+    exceed 80 characters.
+
+
+
+  find_direction (type: str)
+    When 'findString' is specified, controls the direction in which OPSLOG is searched. Valid values are FIRST, LAST, NEXT, PREV. For NEXT and
+
+    PREV, search starts from record specified by 'msgNoStart' or 'utcStartTime' parameters. For FIRST and LAST, search starts from
+
+    the first or last record in OPSLOG. Default is NEXT. If 'findString' is not specified, this parameter is ignored and the direction of the
+
+    search is controlled by the 'direction' parameter (defaults to FORWARD).
+
+
+
+  find_column_name (type: str)
+    When 'findString' is specified, the OPSLOG column to search for the specified 'findString'. Valid values are COLOR, EVENT, JOBNAME, MSGID,
+
+    SYSNAME, TEXT and USER. The default is TEXT. If 'findString' is not specified, this parameter is ignored.
+
+
+
+  find_max_events (type: str, default: ``5000``)
+    When 'findString' is specified, the maximum number of OPSLOG records to search through for this request before abandoning the search. The
+
+    default value for this parameter is 5000.
+
+
+
+  find_range_start (type: str)
+    When 'findString' specified and 'findColumnName' TEXT, specifies the start of a range of text columns within the OPSLOG TEXT column that
+
+    is specified by 'findColumnName'. Must be less than or equal to the value of 'findRangeEnd'. The search for the string that is specified by
+
+    'findString' is restricted to this range of text columns. Valid ranges are within columns 1 to 128. If 'findString' is not specified, this
+
+    parameter is ignored.
+
+
+
+  find_range_end (type: str)
+    When 'findString' is specified and 'findColumnName' is TEXT and 'findColumnName' is TEXT, specifies end of a range of text columns within
+
+    the OPSLOG TEXT column that is specified by 'findColumnName'. Must be greater than or equal to value of 'findRangeStart'. The search for
+
+    the string that is specified by is restricted to this range of text columns. Valid ranges are within columns 1 to 128. If
+
+    'findString' is not specified, this parameter is ignored.
+
+
+
+  find_string_is_prefix (type: str)
+    When 'findString' is specified, specifies whether or not 'findString' is used as a prefix when searching one of these OPSLOG columns, specified
+
+    by 'findColumnName': JOBNAME, MSGID, SYSNAME, and USER. To search for the prefix specified by 'findString' in text column one of the specified
+
+    OPSLOG column, 'true'. To search for an exact match between 'findString' and the entire contents of the specified OPSLOG column,
+
+    specify 'false'. If 'findString' is not specified, this parameter is ignored. Note: This parameter is also ignored when searching these OPSLOG
+
+    columns: COLOR, EVENT, and TEXT. When searching the COLOR or EVENT columns, the specified 'findString' must match the entire contents of the
+
+    column. When searching the TEXT column, the presence of 'findString' anywhere within column is considered a match.
+
+
+
+  max_records (type: str, default: ``100``)
+    Specifies the maximum number of OPSLOG records to return for this request. Valid range is 1 to 100. The default is 100.
+
+
+
+  direction (type: str)
+    When 'findString' is not specified, controls the direction in which OPSLOG is searched. Valid values are FORWARD and BACKWARD. Default is
+
+    FORWARD. The search starts from the record specified by 'msgNoStart' or 'utcStartTime'. To search FORWARD starting from the first record in
+
+    OPSLOG, specify zero for 'msgNoStart'. To search BACKWARD starting from the last record in OPSLOG, specify zero for 'msgNoStart'. If
+
+    'findString' is specified, this parameter is ignored and the direction of the search is controlled by the 'findDirection' parameter (defaults
+
+    to NEXT).
+
+
+
+  msg_no_start (type: str)
+    Indicates the location in OPSLOG from which to start this search request. This is the absolute message sequence number of a record in OPSLOG
+
+    that is assigned by OPS/MVS and appears in the MSGNO column of an OPSLOG display. This number is not a relative position in the log. Valid
+
+    range is 0 to 4294967295. (The next record in OPSLOG after the record with the sequence number 4294967295 is assigned the sequence number 1.)
+
+    This parameter is mutually exclusive with the 'utcStartTime' Note: For special use cases of the value 0, see the 'direction'
+
+    parameter. If no record in OPSLOG has the message number, the search starts from the message with the message number closest to the
+
+    specified number. When searching FORWARD, NEXT, or FIRST, the closest record going forward in time is used. When searching BACKWARD, PREV, or
+
+    LAST, the closest record going backward in time is used.
+
+
+
+  utc_start_time (type: str)
+    Indicates the location in OPSLOG from which to start this search request. This is a date and time specified as Universal Coordinated Time
+
+    (UTC) in the format "yyyy\-MM\-dd'T'HH:mm:ss.SSSSSSZ". This parameter is mutually exclusive with the 'msgNoStart' parameter. If no record in
+
+    OPSLOG has the specified timestamp, the search starts from the message with the timestamp closest to the specified timestamp. When searching
+
+    FORWARD, NEXT, or FIRST, the closest record going forward in time is used. When searching BACKWARD, PREV, or LAST, the closest record going
+
+    backward in time is used.
+
+
+
+  format (type: str, default: ``namevalue``)
+    Format of the displayed output.
+
+
+    Choices:
+      * ``namevalue`` **←**
+      * ``namevaluecolor`` 
+      * ``csv`` 
+      * ``json`` 
+
+  user (type: str)
+    Your z/OS user name that is used to authenticate to OPS/MVS Web Services / REST API.
+
+
+
+  password (type: str)
+    Your z/OS password that is used to authenticate to OPS/MVS Web Services / REST API.
+
+
+
+  host (type: str)
+    The hostname of the server where OPS/MVS Web Services / REST API is running.
+
+
+
+  port (type: int)
+    The port number for OPS/MVS Web Services / REST API.
+
+
+
+  reject_unauthorized (type: bool, default: ``True``)
+    If set to true, the server certificate is verified against the list of supplied CAs. If set to false, certificate verification is not
+
+    performed.
+
+
+
+  protocol (*required*, type: str)
+    The protocol that is used for connecting to OPS/MVS Web Services / REST API.
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` 
+
+  subsystem (type: str, default: ``OPSS``)
+    Specifies the subsystem ID of the OPS/MVS instance to which commands will be directed. This parameter is ignored by the 'show status' and 'show
+
+    subsystem' commands.
+
+
+
+  rest_api (type: bool)
+    If set to true, the plug\-in executes the command against the OPS/MVS REST API. If set to false, the plug\-in executes against the OPS/MVS Web
+
+    Services.
+
+
+
+  base_path (type: str)
+    NOTE: This parameter can only be used with the REST API server. Specifies the base path for your Zowe Zowe API Mediation Layer instance.
+
+    Specify this option to prepend the base path to all resources when making REST requests. Only specify this option if you are using an Zowe Zowe
+
+    API Mediation Layer.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe
+
+    Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Show up to 100 records for the live OPSLOG for the "OPSS" subsystem
+      broadcom.ops.show_records:
+        subsystem: OPSS
+
+    - name: Show up to 50 records matching the message ID IEF403I for OPSLOG1 on the "OPSS" subsystem
+      broadcom.ops.show_records:
+        subsystem: OPSS
+
+    - name: Show up to 50 records matching the message ID IEF403I for OPSLOG1 on the "OPSS" subsystem with shorthand parameters
+      broadcom.ops.show_records:
+        subsystem: OPSS
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

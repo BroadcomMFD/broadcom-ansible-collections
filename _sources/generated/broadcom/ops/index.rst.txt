@@ -1,0 +1,16 @@
+
+broadcom.ops
+============
+
+Interact with OPS/MVS® for automation administration and resource management.
+
+Compatible with Zowe CLI Plugin version: 5.3.0
+
+For more information, see the *Contents* section.
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :caption: Contents
+
+   contents/*

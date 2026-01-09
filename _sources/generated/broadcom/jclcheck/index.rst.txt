@@ -1,0 +1,129 @@
+
+broadcom.jclcheck
+=================
+
+Validates the accuracy of job control language (JCL) and also helps identify execution-time errors, such as security violations and missing data sets that could cause jobs to fail.
+
+Compatible with Zowe CLI Plugin version: 3.0.0
+
+You can use the JCLCheck collection in playbooks as JCL quality check
+before submitting JCLs in your environment.
+
+By validating JCL and identifying problems, the collection provides you with advanced
+warnings that enables you to correct any errors before you execute a job in a production cycle.
+
+Limitations
+-----------
+
+The following limitations apply to the JCLCheck collection:
+
+
+* The collection does not support REXX executables with the STDREXX option.
+* The AUTOPROC option is required and is set automatically.
+* The JES3 option is set automatically if JCLCheck runs on JES3 system. The option is ignored if you include it in a task.
+* Use these alternatives for the following JCLCheck options:
+
+  * ``CNTLOVDD`` (use ``CNTLOVER``\ )
+  * ``LOADOVDD`` (use ``LOADOVER``\ )
+  * ``MCOUsr`` (use ``MCOSYS``\ )
+  * ``OPRoc`` (use ``OPROCLIB``\ )
+  * ``UPDTDD`` (use ``UPDTDSN``\ )
+
+* You cannot use the following JCLCheck options with the collection:
+
+  * ``NOOption``
+  * ``REMote``
+  * ``TLms``
+  * ``Graph``
+  * ``PROc``
+  * ``TERM``
+
+Software Requirements
+---------------------
+
+Ensure that you meet the `Software Requirements <https://techdocs.broadcom.com/us/en/ca-mainframe-software/devops/ca-brightside/3-0/zowe-cli/install-zowe-cli/install-cli-plug-ins/software-requirements-for-cli-plug-ins.html>`_ before you install the collection.
+The JCLCheck collection has the same requirements as the JCLCheck Plug-in for Zowe CLI.
+
+Provide Connection Parameters in the Ansible Inventory
+------------------------------------------------------
+
+You can add JCLCheck service connection parameters to the inventory to avoid repeating your connection details on every task.
+Ensure that the inventory contains the host and port for the JCLCheck REST API service instance that you want to have in your system.
+
+Add the following definitions to your inventory in YAML format to each system with JCLCheck:
+
+.. code-block:: yaml
+
+   broadcom:
+     jclcheck:
+       host: <if different from the current host in the inventory>
+       port: <port of the JCLCheck REST API service>
+       protocol: <https|http>  # https is default
+       reject_unauthorized: <y|n>  # y = certificate validation is enabled (default)
+
+The following example shows how you can use the JCLCheck REST API service that runs on the same host and port number 6028.
+The service uses the default protocol ``https`` and validates the certificate.
+
+.. code-block:: yaml
+
+   broadcom:
+     jclcheck:
+       port: 6028
+
+For more information, see `Connection methods and details <../../../connecting.html>`_.
+
+Example
+-------
+
+In the following example, you can see how JCLCheck validates a JCL before submitting it.
+
+.. code-block:: yaml
+
+   - name: Check the JCL using JCLCheck before submitting
+     hosts: sys1
+     gather_facts: false
+     vars:
+       job: MY.DATASET(JOB1)
+     tasks:
+     - name: Check the JCL prior submitting
+       broadcom.jclcheck.check_data_set:
+         data_set: "{{ job }}"
+         jclcheck_options: "NOHCD NOJCLLIB"
+     - name: Submit the JCL and wait for its completion
+       ibm.ibm_zos_core.zos_job_submit:
+         src: "{{ job }}"
+         location: DATA_SET
+         wait: true
+
+The result of the check is available in the response of the module in the ``data.jcl_check_code`` attribute.
+
+``jcl_check_code`` can have the following values:
+
+
+* **0** - Indicates the normal end of JCLCheck and only informational messages are issued.
+* **4** - Indicates the normal end of JCLCheck and only warning messages are issued.
+* **8** - Indicates the normal end of JCLCheck and error messages are issued.
+* **12** - Indicates the normal end of JCLCheck and serious error messages are issued.
+
+Higher values indicate an abnormal end of JCLCheck. For more information, see `JCLCheck Return Codes <https://techdocs.broadcom.com/us/en/ca-mainframe-software/automation/ca-jclcheck-workload-automation/12-0/reference/jclcheck-return-codes.html>`_.
+
+By default, the module is successful when the ``jcl_check_code`` is 0 (informational messages) or 4 (warning messages). If you need to change the maximum successful return code, set the value with the ``max_return_code`` option.
+
+You can use the following JCLCheck options:
+
+
+* `NOHCD <https://techdocs.broadcom.com/us/en/ca-mainframe-software/automation/ca-jclcheck-workload-automation/12-0/reference/jclcheck-runtime-options/description-of-runtime-options/hcd.html>`_ - disables UCB scanning for both static and dynamic devices that are defined, using Hardware Configuration Definition services (HCD).
+* `NOJCLLIB <https://techdocs.broadcom.com/us/en/ca-mainframe-software/automation/ca-jclcheck-workload-automation/12-0/reference/jclcheck-runtime-options/description-of-runtime-options/jcllib.html>`_ - disables JCLLIB statement support
+
+For more information on the JCLCheck runtime options, see `Description of Runtime Options <https://techdocs.broadcom.com/us/en/ca-mainframe-software/automation/ca-jclcheck-workload-automation/12-0/reference/jclcheck-runtime-options/description-of-runtime-options.html>`_.
+
+For more information about the collection modules, see the *Contents* section. 
+
+Contents
+--------
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   contents/*

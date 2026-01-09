@@ -1,0 +1,447 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>execute_command – Execute the specified operator command &mdash; Broadcom Ansible Collections for Mainframe  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=41de9001" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/ansible.css?v=b54c304f" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/rtd-ethical-ads.css?v=289b023e" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/images/Ansible-Mark-RGB_Black.png"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="execute_rexx – Execute the specified OPS/MVS REXX program" href="execute_rexx.html" />
+    <link rel="prev" title="enable_rule – Enable the specified rule" href="enable_rule.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
+
+
+
+
+</head>
+
+<body class="wy-body-for-nav"><!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+    <li><a href="https://forum.ansible.com/" target="_blank">Ansible community forum</a></li>
+    <li><a href="https://docs.ansible.com/" target="_blank">Documentation</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="../../../../_static/images/Ansible-Mark-RGB_White.png"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Broadcom Ansible Collections for Mainframe  documentation</div>
+</a>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Broadcom Ansible Collections for Mainframe
+          </a><!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <label class="sr-only" for="q">Search docs:</label>
+    <input type="text" class="st-default-search-input" id="q" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../using.html">Using collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../connecting.html">Connection methods and details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Collections</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../ca7/index.html">broadcom.ca7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../dbm_db2/index.html">broadcom.dbm_db2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endevor/index.html">broadcom.endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endevor_bridge_for_git/index.html">broadcom.endevor_bridge_for_git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../file_master_plus/index.html">broadcom.file_master_plus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../idms/index.html">broadcom.idms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jclcheck/index.html">broadcom.jclcheck</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mat/index.html">broadcom.mat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mat_pma_util/index.html">broadcom.mat_pma_util</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">broadcom.ops</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="create_event.html">create_event – Create a generic AOF event for API rules processing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="disable_rule.html">disable_rule – Disable the specified rule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enable_rule.html">enable_rule – Enable the specified rule</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">execute_command – Execute the specified operator command</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#return-values">Return Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#status">Status</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="execute_rexx.html">execute_rexx – Execute the specified OPS/MVS REXX program</a></li>
+<li class="toctree-l2"><a class="reference internal" href="reset_auto_rule.html">reset_auto_rule – Reset (turn off) autoenable for the specified rule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="set_auto_rule.html">set_auto_rule – Set the specified rule to autoenable</a></li>
+<li class="toctree-l2"><a class="reference internal" href="show_logname.html">show_logname – Display data associated with logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="show_parms.html">show_parms – Display SSM parameters and their values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="show_records.html">show_records – Display a list of opslog records</a></li>
+<li class="toctree-l2"><a class="reference internal" href="show_resource.html">show_resource – Display data associated with the specified SSM resource</a></li>
+<li class="toctree-l2"><a class="reference internal" href="show_rule.html">show_rule – Display data associated with the specified rule</a></li>
+<li class="toctree-l2"><a class="reference internal" href="show_ruleset.html">show_ruleset – Display data associated with one or all rulesets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="show_status.html">show_status – Display data associated with an OPS/MVS REST API server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="show_subsystem.html">show_subsystem – Display a list of the OPS/MVS subsystems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="show_table.html">show_table – Display data associated with tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="start_resource.html">start_resource – Start the specified resource</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stop_resource.html">stop_resource – Stop the specified resource</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../spool/index.html">broadcom.spool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sysview/index.html">broadcom.sysview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../view/index.html">broadcom.view</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../zowe_core/index.html">broadcom.zowe_core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../zowe_core_3/index.html">broadcom.zowe_core_3</a></li>
+</ul>
+<!-- extra nav elements for Ansible beyond RTD Sphinx Theme -->
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Broadcom Ansible Collections for Mainframe</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">broadcom.ops</a></li>
+      <li class="breadcrumb-item active">execute_command – Execute the specified operator command</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/generated/broadcom/ops/contents/execute_command.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+  
+           <div itemprop="articleBody">
+             
+  <section id="execute-command-execute-the-specified-operator-command">
+<span id="execute-command-module"></span><h1>execute_command – Execute the specified operator command<a class="headerlink" href="#execute-command-execute-the-specified-operator-command" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></p></li>
+<li><p><a class="reference internal" href="#parameters" id="id2">Parameters</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id3">Examples</a></p></li>
+<li><p><a class="reference internal" href="#return-values" id="id4">Return Values</a></p></li>
+<li><p><a class="reference internal" href="#status" id="id5">Status</a></p></li>
+</ul>
+</nav>
+<section id="synopsis">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Synopsis</a><a class="headerlink" href="#synopsis" title="Link to this heading"></a></h2>
+<p>Execute the specified operator command.</p>
+</section>
+<section id="parameters">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Parameters</a><a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<blockquote>
+<div><dl>
+<dt>command (<em>required</em>, type: str)</dt><dd><p>The text of the operator command to be issued. The length of this string cannot exceed 240 characters.</p>
+</dd>
+<dt>bmp_cmd_out (type: str)</dt><dd><p>If the specified command is an IMS command, this parameter controls the echoing of the command output. This keyword only applies if you are</p>
+<p>using an IMS Operations Facility (IOF) Batch Message Processing (BMP) program for issuing IMS commands. Valid values are: OPSLOG, WTO, and</p>
+<p>NONE. A value of ‘OPSLOG’ echoes all output that is associated with the current IMS command back to OPSLOG as trace messages. This results in a</p>
+<p>small amount of additional overhead to the command, assuming that the number of lines of output is not large. No output is sent back to any</p>
+<p>z/OS console or to the subsystem interface. A value of ‘WTO’ echoes all output that is associated with the current IMS command as Write To</p>
+<p>Operator messages to the z/OS console. Using this option can add a significant amount of overhead to IMS command processing and has the</p>
+<p>potential of flooding consoles with command output messages. A value of ‘NONE’ sends IMS commands to BMP and returns responses to</p>
+<p>the issuing program (if so requested). This recommended approach results in the lowest amount of overhead. The use of this parameter does not</p>
+<p>affect how the IMS command output is returned to the command issuer. The default value for this parameter is ‘NONE’.</p>
+</dd>
+<dt>capture (type: str)</dt><dd><p>This parameter captures command responses that are not internally routed back to the OPS/MVS console thatsued the command. If this parameter</p>
+<p>is specified, command response messages are captured based on text segments matching the first characters (starting with column 1) of the</p>
+<p>messages. These captured response messages are in addition to the usual command response messages that are captured based on other specified</p>
+<p>parameters. You can specify up to 10 message text segments with this parameter, and each text segment can have up to 124 characters.</p>
+</dd>
+<dt>cart (type: str)</dt><dd><p>This parameter specifies a z/OS command and response token (CART). This token can be represented as either a one- to eight-character string</p>
+<p>such as MYCMDTOK, or as a one- to eight-byte hexadecimal value such as X’D6D7E2E205162738’. Messages in response to this command are</p>
+<p>issued using the same CART. If this parameter is not specified, OPS/MVS will generate a unique CART token and use this generated token to</p>
+<p>determine which response messages should be returned to the caller.</p>
+</dd>
+<dt>cmd_echo (type: str)</dt><dd><p>This parameter determines whether issued command is echoed as first line of command response. You can specify either YES, which is</p>
+<p>the default, or NO. This parameter is ignored when the cmdLog parameter is set to NO.</p>
+</dd>
+<dt>cmd_log (type: str)</dt><dd><p>This parameter determines whether the issued command is echoed in both SYSLOG and the command response, or neither. You can specify either YES,</p>
+<p>which is the default, or NO. The NO setting overrides the setting of the cmdEcho parameter.</p>
+</dd>
+<dt>cmd_wait (type: str)</dt><dd><p>This parameter specifies, in seconds, how long to wait for command output collection to complete. The number of lines that are collected are</p>
+<p>analyzed every few hundredths of a second, based on the value specified with the interval parameter. If no new output lines are forthcoming</p>
+<p>after at least two output lines have been received, the wait for more response characters is terminated before this cmdWait period expires. You</p>
+<p>can specify a value for this parameter from 1 through 600 seconds. If you specify a value of YES for the stopEnd parameter, the end line of a</p>
+<p>multi-line WTO message also stops response collection. The main difference between the cmdWait and wait parameters is that the wait parameter</p>
+<p>specifies an unconditional wait period, while the cmdWait parameter specifies a conditional wait based on a continuous, timely collection of</p>
+<p>response lines. The default value for this parameter is the value of the OCWAIT global OPS/MVS parameter. When used in IMS Type 2 message</p>
+<p>syntax, the cmdWait and wait parameters are identical and specify the maximum wait time in seconds for message completion. IBM documentation on</p>
+<p>IMSPLEX usage implies that the delay in gathering results from multiple IMS systems can be considerable and should be considered normal. The</p>
+<p>default if omitted is 120, or 2 minutes. This cmdWait parameter is mutually exclusive with the wait parameter.</p>
+</dd>
+<dt>con_name (type: str)</dt><dd><p>This parameter defines the name of the console to receive the issued command. The console name that you provide can contain as many as eight</p>
+<p>characters. You can retrieve command output when the specified console is allocated to OPS/MVS. If the console is not allocated or does not</p>
+<p>exist, this request will return an error code of 190. This conName parameter is mutually exclusive with the conType parameter.</p>
+</dd>
+<dt>con_type (type: str)</dt><dd><p>This specifies the appropriate type of console that should be used for the command that you are issuing. The default value for this</p>
+<p>parameter is the current value of the OCCONTYPE global OPS/MVS parameter. Valid values are: ANY, EXTCONS, SSCONS, or XTRACONS. A value of ‘ANY’</p>
+<p>tells OPS/MVS to select the first available console to issue the command. In this case, OPS/MVS selects consoles in the following order:</p>
+<p>Subsystem consoles, followed by XTRACONS consoles, and finally Extended consoles. A value of ‘EXTCONS’ tells OPS/MVS to select the first</p>
+<p>available extended console. Extended consoles are controlled by the EXTENDEDCONSOLES global parameter. A value of ‘SSCONS’ tells</p>
+<p>OPS/MVS to select the first available subsystem console. Subsystem consoles are controlled by the SUBSYSDEFAULT global OPS/MVS parameter. A</p>
+<p>value of ‘XTRACONS’ tells OPS/MVS to select the first available extra extended console. Extra extended consoles are controlled by the</p>
+<p>EXTRAEXTCONSOLES global OPS/MVS parameter. This conType parameter is mutually exclusive with the conName parameter.</p>
+</dd>
+<dt>ims_id (type: str)</dt><dd><p>If you use the IMS Operations Facility (IOF) at your site, you can use the /opscmd endpoint to issue IMS commands. If you are running only one</p>
+<p>copy of IMS on the system where the current instance of the OPS/MVS REST API is running, you can omit the imsId parameter. However, if several</p>
+<p>copies of IMS (such as a production version and a test version) reside on the system, use this parameter to specify the IMS control region that</p>
+<p>should receive command. IMS IDs can contain from one to four characters. IBM ships IMS with a default IMS ID of IMSA. If you do not know</p>
+<p>the IMS ID of the IMS you want OPS/MVS to control, ask your systems management department. When used in IMS Type 2 message syntax, the command</p>
+<p>is issued to the IMSPLEX manager, and distributed from there. The imsId parameter is used to establish the eligibility of participating IMS</p>
+<p>systems to receive the command. If the imsId parameter is omitted, the first IMS system capable of responding receives the command. If the</p>
+<p>value of the imsId parameter is specified as a wildcard *, all participating IMS systems receive the command. The value of the imsId parameter</p>
+<p>can also specified as a list, separated by spaces or commas, of specific IMS system names to receive the command. The wildcard * should not</p>
+<p>be used with the imsId parameter unless the imsPlex parameter is specified with an explicit name.</p>
+</dd>
+<dt>ims_plex (type: str)</dt><dd><p>If you use the IMS Operations Facility (IOF) at your site, you can use the /opscmd endpoint to issue IMS commands. If you are running only one</p>
+<p>copy of IMS on the system where the current instance of the OPS/MVS REST API is running, you can omit the imsId parameter. However, if several</p>
+<p>copies of IMS (such as a production version and a test version) reside on the system, use this parameter to specify the IMS control region that</p>
+<p>should receive command. IMS IDs can contain from one to four characters. IBM ships IMS with a default IMS ID of IMSA. If you do not know</p>
+<p>the IMS ID of the IMS you want OPS/MVS to control, ask your systems management department. When used in IMS Type 2 message syntax, the command</p>
+<p>is issued to the IMSPLEX manager, and distributed from there. The imsId parameter is used to establish the eligibility of participating IMS</p>
+<p>systems to receive the command. If the imsId parameter is omitted, the first IMS system capable of responding receives the command. If the</p>
+<p>value of the imsId parameter is specified as a wildcard *, all participating IMS systems receive the command. The value of the imsId parameter</p>
+<p>can also specified as a list, separated by spaces or commas, of specific IMS system names to receive the command. The wildcard * should not</p>
+<p>be used with the imsId parameter unless the imsPlex parameter is specified with an explicit name.</p>
+</dd>
+<dt>ims_reply (type: str)</dt><dd><p>The presence of this imsPlex parameter implies you are issuing an IMS command using the IMS Type 2 message syntax. This value can be specified</p>
+<p>as a specific IMSPLEX name, in which case the imsId parameter controls the selection of participating IMS systems. The imsPlex parameter can</p>
+<p>also be specified as a *, meaning the imsId determines the IMSPLEX name. In this case, the imsId parameter cannot be specified as a</p>
+<p>wildcard *, but must contain a valid IMS system name. The imsId parameter, or the first of a list, will be used to locate the name of its</p>
+<p>associated IMSPLEX.</p>
+</dd>
+<dt>interval (type: str)</dt><dd><p>This specifies, in centiseconds, how frequently to test for command response lines to see if the response has ended. This interval</p>
+<p>parameter temporarily overrides value of OCINTERVAL global OPS/MVS parameter. The default for this interval parameter is value of</p>
+<p>the OCINTERVAL global OPS/MVS parameter, but you can specify any number from 10 through 300, or a value of 0 to bypass interval testing.</p>
+</dd>
+<dt>local_only (type: str)</dt><dd><p>When ‘YES’ is specified for this, only messages from the local system are considered as potential command response candidates. This</p>
+<p>parameter should be used in conjunction with the capture and stopMsg parameters to prevent output from other systems possibly being returned as</p>
+<p>command output. You can specify either NO, which is the default, or YES.</p>
+</dd>
+<dt>log (type: str)</dt><dd><p>This parameter determines whether response lines from the issued command go into the SYSLOG and/or OPSLOG data sets. Valid options are: YES,</p>
+<p>NO, OFF, and NOWHERE. A value of ‘YES’ means command responses and command echo will be logged in both and OPSLOG. A value of ‘NO’ means</p>
+<p>SYSLOG will only contain the command echo, not the command responses, and OPSLOG will contain both the command echo and the command responses.</p>
+<p>A value of ‘OFF’ means command echo and command responses will not be logged to SYSLOG. OPSLOG will contain command responses, but not</p>
+<p>the command echo. A value of ‘NOWHERE’ means the command echo and command responses will not be logged to either the SYSLOG or the OPSLOG. Note</p>
+<p>that the logging of command response lines is also influenced by MIC and AOF rule processing. The default value for this parameter is ‘YES’.</p>
+</dd>
+<dt>max_cmd_out (type: str)</dt><dd><p>This parameter defines how many command output to collect before terminating the command response. If the command output contains more</p>
+<p>lines than this maxCmdOut value, no more command output lines are collected. You can specify any value from 1 through 32767 for this parameter.</p>
+<p>The default value for this parameter is the value of the OCMAXMSG global OPS/MVS parameter.</p>
+</dd>
+<dt>output (type: str)</dt><dd><p>This parameter determines whether you receive output from the issued command. You can specify either YES, which is the default, or NO. The NO</p>
+<p>setting is mutually exclusive with the wait parameter.</p>
+</dd>
+<dt>stop_end (type: str)</dt><dd><p>This parameter determines whether the end line of a multiline WTO message stops the collection of command output. Valid options are: YES, and</p>
+<p>NO. A value of ‘YES’ will cause the command response to terminate at the first end line of a multiline WTO message or at the time that is</p>
+<p>specified through the cmdWait parameter or the OCWAIT global OPS/MVS parameter. A value of ‘NO’ will cause the command output to continue</p>
+<p>collecting until either: the time interval that is specified by the cmdWait parameter or the OCWAIT global parameter expires; or no new command</p>
+<p>output lines are collected in the time interval that is specified by the interval parameter. The default value for this parameter is ‘YES’.</p>
+</dd>
+<dt>stop_msg (type: str)</dt><dd><p>This parameter specifies a list of one to ten message text segments matching the first characters (starting with column 1) of the messages that</p>
+<p>terminate the collection of command response lines. When any of these text segments are detected, the collection of response lines stops. The</p>
+<p>message segment or segments you specify need not be directed to the console receiving the command response. Each item in the list of message</p>
+<p>text segments you specify can contain no more than 124 characters. All message text segments that are specified on this parameter will match</p>
+<p>both uppercase and lowercase text in potential matching messages (case-insensitive). This parameter does not work with IMS Type 2 commands. The</p>
+<p>stopMsg and stopResp parameters are mutually exclusive.</p>
+</dd>
+<dt>stop_resp (type: str)</dt><dd><p>This parameter specifies a list of one to ten message text segments matching the first characters (starting with column 1) of the messages that</p>
+<p>terminate the collection of command response lines. The message segments that you specify must be directed to the console receiving the command</p>
+<p>response, and each item in the segment list can contain no more than 124 characters. You can use this stopResp parameter to terminate the</p>
+<p>collection of a long command response once the desired response line is found. All message text segments that are specified on this keyword</p>
+<p>will match both uppercase and lowercase text in potential matching messages (case-insensitive). The stopResp and stopMsg parameters are</p>
+<p>mutually exclusive.</p>
+</dd>
+<dt>wait (type: int)</dt><dd><p>This parameter specifies a period of time (in seconds) to unconditionally wait to receive output from the issued command. Control is not</p>
+<p>returned to caller until full wait period elapses. In most cases, a conditional wait using cmdWait parameter in conjunction with</p>
+<p>the interval and various stopXxxx parameters can be used to effectively collect command responses, thus eliminating the need for an</p>
+<p>unconditional wait. When used in IMS Type 2 message syntax, the wait parameter is identical to the cmdWait parameter. This wait parameter is</p>
+<p>mutually exclusive with the cmdWait parameter. If the output parameter is set to NO, you can not use this parameter (mutually exclusive).</p>
+</dd>
+<dt>debug (type: str, default: <code class="docutils literal notranslate"><span class="pre">NO</span></code>)</dt><dd><p>Optionally set the hidden REST API endpoint parameter, debug, to allow REXX program execution output to be returned.</p>
+<dl class="simple">
+<dt>Choices:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">YES</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NO</span></code> <strong>←</strong></p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>format (type: str, default: <code class="docutils literal notranslate"><span class="pre">namevalue</span></code>)</dt><dd><p>Format of the displayed output.</p>
+<dl class="simple">
+<dt>Choices:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">namevalue</span></code> <strong>←</strong></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">namevaluecolor</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">csv</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">json</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>user (type: str)</dt><dd><p>Your z/OS user name that is used to authenticate to OPS/MVS Web Services / REST API.</p>
+</dd>
+<dt>password (type: str)</dt><dd><p>Your z/OS password that is used to authenticate to OPS/MVS Web Services / REST API.</p>
+</dd>
+<dt>host (type: str)</dt><dd><p>The hostname of the server where OPS/MVS Web Services / REST API is running.</p>
+</dd>
+<dt>port (type: int)</dt><dd><p>The port number for OPS/MVS Web Services / REST API.</p>
+</dd>
+<dt>reject_unauthorized (type: bool, default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</dt><dd><p>If set to true, the server certificate is verified against the list of supplied CAs. If set to false, certificate verification is not</p>
+<p>performed.</p>
+</dd>
+<dt>protocol (<em>required</em>, type: str)</dt><dd><p>The protocol that is used for connecting to OPS/MVS Web Services / REST API.</p>
+<dl class="simple">
+<dt>Choices:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">http</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">https</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>subsystem (type: str, default: <code class="docutils literal notranslate"><span class="pre">OPSS</span></code>)</dt><dd><p>Specifies the subsystem ID of the OPS/MVS instance to which commands will be directed. This parameter is ignored by the ‘show status’ and ‘show</p>
+<p>subsystem’ commands.</p>
+</dd>
+<dt>rest_api (type: bool)</dt><dd><p>If set to true, the plug-in executes the command against the OPS/MVS REST API. If set to false, the plug-in executes against the OPS/MVS Web</p>
+<p>Services.</p>
+</dd>
+<dt>base_path (type: str)</dt><dd><p>NOTE: This parameter can only be used with the REST API server. Specifies the base path for your Zowe Zowe API Mediation Layer instance.</p>
+<p>Specify this option to prepend the base path to all resources when making REST requests. Only specify this option if you are using an Zowe Zowe</p>
+<p>API Mediation Layer.</p>
+</dd>
+<dt>cert_file (type: path)</dt><dd><p>The file path to a certificate file to use for authentication.</p>
+<p>Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe</p>
+<p>Docs.</p>
+</dd>
+<dt>cert_key_file (type: path)</dt><dd><p>The file path to a certificate key file to use for authentication.</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Execute the operator command, &quot;D A,L&quot; on the &quot;OPSS&quot; subsystem.</span>
+<span class="w">  </span><span class="nt">broadcom.ops.execute_command</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">command</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">D A,L</span>
+<span class="w">    </span><span class="nt">subsystem</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OPSS</span>
+</pre></div>
+</div>
+</section>
+<section id="return-values">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Return Values</a><a class="headerlink" href="#return-values" title="Link to this heading"></a></h2>
+<dl>
+<dt>data (type: list, <em>when returned data is a dictionary</em>)</dt><dd><p>Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.</p>
+</dd>
+<dt>error (type: complex, <em>error</em>)</dt><dd><p>More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.</p>
+<dl class="simple">
+<dt>additional_details (type: str)</dt><dd><p>Detailed message about the failure.</p>
+</dd>
+<dt>msg (type: str)</dt><dd><p>Short description of the result or failure.</p>
+</dd>
+<dt>request (type: str, <em>API request failed</em>)</dt><dd><p>HTTP method used to invoke API service request.</p>
+</dd>
+<dt>resource (type: str, <em>API request failed</em>)</dt><dd><p>URI of the resource of the API service request.</p>
+</dd>
+</dl>
+</dd>
+<dt>failed (type: bool, <em>always</em>)</dt><dd><p>A boolean that indicates if the task was failed or not.</p>
+</dd>
+<dt>list (type: list, <em>when returned data is a list</em>)</dt><dd><p>Data from the module execution (a list of data structures).</p>
+</dd>
+<dt>msg (type: str, <em>sometimes</em>)</dt><dd><p>Short description of the result or failure.</p>
+</dd>
+<dt>rc (type: int, <em>always</em>)</dt><dd><p>Exit code of the module, successful exit code is 0, failure is typically 1 or higher.</p>
+</dd>
+<dt>stderr (type: str, <em>error</em>)</dt><dd><p>Details of the error.</p>
+</dd>
+<dt>stdout (type: str, <em>success</em>)</dt><dd><p>Summary of the result.</p>
+</dd>
+</dl>
+</section>
+<section id="status">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Status</a><a class="headerlink" href="#status" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>This module is maintained by Broadcom.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="enable_rule.html" class="btn btn-neutral float-left" title="enable_rule – Enable the specified rule" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="execute_rexx.html" class="btn btn-neutral float-right" title="execute_rexx – Execute the specified OPS/MVS REXX program" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Broadcom.</p>
+  </div>
+
+  
+   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+  <a href="https://sphinx-ansible-theme.rtfd.io">Sphinx Ansible Theme</a>
+  that is based on the
+  <a href="https://github.com/readthedocs/sphinx_rtd_theme">Read the Docs theme</a>
+  and is maintained by the <a href="https://docs.ansible.com/">Ansible Community</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script><!-- extra footer elements for Ansible beyond RTD Sphinx Theme -->
+
+</body>
+</html>

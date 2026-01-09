@@ -1,0 +1,192 @@
+.. _show_status_module:
+
+
+show_status -- Display data associated with an OPS/MVS REST API server
+======================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Display data associated with an OPS/MVS REST API server. This command is only available when connected to the OPS/MVS REST API server.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  format (type: str, default: ``namevalue``)
+    Format of the displayed output.
+
+
+    Choices:
+      * ``namevalue`` **←**
+      * ``namevaluecolor`` 
+      * ``csv`` 
+      * ``json`` 
+
+  user (type: str)
+    Your z/OS user name that is used to authenticate to OPS/MVS Web Services / REST API.
+
+
+
+  password (type: str)
+    Your z/OS password that is used to authenticate to OPS/MVS Web Services / REST API.
+
+
+
+  host (type: str)
+    The hostname of the server where OPS/MVS Web Services / REST API is running.
+
+
+
+  port (type: int)
+    The port number for OPS/MVS Web Services / REST API.
+
+
+
+  reject_unauthorized (type: bool, default: ``True``)
+    If set to true, the server certificate is verified against the list of supplied CAs. If set to false, certificate verification is not
+
+    performed.
+
+
+
+  protocol (*required*, type: str)
+    The protocol that is used for connecting to OPS/MVS Web Services / REST API.
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` 
+
+  subsystem (type: str, default: ``OPSS``)
+    Specifies the subsystem ID of the OPS/MVS instance to which commands will be directed. This parameter is ignored by the 'show status' and 'show
+
+    subsystem' commands.
+
+
+
+  rest_api (type: bool)
+    If set to true, the plug\-in executes the command against the OPS/MVS REST API. If set to false, the plug\-in executes against the OPS/MVS Web
+
+    Services.
+
+
+
+  base_path (type: str)
+    NOTE: This parameter can only be used with the REST API server. Specifies the base path for your Zowe Zowe API Mediation Layer instance.
+
+    Specify this option to prepend the base path to all resources when making REST requests. Only specify this option if you are using an Zowe Zowe
+
+    API Mediation Layer.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe
+
+    Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Show the data for REST API in "CSV" format
+      broadcom.ops.show_status:
+        format: csv
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

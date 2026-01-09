@@ -1,0 +1,16 @@
+
+broadcom.spool
+==============
+
+Interact with Output Management Spool™ for z/OS (OM Spool)
+
+Compatible with Zowe CLI Plugin version: 3.0.1
+
+For more information, see the *Contents* section.
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :caption: Contents
+
+   contents/*

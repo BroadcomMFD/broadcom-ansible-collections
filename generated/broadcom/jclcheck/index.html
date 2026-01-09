@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>broadcom.jclcheck &mdash; Broadcom Ansible Collections for Mainframe  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=41de9001" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/ansible.css?v=b54c304f" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/rtd-ethical-ads.css?v=289b023e" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/images/Ansible-Mark-RGB_Black.png"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="check_data_set – Check JCL contained in an MVS data set" href="contents/check_data_set.html" />
+    <link rel="prev" title="list_user_tasks – Lists active IDMS user tasks" href="../idms/contents/list_user_tasks.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
+
+
+
+
+</head>
+
+<body class="wy-body-for-nav"><!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+    <li><a href="https://forum.ansible.com/" target="_blank">Ansible community forum</a></li>
+    <li><a href="https://docs.ansible.com/" target="_blank">Documentation</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="../../../_static/images/Ansible-Mark-RGB_White.png"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Broadcom Ansible Collections for Mainframe  documentation</div>
+</a>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Broadcom Ansible Collections for Mainframe
+          </a><!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <label class="sr-only" for="q">Search docs:</label>
+    <input type="text" class="st-default-search-input" id="q" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using.html">Using collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../connecting.html">Connection methods and details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Collections</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ca7/index.html">broadcom.ca7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dbm_db2/index.html">broadcom.dbm_db2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../endevor/index.html">broadcom.endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../endevor_bridge_for_git/index.html">broadcom.endevor_bridge_for_git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file_master_plus/index.html">broadcom.file_master_plus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../idms/index.html">broadcom.idms</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">broadcom.jclcheck</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#limitations">Limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#software-requirements">Software Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#provide-connection-parameters-in-the-ansible-inventory">Provide Connection Parameters in the Ansible Inventory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#contents">Contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="contents/check_data_set.html">check_data_set – Check JCL contained in an MVS data set</a></li>
+<li class="toctree-l3"><a class="reference internal" href="contents/check_local_file.html">check_local_file – Check JCL contained in a local file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../mat/index.html">broadcom.mat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mat_pma_util/index.html">broadcom.mat_pma_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops/index.html">broadcom.ops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spool/index.html">broadcom.spool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sysview/index.html">broadcom.sysview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../view/index.html">broadcom.view</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zowe_core/index.html">broadcom.zowe_core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zowe_core_3/index.html">broadcom.zowe_core_3</a></li>
+</ul>
+<!-- extra nav elements for Ansible beyond RTD Sphinx Theme -->
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Broadcom Ansible Collections for Mainframe</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">broadcom.jclcheck</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/generated/broadcom/jclcheck/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+  
+           <div itemprop="articleBody">
+             
+  <section id="broadcom-jclcheck">
+<h1>broadcom.jclcheck<a class="headerlink" href="#broadcom-jclcheck" title="Link to this heading"></a></h1>
+<p>Validates the accuracy of job control language (JCL) and also helps identify execution-time errors, such as security violations and missing data sets that could cause jobs to fail.</p>
+<p>Compatible with Zowe CLI Plugin version: 3.0.0</p>
+<p>You can use the JCLCheck collection in playbooks as JCL quality check
+before submitting JCLs in your environment.</p>
+<p>By validating JCL and identifying problems, the collection provides you with advanced
+warnings that enables you to correct any errors before you execute a job in a production cycle.</p>
+<section id="limitations">
+<h2>Limitations<a class="headerlink" href="#limitations" title="Link to this heading"></a></h2>
+<p>The following limitations apply to the JCLCheck collection:</p>
+<ul class="simple">
+<li><p>The collection does not support REXX executables with the STDREXX option.</p></li>
+<li><p>The AUTOPROC option is required and is set automatically.</p></li>
+<li><p>The JES3 option is set automatically if JCLCheck runs on JES3 system. The option is ignored if you include it in a task.</p></li>
+<li><p>Use these alternatives for the following JCLCheck options:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">CNTLOVDD</span></code> (use <code class="docutils literal notranslate"><span class="pre">CNTLOVER</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LOADOVDD</span></code> (use <code class="docutils literal notranslate"><span class="pre">LOADOVER</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MCOUsr</span></code> (use <code class="docutils literal notranslate"><span class="pre">MCOSYS</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OPRoc</span></code> (use <code class="docutils literal notranslate"><span class="pre">OPROCLIB</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">UPDTDD</span></code> (use <code class="docutils literal notranslate"><span class="pre">UPDTDSN</span></code>)</p></li>
+</ul>
+</li>
+<li><p>You cannot use the following JCLCheck options with the collection:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">NOOption</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">REMote</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TLms</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Graph</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PROc</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TERM</span></code></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="software-requirements">
+<h2>Software Requirements<a class="headerlink" href="#software-requirements" title="Link to this heading"></a></h2>
+<p>Ensure that you meet the <a class="reference external" href="https://techdocs.broadcom.com/us/en/ca-mainframe-software/devops/ca-brightside/3-0/zowe-cli/install-zowe-cli/install-cli-plug-ins/software-requirements-for-cli-plug-ins.html">Software Requirements</a> before you install the collection.
+The JCLCheck collection has the same requirements as the JCLCheck Plug-in for Zowe CLI.</p>
+</section>
+<section id="provide-connection-parameters-in-the-ansible-inventory">
+<h2>Provide Connection Parameters in the Ansible Inventory<a class="headerlink" href="#provide-connection-parameters-in-the-ansible-inventory" title="Link to this heading"></a></h2>
+<p>You can add JCLCheck service connection parameters to the inventory to avoid repeating your connection details on every task.
+Ensure that the inventory contains the host and port for the JCLCheck REST API service instance that you want to have in your system.</p>
+<p>Add the following definitions to your inventory in YAML format to each system with JCLCheck:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">broadcom</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">jclcheck</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;if different from the current host in the inventory&gt;</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;port of the JCLCheck REST API service&gt;</span>
+<span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;https|http&gt;</span><span class="w">  </span><span class="c1"># https is default</span>
+<span class="w">    </span><span class="nt">reject_unauthorized</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">&lt;y|n&gt;</span><span class="w">  </span><span class="c1"># y = certificate validation is enabled (default)</span>
+</pre></div>
+</div>
+<p>The following example shows how you can use the JCLCheck REST API service that runs on the same host and port number 6028.
+The service uses the default protocol <code class="docutils literal notranslate"><span class="pre">https</span></code> and validates the certificate.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">broadcom</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">jclcheck</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6028</span>
+</pre></div>
+</div>
+<p>For more information, see <a class="reference external" href="../../../connecting.html">Connection methods and details</a>.</p>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<p>In the following example, you can see how JCLCheck validates a JCL before submitting it.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Check the JCL using JCLCheck before submitting</span>
+<span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sys1</span>
+<span class="w">  </span><span class="nt">gather_facts</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="nt">vars</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">job</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">MY.DATASET(JOB1)</span>
+<span class="w">  </span><span class="nt">tasks</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Check the JCL prior submitting</span>
+<span class="w">    </span><span class="nt">broadcom.jclcheck.check_data_set</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">data_set</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">job</span><span class="nv"> </span><span class="s">}}&quot;</span>
+<span class="w">      </span><span class="nt">jclcheck_options</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;NOHCD</span><span class="nv"> </span><span class="s">NOJCLLIB&quot;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Submit the JCL and wait for its completion</span>
+<span class="w">    </span><span class="nt">ibm.ibm_zos_core.zos_job_submit</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">src</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;{{</span><span class="nv"> </span><span class="s">job</span><span class="nv"> </span><span class="s">}}&quot;</span>
+<span class="w">      </span><span class="nt">location</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DATA_SET</span>
+<span class="w">      </span><span class="nt">wait</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</pre></div>
+</div>
+<p>The result of the check is available in the response of the module in the <code class="docutils literal notranslate"><span class="pre">data.jcl_check_code</span></code> attribute.</p>
+<p><code class="docutils literal notranslate"><span class="pre">jcl_check_code</span></code> can have the following values:</p>
+<ul class="simple">
+<li><p><strong>0</strong> - Indicates the normal end of JCLCheck and only informational messages are issued.</p></li>
+<li><p><strong>4</strong> - Indicates the normal end of JCLCheck and only warning messages are issued.</p></li>
+<li><p><strong>8</strong> - Indicates the normal end of JCLCheck and error messages are issued.</p></li>
+<li><p><strong>12</strong> - Indicates the normal end of JCLCheck and serious error messages are issued.</p></li>
+</ul>
+<p>Higher values indicate an abnormal end of JCLCheck. For more information, see <a class="reference external" href="https://techdocs.broadcom.com/us/en/ca-mainframe-software/automation/ca-jclcheck-workload-automation/12-0/reference/jclcheck-return-codes.html">JCLCheck Return Codes</a>.</p>
+<p>By default, the module is successful when the <code class="docutils literal notranslate"><span class="pre">jcl_check_code</span></code> is 0 (informational messages) or 4 (warning messages). If you need to change the maximum successful return code, set the value with the <code class="docutils literal notranslate"><span class="pre">max_return_code</span></code> option.</p>
+<p>You can use the following JCLCheck options:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://techdocs.broadcom.com/us/en/ca-mainframe-software/automation/ca-jclcheck-workload-automation/12-0/reference/jclcheck-runtime-options/description-of-runtime-options/hcd.html">NOHCD</a> - disables UCB scanning for both static and dynamic devices that are defined, using Hardware Configuration Definition services (HCD).</p></li>
+<li><p><a class="reference external" href="https://techdocs.broadcom.com/us/en/ca-mainframe-software/automation/ca-jclcheck-workload-automation/12-0/reference/jclcheck-runtime-options/description-of-runtime-options/jcllib.html">NOJCLLIB</a> - disables JCLLIB statement support</p></li>
+</ul>
+<p>For more information on the JCLCheck runtime options, see <a class="reference external" href="https://techdocs.broadcom.com/us/en/ca-mainframe-software/automation/ca-jclcheck-workload-automation/12-0/reference/jclcheck-runtime-options/description-of-runtime-options.html">Description of Runtime Options</a>.</p>
+<p>For more information about the collection modules, see the <em>Contents</em> section.</p>
+</section>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/check_data_set.html">check_data_set – Check JCL contained in an MVS data set</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/check_local_file.html">check_local_file – Check JCL contained in a local file</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../idms/contents/list_user_tasks.html" class="btn btn-neutral float-left" title="list_user_tasks – Lists active IDMS user tasks" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="contents/check_data_set.html" class="btn btn-neutral float-right" title="check_data_set – Check JCL contained in an MVS data set" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Broadcom.</p>
+  </div>
+
+  
+   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+  <a href="https://sphinx-ansible-theme.rtfd.io">Sphinx Ansible Theme</a>
+  that is based on the
+  <a href="https://github.com/readthedocs/sphinx_rtd_theme">Read the Docs theme</a>
+  and is maintained by the <a href="https://docs.ansible.com/">Ansible Community</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script><!-- extra footer elements for Ansible beyond RTD Sphinx Theme -->
+
+</body>
+</html>

@@ -1,0 +1,212 @@
+.. _agent_agent_logs_module:
+
+
+agent_agent_logs -- Get Agent logs for CA 7 instance specified in path
+======================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Retrieve a Zip file containing files from the Agent's log directory. If a list of file names is supplied, only log files matching the specified name(s)
+
+will be included.
+
+If a list of file names is not supplied, all of the logs will be included.
+
+Note: WARNING: Depending on the size of the Agent's log files and which files are retrieved, this operation may take considerable time to complete.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  ca7_id (*required*, type: str)
+    CA7ONL Instance.
+
+
+
+  agent_name (*required*, type: str)
+    Specifies the name of the Agent for which to retrieve additional details.
+
+    Limits: 1 to 16 alphanumeric characters.
+
+
+
+  os (type: str)
+    Specifies the operating system of the Agent as known by the Scheduler.
+
+    WindowsLinuxUnixetc.Default: Linux.
+
+
+
+  logmaxsource (type: str)
+    Specifies the maximum size of all source log files to be retrieved.
+
+    Limits: 1 to 10 numeric characters in the range 1\-2147483647
+
+    Default: 524288000.
+
+
+
+  logmaxzip (type: str)
+    Specifies the maximum size of of the target Zip file to be retrieved.
+
+    Limits: 1 to 10 numeric characters in the range 1\-2147483647
+
+    Default: 262144000.
+
+
+
+  filenames (type: list)
+    Log file names. Wildcards are not allowed.
+
+
+
+  host (*required*, type: str)
+    Host name of the CA7 API service that is running on the mainframe system.
+
+
+
+  port (*required*, type: int)
+    Port for the CA7 API service that is running on the mainframe system.
+
+
+
+  user (*required*, type: str)
+    User name for authenticating connections to the CA7 API service that is running on the mainframe system.
+
+
+
+  password (*required*, type: str)
+    Password for authenticating connections to the CA7 API service that is running on the mainframe system.
+
+
+
+  base_path (type: str)
+    The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all resources when making REST
+
+    requests. Do not specify this option if you are not using an Zowe API Mediation Layer.
+
+
+
+  protocol (*required*, type: str)
+    Specifies protocol to use for CA7 connection (http or https).
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` 
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self\-signed certificates.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe
+
+    Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Get Agent logs of AGENTTEST for INSTANCE1
+      broadcom.ca7.agent_agent_logs:
+        agent_name: AGENTTEST
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

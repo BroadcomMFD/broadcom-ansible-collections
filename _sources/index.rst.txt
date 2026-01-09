@@ -1,0 +1,58 @@
+.. Broadcom Ansible Collections documentation master file, created by
+   sphinx-quickstart on Tue Mar  1 15:26:52 2022.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+.. |BACMs| replace:: Broadcom Ansible Collections for Mainframe
+
+==========================================
+|BACMs|
+==========================================
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Contents:
+
+|BACMs| provide the ability to connect the mainframe to enterprise automation strategy using the
+Ansible ecosystem. This enables automation on the mainframe (configuration management, provisioning, and application
+deployment) in a unified and easy-to-use platform.
+
+This solution comes together as a set of Ansible collections that enable
+Broadcom mainframe software solutions to be used in Ansible ecosystem.
+
+Each solution is represented in a distribution format known
+as collections that can include playbooks, roles, modules, and plugins.
+
+You can install and use collections through `Ansible Galaxy <https://galaxy.ansible.com/broadcom>`_.
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Getting Started
+
+   requirements
+   installation
+   using
+   connecting
+   troubleshooting
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Collections
+   :glob:
+
+   generated/**/index
+
+..
+   FAQs (TODO)
+   ===========
+
+   * Troubleshooting
+   * Support
+   * Other
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

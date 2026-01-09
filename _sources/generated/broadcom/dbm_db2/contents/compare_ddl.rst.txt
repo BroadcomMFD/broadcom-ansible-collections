@@ -1,0 +1,504 @@
+.. _compare_ddl_module:
+
+
+compare_ddl -- Compare objects that are defined in a DDL file to objects that are defined on a Db2 subsystem and generate an update script to implement the necessary object changes
+====================================================================================================================================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Compares that are defined in a DDL file tos that are defined on a Db2 subsystem and generate an update script to implement the necessary
+
+object changes. This command also generates a high\-level change summary report and a parseable impact analysis report. You can execute the script that
+
+is generated from this command using the 'zowe dbm execute compare\-script' command.
+
+
+
+For details about command usage for automation, see DBM\-Db2 samples at https://github.com/BroadcomMFD/dbm\-db2.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  local_input_ddl_filename (*required*, type: str)
+    Specifies the local input file that contains DDL statements for the Db2 objects that you want to compare to Db2 objects on a target subsystem.
+
+    Typically, this file is created by a 'zowe dbm generate ddl' command or retrieved from an archive. You can edit this file.
+
+
+
+  target_db2 (type: str)
+    Specifies the target Db2 subsystem or data sharing group where you want to use a command.
+
+    Note: If you specify the data sharing group, the first active Db2 subsystem in the group is used.
+
+
+
+  match_set (type: str)
+    Specifies the creator and name of an existing RC/Migrator automapping mask set. Matching is used to pair objects in a DDL file to objects that
+
+    are defined on a Db2 subsystem. Matching determines whether the 'change\-set' or 'rule\-set' options are applied.
+
+    Format:
+
+    \<match\-set\-creator.match\-set\-name\>
+
+    For more information about mask services, see the RC/Migrator documentation at https://techdocs.broadcom.com/db2rcmig
+
+    Note: If and are both specified, specifications in match\-set\-file take precedence.
+
+
+
+  match_set_file (type: str)
+    Specifies the name of the local input file that contains the mapping mask specifications. Matching is used to pair in a DDL file to
+
+    objects that are defined on a Db2 subsystem. For example, a mask specification can account for different schema naming patterns across
+
+    environments. Matching determines whether the 'change\-set' or 'rule\-set' options are applied.
+
+    
+
+    Format:
+
+    \<object\-type\> \<source\-name\-mask\> \<target\-name\-mask\>;
+
+    STOGROUP \<name\> \<name\>
+
+    DATABASE \<name\> \<name\>
+
+    TABLESPACE \<database.name\> \<database.name\>
+
+    TABLE \<schema.name\> \<schema.name\>
+
+    INDEX \<schema.name\> \<schema.name\>
+
+    VIEW \<schema.name\> \<schema.name\>
+
+    SYNONYM \<schema.name\> \<schema.name\>
+
+    ALIAS \<schema.name\> \<schema.name\>
+
+    TRIGGER \<schema.name\> \<schema.name\>
+
+    SEQUENCE \<schema.name\> \<schema.name\>
+
+    FUNCTION \<schema.name[.version]\> \<schema.name[.version]\>
+
+    PROCEDURE \<schema.name[.version]\> \<schema.name[.version]\>
+
+    
+
+    Note:
+
+    \- \<name\> must be between 1 and 128 characters. For DATABASE and TABLESPACE, \<name\> must be between 1 and 8 characters.
+
+    \- \<schema\> must be between 1 and 128 characters.
+
+    \- \<version\> must be between 1 and 64 characters.
+
+    
+
+    A mask specification can include the following wildcard characters:
+
+    
+
+    Percent sign (%) indicates that zero or more characters can occupy that position and all remaining positions to the end of the name, or to the
+
+    next character. The percent sign can be used anywhere in the name. However, the source and target characters must match exactly.
+
+    Hyphen or dash (\-) indicates that any character can occupy that position, but a character must exist at that position, and the source and
+
+    target character must match exactly. The hyphen can be repeated in several places in the name.
+
+    Asterisk (\*) indicates matching values. An asterisk cannot be used with other characters.
+
+    
+
+    Use a semicolon to separate mask specifications. Multiple mask specifications for the same object type are supported.
+
+    Example:
+
+    The following example demonstrates different ways of matching the table MYNAME.MYTABLE to the table YOURNAME.YOURTABLE:
+
+    TABLE MY%.%TABLE YOUR%.%TABLE;
+
+    TABLE MYN\-M\-.MYT% YOURN\-M\-.YOURT%;
+
+    TABLE MYNAME.MYTABLE YOURNAME.YOURTABLE;
+
+    TABLE \*.MYTABLE \*.YOURTABLE;
+
+    For a list of mask specifications, see the RC/Migrator documentation at https://techdocs.broadcom.com/db2rcmig
+
+    Note:
+
+    \- If and are both specified, specifications in match\-set\-file take precedence.
+
+    \- The matchSetValues options\-profile option has the same behavior as the match\-set\-file command option.
+
+
+
+  change_set (type: str)
+    Specifies the creator and name of an existing RC/Migrator global change set that changes Db2 objects during a command execution.
+
+    Format:
+
+    \<change\-set\-creator.change\-set\-name\>
+
+    For more information about global change services, see the RC/Migrator documentation at https://techdocs.broadcom.com/db2rcmig
+
+    Note: If change\-set and change\-set\-file are both specified, specifications in change\-set\-file take precedence.
+
+
+
+  change_set_file (type: str)
+    Specifies name of local input file that contains global change specifications that modify attributes of Db2 objects. Depending on
+
+    the backend configuration, the changes apply to either ALL objects in the DDL or to NEW objects only as determined by match\-set processing.
+
+    
+
+    Format:
+
+    \<object\-attribute\> \<from\-value\> \<to\-value\>
+
+    
+
+    The \<object\-attribute\> consists of four characters. The first two characters identify the object type. The last two characters identify the
+
+    specific attribute. Wildcard characters are supported in \<from\-value\> and \<to\-value\>. If the same \<object\-attribute\> is specified multiple
+
+    times, the first occurrence takes precedence.
+
+    Example:
+
+    The following example demonstrates changes to the table schema (creator) and tablespace names:
+
+    TBCR TEST% PROD%
+
+    TBTS TESTTS% PRODTS%
+
+    
+
+    For more information about global change services, see the RC/Migrator documentation at https://techdocs.broadcom.com/db2rcmig
+
+    
+
+    Note:
+
+    \- If change\-set and change\-set\-file are both specified, specifications in change\-set\-file take precedence.
+
+    \- The changeSetValues options\-profile option has the same behavior as the change\-set\-file command option.
+
+
+
+  rule_set (type: str)
+    Specifies the creator and name of an existing RC/Migrator rule set that overrides Db2 object attributes in the target Db2 subsystem with the
+
+    corresponding values from the input DDL file. The changes only apply to existing objects, as determined by match\-set processing.
+
+    Format:
+
+    \<rule\-set\-creator.rule\-set\-name\>
+
+    
+
+    For more information about rule database services, see the RC/Migrator documentation at https://techdocs.broadcom.com/db2rcmig .
+
+
+
+  id (type: str)
+    Specifies the 1\- to 8\-character name of the RC/Migrator compare strategy that is created on the target Db2 subsystem during a command
+
+    execution.
+
+    Format: The name must begin with a non\-numeric character and contain the following characters only: uppercase letters from A to Z, numbers from
+
+    0 to 9, and special characters $, #, and @.
+
+
+
+  description (type: str)
+    Specifies a 1\- to 25\-character description for the RC/Migrator compare strategy.
+
+
+
+  output_compare_script (type: str)
+    Specifies the name of the local output file that contains the update script to make changes to objects that reside on the Db2 subsystem.
+
+    
+
+    Default value: compare.txt
+
+
+
+  output_summary_file (type: str)
+    Specifies the name of the local output file that contains the change summary report in text format. This report tracks changes to Db2 objects
+
+    on the target Db2 subsystem, but it does not describe how changes are made.
+
+    
+
+    Default value: summary.txt
+
+
+
+  output_impact_file (type: str)
+    Specifies name of local output file that contains parseable impact analysis report in JSON or YAML format. This report identifies
+
+    the significant DDL operations that are on Db2 objects. The report provides the total number and type of DDL operations that are
+
+    performed on each object type, the list of DDL operations performed on each object instance, and the state of any pending changes.
+
+    To determine the report format, supply one of the following extensions in the file name:
+
+    \- .json for JSON
+
+    \- .yaml or .yml for YAML
+
+    If no extension is provided, the format is set to JSON.
+
+    
+
+    Default value: impact.json
+
+    For more information about the impact analysis report, see the RC/Migrator documentation at https://techdocs.broadcom.com/db2rcmig
+
+
+
+  error_file (type: str)
+    Specifies the local output error file in YAML format. The file contains basic execution information, connection details, dbm\-db2 profile
+
+    parameters, used arguments, and errors that occurred during execution of the command.
+
+    
+
+    Default value: error.log
+
+
+
+  modification (type: str)
+    Specifies a named set of server\-managed default parameter values that control the execution behavior of the zowe dbm\-db2 commands. For example,
+
+    you can use a modification to identify a set of default values that differ from the current set of default values.
+
+    
+
+    For more information about using the modification option, see the DBM Data Service documentation at https://techdocs.broadcom.com/db2mgmt .
+
+
+
+  protocol (type: str)
+    Specifies the communication protocol between zowe dbm\-db2 client and DBM Data Service.
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` 
+
+  environment_list (type: str)
+    Specifies a string of one or more entries consisting of a Db2 subsystem ID and a DBM Data Service REST API server host name or TCP/IP address.
+
+    Use a comma to separate entries. The same Db2 subsystem can be used in multiple DBM Data Service environments. For more information about
+
+    configuring the DBM Data Service, see the Database Management Solutions for Db2 for z/OS documentation at
+
+    https://techdocs.broadcom.com/db2mgmt.
+
+
+
+  job_cards (type: list)
+    Specifies a string array of z/OS JCL JOB statements.
+
+
+
+  work_dataset_prefix (type: str)
+    Specifies the prefix (high\-level qualifier) in z/OS work data set names.
+
+
+
+  delete_work_datasets (type: bool)
+    Specifies whether to delete work data sets on a mainframe after the request is fulfilled.
+
+
+
+  overwrite_output_files (type: bool)
+    Specifies whether to overwrite output files if they exist.
+
+
+
+  authid (type: str)
+    Specifies the primary Db2 authorization ID that is used to establish a connection between Db2 and a process.
+
+
+
+  sqlid (type: str)
+    Specifies the authorization ID that is used in generated SET CURRENT SQLID statements.
+
+
+
+  termination_character (type: str)
+    Specifies the SQL termination character to use in DDL generation when the default termination character conflicts with the SQL statements that
+
+    are used in triggers, XML indexes,nd routines (external SQL functionsnd native SQL stored procedures). The default termination character is
+
+    a semi\-colon (;). You cannot specify a comma, double quote, single quote, left or right parentheses, or an underscore.
+
+
+
+  base_path (type: str)
+    The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all DBM DS resources when making REST
+
+    requests. Do not specify this option if you are not using an Zowe API Mediation Layer.
+
+
+
+  host (type: str)
+    Host name of service on the mainframe.
+
+
+
+  port (type: int)
+    Port number of service on the mainframe.
+
+
+
+  user (type: str)
+    User name to authenticate to service on the mainframe.
+
+
+
+  password (type: str)
+    Password to authenticate to service on the mainframe.
+
+
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self\-signed certificates.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe
+
+    Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Generate a script to update objects on the 'TEST' Db2 subsystem with DDL definitions in myddl.sql file
+      broadcom.dbm_db2.compare_ddl:
+        local_input_ddl_filename: myddl.sql
+        target_db2: TEST
+
+    - name: Generate a script to update objects and apply a rule set for the matched objects
+      broadcom.dbm_db2.compare_ddl:
+        local_input_ddl_filename: myddl.sql
+        target_db2: TEST
+        rule_set: USER1.RULESET
+
+    - name: Generate a script to update objects and apply a rule set for the objects matched as determined by the local mask specifications in the pair.txt file
+      broadcom.dbm_db2.compare_ddl:
+        local_input_ddl_filename: myddl.sql
+        target_db2: TEST
+        match_set_file: pair.txt
+        rule_set: USER1.RULESET
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

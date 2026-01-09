@@ -1,0 +1,410 @@
+.. _generate_ddl_module:
+
+
+generate_ddl -- Generate CREATE or DROP DDL statements for specified Db2 objects into an output DDL file
+========================================================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Generate CREATE or DROP DDL statements for specified Db2 objects into an output DDL file. For example, use this command to generate CREATE TABLE
+
+definitions that you can then edit and use to update the table definition on a Db2 subsystem with the 'zowe dbm compare ddl' command.
+
+
+
+For details about command usage for automation, see DBM\-Db2 samples at https://github.com/BroadcomMFD/dbm\-db2.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  object (type: str)
+    Specifies the Db2 objects to be generated in DDL. Use the optional include clause to include related Db2 objects.
+
+    
+
+    Format: see the object\-file description
+
+    
+
+    Note: The and options are mutually exclusive.
+
+
+
+  object_file (type: str)
+    Specifies name of local input file that contains a list of Db2 objects to be generated in DDL. Use a semicolon to separate objects. Use
+
+    the optional include clause to include related Db2 objects.
+
+    
+
+    Format:
+
+    \<object\-type\> \<object\-name\> [include(\<related\-object\-type\>,...)];
+
+    The required clause \<object\-type\> \<object\-name\>  identifies the specific Db2 (base) object:
+
+    
+
+    STOGROUP \<name\>
+
+    DATABASE \<name\>
+
+    TABLESPACE \<dbname.name\>
+
+    TABLE \<schema.name\>
+
+    INDEX \<schema.name\>
+
+    VIEW \<schema.name\>
+
+    ALIAS \<schema.name\>
+
+    SYNONYM \<schema.name\>
+
+    MQT \<schema.name\>
+
+    SEQUENCE \<schema.name\>
+
+    TRIGGER \<schema.name[.version]\>
+
+    FUNCTION \<schema.name[.version]\>
+
+    PROCEDURE \<schema.name[.version]\>
+
+    The optional include clause (\<related\-object\-type\>,...) identifies one or more related Db2 object types to include in the object list.
+
+    You can specify the following object types: STOGROUP, DATABASE, TABLESPACE, TABLE, INDEX, VIEW, SYNONYM, MQT\-ALL, TRIGGER, ROUTINE, PARENTS,
+
+    CHILDREN, and ALL.
+
+    
+
+    Example:
+
+    
+
+    table sysibm.systables include (tablespace, database, index);
+
+    database db1 include(children);
+
+    Note: The and options are mutually exclusive.
+
+
+
+  source_db2 (type: str)
+    Specifies the source Db2 subsystem or data sharing group where the objects that you want to use in a command are located.
+
+    Note: If you specify the data sharing group, the first active Db2 subsystem in the group is used.
+
+
+
+  change_set (type: str)
+    Specifies the creator and name of an existing RC/Migrator global change set that changes Db2 objects during a command execution.
+
+    Format:
+
+    \<change\-set\-creator.change\-set\-name\>
+
+    For more information about global change services, see the RC/Migrator documentation at https://techdocs.broadcom.com/db2rcmig
+
+    Note: If change\-set and change\-set\-file are both specified, specifications in change\-set\-file take precedence.
+
+
+
+  change_set_file (type: str)
+    Specifies the name of the local input file that contains the global change specifications that modify attributes of Db2 objects.
+
+    Format:
+
+    \<object\-attribute\> \<from\-value\> \<to\-value\>
+
+    
+
+    The \<object\-attribute\> consists of four characters. The first two characters identify the object type. The last two characters identify the
+
+    specific attribute. Wildcard characters are supported in \<from\-value\> and \<to\-value\>. If the same \<object\-attribute\> is specified multiple
+
+    times, the first occurrence takes precedence.
+
+    
+
+    For a full list of attributes, see Global Change Set Attributes in the RC/Migrator documentation at https://techdocs.broadcom.com/db2rcmig
+
+    Example:
+
+    
+
+    The following example demonstrates changes to the table schema (creator) and tablespace names:
+
+    
+
+    TBCR TEST% PROD%
+
+    TBTS TESTTS% PRODTS%
+
+    Note:
+
+    \- If change\-set and change\-set\-file are both specified, specifications in change\-set\-file take precedence.
+
+    \- The changeSetValues options\-profile option has the same behavior as the change\-set\-file command option.
+
+
+
+  type (type: str, default: ``create``)
+    Specifies the type of DDL statements that you want to generate. You can generate CREATE or DROP statements.
+
+
+    Choices:
+      * ``drop`` 
+      * ``create`` **←**
+
+  output_ddl_file (type: str)
+    Specifies the local output file name that contains the generated DDL for the objects that are identified by the or \-\-object
+
+    option.
+
+    
+
+    Default value: output.sql
+
+
+
+  error_file (type: str)
+    Specifies the local output error file in YAML format. The file contains basic execution information, connection details, dbm\-db2 profile
+
+    parameters, used arguments, and errors that occurred during execution of the command.
+
+    
+
+    Default value: error.log
+
+
+
+  modification (type: str)
+    Specifies a named set of server\-managed default parameter values that control the execution behavior of the zowe dbm\-db2 commands. For example,
+
+    you can use a modification to identify a set of default values that differ from the current set of default values.
+
+    
+
+    For more information about using the modification option, see the DBM Data Service documentation at https://techdocs.broadcom.com/db2mgmt .
+
+
+
+  protocol (type: str)
+    Specifies the communication protocol between zowe dbm\-db2 client and DBM Data Service.
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` 
+
+  environment_list (type: str)
+    Specifies a string of one or more entries consisting of a Db2 subsystem ID and a DBM Data Service REST API server host name or TCP/IP address.
+
+    Use a comma to separate entries. The same Db2 subsystem can be used in multiple DBM Data Service environments. For more information about
+
+    configuring the DBM Data Service, see the Database Management Solutions for Db2 for z/OS documentation at
+
+    https://techdocs.broadcom.com/db2mgmt.
+
+
+
+  job_cards (type: list)
+    Specifies a string array of z/OS JCL JOB statements.
+
+
+
+  work_dataset_prefix (type: str)
+    Specifies the prefix (high\-level qualifier) in z/OS work data set names.
+
+
+
+  delete_work_datasets (type: bool)
+    Specifies whether to delete work data sets on a mainframe after the request is fulfilled.
+
+
+
+  overwrite_output_files (type: bool)
+    Specifies whether to overwrite output files if they exist.
+
+
+
+  authid (type: str)
+    Specifies the primary Db2 authorization ID that is used to establish a connection between Db2 and a process.
+
+
+
+  sqlid (type: str)
+    Specifies the authorization ID that is used in generated SET CURRENT SQLID statements.
+
+
+
+  termination_character (type: str)
+    Specifies the SQL termination character to use in DDL generation when the default termination character conflicts with the SQL statements that
+
+    are used in triggers, XML indexes,nd routines (external SQL functionsnd native SQL stored procedures). The default termination character is
+
+    a semi\-colon (;). You cannot specify a comma, double quote, single quote, left or right parentheses, or an underscore.
+
+
+
+  base_path (type: str)
+    The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all DBM DS resources when making REST
+
+    requests. Do not specify this option if you are not using an Zowe API Mediation Layer.
+
+
+
+  host (type: str)
+    Host name of service on the mainframe.
+
+
+
+  port (type: int)
+    Port number of service on the mainframe.
+
+
+
+  user (type: str)
+    User name to authenticate to service on the mainframe.
+
+
+
+  password (type: str)
+    Password to authenticate to service on the mainframe.
+
+
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self\-signed certificates.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe
+
+    Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Generate CREATE DDL statements for a tablespace and its child table
+      broadcom.dbm_db2.generate_ddl:
+        object: tablespace my.tbsp include(table)
+        source_db2: SRC
+        output_ddl_file: objects.sql
+
+    - name: Generate CREATE DDL statements for a database and its children and apply changes as defined in the change set
+      broadcom.dbm_db2.generate_ddl:
+        object: database my.db include(children)
+        source_db2: SRC
+        change_set: USER1.CHANGSET
+        output_ddl_file: objects.sql
+
+    - name: Generate DROP DDL statements only for the input object list
+      broadcom.dbm_db2.generate_ddl:
+        object_file: objects.txt
+        source_db2: SRC
+        type: drop
+        output_ddl_file: output.sql
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

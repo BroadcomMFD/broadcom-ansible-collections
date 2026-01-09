@@ -1,0 +1,466 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>version_version – CA 7 REST API version information &mdash; Broadcom Ansible Collections for Mainframe  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=41de9001" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/ansible.css?v=b54c304f" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/rtd-ethical-ads.css?v=289b023e" />
+
+  
+    <link rel="shortcut icon" href="../../../../_static/images/Ansible-Mark-RGB_Black.png"/>
+      <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="broadcom.dbm_db2" href="../../dbm_db2/index.html" />
+    <link rel="prev" title="transaction_key – Retrieves a unique transaction key to be used as command identifier" href="transaction_key.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
+
+
+
+
+</head>
+
+<body class="wy-body-for-nav"><!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+    <li><a href="https://forum.ansible.com/" target="_blank">Ansible community forum</a></li>
+    <li><a href="https://docs.ansible.com/" target="_blank">Documentation</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="../../../../_static/images/Ansible-Mark-RGB_White.png"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Broadcom Ansible Collections for Mainframe  documentation</div>
+</a>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../../index.html" class="icon icon-home">
+            Broadcom Ansible Collections for Mainframe
+          </a><!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <label class="sr-only" for="q">Search docs:</label>
+    <input type="text" class="st-default-search-input" id="q" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../using.html">Using collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../connecting.html">Connection methods and details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Collections</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">broadcom.ca7</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="agent_agent_details.html">agent_agent_details – Get Agent details for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent_agent_details_1.html">agent_agent_details_1 – Get Agent details for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent_agent_log_list.html">agent_agent_log_list – Get list of log files for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent_agent_log_list_1.html">agent_agent_log_list_1 – Get list of log files for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent_agent_logs.html">agent_agent_logs – Get Agent logs for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent_agent_logs_1.html">agent_agent_logs_1 – Get Agent logs for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent_agent_parms.html">agent_agent_parms – Get Agent parameters for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent_agent_parms_1.html">agent_agent_parms_1 – Get Agent parameters for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent_cred_delete_agent_credentials.html">agent_cred_delete_agent_credentials – Delete Agent credentials for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent_cred_delete_agent_credentials_1.html">agent_cred_delete_agent_credentials_1 – Delete Agent credentials for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent_cred_get_agent_credentials_status.html">agent_cred_get_agent_credentials_status – Get Agent credentials status for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent_cred_get_agent_credentials_status_1.html">agent_cred_get_agent_credentials_status_1 – Get Agent credentials status for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent_cred_post_agent_credentials.html">agent_cred_post_agent_credentials – Add Agent credentials for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent_cred_post_agent_credentials_1.html">agent_cred_post_agent_credentials_1 – Add Agent credentials for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent_cred_put_agent_credentials.html">agent_cred_put_agent_credentials – Update Agent credentials for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent_cred_put_agent_credentials_1.html">agent_cred_put_agent_credentials_1 – Update Agent credentials for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent_list_agents.html">agent_list_agents – List agents for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent_list_agents_1.html">agent_list_agents_1 – List agents for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent_ping_agent.html">agent_ping_agent – Ping Agent for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent_ping_agent_1.html">agent_ping_agent_1 – Ping Agent for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent_put_agent_parms.html">agent_put_agent_parms – Update Agent parameters for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent_put_agent_parms_1.html">agent_put_agent_parms_1 – Update Agent parameters for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent_stop_agent.html">agent_stop_agent – Stop Agent for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent_stop_agent_1.html">agent_stop_agent_1 – Stop Agent for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent_stop_start_agent.html">agent_stop_start_agent – Stop-start Agent for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="agent_stop_start_agent_1.html">agent_stop_start_agent_1 – Stop-start Agent for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="batch_batch.html">batch_batch – Issue multiple requests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ca7_instances_delete_instance.html">ca7_instances_delete_instance – Delete Instance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ca7_instances_get_instance.html">ca7_instances_get_instance – Retrieve Instance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ca7_instances_post_instance.html">ca7_instances_post_instance – Add Instance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ca7_instances_post_list_instance.html">ca7_instances_post_list_instance – Find Instances</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ca7_instances_put_instance.html">ca7_instances_put_instance – Update CA 7 instance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_addrq.html">commands_addrq – Issue ADDRQ command for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_addrq_1.html">commands_addrq_1 – Issue ADDRQ command for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_arfp.html">commands_arfp – Issue ARFP command for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_arfp_1.html">commands_arfp_1 – Issue ARFP command for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_cancel.html">commands_cancel – Issue CANCEL command for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_cancel_1.html">commands_cancel_1 – Issue CANCEL command for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_demand.html">commands_demand – Issue DEMAND command for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_demand_1.html">commands_demand_1 – Issue DEMAND command for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_demandh.html">commands_demandh – Issue DEMANDH command for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_demandh_1.html">commands_demandh_1 – Issue DEMANDH command for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_hold.html">commands_hold – Issue HOLD command for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_hold_1.html">commands_hold_1 – Issue HOLD command for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_jclovrd.html">commands_jclovrd – Issue JCLOVRD command for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_jclovrd_1.html">commands_jclovrd_1 – Issue JCLOVRD command for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_post.html">commands_post – Posts the requirement for a job</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_post_1.html">commands_post_1 – Issue POST command for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_prscf.html">commands_prscf – Issue PRSCF command for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_prscf_1.html">commands_prscf_1 – Issue PRSCF command for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_prsqa.html">commands_prsqa – Issue PRSQA command for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_prsqa_1.html">commands_prsqa_1 – Issue PRSQA command for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_prsqd.html">commands_prsqd – Issue PRSQD command for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_prsqd_1.html">commands_prsqd_1 – Issue PRSQD command for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_release.html">commands_release – Issue RELEASE command for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_release_1.html">commands_release_1 – Issue RELEASE command for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_requeue.html">commands_requeue – Issue REQUEUE command for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_requeue_1.html">commands_requeue_1 – Issue REQUEUE command for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_resolve.html">commands_resolve – Issue RESOLV command for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_resolve_1.html">commands_resolve_1 – Issue RESOLV command for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_restart.html">commands_restart – Issue RESTART command for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_restart_1.html">commands_restart_1 – Issue RESTART command for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_run.html">commands_run – Issue RUN command for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_run_1.html">commands_run_1 – Issue RUN command for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_runh.html">commands_runh – Issue RUNH command for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_runh_1.html">commands_runh_1 – Issue RUNH command for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_submit.html">commands_submit – Issue SUBMIT command for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_submit_1.html">commands_submit_1 – Issue SUBMIT command for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_subtm.html">commands_subtm – Issue SUBTM command for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_subtm_1.html">commands_subtm_1 – Issue SUBTM command for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_verify.html">commands_verify – Issue VERIFY command for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="commands_verify_1.html">commands_verify_1 – Issue VERIFY command for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_delete_dataset.html">dataset_delete_dataset – Delete a dataset definition for CA7 Instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_delete_dataset_1.html">dataset_delete_dataset_1 – Delete a dataset definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_delete_trigger.html">dataset_delete_trigger – Delete Dataset Trigger definition for CA7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_delete_trigger_1.html">dataset_delete_trigger_1 – Delete Dataset Trigger definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_post_dataset.html">dataset_post_dataset – Create a new dataset definition for CA7 Instance specified</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_post_dataset_1.html">dataset_post_dataset_1 – Create a new dataset definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_post_trigger.html">dataset_post_trigger – Create Dataset Trigger definition for specified CA7 INSTANCE in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_post_trigger_1.html">dataset_post_trigger_1 – Create Dataset Trigger definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_rename_dataset.html">dataset_rename_dataset – Change the name of a dataset for CA7 Instance specified</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_rename_dataset_1.html">dataset_rename_dataset_1 – Change the name of a dataset for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_update_dataset.html">dataset_update_dataset – Modify a dataset definition for CA7 Instance specified</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_update_dataset_1.html">dataset_update_dataset_1 – Modify a dataset definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_update_trigger.html">dataset_update_trigger – Modify Dataset Trigger definition for CA7 Instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="dataset_update_trigger_1.html">dataset_update_trigger_1 – Modify Dataset Trigger definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_address_space_resource.html">job_definition_delete_address_space_resource – Delete Address Space resource from a job definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_address_space_resource_1.html">job_definition_delete_address_space_resource_1 – Delete Address Space resource from a job definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_corequisite_resource.html">job_definition_delete_corequisite_resource – Delete Corequisite resource from a job definition for specified CA7 Instance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_corequisite_resource_1.html">job_definition_delete_corequisite_resource_1 – Delete Corequisite resource from a job definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_exclusive_resource.html">job_definition_delete_exclusive_resource – Delete Exclusive resource from a job definition for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_exclusive_resource_1.html">job_definition_delete_exclusive_resource_1 – Delete Exclusive resource from a job definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_job.html">job_definition_delete_job – Delete a job definition for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_job_1.html">job_definition_delete_job_1 – Delete a job definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_job_schedule.html">job_definition_delete_job_schedule – Delete an existing date/time schedule for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_job_schedule_1.html">job_definition_delete_job_schedule_1 – Delete an existing date/time schedule for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_requirement_predecessor.html">job_definition_delete_requirement_predecessor – Delete requirement definition for a job for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_requirement_predecessor_1.html">job_definition_delete_requirement_predecessor_1 – Delete requirement definition for a job for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_resource_count_resource.html">job_definition_delete_resource_count_resource – Delete Resource Count resource from a job definition for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_resource_count_resource_1.html">job_definition_delete_resource_count_resource_1 – Delete Resource Count resource from a job definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_shared_resource.html">job_definition_delete_shared_resource – Delete Shared resource from a job definition for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_shared_resource_1.html">job_definition_delete_shared_resource_1 – Delete Shared resource from a job definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_trigger_successor.html">job_definition_delete_trigger_successor – Delete Job Trigger from a job definition for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_trigger_successor_1.html">job_definition_delete_trigger_successor_1 – Delete Job Trigger from a job definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_variable_resource.html">job_definition_delete_variable_resource – Delete Variable resource from a job definition for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_delete_variable_resource_1.html">job_definition_delete_variable_resource_1 – Delete Variable resource from a job definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_list_job.html">job_definition_list_job – Get basic definition for one or more jobs for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_list_job_1.html">job_definition_list_job_1 – Get basic definition for one or more jobs for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_list_job_resources.html">job_definition_list_job_resources – Get job resources for one or more jobs for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_list_job_resources_1.html">job_definition_list_job_resources_1 – Get job resources for one or more jobs for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_list_job_schedules.html">job_definition_list_job_schedules – Get job schedules for one or more jobs for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_list_job_schedules_1.html">job_definition_list_job_schedules_1 – Get job schedules for one or more jobs for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_list_requirement_predecessor.html">job_definition_list_requirement_predecessor – Get predecessors for one or more jobs for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_list_requirement_predecessor_1.html">job_definition_list_requirement_predecessor_1 – Get predecessors for one or more jobs for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_list_requirement_successor.html">job_definition_list_requirement_successor – Get successor jobs for one or more jobs for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_list_requirement_successor_1.html">job_definition_list_requirement_successor_1 – Get successor jobs for one or more jobs for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_list_trigger_successor.html">job_definition_list_trigger_successor – Get triggered jobs for one or more jobs for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_list_trigger_successor_1.html">job_definition_list_trigger_successor_1 – Get triggered jobs for one or more jobs for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_post_address_space_resource.html">job_definition_post_address_space_resource – Add Address Space resource to a job definition for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_post_address_space_resource_1.html">job_definition_post_address_space_resource_1 – Add Address Space resource to a job definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_post_corequisite_resource.html">job_definition_post_corequisite_resource – Add Corequisite resource to a job definition for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_post_corequisite_resource_1.html">job_definition_post_corequisite_resource_1 – Add Corequisite resource to a job definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_post_exclusive_resource.html">job_definition_post_exclusive_resource – Add Exclusive resource to a job definition for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_post_exclusive_resource_1.html">job_definition_post_exclusive_resource_1 – Add Exclusive resource to a job definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_post_job.html">job_definition_post_job – Create a new job definition for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_post_job_1.html">job_definition_post_job_1 – Create a new job definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_post_job_schedule.html">job_definition_post_job_schedule – Create date/time schedule for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_post_job_schedule_1.html">job_definition_post_job_schedule_1 – Create date/time schedule for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_post_requirement_predecessor.html">job_definition_post_requirement_predecessor – Create requirement definition for a job for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_post_requirement_predecessor_1.html">job_definition_post_requirement_predecessor_1 – Create requirement definition for a job for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_post_resource_count_resource.html">job_definition_post_resource_count_resource – Add Resource Count resource to a job definition for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_post_resource_count_resource_1.html">job_definition_post_resource_count_resource_1 – Add Resource Count resource to a job definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_post_shared_resource.html">job_definition_post_shared_resource – Add Shared resource to a job definition for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_post_shared_resource_1.html">job_definition_post_shared_resource_1 – Add Shared resource to a job definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_post_trigger_successor.html">job_definition_post_trigger_successor – Add Job Trigger to a job definition for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_post_trigger_successor_1.html">job_definition_post_trigger_successor_1 – Add Job Trigger to a job definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_post_variable_resource.html">job_definition_post_variable_resource – Add Variable resource to a job definition for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_post_variable_resource_1.html">job_definition_post_variable_resource_1 – Add Variable resource to a job definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_prose_information.html">job_definition_prose_information – Get prose information for a job for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_prose_information_1.html">job_definition_prose_information_1 – Get prose information for a job for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_step_dd.html">job_definition_step_dd – Get job STEP and DD information for one or more jobs for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_step_dd_1.html">job_definition_step_dd_1 – Get job STEP and DD information for one or more jobs for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_trigger_predecesssor.html">job_definition_trigger_predecesssor – Get trigger objects for one or more jobs for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_trigger_predecesssor_1.html">job_definition_trigger_predecesssor_1 – Get trigger objects for one or more jobs for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_address_space_resource.html">job_definition_update_address_space_resource – Modify Address Space resource for a job definition for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_address_space_resource_1.html">job_definition_update_address_space_resource_1 – Modify Address Space resource for a job definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_corequisite_resource.html">job_definition_update_corequisite_resource – Modify Corequisite resource for a job definition for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_corequisite_resource_1.html">job_definition_update_corequisite_resource_1 – Modify Corequisite resource for a job definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_exclusive_resource.html">job_definition_update_exclusive_resource – Modify Exclusive resource for a job definition for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_exclusive_resource_1.html">job_definition_update_exclusive_resource_1 – Modify Exclusive resource for a job definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_job.html">job_definition_update_job – Update the definition of a job for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_job_1.html">job_definition_update_job_1 – Update the definition of a job for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_job_schedule.html">job_definition_update_job_schedule – Modify date/time schedule for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_job_schedule_1.html">job_definition_update_job_schedule_1 – Modify date/time schedule for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_requirement_predecessor.html">job_definition_update_requirement_predecessor – Update requirement definition for a job for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_requirement_predecessor_1.html">job_definition_update_requirement_predecessor_1 – Update requirement definition for a job for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_resource_count_resource.html">job_definition_update_resource_count_resource – Modify Resource Count resource for a job definition for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_resource_count_resource_1.html">job_definition_update_resource_count_resource_1 – Modify Resource Count resource for a job definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_shared_resource.html">job_definition_update_shared_resource – Modify Shared resource for a job definition for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_shared_resource_1.html">job_definition_update_shared_resource_1 – Modify Shared resource for a job definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_trigger_successor.html">job_definition_update_trigger_successor – Modify Job Trigger for a job definition for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_definition_update_trigger_successor_1.html">job_definition_update_trigger_successor_1 – Modify Job Trigger for a job definition for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_history_prior_run_queue.html">job_history_prior_run_queue – Retrieves job information from the prior-run queue for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_history_prior_run_queue_1.html">job_history_prior_run_queue_1 – Retrieves job information from the prior-run queue for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_instance_active_resource.html">job_instance_active_resource – Display active resources by job for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_instance_active_resource_1.html">job_instance_active_resource_1 – Display active resources by job for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_instance_jcl.html">job_instance_jcl – Retrieves JCL for an active job for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_instance_jcl_1.html">job_instance_jcl_1 – Retrieves JCL for an active job for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_instance_list.html">job_instance_list – Retrieves information about active jobs for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_instance_list_1.html">job_instance_list_1 – Retrieves information about active jobs for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_instance_list_custom.html">job_instance_list_custom – Retrieves information about active jobs using a custom set of columns for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_instance_list_custom_1.html">job_instance_list_custom_1 – Retrieves information about active jobs using a custom set of columns for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_instance_list_waiting_resource.html">job_instance_list_waiting_resource – Display jobs waiting for resources for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_instance_list_waiting_resource_1.html">job_instance_list_waiting_resource_1 – Display jobs waiting for resources for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_instance_requirements.html">job_instance_requirements – Retrieves information about requirements for active jobs for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_instance_requirements_1.html">job_instance_requirements_1 – Retrieves information about requirements for active jobs for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_instance_update_jcl.html">job_instance_update_jcl – Update JCL for an active job for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="job_instance_update_jcl_1.html">job_instance_update_jcl_1 – Update JCL for an active job for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources_delete_resource_count.html">resources_delete_resource_count – Delete Resource Count resource for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources_delete_resource_count_1.html">resources_delete_resource_count_1 – Delete Resource Count resource for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources_get_resource_count.html">resources_get_resource_count – Retrieves Resource Count resource information for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources_get_resource_count_1.html">resources_get_resource_count_1 – Retrieves Resource Count resource information for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources_post_resource_count.html">resources_post_resource_count – Create Resource Count resource for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources_post_resource_count_1.html">resources_post_resource_count_1 – Create Resource Count resource for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources_update_resource_count.html">resources_update_resource_count – Modify Resource Count resource for CA 7 instance specified in path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources_update_resource_count_1.html">resources_update_resource_count_1 – Modify Resource Count resource for DEFAULT_INSTANCE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transaction_key.html">transaction_key – Retrieves a unique transaction key to be used as command identifier</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">version_version – CA 7 REST API version information</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#synopsis">Synopsis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#return-values">Return Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#status">Status</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../dbm_db2/index.html">broadcom.dbm_db2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endevor/index.html">broadcom.endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../endevor_bridge_for_git/index.html">broadcom.endevor_bridge_for_git</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../file_master_plus/index.html">broadcom.file_master_plus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../idms/index.html">broadcom.idms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jclcheck/index.html">broadcom.jclcheck</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mat/index.html">broadcom.mat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../mat_pma_util/index.html">broadcom.mat_pma_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ops/index.html">broadcom.ops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../spool/index.html">broadcom.spool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sysview/index.html">broadcom.sysview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../view/index.html">broadcom.view</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../zowe_core/index.html">broadcom.zowe_core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../zowe_core_3/index.html">broadcom.zowe_core_3</a></li>
+</ul>
+<!-- extra nav elements for Ansible beyond RTD Sphinx Theme -->
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Broadcom Ansible Collections for Mainframe</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">broadcom.ca7</a></li>
+      <li class="breadcrumb-item active">version_version – CA 7 REST API version information</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/generated/broadcom/ca7/contents/version_version.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+  
+           <div itemprop="articleBody">
+             
+  <section id="version-version-ca-7-rest-api-version-information">
+<span id="version-version-module"></span><h1>version_version – CA 7 REST API version information<a class="headerlink" href="#version-version-ca-7-rest-api-version-information" title="Link to this heading"></a></h1>
+<nav class="contents local" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#synopsis" id="id1">Synopsis</a></p></li>
+<li><p><a class="reference internal" href="#parameters" id="id2">Parameters</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id3">Examples</a></p></li>
+<li><p><a class="reference internal" href="#return-values" id="id4">Return Values</a></p></li>
+<li><p><a class="reference internal" href="#status" id="id5">Status</a></p></li>
+</ul>
+</nav>
+<section id="synopsis">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Synopsis</a><a class="headerlink" href="#synopsis" title="Link to this heading"></a></h2>
+<p>Product Version</p>
+<p>The CA 7 Rest API version</p>
+<p>CA 7 Supported Version</p>
+<p>The CA 7 supported version</p>
+<p>Build Number</p>
+<p>The build number</p>
+<p>Build Time</p>
+<p>The date and time when the build was done, GMT.</p>
+</section>
+<section id="parameters">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Parameters</a><a class="headerlink" href="#parameters" title="Link to this heading"></a></h2>
+<blockquote>
+<div><dl>
+<dt>host (<em>required</em>, type: str)</dt><dd><p>Host name of the CA7 API service that is running on the mainframe system.</p>
+</dd>
+<dt>port (<em>required</em>, type: int)</dt><dd><p>Port for the CA7 API service that is running on the mainframe system.</p>
+</dd>
+<dt>user (<em>required</em>, type: str)</dt><dd><p>User name for authenticating connections to the CA7 API service that is running on the mainframe system.</p>
+</dd>
+<dt>password (<em>required</em>, type: str)</dt><dd><p>Password for authenticating connections to the CA7 API service that is running on the mainframe system.</p>
+</dd>
+<dt>base_path (type: str)</dt><dd><p>The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all resources when making REST</p>
+<p>requests. Do not specify this option if you are not using an Zowe API Mediation Layer.</p>
+</dd>
+<dt>protocol (<em>required</em>, type: str)</dt><dd><p>Specifies protocol to use for CA7 connection (http or https).</p>
+<dl class="simple">
+<dt>Choices:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">http</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">https</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd>
+<dt>reject_unauthorized (type: bool, default: <code class="docutils literal notranslate"><span class="pre">True</span></code>)</dt><dd><p>Reject self-signed certificates.</p>
+</dd>
+<dt>cert_file (type: path)</dt><dd><p>The file path to a certificate file to use for authentication.</p>
+<p>Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe</p>
+<p>Docs.</p>
+</dd>
+<dt>cert_key_file (type: path)</dt><dd><p>The file path to a certificate key file to use for authentication.</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading"></a></h2>
+<div class="highlight-yaml+jinja notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Retrieves CA 7 REST API version information</span>
+<span class="w">  </span><span class="nt">broadcom.ca7.version_version</span><span class="p">:</span>
+</pre></div>
+</div>
+</section>
+<section id="return-values">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Return Values</a><a class="headerlink" href="#return-values" title="Link to this heading"></a></h2>
+<dl>
+<dt>data (type: list, <em>when returned data is a dictionary</em>)</dt><dd><p>Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.</p>
+</dd>
+<dt>error (type: complex, <em>error</em>)</dt><dd><p>More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.</p>
+<dl class="simple">
+<dt>additional_details (type: str)</dt><dd><p>Detailed message about the failure.</p>
+</dd>
+<dt>msg (type: str)</dt><dd><p>Short description of the result or failure.</p>
+</dd>
+<dt>request (type: str, <em>API request failed</em>)</dt><dd><p>HTTP method used to invoke API service request.</p>
+</dd>
+<dt>resource (type: str, <em>API request failed</em>)</dt><dd><p>URI of the resource of the API service request.</p>
+</dd>
+</dl>
+</dd>
+<dt>failed (type: bool, <em>always</em>)</dt><dd><p>A boolean that indicates if the task was failed or not.</p>
+</dd>
+<dt>list (type: list, <em>when returned data is a list</em>)</dt><dd><p>Data from the module execution (a list of data structures).</p>
+</dd>
+<dt>msg (type: str, <em>sometimes</em>)</dt><dd><p>Short description of the result or failure.</p>
+</dd>
+<dt>rc (type: int, <em>always</em>)</dt><dd><p>Exit code of the module, successful exit code is 0, failure is typically 1 or higher.</p>
+</dd>
+<dt>stderr (type: str, <em>error</em>)</dt><dd><p>Details of the error.</p>
+</dd>
+<dt>stdout (type: str, <em>success</em>)</dt><dd><p>Summary of the result.</p>
+</dd>
+</dl>
+</section>
+<section id="status">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Status</a><a class="headerlink" href="#status" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p>This module is maintained by Broadcom.</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="transaction_key.html" class="btn btn-neutral float-left" title="transaction_key – Retrieves a unique transaction key to be used as command identifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../dbm_db2/index.html" class="btn btn-neutral float-right" title="broadcom.dbm_db2" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Broadcom.</p>
+  </div>
+
+  
+   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+  <a href="https://sphinx-ansible-theme.rtfd.io">Sphinx Ansible Theme</a>
+  that is based on the
+  <a href="https://github.com/readthedocs/sphinx_rtd_theme">Read the Docs theme</a>
+  and is maintained by the <a href="https://docs.ansible.com/">Ansible Community</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script><!-- extra footer elements for Ansible beyond RTD Sphinx Theme -->
+
+</body>
+</html>

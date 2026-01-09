@@ -1,0 +1,221 @@
+.. _check_data_set_module:
+
+
+check_data_set -- Check JCL contained in an MVS data set
+========================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Reads the specified input data set and invokes the JCLCheck service with the data set contents.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  data_set (*required*, type: str)
+    The MVS data set containing the JCL contents. The data set can be a physical sequential (PS) or partitioned data set (PDS) member. The data set
+
+    attributes must be recfm fixed\-block (FB) and lrecl 80. The data set must be catalogued.
+
+
+
+  max_return_code (type: int, default: ``4``)
+    Specifies the maximum acceptable return code from the JCLCheck service. If the JCLCheck overall return code exceeds the value that is specified
+
+    in the option, the task fails. The default value \`\`4\`\` indicates the successfully run task unless the JCL contains errors. Set the return code
+
+    to \`\`0\`\` for successful tasks that do not contain warnings and error messages.
+
+
+
+  raw_output (type: bool)
+    Causes the command to print the unformatted JCLCheck report (raw report) instead of the formatted error table. Use this option if you intend to
+
+    change the format of the JCLCheck report via runtime options. Changing the format may affect the ability to produce a structured API response.
+
+
+
+  host (type: str)
+    Host name of the JCLCheck API service that is running on the mainframe system.
+
+
+
+  port (type: int, default: ``12697``)
+    Port for the JCLCheck API service that is running on the mainframe system.
+
+
+
+  user (type: str)
+    User name for authenticating connections to the JCLCheck API service that is running on the mainframe system.
+
+
+
+  password (type: str)
+    Password for authenticating connections to the JCLCheck API service that is running on the mainframe system.
+
+
+
+  base_path (type: str, default: ``cajclcheck/api/v1``)
+    The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all resources when making REST
+
+    requests. Do not specify this option if you are not using an Zowe API Mediation Layer.
+
+
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self\-signed certificates.
+
+
+
+  protocol (type: str, default: ``https``)
+    Specifies protocol to use for JCLCheck connection (http or https).
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` **←**
+
+  jclcheck_options (type: str)
+    The desired set of JCLCheck runtime options. Specify the options exactly as you would on the PARM= or OPTIONS DD on a batch run of JCLCheck.
+
+    See the runtime options documentation for details on available runtime options. If you specify options that change the format of the
+
+    JCLCheck reports, you should request 'raw output'. Changing the format of the report will affect the ability to produce a structured API
+
+    response.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe
+
+    Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Check the JCL contained in "MY.DATASET(JCL)" and print a table of statements in error
+      broadcom.jclcheck.check_data_set:
+        data_set: MY.DATASET(JCL)
+        host: hostname
+        port: 1234
+        jclcheck_options: NOAS NOAU NOHCD NOJCL NORES NOSIGN
+
+    - name: Check the JCL contained in "MY.DATASET(JCL)" and print the raw JCLCheck report
+      broadcom.jclcheck.check_data_set:
+        data_set: MY.DATASET(JCL)
+        raw_output: y
+        host: hostname
+        port: 1234
+        jclcheck_options: NOAS NOAU NOHCD NOJCL NORES NOSIGN
+
+
+
+
+Return Values
+-------------
+
+error (type: complex, *error*)
+  More details about why invoking the JCLCheck service has failed. If the failure is when calling JCLCheck REST API, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str)
+    HTTP method that is used to invoke the API service request.
+
+
+  resource (type: str)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  Indicates whether the JCLCheck validation fails due to errors in the JCL or incomplete validation.
+
+
+jcl_check_code (type: int, *sometimes*, sample: ``4``)
+  Return code of the JCLCheck service:
+\* \*\*0\*\* indicates the normal end of JCLCheck and only informational messages are issued.
+\* \*\*4\*\* \- Indicates the normal end of JCLCheck and only warning messages are issued.
+\* \*\*8\*\* \- Indicates the normal end of JCLCheck and error messages are issued.
+\* \*\*12\*\* \- Indicates the normal end of JCLCheck and serious error messages are issued.
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+parsed_available (type: bool, *sometimes*)
+  Indicates that the JCLCheck report has been parsed.
+
+
+parsed_reports (type: dict, *sometimes*)
+  Data structure with parsed reports.
+
+
+raw (type: str, *sometimes*)
+  Full output of the JCLCheck.
+
+
+rc (type: int, *always*)
+  0 for success or 1 for failure.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the JCLCheck validation.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

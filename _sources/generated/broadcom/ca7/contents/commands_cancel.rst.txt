@@ -1,0 +1,251 @@
+.. _commands_cancel_module:
+
+
+commands_cancel -- Issue CANCEL command for CA 7 instance specified in path
+===========================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+The CANCEL command deletes jobs from the CA Workload Automation CA 7® Edition queues.
+
+
+
+For CPU jobs, the CANCEL command only removes the job from the queues.
+
+Cancelation of a job in the active queue or ready queue (if it has been submitted)
+
+does not cause termination of the job's execution.
+
+CPU jobs that can be executing have to be canceled from the operating system separately.
+
+Execution must be terminated from an OS system console.
+
+For XPJOB jobs, the CANCEL command removes the job from the queues.
+
+If the XPDEF initialization option XPKILL is set to YES,
+
+and the XPJOB job has been submitted to the target node but is still in the ready queue or the active queue,
+
+a cancel request is created and sent to the target node.
+
+Some remote CA Scheduling Agents support the cancel request, and the request cancels or 'kills' the process execution.
+
+It is not the responsibility of CA WA CA 7 Edition to verify that the target platform supports the kill facility.
+
+If the cancel request was not transmitted, an error message appears in the browse and log data.
+
+For agent definition jobs (AGJOBs), the CANCEL command sends a request to the agent and removes the job from the queues.
+
+If the agent is not active at the time of the CANCEL request, the message is queued and sent when the agent becomes active.
+
+If the XPDEF initialization option XPKILL is set to NO, the XPJOB is canceled from the queues, and no cancel request is sent to the target platform.
+
+To view the XPKILL option, enter the command /DISPLAY,ST=XPS.
+
+
+
+This function is available on the QM.1, QM.6, and QM.7 panels as option C.
+
+The CANCEL command has three formats, depending on the queues in which the task resides.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  ca7_id (*required*, type: str)
+    CA7ONL Instance.
+
+
+
+  key (type: str)
+    The command transaction key.
+
+
+
+  ca7# (type: str)
+    Indicates the individual job to cancel, and the value must be a CA 7 job number.
+
+
+
+  force (type: str)
+    (Optional) Specifies to force the cancellation of the job.
+
+    If you want to cancel the job to dump the log data set, specify FORCE=YES to prevent the job from being resubmitted.
+
+    Use FORCE=YES when a job to be canceled shows a status of SKELETON or RETRY.
+
+    Use FORCE=YES to cancel a job with connected resources.
+
+    Warning! Use of this option can potentially cause CA WA CA 7 Edition to abend; therefore, only use it as a last resort.
+
+
+
+  reason (type: str)
+    (Optional) Defines the reason for the job cancellation.
+
+    Depending on the initialization file CANCEL statement value, this reason can be required or optional.
+
+    If it is required but not given, a message prompts the user to provide it.
+
+    The text is entered into the run log entry for this occurrence of this job and is displayed on any subsequent LRLOG inquiries.
+
+    Limits:
+
+    1 to 40 alphanumeric characters
+
+    Required:
+
+    No (depending on initialization options).
+
+
+
+  host (*required*, type: str)
+    Host name of the CA7 API service that is running on the mainframe system.
+
+
+
+  port (*required*, type: int)
+    Port for the CA7 API service that is running on the mainframe system.
+
+
+
+  user (*required*, type: str)
+    User name for authenticating connections to the CA7 API service that is running on the mainframe system.
+
+
+
+  password (*required*, type: str)
+    Password for authenticating connections to the CA7 API service that is running on the mainframe system.
+
+
+
+  base_path (type: str)
+    The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all resources when making REST
+
+    requests. Do not specify this option if you are not using an Zowe API Mediation Layer.
+
+
+
+  protocol (*required*, type: str)
+    Specifies protocol to use for CA7 connection (http or https).
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` 
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self\-signed certificates.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe
+
+    Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Cancels a job request for Instance1 and ca7 number '0016' from CA 7
+      broadcom.ca7.commands_cancel:
+        ca7#: '0016'
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

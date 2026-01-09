@@ -1,0 +1,287 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>broadcom.endevor_bridge_for_git &mdash; Broadcom Ansible Collections for Mainframe  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=41de9001" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/ansible.css?v=b54c304f" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/rtd-ethical-ads.css?v=289b023e" />
+
+  
+    <link rel="shortcut icon" href="../../../_static/images/Ansible-Mark-RGB_Black.png"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="add_element – Add an element to your Git repository from up the map in Endevor" href="contents/add_element.html" />
+    <link rel="prev" title="view_pkgscl – The view pkgscl module views the SCL of an existing package in Endevor" href="../endevor/contents/view_pkgscl.html" /><!-- extra head elements for Ansible beyond RTD Sphinx Theme -->
+
+
+
+
+</head>
+
+<body class="wy-body-for-nav"><!-- extra body elements for Ansible beyond RTD Sphinx Theme -->
+
+<div class="DocSite-globalNav ansibleNav">
+  <ul>
+    <li><a href="https://www.ansible.com/blog" target="_blank">Blog</a></li>
+    <li><a href="https://forum.ansible.com/" target="_blank">Ansible community forum</a></li>
+    <li><a href="https://docs.ansible.com/" target="_blank">Documentation</a></li>
+  </ul>
+</div>
+
+<a class="DocSite-nav" href="/" style="padding-bottom: 30px;">
+
+  <img class="DocSiteNav-logo"
+    src="../../../_static/images/Ansible-Mark-RGB_White.png"
+    alt="Ansible Logo">
+  <div class="DocSiteNav-title">Broadcom Ansible Collections for Mainframe  documentation</div>
+</a>
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Broadcom Ansible Collections for Mainframe
+          </a><!--- Based on https://github.com/rtfd/sphinx_rtd_theme/pull/438/files -->
+
+<div class="version">
+  
+    
+  
+</div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <label class="sr-only" for="q">Search docs:</label>
+    <input type="text" class="st-default-search-input" id="q" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+  
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../requirements.html">Requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../using.html">Using collections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../connecting.html">Connection methods and details</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting.html">Troubleshooting</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Collections</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../ca7/index.html">broadcom.ca7</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dbm_db2/index.html">broadcom.dbm_db2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../endevor/index.html">broadcom.endevor</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">broadcom.endevor_bridge_for_git</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="contents/add_element.html">add_element – Add an element to your Git repository from up the map in Endevor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/administrate_disable_credential_cache.html">administrate_disable_credential_cache – Disable your Endevor credentials cache for the Endevor connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/administrate_drop_operation.html">administrate_drop_operation – Drop an operation from the queue</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/administrate_refresh_credential_cache.html">administrate_refresh_credential_cache – Refresh your Endevor credentials cache for the Endevor connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/administrate_resynchronize.html">administrate_resynchronize – Re-synchronize your branch in case it is in error state (out-of-sync)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/administrate_view_current_log.html">administrate_view_current_log – View the current log file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/create_branch.html">create_branch – Add a branch to an existing mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/create_endevor_connection.html">create_endevor_connection – Create new Endevor connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/create_local_hook_token.html">create_local_hook_token – Generate a new token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/create_mapping.html">create_mapping – Create a Git-Endevor mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/create_mf_webhook_settings.html">create_mf_webhook_settings – Create MF Webhook Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/create_webhook_settings.html">create_webhook_settings – Create webhook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/delete_branch.html">delete_branch – Remove a branch from an existing mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/delete_endevor_connection.html">delete_endevor_connection – Delete existing Endevor connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/delete_endevor_connection_certificate.html">delete_endevor_connection_certificate – Delete existing certificate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/delete_local_hook_token.html">delete_local_hook_token – Revoke your local hook token</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/delete_mapping.html">delete_mapping – Delete a Git-Endevor mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/delete_mf_webhook_settings.html">delete_mf_webhook_settings – Delete MF Webhook Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/delete_user.html">delete_user – Delete  existing user</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/delete_webhook_settings.html">delete_webhook_settings – Delete Webhook</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_actions.html">list_actions – List actions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_app_logs.html">list_app_logs – List logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_branch.html">list_branch – List the branches of an existing mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_endevor_change_metadata.html">list_endevor_change_metadata – List CCID, Comment, and From-location values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_endevor_connection.html">list_endevor_connection – List Endevor connections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_endevor_connection_certificate.html">list_endevor_connection_certificate – List Endevor connection certificate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_generate_settings.html">list_generate_settings – List generate settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_git_change_metadata.html">list_git_change_metadata – List the commit messages that your mapping uses for Bridge sync-back commits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_mail_server_settings.html">list_mail_server_settings – List Mail Server settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_mapping.html">list_mapping – List Git-Endevor mappings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_mf_webhook_settings.html">list_mf_webhook_settings – List MF webhooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_operations.html">list_operations – List operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_processor_group.html">list_processor_group – List Processor Groups</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_sync_back_settings.html">list_sync_back_settings – List sync-back (refresh)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_user.html">list_user – List users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/list_webhook_settings.html">list_webhook_settings – List webhooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/rename_endevor_connection.html">rename_endevor_connection – Rename existing Endevor connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/sync_back.html">sync_back – Schedule sync-back</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/transfer_endevor_connection.html">transfer_endevor_connection – Transfer your Git-Endevor mapping to another endevor connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/transfer_mapping.html">transfer_mapping – Transfer a Git-Endevor mapping to a new git url of the same or another git provider</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/transfer_mapping_owner.html">transfer_mapping_owner – Transfer your Git-Endevor mapping to another user</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/update_copyback_elements_settings.html">update_copyback_elements_settings – Enable/disable the add element command for CONTEXT/REPO mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/update_credential_cache.html">update_credential_cache – Update your Endevor credentials cache for the Endevor connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/update_credentials.html">update_credentials – Update your Endevor credentials for the Endevor connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/update_endevor_change_metadata.html">update_endevor_change_metadata – Update the CCID, Comment, and From-location values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/update_endevor_connection_certificate.html">update_endevor_connection_certificate – Update your Endevor Connection certificate for the Endevor connection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/update_generate_settings.html">update_generate_settings – Update the global generate settings or generate settings for your mapping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/update_git_change_metadata.html">update_git_change_metadata – Update the commit messages that your mapping uses for Bridge sync-back commits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/update_mail_server.html">update_mail_server – Update the mail server settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/update_mf_webhook_settings.html">update_mf_webhook_settings – Update MF Webhook Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/update_processor_group.html">update_processor_group – Update the processor group of an element or all changed elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/update_sync_back_settings.html">update_sync_back_settings – Update sync-back</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/update_user_role.html">update_user_role – Update the role of a user</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contents/update_webhook_settings.html">update_webhook_settings – Update webhook</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../file_master_plus/index.html">broadcom.file_master_plus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../idms/index.html">broadcom.idms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jclcheck/index.html">broadcom.jclcheck</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mat/index.html">broadcom.mat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../mat_pma_util/index.html">broadcom.mat_pma_util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../ops/index.html">broadcom.ops</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../spool/index.html">broadcom.spool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sysview/index.html">broadcom.sysview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../view/index.html">broadcom.view</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zowe_core/index.html">broadcom.zowe_core</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../zowe_core_3/index.html">broadcom.zowe_core_3</a></li>
+</ul>
+<!-- extra nav elements for Ansible beyond RTD Sphinx Theme -->
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Broadcom Ansible Collections for Mainframe</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">broadcom.endevor_bridge_for_git</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/generated/broadcom/endevor_bridge_for_git/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+
+  
+           <div itemprop="articleBody">
+             
+  <section id="broadcom-endevor-bridge-for-git">
+<h1>broadcom.endevor_bridge_for_git<a class="headerlink" href="#broadcom-endevor-bridge-for-git" title="Link to this heading"></a></h1>
+<p>Use the Endevor Bridge for Git plug-in to manage your Git-Endevor mappings and build your local Git changes before synchronizing them to Endevor.</p>
+<p>Compatible with Zowe CLI Plugin version: 3.0.1</p>
+<p>For more information, see the <em>Contents</em> section.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="contents/add_element.html">add_element – Add an element to your Git repository from up the map in Endevor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/administrate_disable_credential_cache.html">administrate_disable_credential_cache – Disable your Endevor credentials cache for the Endevor connection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/administrate_drop_operation.html">administrate_drop_operation – Drop an operation from the queue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/administrate_refresh_credential_cache.html">administrate_refresh_credential_cache – Refresh your Endevor credentials cache for the Endevor connection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/administrate_resynchronize.html">administrate_resynchronize – Re-synchronize your branch in case it is in error state (out-of-sync)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/administrate_view_current_log.html">administrate_view_current_log – View the current log file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/create_branch.html">create_branch – Add a branch to an existing mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/create_endevor_connection.html">create_endevor_connection – Create new Endevor connection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/create_local_hook_token.html">create_local_hook_token – Generate a new token</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/create_mapping.html">create_mapping – Create a Git-Endevor mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/create_mf_webhook_settings.html">create_mf_webhook_settings – Create MF Webhook Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/create_webhook_settings.html">create_webhook_settings – Create webhook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/delete_branch.html">delete_branch – Remove a branch from an existing mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/delete_endevor_connection.html">delete_endevor_connection – Delete existing Endevor connection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/delete_endevor_connection_certificate.html">delete_endevor_connection_certificate – Delete existing certificate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/delete_local_hook_token.html">delete_local_hook_token – Revoke your local hook token</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/delete_mapping.html">delete_mapping – Delete a Git-Endevor mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/delete_mf_webhook_settings.html">delete_mf_webhook_settings – Delete MF Webhook Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/delete_user.html">delete_user – Delete  existing user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/delete_webhook_settings.html">delete_webhook_settings – Delete Webhook</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_actions.html">list_actions – List actions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_app_logs.html">list_app_logs – List logs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_branch.html">list_branch – List the branches of an existing mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_endevor_change_metadata.html">list_endevor_change_metadata – List CCID, Comment, and From-location values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_endevor_connection.html">list_endevor_connection – List Endevor connections</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_endevor_connection_certificate.html">list_endevor_connection_certificate – List Endevor connection certificate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_generate_settings.html">list_generate_settings – List generate settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_git_change_metadata.html">list_git_change_metadata – List the commit messages that your mapping uses for Bridge sync-back commits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_mail_server_settings.html">list_mail_server_settings – List Mail Server settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_mapping.html">list_mapping – List Git-Endevor mappings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_mf_webhook_settings.html">list_mf_webhook_settings – List MF webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_operations.html">list_operations – List operations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_processor_group.html">list_processor_group – List Processor Groups</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_sync_back_settings.html">list_sync_back_settings – List sync-back (refresh)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_user.html">list_user – List users</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/list_webhook_settings.html">list_webhook_settings – List webhooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/rename_endevor_connection.html">rename_endevor_connection – Rename existing Endevor connection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/sync_back.html">sync_back – Schedule sync-back</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/transfer_endevor_connection.html">transfer_endevor_connection – Transfer your Git-Endevor mapping to another endevor connection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/transfer_mapping.html">transfer_mapping – Transfer a Git-Endevor mapping to a new git url of the same or another git provider</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/transfer_mapping_owner.html">transfer_mapping_owner – Transfer your Git-Endevor mapping to another user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/update_copyback_elements_settings.html">update_copyback_elements_settings – Enable/disable the add element command for CONTEXT/REPO mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/update_credential_cache.html">update_credential_cache – Update your Endevor credentials cache for the Endevor connection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/update_credentials.html">update_credentials – Update your Endevor credentials for the Endevor connection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/update_endevor_change_metadata.html">update_endevor_change_metadata – Update the CCID, Comment, and From-location values</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/update_endevor_connection_certificate.html">update_endevor_connection_certificate – Update your Endevor Connection certificate for the Endevor connection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/update_generate_settings.html">update_generate_settings – Update the global generate settings or generate settings for your mapping</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/update_git_change_metadata.html">update_git_change_metadata – Update the commit messages that your mapping uses for Bridge sync-back commits</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/update_mail_server.html">update_mail_server – Update the mail server settings</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/update_mf_webhook_settings.html">update_mf_webhook_settings – Update MF Webhook Server</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/update_processor_group.html">update_processor_group – Update the processor group of an element or all changed elements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/update_sync_back_settings.html">update_sync_back_settings – Update sync-back</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/update_user_role.html">update_user_role – Update the role of a user</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contents/update_webhook_settings.html">update_webhook_settings – Update webhook</a></li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          
+
+<footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../endevor/contents/view_pkgscl.html" class="btn btn-neutral float-left" title="view_pkgscl – The view pkgscl module views the SCL of an existing package in Endevor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="contents/add_element.html" class="btn btn-neutral float-right" title="add_element – Add an element to your Git repository from up the map in Endevor" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Broadcom.</p>
+  </div>
+
+  
+   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+  <a href="https://sphinx-ansible-theme.rtfd.io">Sphinx Ansible Theme</a>
+  that is based on the
+  <a href="https://github.com/readthedocs/sphinx_rtd_theme">Read the Docs theme</a>
+  and is maintained by the <a href="https://docs.ansible.com/">Ansible Community</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script><!-- extra footer elements for Ansible beyond RTD Sphinx Theme -->
+
+</body>
+</html>

@@ -1,0 +1,419 @@
+.. _commands_run_module:
+
+
+commands_run -- Issue RUN command for CA 7 instance specified in path
+=====================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+The RUN top line command forces immediate scheduling of a job without verifying the availability
+
+of any input requirements or performing the updates that typically follow successful job completion.
+
+The RUN command is similar to the DEMAND command.
+
+When DEMAND is used, input requirement checking is performed and database updating is done upon completion of the job.
+
+When RUN is used, no requirement posting or job triggering occurs.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  ca7_id (*required*, type: str)
+    CA7ONL Instance.
+
+
+
+  key (type: str)
+    The command transaction key.
+
+
+
+  job (type: str)
+    Identifies the job to submit.
+
+    The value must be a job name.
+
+    If the job has not been defined in the database,
+
+    this name must also match the member name for the JCL unless the job is defined in the database.
+
+    See also JCLID. JOB and JOBL are mutually exclusive.
+
+    Limits:
+
+    1 to 8 alphanumeric characters.
+
+
+
+  jobl (type: str)
+    Identifies the job to submit.
+
+    The value must be a long job name.
+
+    If the job has not been defined in the database, use JOB instead.
+
+    See also JCLID. JOB and JOBL are mutually exclusive.
+
+    Limits:
+
+    1 to 64 alphanumeric characters.
+
+
+
+  arfset (type: str)
+    (Optional) Identifies the ARF set name that is used for this run of the job.
+
+    If \*\*NONE\*\* is specified, no ARF processing is performed for this run of the job.
+
+    Limits:
+
+    1 to 8 alphanumeric characters or \*\*NONE\*\*.
+
+
+
+  class (type: str)
+    (Optional) Specifies the workload balancing class for resource checking.
+
+    Limits:
+
+    1 alphanumeric character.
+
+
+
+  dotm (type: str)
+    (Optional) Specifies a due\-out time\-of\-day for the job. If omitted, the current time (when command is processed) plus the lead time is used.
+
+    Format:     hhmm
+
+    Defines the time\-of\-day where hh is the hours (0 through 24) and mm is minutes (00 through 59).
+
+    You can omit leading zeros.
+
+
+
+  exec (type: str)
+    (Optional) Specifies whether to execute the job (YES/NO).
+
+    If NO (N) is used, the job does not run but shows a normal completion as if it did run.
+
+    The value that is specified here overrides the value that is coded on the job definition EXEC field.
+
+    Default:
+
+    The job definition panel EXEC value if job defined to CA WA CA 7 Edition; otherwise YES.
+
+
+
+  jclid (type: str)
+    (Optional) Defines the JCL data set that contains the execution JCL to be submitted.
+
+    If used, the value must be a numeric INDEX associated with the wanted JCL data set
+
+    (on the JCL statement in the initialization file). If the job is defined in the database,
+
+    the value must be the same as the value on the DB.1 panel or the Optional PARMLIB/Parmlib value on the DB.10 and DB.11 panels.
+
+    This field or the JCLLIB field is required if the job is not defined in the database.
+
+    JCLID and JCLLIB are mutually exclusive.
+
+    Note:
+
+    Attempts to run cross\-platform jobs that are not defined to the database fail because they are treated as regular CPU jobs when processed.
+
+    Limits:
+
+    1 to 3 numeric characters from 0 through 254 and from 256 through 999. 255 is reserved.
+
+    Required:
+
+    No, unless job is not defined in database.
+
+
+
+  jcllib (type: str)
+    (Optional) Defines the JCL data set that contains the execution JCL to be submitted.
+
+    If used, the value must be a symbolic INDEX associated with the wanted JCL data set
+
+    (on the JCL statement in the initialization file).
+
+    If the job is defined in the database, the value must be the same as the value on the DB.1 panel
+
+    or the Optional PARMLIB/Parmlib value on the DB.10 and DB.11 panels.
+
+    This field or the JCLID field is required if the job is not defined in the database.
+
+    JCLID and JCLLIB are mutually exclusive.
+
+    Note:
+
+    Attempts to run cross\-platform jobs that are not defined to the database fail because they are treated as regular CPU jobs when
+
+    processed.Limits:
+
+    2 to 16 alphanumeric characters beginning with ampersand (&)
+
+    Required:
+
+    No, unless job is not defined in database
+
+    Note:
+
+    A dynamic allocation failure on a JCL data set specified by JCLLIB causes the job to enter the request queue in SKELETON status.
+
+
+
+  late (type: str)
+    (Optional) Specifies whether notification occurs when the job becomes late.
+
+    Specify YES (Y) to make the job eligible to be marked LATE.
+
+    If NO (N) is used, the job is never marked LATE.
+
+    The value that is specified here overrides the value that is coded on the job definition PROMPTS field.
+
+
+
+  leadtm (type: str)
+    (Optional) Specifies the lead (processing) time that is required for the job to run. If omitted, 1 hour is used.
+
+    Format:    hhmm
+
+    Defines the time where hh is hours (0 through 23) and mm is minutes (00 through 59).
+
+    You can omit leading zeros.
+
+
+
+  mainid (type: str)
+    (Optional) Specifies the MAINID, as defined in the initialization file CPU statement, to which the job is redirected. The value that is
+
+    specified here overrides the value that is coded on the job definition MAINID field. The name must be one of the following values:    ALL
+
+    Specifies all CPUs are acceptable for executing the job.    SYn
+
+    n defines the CPU to which the job is being redirected. The value of n can range from 1 to 7.    /SYn
+
+    n defines a CPU to which the job cannot be submitted. The value of n can range from 1 to 7.    \-SYn
+
+    n defines a CPU to which the job cannot be submitted. The value of n can range from 1 to 7.Limits:
+
+    Invalid with cross\-platform jobs.
+
+
+
+  rms (type: str)
+    (Optional) Specifies whether CA WA CA 7 Edition inserts the CA WA Restart\_XXX Option RMS step.
+
+    Specify YES (Y) to insert the step with the CA WA Restart\_XXX Option processing code of P.
+
+    Enter NO (N) to indicate that the RMS step is not inserted.
+
+    The value that is specified here overrides the value that is coded on the job definition INSERT\-RMS field.
+
+    Default: The job definition panel INSERT\-RMS value if job defined to CA WA CA 7 Edition; otherwise NO.
+
+    Limits:
+
+    Invalid for cross\-platform jobs.
+
+    Note: For more information, see [Interface with CA WA Restart\_XXX Option for z/OS
+
+    Schedulers](https://docops.ca.com/ca\-workload\-automation\-ca\-7\-edition/12\-0/en/configuring/interfaces/interfaces\-with\-other\-products/interface\-with\-ca\-wa\-restart\-option\-for\-z\-os\-schedulers/)
+
+    .
+
+
+
+  schid (type: str)
+    (Optional) Indicates the schedule ID to be used for evaluating JCL overrides that are scheduled with the #Jx or #Xx commands.
+
+    If used, the value must be a schedule ID number.
+
+    Default: 1
+
+    Limits:
+
+    1 to 3 numeric characters from 1 through 999
+
+    Required:
+
+    No (unless the SCHEDULE statement in the initialization file specifies SCHID=YES, then this parameter is required).
+
+
+
+  time (type: str)
+    (Optional) Establishes a submit time\-of\-day requirement for the job.
+
+    Format:    hhmm
+
+    Defines the time\-of\-day where hh is hours (0 through 23) and mm is minutes (00 through 59).
+
+    Leading zeros are not required.
+
+
+
+  type (type: str)
+    (Optional) Indicates that the job is being scheduled for rerun.
+
+    The value must be specified as shown.
+
+    TYPE=RES is optional.
+
+    If used, a restart requirement is placed on the job, and the job has to be manually restarted.
+
+
+
+  host (*required*, type: str)
+    Host name of the CA7 API service that is running on the mainframe system.
+
+
+
+  port (*required*, type: int)
+    Port for the CA7 API service that is running on the mainframe system.
+
+
+
+  user (*required*, type: str)
+    User name for authenticating connections to the CA7 API service that is running on the mainframe system.
+
+
+
+  password (*required*, type: str)
+    Password for authenticating connections to the CA7 API service that is running on the mainframe system.
+
+
+
+  base_path (type: str)
+    The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all resources when making REST
+
+    requests. Do not specify this option if you are not using an Zowe API Mediation Layer.
+
+
+
+  protocol (*required*, type: str)
+    Specifies protocol to use for CA7 connection (http or https).
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` 
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self\-signed certificates.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe
+
+    Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Forces immediate scheduling of a job AJOB on instance1
+      broadcom.ca7.commands_run:
+        job: AJOB
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

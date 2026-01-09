@@ -1,0 +1,187 @@
+=================
+Using collections
+=================
+
+.. |BACMs| replace:: Broadcom Ansible Collections for Mainframe
+
+Now that you have read the :doc:`installation guide <installation>` and installed one or more |BACMs| on a control node,
+you are ready to learn how Ansible works and how to use |BACMs| with your mainframe systems.
+
+A basic Ansible command or playbook:
+
+- selects managed nodes or "hosts" to execute against from inventory
+- connects to those hosts (in our case mainframe systems), usually over SSH or REST APIs
+- starts execution of the modules used in the playbook
+
+Ansible can do much more, but you should understand the most common use case before exploring all the powerful features of Ansible.
+This page illustrates the basic process with a simple inventory and a simple playbook.
+Once you understand how it works, you can read more details about organizing your systems with `inventory`_,
+and more features of Ansible `playbooks`_.
+
+.. _inventory:
+    https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html
+
+.. _playbooks:
+    https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html
+
+Selecting systems from inventory
+================================
+
+Ansible gets information about which systems you want to manage from your inventory.
+You need inventory to take advantage of the full flexibility and repeatability of Ansible.
+
+Action: create a basic inventory
+--------------------------------
+
+For this basic inventory, edit (or create) `/etc/ansible/hosts` and add a mainframe systems to it.
+For this example, use either IP addresses or FQDNs (fully qualified domain names):
+
+.. code-block:: yaml
+
+  all:
+    hosts:
+      sys1.your.company.net:
+        ansible_user: "<z/OS user ID>"
+        broadcom:
+          endevor:
+            port: 6032
+
+This is inventory is YAML format. YAML format is easier to use for inventories that need to add variables to the systems.
+
+``sys1.your.company.net`` is the hostname of a mainframe system.
+
+Ansible uses SSH and connects to remote machines using your current user name, just as SSH does.
+For mainframe systems, you will typically use a different user ID, so we need to specify it using:
+
+.. code-block:: yaml
+
+  ansible_user: "<z/OS user ID>"
+
+.. _Endevor REST API:
+    https://techdocs.broadcom.com/us/en/ca-mainframe-software/devops/ca-endevor-software-change-manager/18-0/using/using-the-rest-api.html
+
+|BACMs| connect to mainframe services using REST APIs running on the system. This requires to provide the connection port.
+In the example, we will connect to `Endevor REST API`_ that is listening on HTTPS port ``6032`` of the ``sys1.your.company.net`` system:
+
+.. code-block:: yaml
+
+  broadcom:
+    endevor:
+      port: 6032
+
+If you are not sure what is the correct port, consult your system programmer.
+
+Beyond the basics
+-----------------
+
+Your inventory can store much more. You can create `aliases`_, set variable values for a single host with `host vars`_,
+or set variable values for multiple hosts with `group vars`_. Variables are typically used for connection parameters
+of Broadcom API services and will cover multiple ways how they can be defined in the :doc:`Connection methods and details <connecting>` page.
+In this example, we have not defined password to the z/OS system so Ansible will prompt for it.
+The :doc:`Connection methods and details <connecting>` page describes possible ways how to authenticate to z/OS with Ansible and |BACMs|.
+
+.. _aliases:
+    https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#inventory-aliases
+
+.. _host vars:
+    https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#host-variables
+
+.. _group vars:
+    https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html#group-variables
+
+Executing modules
+=================
+
+Action: Run your first playbook
+-------------------------------
+
+Playbooks are used to pull together tasks into reusable units.
+
+Ansible does not store playbooks for you; they are simply YAML documents that you store and manage, passing them to Ansible to run as needed.
+
+In the following example, we will use Endevor collection. But you can replace it with other Broadcom product that you use.
+
+In a directory of your choice you can create your first playbook in a file called ``endevor.yaml``:
+
+.. code-block:: yaml
+
+  - name: Sample playbook with a simple Endevor task
+    hosts: sys1.your.company.net
+    gather_facts: false
+    tasks:
+    - name: List all environments in Endevor SCM
+      broadcom.endevor.list_environments:
+        instance: ENDEVOR
+      register: environments
+    - name: Print environments
+      debug:
+        var: environments.list
+
+.. note::
+
+  ``gather_facts: false`` is used to disable gathering facts from the z/OS system. In such case, Ansible does not
+  need to connect to the system using SSH and it uses only Endevor REST API.
+
+You can run this command as follows:
+
+.. code-block:: bash
+
+    $ ansible-playbook --ask-pass endevor.yaml
+
+and may see output like this:
+
+.. code-block:: ansible-output
+
+    SSH password:
+
+    PLAY [Sample playbook with a simple Endevor task] ****************************************************************
+
+    TASK [List all environments in Endevor SCM] **********************************************************************
+    ok: [sys1.your.company.net]
+
+    TASK [Print environments] ****************************************************************************************
+    ok: [sys1.your.company.net] => {
+        "environments.list": [
+            {
+                "db_brg_act": false,
+                "db_brg_av": false,
+                "db_brg_opt1": false,
+                "db_brg_opt2": false,
+                "db_brg_opt3": false,
+                "db_brg_opt4": false,
+                "env_name": "DEV",
+                "next_env": "QA",
+                "rsec": null,
+                "site_id": "0",
+                "smf_act": true,
+                "smf_env": false,
+                "smf_sec": false,
+                "sync_loc": true,
+                "title": "TEST DEVELOPMENT ENVIRONMENT",
+                "usec": null
+            },
+            ...
+        ]
+    }
+
+    PLAY RECAP *******************************************************************************************************
+    sys1.your.company.net      : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+
+Congratulations! You have contacted your mainframe using Ansible. You used a basic inventory file and executed a simple playbook that listed available Endevor environments.
+
+.. seealso::
+
+  `Intro to playbooks <https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html>`_
+    Learn how to write playbooks
+
+  :doc:`Connection methods and details <connecting>`
+    Learn how to expand and refine the connection methods and how to specify connection parameters for Broadcom API services
+
+  `How to build your inventory <https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html>`_
+    More information about Ansible inventory
+
+  `YAML Syntax <https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html#yaml-syntax>`_
+    Learn about YAML syntax
+
+  `Tips and tricks <https://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html#playbooks-best-practices>`_
+    Tips for managing playbooks in the real world

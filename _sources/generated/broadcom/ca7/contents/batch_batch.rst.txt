@@ -1,0 +1,208 @@
+.. _batch_batch_module:
+
+
+batch_batch -- Issue multiple requests
+======================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Call multiple APIs in the same CA 7 session.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  ca7_id (type: str)
+    CA 7 instance
+
+    All API requests in the request body will be routed to the ca7Id specified.
+
+    If ca7Id is not specified, all requests will be routed to the DEFAULT\_INSTANCE.
+
+
+
+  path (*required*, type: list)
+    The path as shown in Swagger for the endpoint associated with this API request.
+
+
+
+  method (*required*, type: list)
+    The API method
+
+    Valid values are POST, PUT or DELETE.
+
+
+
+  body (type: list)
+    The request body required for the API specified by path
+
+    Note that double quotes (") in the original API request body should be replaced with single quotes (') in the body value.Required if the
+
+    method is POST, PUT, or DELETE
+
+    Invalid if the method is GET.
+
+
+
+  parameters (type: list)
+    Name/value pairs specified using standard JSON format enclosed in curly brackets { }
+
+    Optional depending upon the path and method.
+
+
+
+  host (*required*, type: str)
+    Host name of the CA7 API service that is running on the mainframe system.
+
+
+
+  port (*required*, type: int)
+    Port for the CA7 API service that is running on the mainframe system.
+
+
+
+  user (*required*, type: str)
+    User name for authenticating connections to the CA7 API service that is running on the mainframe system.
+
+
+
+  password (*required*, type: str)
+    Password for authenticating connections to the CA7 API service that is running on the mainframe system.
+
+
+
+  base_path (type: str)
+    The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all resources when making REST
+
+    requests. Do not specify this option if you are not using an Zowe API Mediation Layer.
+
+
+
+  protocol (*required*, type: str)
+    Specifies protocol to use for CA7 connection (http or https).
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` 
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self\-signed certificates.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe
+
+    Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: Call multiple APIs(with details of path, method, body, and/or parameters) in the same CA 7 session on Instance1
+      broadcom.ca7.batch_batch:
+        path:
+        - "path2"
+        method:
+        - "PUT"
+        body:
+        - "{body parameters}"
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+

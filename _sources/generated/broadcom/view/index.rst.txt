@@ -1,0 +1,16 @@
+
+broadcom.view
+=============
+
+Access Output Management View™ for z/OS data and perform related tasks.
+
+Compatible with Zowe CLI Plugin version: 3.0.0
+
+For more information, see the *Contents* section.
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :caption: Contents
+
+   contents/*

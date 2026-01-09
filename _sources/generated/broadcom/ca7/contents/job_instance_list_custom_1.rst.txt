@@ -1,0 +1,940 @@
+.. _job_instance_list_custom_1_module:
+
+
+job_instance_list_custom_1 -- Retrieves information about active jobs using a custom set of columns for DEFAULT\_INSTANCE
+=========================================================================================================================
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Synopsis
+--------
+
+Displays information about jobs in the active workload.
+
+
+
+
+
+
+
+Parameters
+----------
+
+  ca7no (type: str)
+    The CA 7 job number.
+
+
+
+  jobname (type: str)
+    The CA 7 job name.
+
+
+
+  databasename (type: str)
+    The CA 7 database name.
+
+
+
+  job (type: bool)
+    The job name for this job in the active workload, 8 CHAR.
+
+
+
+  queue_name (type: bool)
+    The name of the queue in which this job is currently located.  Values are:  1=pre\-processing; 2=request;3=ready; 4=active; 5=post\-processing;
+
+    6=prior\-run, CHAR 16.
+
+
+
+  ca7# (type: bool)
+    The job number for this job in the active workload.
+
+
+
+  status (type: bool)
+    The job status
+
+    For more information about possible values refer to the LQ command.
+
+    Note:
+
+    This service determines values of status in much the same way as values are determined
+
+    for the JOB STATUS column of the LQ command.
+
+    The �LATE� value is an exception.
+
+    Unlike the LQ command, this service will only evaluate and report late conditions when
+
+    none of the other conditions are detected.
+
+    For example, the LQ command output may report a status value of �LATE�
+
+    even if the job is actually waiting for virtual resources.
+
+    In such a case, this service will report �W\-RSRC�.
+
+
+
+  entry_mode (type: bool)
+    Identifies how the job was brought into the queue.
+
+    The possible values are the following:
+
+    ARFJ
+
+    Indicates an ARF recovery job.
+
+    AUTO
+
+    Indicates a triggered job.
+
+    DEMD
+
+    Indicates a demanded job.
+
+    EXTL
+
+    Indicates a job that is submitted external to CA WA CA 7 Edition
+
+    LOAD
+
+    Indicates a job to be loaded (brought in by the LOAD command).
+
+    PS
+
+    Indicates a job that the Personal Scheduling System submitted.
+
+    RPET
+
+    Indicates a repeated job.
+
+    RUN
+
+    Indicates a job that is brought in by the RUN command.
+
+    SSCN
+
+    Indicates a job that is brought in by schedule scan.
+
+    XDEM
+
+    Indicates a job brought in by the DEMAND command from an XPS client.
+
+    XPS
+
+    Indicates a job brought in from an XPS client using the RUN command with the REF option.
+
+    XRUN
+
+    Indicates a job brought in from an XPS client using the RUN command.
+
+
+
+  abended (type: bool)
+    Y if job abended, N if not, 1 CHAR.
+
+
+
+  agent_intervention (type: bool)
+    Y if INTERVENTION REQUIRED condition exists for this agent job, N if not, 1 CHAR.
+
+
+
+  agent_job_number (type: bool)
+    The job number/PID for this agent job, 28 CHAR.
+
+
+
+  agent_name (type: bool)
+    The name of the agent where this job will execute, 16 CHAR.
+
+
+
+  agent_status (type: bool)
+    The status for this agent job, 40 CHAR.
+
+
+
+  agent_status_data (type: bool)
+    Y if status data is available for this agent job,N if not, 1 CHAR.
+
+
+
+  agent_submitted (type: bool)
+    Y if agent job has been submitted to the agent, N if not, 1 CHAR.
+
+
+
+  agent_type (type: bool)
+    Agent job type, zero if this is not an agent job, INTEGER.
+
+
+
+  agent_user (type: bool)
+    The userid with which this agent job will execute, 120 CHAR.
+
+
+
+  ajb_build_error (type: bool)
+    Y if an error occurred while building an XPJOB job AJB or an agent job AFM, N if not, 1 CHAR.
+
+
+
+  arf (type: bool)
+    Y if this job is monitored by ARF, N if not.
+
+
+
+  arf_attach_err (type: bool)
+    Y if this job had an ARF attach error, N if not, 1 CHAR.
+
+
+
+  arf_comp_matched (type: bool)
+    Set to Y if an ARF JOB completion rule matched for this job, 1 CHAR.
+
+
+
+  arf_date (type: bool)
+    Y if the job uses ARF.  CA recommends using column ARF instead of this column, 1 CHAR.
+
+
+
+  arf_error_cond (type: bool)
+    Set to Y if there was an error during ARF condition detection, N if not, 1 CHAR.
+
+
+
+  arfj_job (type: bool)
+    Y if job is an ARF recovery job, N if not, 1 CHAR.
+
+
+
+  arf_job_complete (type: bool)
+    Set to Y if this job's completion has been posted to ARF, N if not, 1 CHAR.
+
+
+
+  arf_recovery (type: bool)
+    Y if job is in ARF recovery, N if not, 1 CHAR.
+
+
+
+  arf_recovery_err (type: bool)
+    Y if this job had an error in ARF recovery, N if not, 1 CHAR.
+
+
+
+  arfset (type: bool)
+    The collection of ARF definitions that apply to this job, 8 CHAR.
+
+
+
+  arf_time (type: bool)
+    The date and time that the ARFSET was attached to this job, DATE/TIME.
+
+
+
+  autof_done (type: bool)
+    Y if job performed AUTO F, N if not, 1 CHAR.
+
+
+
+  ca11_jes_node (type: bool)
+    The JES node where this job executes, 8 CHAR.
+
+
+
+  ca11_restart_step (type: bool)
+    The relative CA 11 restart step number, INTEGER.
+
+
+
+  ca11_rms_cc (type: bool)
+    The CA 11 U11RMS step condition code, INTEGER.
+
+
+
+  ca11_subsystem (type: bool)
+    The CA 11 subsystem name.
+
+
+
+  ca7_system (type: bool)
+    The user\-defined application system associated with this job, 8 CHAR.
+
+
+
+  comp_code (type: bool)
+    The job completion code in number format, INTEGER.
+
+
+
+  cpm_jfm (type: bool)
+    Y if JFM is used to track CPM, N if not, 1 CHAR.
+
+
+
+  cpu_table_index (type: bool)
+    Index to the CPU Table entry, SMALLINT.
+
+
+
+  cputime (type: bool)
+    This Job's average CPU time, PACKED.
+
+
+
+  curr_step_num (type: bool)
+    The number of the step that is currently executing, INTEGER.
+
+
+
+  def_not_found (type: bool)
+    Y if job defintion not found on database, N if not found, 1 CHAR.
+
+
+
+  do_not_prompt (type: bool)
+    Y if prompts are bypassed for the job, N if not, 1 CHAR.
+
+
+
+  drclass (type: bool)
+    The job's disaster recovery class, 8 CHAR.
+
+
+
+  drmode (type: bool)
+    Y if this job entered the queues when disaster recovery mode was active, N if not, 1 CHAR.
+
+
+
+  due_out_exists (type: bool)
+    Determines if a zero value in DUE\_OUT\_TIME indicates midnight (Y) or no due out time (N), 1 CHAR.
+
+
+
+  due_out_time (type: bool)
+    The date and time this job is expected to complete, DATE/TIME.
+
+
+
+  dup_job (type: bool)
+    Y if a job with the same name is waiting on this job to complete, N if not, 1 CHAR.
+
+
+
+  dup_job_wait (type: bool)
+    Y if this job is waiting on a job with the same name to complete, N if not, 1 CHAR.
+
+
+
+  elapsed_time (type: bool)
+    This Job's average elapsed time, PACKED.
+
+
+
+  end_time (type: bool)
+    The date and time this job ended, DATE/TIME.
+
+
+
+  executable (type: bool)
+    Y if job is executable, N if not, 1 CHAR.
+
+
+
+  express (type: bool)
+    Y if submission of this job has been expedited by use of the SUBMIT,EXPRESS=YES command, N if not, 1 CHAR.
+
+
+
+  external_input (type: bool)
+    Y if we job has external input, N if not, 1 CHAR.
+
+
+
+  external_job (type: bool)
+    Y if this is an externally tracked job, N if not, 1 CHAR.
+
+
+
+  external_satisfied (type: bool)
+    The number of satisfied external requirements for this job, INTEGER.
+
+
+
+  external_total (type: bool)
+    The total number of external requirements for this job, INTEGER.
+
+
+
+  forced_complete (type: bool)
+    Y if job was force completed, N if not, 1 CHAR.
+
+
+
+  forced_submit (type: bool)
+    Y if all input requirements have been marked as satisfied by use of the SUBMIT command, N if not, 1 CHAR.
+
+
+
+  from_xp_request (type: bool)
+    Y if scheduling request for this job came from an XPS client, N if not, 1 CHAR.
+
+
+
+  has_ca11 (type: bool)
+    Y if job has a CA11 segment, N if not, 1 CHAR.
+
+
+
+  has_cpu_time (type: bool)
+    Y if we have non\-zero CPU time for this job, N if not, 1 CHAR.
+
+
+
+  has_jo (type: bool)
+    Y if the JCL or PARM DATA contains a #JO card, N if not, 1 CHAR.
+
+
+
+  has_step_time (type: bool)
+    Y if job has non\-zero step CPU time, N if not, 1 CHAR.
+
+
+
+  held (type: bool)
+    Y if job is held, N if not, 1 CHAR.
+
+
+
+  held_by_job (type: bool)
+    Y if job was held on entry to the queues, N if not, 1 CHAR.
+
+
+
+  held_skeleton (type: bool)
+    Y if job is held and in skeleton status, N if not, 1 CHAR.
+
+
+
+  skeleton (type: bool)
+    Y if job is in skeleton status, N if not, 1 CHAR.
+
+
+
+  hold_on_entry (type: bool)
+    Y if job marked HOLD=YES, N if not, 1 CHAR.
+
+
+
+  host_name (type: bool)
+    The SMF Id of the system where this is executing, 8 CHAR.
+
+
+
+  in_cpm_flow (type: bool)
+    Y if job is part of a CPM flow, N if not, 1 CHAR.
+
+
+
+  insert_rms (type: bool)
+    Y if an RMS step will be inserted into this job's JCL, N if not, 1 CHAR.
+
+
+
+  jcl_alloc_err (type: bool)
+    Y if JCL or PARM DATA library could not be allocated, N if not, 1 CHAR.
+
+
+
+  jcl_count (type: bool)
+    The number of non\-# records in the JCL or PARM DATA members associated with this job, INTEGER.
+
+
+
+  jcl_error (type: bool)
+    Y if job marked with JCL error, N if not, 1 CHAR.
+
+
+
+  jcl_from_altlib (type: bool)
+    Y if JCL or PARM DATA was retrieved from an alternate library, N if not, 1 CHAR.
+
+
+
+  jcl_library (type: bool)
+    Contains either a 3 digit JCL index value or a JCL variable beginning with an ampersand, 16 CHAR.
+
+
+
+  jes_hi (type: bool)
+    JES supports ID \> 99999, 1 CHAR.
+
+
+
+  load_only (type: bool)
+    Y if this is a LOAD only job, N if not, 1 CHAR.
+
+
+
+  load_step_done (type: bool)
+    Y if LOAD step ran OK for this job, N if not, 1 CHAR.
+
+
+
+  locked (type: bool)
+    Y if job is locked, N if not, 1 CHAR.
+
+
+
+  long_name (type: bool)
+    An alias name for this job.  This name may be used by scheduling engines on other platforms, such as AutoSys, 64 CHAR.
+
+
+
+  lterm (type: bool)
+    Logical terminal name from job definition, 8 CHAR.
+
+
+
+  mainid (type: bool)
+    If positive, the CPU number on which the job may execute. If negative, the CPU number on which the job may not execute, INTEGER.
+
+
+
+  maint (type: bool)
+    Y if job ignores requirements, N if not, 1 CHAR.
+
+
+
+  manual_requeue (type: bool)
+    Y if job has been re\-queued to REQUEST queue, N if not, 1 CHAR.
+
+
+
+  member_name (type: bool)
+    The JCL or PARM DATA library member name, 8 CHAR.
+
+
+
+  must_start_exists (type: bool)
+    Determines if a zero value in MUST\_START\_TIME indicates midnight (Y) or no deadline time (N), 1 CHAR.
+
+
+
+  needs_autof (type: bool)
+    Y if a job changed and requires 'F' in CA11, N if not, 1 CHAR.
+
+
+
+  next_run_req (type: bool)
+    Y if job has temporary requirements for the next execution, N if not, 1 CHAR.
+
+
+
+  node_failed (type: bool)
+    Y if this is an XPJOB job and at the time of it last submit its node was down, N if not, 1 CHAR.
+
+
+
+  node_offline (type: bool)
+    Y if this is an XPJOB job and at the time of its last submit its node was offline, N if not, 1 CHAR.
+
+
+
+  node_stopped (type: bool)
+    Y if this is an XPJOB job and at the time of it last submit its node was stopped, N if not, 1 CHAR.
+
+
+
+  no_user_id (type: bool)
+    Y if there is not a valid security id for this job, N if there is, 1 CHAR.
+
+
+
+  no_xpsi_parmlib (type: bool)
+    Y if this is an XPJOB job and has no PARMLIB, N if not, 1 CHAR.
+
+
+
+  no_xpsi_xpsparm (type: bool)
+    Y if this is an XPJOB job and has no PARM, N if not, 1 CHAR.
+
+
+
+  override (type: bool)
+    Y if JCL/PARM DATA override is required, N if not, 1 CHAR.
+
+
+
+  override_applied (type: bool)
+    Y if JCL overrides have been applied for this job, N if not, 1 CHAR.
+
+
+
+  prompt (type: bool)
+    Y if job should have LATE PROMPTS, N if not, 1 CHAR.
+
+
+
+  prompt_ack (type: bool)
+    Y if user has acknowledged the prompt, N if not, 1 CHAR.
+
+
+
+  prompted (type: bool)
+    Y if user has been prompted, N if not, 1 CHAR.
+
+
+
+  qjcl_updated (type: bool)
+    Y if JCL or PARM DATA updated through QJCL, N if not, 1 CHAR.
+
+
+
+  queue_jcl (type: bool)
+    Y if a QJCL command is in progress for this job N if not.
+
+
+
+  repeat_count (type: bool)
+    The number of times to repeat this job, INTEGER.
+
+
+
+  repeat_diff (type: bool)
+    The difference between the original dueout time and the original submit time, used by repeating jobs.  The value is in minutes, INTEGER.
+
+
+
+  repeat_interval (type: bool)
+    The interval between repetitions of the job, PACKED.
+
+
+
+  repeat_lead_time (type: bool)
+    The lead time for this repeat job.  This is the amount of time to ensure it completes before it due out time, PACKED.
+
+
+
+  repeat_stop_exists (type: bool)
+    Determines if a zero value in REPEAT\_STOP\_TIME indicates midnight (Y) or no repeat stop time (N), 1 CHAR.
+
+
+
+  repeat_stop_time (type: bool)
+    The date and time on or after which a repeating job will not be repeated, DATE/TIME.
+
+
+
+  repeat_type (type: bool)
+    The type of repeat job. This field determines how the submit time requierement is calculated for repeating jobs, 1 CHAR.
+
+
+
+  restart_step (type: bool)
+    The step name in which the job was restarted, 8 CHAR.
+
+
+
+  retain_jcl (type: bool)
+    Y if JCL or XPJOB information will be retained in the prior run queue, N if not, 1 CHAR.
+
+
+
+  rqmt_count (type: bool)
+    The master requirement count for this job.  The number includes unsatisfied requirements, submit time, and other reasons preventing the job
+
+    from being submitted, INTEGER.
+
+
+
+  schd_adjusted (type: bool)
+    Y if job's schedule has been adjusted, N if not, 1 CHAR.
+
+
+
+  nosecurity (type: bool)
+    Y if there was an error retrieving security data,N if no, 1 CHAR.
+
+
+
+  set_ndb (type: bool)
+    Y if job will bypass LOAD processing at completion and not update the database, N if not, 1 CHAR.
+
+
+
+  smf_needed (type: bool)
+    Y if SMF feedback is needed for this job, N if not, 1 CHAR.
+
+
+
+  start_time (type: bool)
+    The date and time this job started executing on its most recent submission, DATE/TIME.
+
+
+
+  submitted (type: bool)
+    Y if this job has been submitted to the host, N if not, 1 CHAR.
+
+
+
+  submit_time (type: bool)
+    The date and time this job was submitted, DATE/TIME.
+
+
+
+  triggered (type: bool)
+    Y if job triggered by another job, N if not, 1 CHAR.
+
+
+
+  uid (type: bool)
+    The CA 7 internal user security designation, INTEGER.
+
+
+
+  verify (type: bool)
+    Y if job has a manual verification requirement, N if not, 1 CHAR.
+
+
+
+  wait_submit_time (type: bool)
+    Y if this job has a submit time requirement, N if not, 1 CHAR.
+
+
+
+  xp_alt_node (type: bool)
+    The alternate node where this XPJOB job was routed, CHAR 64.
+
+
+
+  xp_primary_node (type: bool)
+    The primary node associated with this XPJOB job, CHAR 64.
+
+
+
+  xps_job (type: bool)
+    Y if this is an XPJOB job, N if not, 1 CHAR.
+
+
+
+  xp_status (type: bool)
+    The status of the node associated with this XPJOB job. A: Active F: Failed CCI send O: Offline S:Stopped, 1 CHAR.
+
+
+
+  xtracker_inact (type: bool)
+    Y if at time of submission, the XTRACKER task is not active for an XPJOB job or IAS is not active for an agent job, N if not, 1 CHAR.
+
+
+
+  xplat_node (type: bool)
+    Cross platform long node name, 64 CHAR.
+
+
+
+  response_error (type: bool)
+    Response Error.
+
+
+
+  ca11_failing_step# (type: bool)
+    CA 11 Failing Step Number, INTEGER.
+
+
+
+  complete_ok (type: bool)
+    Y if job completed normally, N if not, 1 CHAR.
+
+
+
+  jes# (type: bool)
+    The JES job number for this job.  A value of \-1 indicates \*NA\*, INTEGER.
+
+
+
+  needs_load (type: bool)
+    Y if LOAD processing will be done for this job, Nif not, 1 CHAR.
+
+
+
+  deadline (type: bool)
+    The date and time a job must be started by in order to meet its due out time, DATE/TIME.
+
+
+
+  jclfrom254 (type: bool)
+    Y if JCL or XPJOB information will be retained in the prior run queue, N if not, 1 CHAR.
+
+
+
+  prose# (type: bool)
+    Number of the prose text associated with this job, or zero, INTEGER.
+
+
+
+  schedule_id (type: bool)
+    The schedule id for this execution, INTEGER.
+
+
+
+  triggering_job# (type: bool)
+    The CA 7 internal job number of the job that triggered this job or job that created the data set that triggered this job, INTEGER.
+
+
+
+  triggers (type: bool)
+    Y if job can trigger other jobs, N if not, 1 CHAR.
+
+
+
+  host (*required*, type: str)
+    Host name of the CA7 API service that is running on the mainframe system.
+
+
+
+  port (*required*, type: int)
+    Port for the CA7 API service that is running on the mainframe system.
+
+
+
+  user (*required*, type: str)
+    User name for authenticating connections to the CA7 API service that is running on the mainframe system.
+
+
+
+  password (*required*, type: str)
+    Password for authenticating connections to the CA7 API service that is running on the mainframe system.
+
+
+
+  base_path (type: str)
+    The base path for your Zowe API Mediation Layer instance. Specify this option to prepend the base path to all resources when making REST
+
+    requests. Do not specify this option if you are not using an Zowe API Mediation Layer.
+
+
+
+  protocol (*required*, type: str)
+    Specifies protocol to use for CA7 connection (http or https).
+
+
+    Choices:
+      * ``http`` 
+      * ``https`` 
+
+  reject_unauthorized (type: bool, default: ``True``)
+    Reject self\-signed certificates.
+
+
+
+  cert_file (type: path)
+    The file path to a certificate file to use for authentication.
+
+    Note: The CLI does not support certificate files that require a password. For more information, search Troubleshooting PEM Certificates in Zowe
+
+    Docs.
+
+
+
+  cert_key_file (type: path)
+    The file path to a certificate key file to use for authentication.
+
+
+
+
+
+
+
+
+
+
+Examples
+--------
+
+.. code-block:: yaml+jinja
+
+    
+    - name: List a CA 7 job (7777) information which resided in CA7DB database
+      broadcom.ca7.job_instance_list_custom_1:
+        ca7no: 7777
+        jobname: TESTCA7
+        databasename: CA7DB
+
+
+
+
+Return Values
+-------------
+
+data (type: list, *when returned data is a dictionary*)
+  Data from the module execution (a data structure). The items of this dict are set as individual return values on the top level as well.
+
+
+error (type: complex, *error*)
+  More details about why the action has failed. If the failure is when calling an API service, the response contains the connection parameters.
+
+
+  additional_details (type: str)
+    Detailed message about the failure.
+
+
+  msg (type: str)
+    Short description of the result or failure.
+
+
+  request (type: str, *API request failed*)
+    HTTP method used to invoke API service request.
+
+
+  resource (type: str, *API request failed*)
+    URI of the resource of the API service request.
+
+
+
+failed (type: bool, *always*)
+  A boolean that indicates if the task was failed or not.
+
+
+list (type: list, *when returned data is a list*)
+  Data from the module execution (a list of data structures).
+
+
+msg (type: str, *sometimes*)
+  Short description of the result or failure.
+
+
+rc (type: int, *always*)
+  Exit code of the module, successful exit code is 0, failure is typically 1 or higher.
+
+
+stderr (type: str, *error*)
+  Details of the error.
+
+
+stdout (type: str, *success*)
+  Summary of the result.
+
+
+
+
+
+Status
+------
+
+
+
+
+- This module is maintained by Broadcom.
+
+
+
